@@ -1,7 +1,7 @@
 ---
 title: "Why a Medical R Blog?"
 description: |
-  A starting point and list of Theses.
+  A starting point and few Theses.
 author:
   - name: Peter Higgins
     url: https://example.com/norajones
@@ -15,13 +15,13 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-First and foremost, because a remarkable amount of (even published) medical research is not _reproducible_, meaning that, given the data and code, you should be able to reproduce all the published figures and tables. <br>
+First and foremost, because a remarkable amount of (even published) medical research is _not reproducible_, meaning that, given the data and code, you should be able to reproduce all the published figures and tables. <br>
 
 Even better, we should have _replicable_ research, meaning that someone else, following the same protocol, in a different setting, should be able to reproduce the results completely. This is a higher bar, and one we should strive for, but we are a long way from this. <br>
 
-As a first step, we should collect data in a secure, ethical, and HIPAA-compliant way. <br>
+As a first step toward reproducibility, we should collect data in a secure, ethical, and HIPAA-compliant way. <br>
 
-We should store data in standard formats, and validate their quality _during_ data entry. <br>
+We should store data in standard (tidy) formats, and validate their quality _during_ (not after) data entry. <br>
 
 We should have an audit trail of every change to the data, and a documented reason, date, and identity of the person making the data edit. <br>
 
@@ -31,7 +31,7 @@ We should preserve (and comment) our data analysis in code, so that it can be re
 
 We should document our raw data, our code (all steps), and our computing environment, including all computer systems and software and packages used, so that others can reproduce our work. <br>
 
-Ideally, we should preserve a snapshot of our computing environment, with tools like Docker or binderhub to allow easy reproduction of our data analysis even years in the future. <br>
+Ideally, we should preserve a snapshot of our computing environment, with tools like Docker and binderhub to allow easy reproduction of our data analysis even years in the future. <br>
 
 If our data, and each step in the analysis, can not be reproduced, it should not be trusted. <br>
 

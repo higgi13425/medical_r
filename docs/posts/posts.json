@@ -1,5 +1,21 @@
 [
   {
+    "path": "posts/2020-10-14-how-to-post/",
+    "title": "How to Post",
+    "description": "A reference for future me, on how to create posts.",
+    "author": [
+      {
+        "name": "Peter Higgins",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2020-10-14",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-10-14T14:52:29-04:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2020-10-14-why-a-medical-r-blog/",
     "title": "Why a Medical R Blog?",
     "description": "A starting point and few Theses.",

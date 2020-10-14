@@ -8,9 +8,11 @@ description: |
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-
 ### About me
 My name is Peter Higgins, and I work at the University of Michigan, where I am a Professor of Internal Medicine and take care of patients with Inflammatory Bowel Disease. I do a variety of research projects related to Inflammatory Bowel Disease, which range from basic science to translational drug development to clinical trials to epidemiology.<br>
+<br>
+Some of the posts here are largely notes to myself to help in writing an e-book about Reproducible Medical Research in R (RMRWR). Other posts will essentially be first drafts of future chapters of RMRWR, which is a work in progress. The RMRWR e-book can be found here:
+https://bookdown.org/pdr_higgins/rmrwr/
 
 ### About This Blog
 I am blogging about the use of R with medical data, and will tackle topics like 
@@ -21,6 +23,7 @@ I am blogging about the use of R with medical data, and will tackle topics like
 - how to build `flipbooks` for teaching
 - how to build an e-book with bookdown
 
+### Would you like to build your own blog?
 If you would like to build a `distill`-based blog like this, follow the rstudio guide at:
 
 https://rstudio.github.io/distill/publish_website.html

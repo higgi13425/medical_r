@@ -6,7 +6,7 @@ base_url: https://higgi13425.github.io/
 collections:
   posts:
     disqus: 
-      shortname: medical-r
+      shortname: medical_r
       hidden: false
     share: [twitter, linkedin]
 output_dir: "docs"

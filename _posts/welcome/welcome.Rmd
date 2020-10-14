@@ -1,12 +1,11 @@
 ---
 title: "Welcome to Medical R"
 description: |
-  Welcome to our new blog, Medical R. We hope you enjoy 
-  reading what we have to say!
+  Welcome to my blog, Medical R. I will blog on topics related to using R with medical data. I hope you enjoy reading and find this useful!
 author:
-  - name: Nora Jones 
-    url: https://example.com/norajones
-    affiliation: Spacely Sprockets
+  - name: Peter Higgins
+    url: https://higgi13425.github.io/medical_r/
+    affiliation: University of Michigan
     affiliation_url: https://example.com/spacelysprokets
 date: 10-14-2020
 output:
@@ -16,9 +15,6 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-
-# Learn more about creating blogs with Distill at:
-# https://rstudio.github.io/distill/blog.html
 
 ```
 

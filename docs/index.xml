@@ -10,10 +10,9 @@
     <lastBuildDate>Wed, 14 Oct 2020 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Welcome to Medical R</title>
-      <dc:creator>Nora Jones</dc:creator>
+      <dc:creator>Peter Higgins</dc:creator>
       <link>https://higgi13425.github.io/posts/welcome</link>
-      <description>Welcome to our new blog, Medical R. We hope you enjoy 
-reading what we have to say!</description>
+      <description>Welcome to my blog, Medical R. I will blog on topics related to using R with medical data. I hope you enjoy reading and find this useful!</description>
       <guid>https://higgi13425.github.io/posts/welcome</guid>
       <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
     </item>

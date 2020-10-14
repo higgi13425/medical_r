@@ -6,7 +6,6 @@ author:
   - name: Peter Higgins
     url: https://higgi13425.github.io/medical_r/
     affiliation: University of Michigan
-    affiliation_url: https://example.com/spacelysprokets
 date: 10-14-2020
 output:
   distill::distill_article:

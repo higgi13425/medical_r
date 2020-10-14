@@ -22,31 +22,31 @@ in the R project **medical_r**
 
 and viewable on the web at https://higgi13425.github.io/medical_r/
 
-1. Create a new post
+## 1. Create a new post
 
-run in the Console
-distill::create_post("title of post")
+run in the Console in RStudio <br>
+`distill::create_post("title-of-post")`
 
-this creates a new Rmd document for editing, including the YAML header.
+this creates a new Rmd document for editing, including the YAML header. You can edit the title.
 
-2. Editing
+## 2. Editing
 
 All the usual Rmardkdown features, including embedding code chunks, images, videos, etc.
 
-3. Save and Knit
+## 3. Save and Knit
 Check the resulting HTML in the Viewer window.
 Repeat steps 2 (Editing) and 3 (Knitting) until you are happy with the post.
 
 Note that you can keep draft = TRUE in the YAML until you are ready to share with the world
 
-4. Sharing
+## 4. Sharing
 Make sure draft= FALSE in the YAML of your post.
 
 Then Knit it to HTML for a final time.
 
 Then click on the Build Tab, and click on Build Website.
 
-5. Commit and Push
+## 5. Commit and Push
 Click on the Git tab, stage the changed files, Commit them,
 and Push to Github.
 
@@ -54,7 +54,6 @@ Wait 1-3 min, then refresh the website at Medical R
 https://higgi13425.github.io/medical_r/
 
 to see the results
-
-6. A Warning Note
+## 6. A Warning Note
 
 Building the website will *not* re-knit posts. You have to **choose** to knit any post that you edit.

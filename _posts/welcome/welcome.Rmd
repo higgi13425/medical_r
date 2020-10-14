@@ -30,4 +30,6 @@ I hope to tackle topics including:
 - What is Tidy Data & Why it is Important
 - How to make your data Tidy
 
-These are often in many ways the first drafts for future chapters of RMRWR, Reproducible Medical Research with R, an work-in-progress e-book found at https://bookdown.org/pdr_higgins/rmrwr/
+These posts are often the first drafts for future chapters of RMRWR, Reproducible Medical Research with R, an work-in-progress e-book found at https://bookdown.org/pdr_higgins/rmrwr/
+
+Thanks for reading!

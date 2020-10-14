@@ -89,20 +89,24 @@ xaringanthemer::style_duo_accent(
 )   
 ```
 
-You can make your own version.
+<br>
+You can copy and paste this style, or <br>
+you can make your own version.
 
-### Start adding headers
+### Start adding headers to preparatory slide
 
 3 hashtags - title line on slide <br>
 4 hashtags - subhead text <br>
-Can also add body text to explain what you are going to be showing.
+Also add body text to explain what you are going to be showing.
 
 then add a divider to start a new slide with 3 horizontal dashes on a single line. <br>
 This next slide will be your flipbook slide
 
 ### Add your named chunk of R code
 - give it a name, like *ttest1*
-- use include = FALSE
+- use the option include = FALSE
+- add lots of explanatory comments
+
 - Example:
 
 ```{r ttest1, echo = TRUE, eval = FALSE}
@@ -125,7 +129,7 @@ prostate %>%
 <br>
 Note that explanatory material is put in comments with a hashtag - can be in-between code lines, or at the end
 
-Then **reveal** your code line by line with  inline r code using the `chunk_reveal` function:
+Then **reveal** your code line by line with **inline** r code using the `chunk_reveal` function:
 
 ```{r ttest1-reveal, echo = TRUE, eval = FALSE}
 chunk_reveal("ttest1", 
@@ -134,8 +138,8 @@ chunk_reveal("ttest1",
 ```
 
 <br>
-Note that this uses the name of the chunk above, <br>
-sets the break_type to "auto", and <br>
+Note that this references the name of the chunk above, <br>
+sets the break_type to "auto" (there are lots of other options), and <br>
 gives the microflipbook slide itself a title.
 
 Then (if you want more explanatory material) insert a new slide by adding 3 dashes alone on a single line
@@ -144,7 +148,7 @@ Add the explanatory text with Rmd formatting.
 
 Then (if desired) add a css chunk (example below) to adjust your code font - can adjust line height or font size.
 
-This css chunk does not have to be on a separate line
+This css chunk does not have to be on a separate slide
 
 ```{css, eval = FALSE, echo = TRUE}
 .remark-code{line-height: 1.5; font-size: 80%}

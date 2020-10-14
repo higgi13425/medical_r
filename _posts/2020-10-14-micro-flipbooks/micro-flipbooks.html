@@ -1024,15 +1024,16 @@ xaringanthemer::style_duo_accent(
    code_font_size = &quot;2rem&quot;,
 )   </code></pre>
 </div>
-<p>You can make your own version.</p>
-<h3 id="start-adding-headers">Start adding headers</h3>
-<p>3 hashtags - title line on slide <br> 4 hashtags - subhead text <br> Can also add body text to explain what you are going to be showing.</p>
+<p><br> You can copy and paste this style, or <br> you can make your own version.</p>
+<h3 id="start-adding-headers-to-preparatory-slide">Start adding headers to preparatory slide</h3>
+<p>3 hashtags - title line on slide <br> 4 hashtags - subhead text <br> Also add body text to explain what you are going to be showing.</p>
 <p>then add a divider to start a new slide with 3 horizontal dashes on a single line. <br> This next slide will be your flipbook slide</p>
 <h3 id="add-your-named-chunk-of-r-code">Add your named chunk of R code</h3>
 <ul>
-<li>give it a name, like <em>ttest1</em></li>
-<li>use include = FALSE</li>
-<li>Example:</li>
+<li><p>give it a name, like <em>ttest1</em></p></li>
+<li><p>use the option include = FALSE</p></li>
+<li><p>add lots of explanatory comments</p></li>
+<li><p>Example:</p></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
@@ -1052,18 +1053,18 @@ prostate %&gt;%
 # easy to use these results</code></pre>
 </div>
 <p><br> Note that explanatory material is put in comments with a hashtag - can be in-between code lines, or at the end</p>
-<p>Then <strong>reveal</strong> your code line by line with inline r code using the <code>chunk_reveal</code> function:</p>
+<p>Then <strong>reveal</strong> your code line by line with <strong>inline</strong> r code using the <code>chunk_reveal</code> function:</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 chunk_reveal(&quot;ttest1&quot;, 
     break_type = &quot;auto&quot;, 
     title = &quot;Tidy version from the {infer} package&quot;)`</code></pre>
 </div>
-<p><br> Note that this uses the name of the chunk above, <br> sets the break_type to “auto”, and <br> gives the microflipbook slide itself a title.</p>
+<p><br> Note that this references the name of the chunk above, <br> sets the break_type to “auto” (there are lots of other options), and <br> gives the microflipbook slide itself a title.</p>
 <p>Then (if you want more explanatory material) insert a new slide by adding 3 dashes alone on a single line</p>
 <p>Add the explanatory text with Rmd formatting.</p>
 <p>Then (if desired) add a css chunk (example below) to adjust your code font - can adjust line height or font size.</p>
-<p>This css chunk does not have to be on a separate line</p>
+<p>This css chunk does not have to be on a separate slide</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="css"><code>
 .remark-code{line-height: 1.5; font-size: 80%}</code></pre>

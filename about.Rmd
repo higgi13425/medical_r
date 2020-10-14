@@ -28,13 +28,13 @@ I am blogging about the use of R with medical data, and will tackle topics like
 You should probably just tweet me [`@ibddoctor`](https://twitter.com/ibddoctor).
 
 ### Would you like to build your own blog?
-If you would like to build a `distill`-based blog like this, follow the rstudio guide at:
+If you would like to build a `distill`-based blog like this, start with the walk-through from Thomas Mock at:
 
-https://rstudio.github.io/distill/publish_website.html
+https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/
 
-and the walk-through from Thomas Mock at:
+and also follow the RStudio guide at:
 
-https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/#step-4-_site.yml
+https://rstudio.github.io/distill/publish_website.html 
 
 This website is published with Github Pages (using Rmarkdown and the `distill` framework, rather than Github's `jekyll` default), and details on how to set up your Github repo as a webpage can be found at:
 

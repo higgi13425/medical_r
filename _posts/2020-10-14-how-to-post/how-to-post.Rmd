@@ -54,3 +54,7 @@ Wait 1-3 min, then refresh the website at Medical R
 https://higgi13425.github.io/medical_r/
 
 to see the results
+
+6. A Warning Note
+
+Building the website will *not* re-knit posts. You have to **choose** to knit any post that you edit.

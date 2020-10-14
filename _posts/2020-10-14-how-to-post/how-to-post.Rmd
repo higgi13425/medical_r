@@ -28,7 +28,7 @@ and viewable on the web at https://higgi13425.github.io/medical_r/
 run in the Console in RStudio <br>
 `distill::create_post("title-of-post")`
 
-this creates a new Rmd document for editing, inside the _posts_ folder, and within its own _date-title_ specific folder in the _posts folder. You can now edit this Rmd, including the title in the YAML header. 
+this creates a new Rmd document for editing, inside the `_posts` folder, and within its own _date-title_ specific folder inside the `_posts` folder. You can now edit this Rmd, including the title in the YAML header. 
 
 
 ## 2. Editing
@@ -51,6 +51,8 @@ Make sure draft= FALSE in the YAML of your post.
 Then Knit it to HTML for a final time.
 
 Then click on the Build Tab, and click on Build Website.
+
+Double check that the HTML looks good before Commit and Push.
 
 
 ## 5. Commit and Push

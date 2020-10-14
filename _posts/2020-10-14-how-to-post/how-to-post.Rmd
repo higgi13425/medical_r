@@ -47,4 +47,10 @@ Then Knit it to HTML for a final time.
 Then click on the Build Tab, and click on Build Website.
 
 5. Commit and Push
-Click on the Git tab, 
+Click on the Git tab, stage the changed files, Commit them,
+and Push to Github.
+
+Wait 1-3 min, then refresh the website at Medical R
+https://higgi13425.github.io/medical_r/
+
+to see the results

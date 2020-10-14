@@ -17,5 +17,17 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-More details about this here.
+I hope to tackle topics including:
 
+- Best Practices for Data collection and entry
+- Data security and PHI
+- Why to avoid using Excel
+- If you absolutely must use a spreadsheet, how to do it well.
+- Why you should invest in using REDCap
+- Tools to get data from REDCap to R
+- Exploring your data
+- Making assertions about your data
+- What is Tidy Data & Why it is Important
+- How to make your data Tidy
+
+These are often in many ways the first drafts for future chapters of RMRWR, Reproducible Medical Research with R, an work-in-progress e-book found at https://bookdown.org/pdr_higgins/rmrwr/

@@ -1,0 +1,19 @@
+name: "medical_r"
+title: "Medical R"
+description: |
+  A blog about the use of R with medical data.
+base_url: https://higgi13425.github.io/
+collections:
+  posts:
+    disqus: 
+      shortname: medical-r
+      hidden: false
+    share: [twitter, linkedin]
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+output: distill::distill_article

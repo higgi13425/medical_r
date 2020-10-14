@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Medical R</title>
+    <link>https://higgi13425.github.io/</link>
+    <atom:link href="https://higgi13425.github.io/index.xml" rel="self" type="application/rss+xml"/>
+    <description>A blog about the use of R with medical data.
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Wed, 14 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Welcome to Medical R</title>
+      <dc:creator>Nora Jones</dc:creator>
+      <link>https://higgi13425.github.io/posts/welcome</link>
+      <description>Welcome to our new blog, Medical R. We hope you enjoy 
+reading what we have to say!</description>
+      <guid>https://higgi13425.github.io/posts/welcome</guid>
+      <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

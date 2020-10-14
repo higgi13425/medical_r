@@ -7,8 +7,12 @@ description: |
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+
+### About me
 My name is Peter Higgins, and I work at the University of Michigan, where I am a Professor of Internal Medicine and take care of patients with Inflammatory Bowel Disease. I do a variety of research projects related to Inflammatory Bowel Disease, which range from basic science to translational drug development to clinical trials to epidemiology.<br>
-<br>
+
+### About This Blog
 I am blogging about the use of R with medical data, and will tackle topics like 
 
 - best practices for data collection and entry

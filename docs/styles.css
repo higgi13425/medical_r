@@ -1,0 +1,45 @@
+.distill-site-nav {
+  color: #FFFFFF; 
+  background-color: #01824F;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.distill-site-nav a:hover {
+  color: #383838;
+}
+
+/* Change appearance of headers */
+h1, h2, h3, h4, h5 {
+  font-family: 'Fira Mono', sans-serif;
+  color: color: #383838;
+}
+
+/* Import fonts from Google's API */
+@import url('https://fonts.googleapis.com/css2?family=Lato');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono');
+
+/* Use specific font in the body of the text */
+html, body, p {
+  
+  font-family: 'Lato', sans-serif;
+  font-weight: 200;
+  line-height: 1.3; 
+  font-size: 1.0em;
+  color: #333333;
+  font-style: normal;
+  
+}
+
+/* Change the appearance of in-line code chunks */
+code {
+  font-family: 'Fira Mono', sans-serif;
+  color: #383838;
+  background: #F5F5F5;
+  font-weight: 400;
+  font-size: 0.9em;
+}
+
+d-code {
+  background: grey;
+}

@@ -28,12 +28,14 @@ and viewable on the web at https://higgi13425.github.io/medical_r/
 run in the Console in RStudio <br>
 `distill::create_post("title-of-post")`
 
-this creates a new Rmd document for editing, including the YAML header. You can edit the title.
+this creates a new Rmd document for editing, inside the _posts_ folder, and within its own _date-title_ specific folder in the _posts folder. You can now edit this Rmd, including the title in the YAML header. 
 
 
 ## 2. Editing
 
-All the usual Rmardkdown features, including embedding code chunks, images, videos, etc.
+All the usual Rmarkdown features, including embedding code chunks, images, videos, etc.<br>
+
+https://rmarkdown.rstudio.com/authoring_basics.html 
 
 
 ## 3. Save and Knit

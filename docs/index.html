@@ -34,6 +34,8 @@
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Medical R"/>
+  <meta property="twitter:site" content="@ibddoctor"/>
+  <meta property="twitter:creator" content="@ibddoctor"/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
@@ -1665,7 +1667,7 @@ function init_posts_list() {
 
 
 
-<div class="posts-container posts-apply-limit l-page">
+<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
 <div class="posts-list">
 <h1 class="posts-list-caption">Medical R</h1>
 <a href="posts/2020-10-14-why-a-medical-r-blog/" class="post-preview">
@@ -1694,6 +1696,19 @@ function init_posts_list() {
 <p>Welcome to my blog, Medical R. I will blog on topics related to using R with medical data. I hope you enjoy reading and find this useful!</p>
 </div>
 </a>
+</div>
+<div class="posts-sidebar">
+<div class="sidebar-section subscribe">
+<h3>Subscribe</h3>
+<form method='post' action='https://blogtrottr.com'>
+  <p>Enjoy this blog? Get notified of new posts via email:</p>
+  <input type='text' name='btr_email' />
+  <input type='hidden' name='btr_url'
+         value='https://themockup.blog/index.xml'/>
+  <input type='hidden' name='schedule_type' value='0' />
+  <input type='submit' value='Subscribe' />
+</form>
+</div>
 </div>
 <div class="posts-more">
 <a href="#">More articles &raquo;</a>

@@ -5,9 +5,7 @@ description: |
 base_url: https://higgi13425.github.io/
 collections:
   posts:
-    disqus: 
-      shortname: medical_r
-      hidden: false
+    subscribe: _subscribe.html
     share: [twitter, linkedin]
 output_dir: "docs"
 navbar:
@@ -16,6 +14,11 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
+twitter:
+  site: "@ibddoctor"
+  creator: "@ibddoctor"
 output: 
   distill::distill_article:
     css: styles.css
+rss:
+  full_content: false

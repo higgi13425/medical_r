@@ -23,6 +23,10 @@ I am blogging about the use of R with medical data, and will tackle topics like
 - how to build `flipbooks` for teaching
 - how to build an e-book with bookdown
 
+### Contact
+
+You should probably just tweet me [`@ibddoctor`](https://twitter.com/ibddoctor).
+
 ### Would you like to build your own blog?
 If you would like to build a `distill`-based blog like this, follow the rstudio guide at:
 

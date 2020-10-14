@@ -16,6 +16,22 @@
     "input_file": {}
   },
   {
+    "path": "posts/2020-10-14-micro-flipbooks/",
+    "title": "micro-flipbooks",
+    "description": "How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books",
+    "author": [
+      {
+        "name": "Peter Higgins",
+        "url": "https://higgi13425.github.io/medical_r/"
+      }
+    ],
+    "date": "2020-10-14",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-10-14T17:22:16-04:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2020-10-14-why-a-medical-r-blog/",
     "title": "Why a Medical R Blog?",
     "description": "A starting point and few Theses.",

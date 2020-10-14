@@ -1,0 +1,151 @@
+---
+title: "micro-flipbooks"
+description: |
+  How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books
+author:
+  - name: Peter Higgins
+    url: https://higgi13425.github.io/medical_r/
+date: 10-14-2020
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(flipbookr)
+library(xaringanthemer)
+library(tidyverse)
+library(infer)
+library(medicaldata)
+prostate <- medicaldata::blood_storage %>% as_tibble()
+```
+
+## How to make an embeddable micro-flipbook
+
+Start with picking a topic or function you want to teach.
+
+Draft, on paper, a rough outline of the topic and the examples you want to show, building in complexity.
+
+Open the mini-flipbooks project in RStudio. You can fork this from https://github.com/higgi13425/mini_flipbooks if you would like.
+
+### New File
+Open a new file -
+File/New/Rmarkdown/From Template/Ninja Themed Presentation
+
+(Note: you could also just copy/paste in a working example, like **across_microflip_1** -
+this will include YAML edits, setup packages, etc.)
+
+### Name it
+Then give it a name, like
+<br>
+function-name_microflip_#
+(increment # for each additional example)
+
+### Delete Lots of Stuff
+Then delete everything from line 30 - line 576 if you are using the Ninja template.
+
+### Edit the YAML
+Update
+
+- title
+- edit or remove subtitle
+- author
+- add one line to nature:
+  - `ratio: 16:9`
+
+### Edit the Setup chunk
+Edit opts_chunk$set to include
+```{r}
+knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = FALSE, fig.retina = 3)
+```
+and delete
+options(htmltools.dir.version = FALSE)
+
+Then Add
+
+- `library(flipbookr)`
+- `library(xaringan)`
+- `library(xaringanthemer)`
+- `library(medicaldata)` or other data source
+- other libraries that are needed for functions
+- load any data files needed into a named dataframe, like <br>
+<br>
+prostate <- medicaldata::blood_storage %>% as_tibble()
+
+
+### Edit the xaringan-themer chunk
+For a consistent style, I use:
+
+```{r, echo=TRUE, eval = FALSE}
+xaringanthemer::style_duo_accent(
+  primary_color = "#00274C",
+  secondary_color = "#FFCB05",
+  header_font_google = google_font("Lato"),
+  text_font_google   = google_font("Manrope"),
+  code_font_google   = google_font("Roboto Mono"),
+  base_font_size = "20px",
+   code_font_size = "2rem",
+)   
+```
+
+You can make your own version.
+
+### Start adding headers
+
+3 hashtags - title line on slide <br>
+4 hashtags - subhead text <br>
+Can also add body text to explain what you are going to be showing.
+
+then add a divider to start a new slide with 3 horizontal dashes on a single line. <br>
+This next slide will be your flipbook slide
+
+### Add your named chunk of R code
+- give it a name, like *ttest1*
+- use include = FALSE
+- Example:
+
+```{r ttest1, echo = TRUE, eval = FALSE}
+# start with data
+prostate %>%
+# apply t_test from infer
+# with correct arguments
+  t_test(TVol ~ AA, 
+         order = c("0", "1"))
+# Interpreting the output:
+# The t statistic is first
+# followed by degrees of freedom
+# then the p value
+# the default alternative: two.sided
+# then the confidence bounds
+# output is a tibble so that it is 
+# easy to use these results
+```
+
+<br>
+Note that explanatory material is put in comments with a hashtag - can be in-between code lines, or at the end
+
+Then **reveal** your code line by line with  inline r code using the `chunk_reveal` function:
+
+```{r ttest1-reveal, echo = TRUE, eval = FALSE}
+chunk_reveal("ttest1", 
+    break_type = "auto", 
+    title = "Tidy version from the {infer} package")`
+```
+
+<br>
+Note that this uses the name of the chunk above, <br>
+sets the break_type to "auto", and <br>
+gives the microflipbook slide itself a title.
+
+Then (if you want more explanatory material) insert a new slide by adding 3 dashes alone on a single line
+
+Add the explanatory text with Rmd formatting.
+
+Then (if desired) add a css chunk (example below) to adjust your code font - can adjust line height or font size.
+
+This css chunk does not have to be on a separate line
+
+```{css, eval = FALSE, echo = TRUE}
+.remark-code{line-height: 1.5; font-size: 80%}
+```

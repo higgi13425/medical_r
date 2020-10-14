@@ -19,371 +19,39 @@
  <!--/radix_placeholder_import_source-->
 
   <!--radix_placeholder_meta_tags-->
-  <title>Medical R: About this blog</title>
+  <title>micro-flipbooks</title>
   
-  <meta property="description" itemprop="description" content="Some additional details about the blog."/>
+  <meta property="description" itemprop="description" content="How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books"/>
   
   
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2020-10-14"/>
+  <meta property="article:created" itemprop="dateCreated" content="2020-10-14"/>
+  <meta name="article:author" content="Peter Higgins"/>
   
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Medical R: About this blog"/>
+  <meta property="og:title" content="micro-flipbooks"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Some additional details about the blog."/>
+  <meta property="og:description" content="How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books"/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="Medical R"/>
   
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Medical R: About this blog"/>
-  <meta property="twitter:description" content="Some additional details about the blog."/>
-  <meta property="twitter:site" content="@ibddoctor"/>
-  <meta property="twitter:creator" content="@ibddoctor"/>
+  <meta property="twitter:title" content="micro-flipbooks"/>
+  <meta property="twitter:description" content="How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books"/>
   
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["About this blog"]},{"type":"character","attributes":{},"value":["Some additional details about the blog."]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["micro-flipbooks"]},{"type":"character","attributes":{},"value":["How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Peter Higgins"]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/medical_r/"]}]}]},{"type":"character","attributes":{},"value":["10-14-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
-  <!--radix_placeholder_navigation_in_header-->
   
-  <script type="application/javascript">
-  
-    window.headroom_prevent_pin = false;
-  
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-  
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-  
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-  
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-  
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["micro-flipbooks_files/bowser-1.9.3/bowser.min.js","micro-flipbooks_files/distill-2.2.21/template.v2.js","micro-flipbooks_files/jquery-1.11.3/jquery.min.js","micro-flipbooks_files/webcomponents-2.0.0/webcomponents.js","xaringan-themer.css"]}
   </script>
-  
-  <style type="text/css">
-  
-  /* Theme (user-documented overrideables for nav appearance) */
-  
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #455a64;
-    font-size: 15px;
-    font-weight: 300;
-  }
-  
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-  
-  .distill-site-nav a:hover {
-    color: white;
-  }
-  
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-  
-  .distill-site-header {
-  
-  }
-  
-  .distill-site-footer {
-  
-  }
-  
-  
-  /* Site Header */
-  
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-  
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-  
-  
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-  
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-  
-  .distill-site-header .title {
-    font-size: 18px;
-  }
-  
-  .distill-site-header .logo {
-    padding: 0;
-  }
-  
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-  
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-  
-  
-  
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-  
-  
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-  
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-  
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-  
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-  
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-  
-  .nav-dropdown-active {
-    display: block;
-  }
-  
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-  
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-  
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-  
-  
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative;}
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-  
-  /* Site Footer */
-  
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-  
-  /* Headroom */
-  
-  d-title {
-    padding-top: 6rem;
-  }
-  
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-  
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-  
-  .headroom--unpinned {
-    top: -100px;
-  }
-  
-  .headroom--pinned {
-    top: 0;
-  }
-  
-  </style>
-  
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
+  <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
   
@@ -1269,61 +937,13 @@
   </script>
   
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="micro-flipbooks_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="micro-flipbooks_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="micro-flipbooks_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="micro-flipbooks_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
-  <style type="text/css">
-  .distill-site-nav {
-    color: #FFFFFF; 
-    background-color: #01824F;
-    font-size: 20px;
-    font-weight: 900;
-  }
-  
-  .distill-site-nav a:hover {
-    color: #383838;
-  }
-  
-  /* Change appearance of headers */
-  h1, h2, h3, h4, h5 {
-    font-family: 'Fira Mono', sans-serif;
-    color: color: #383838;
-  }
-  
-  /* Import fonts from Google's API */
-  @import url('https://fonts.googleapis.com/css2?family=Lato');
-  @import url('https://fonts.googleapis.com/css2?family=Fira+Mono');
-  
-  /* Use specific font in the body of the text */
-  html, body, p {
-    
-    font-family: 'Lato', sans-serif;
-    font-weight: 200;
-    line-height: 1.3; 
-    font-size: 1.0em;
-    color: #333333;
-    font-style: normal;
-    
-  }
-  
-  /* Change the appearance of in-line code chunks */
-  code {
-    font-family: 'Fira Mono', sans-serif;
-    color: #000000;
-    background: #D3D3D3;
-    font-weight: 400;
-    font-size: 1.1em;
-  }
-  
-  d-code {
-    background: #D3D3D3;
-  }
-  </style>
   <!--/radix_placeholder_site_in_header-->
 
-  <link rel="stylesheet" href="styles.css" type="text/css"/>
 
 </head>
 
@@ -1332,54 +952,122 @@
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"About this blog","description":"Some additional details about the blog.","authors":[]}
+{"title":"micro-flipbooks","description":"How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books","authors":[{"author":"Peter Higgins","authorURL":"https://higgi13425.github.io/medical_r/","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-10-14T00:00:00.000-04:00","citationText":"Higgins, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">Medical R</a>
-</div>
-<div class="nav-right">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>About this blog</h1>
-<p><p>Some additional details about the blog.</p></p>
+<h1>micro-flipbooks</h1>
+<p><p>How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books</p></p>
 </div>
 
+<div class="d-byline">
+  Peter Higgins <a href="https://higgi13425.github.io/medical_r/" class="uri">https://higgi13425.github.io/medical_r/</a> 
+  
+<br/>10-14-2020
+</div>
 
 <div class="d-article">
-<h3 id="about-me">About me</h3>
-<p>My name is Peter Higgins, and I work at the University of Michigan, where I am a Professor of Internal Medicine and take care of patients with Inflammatory Bowel Disease. I do a variety of research projects related to Inflammatory Bowel Disease, which range from basic science to translational drug development to clinical trials to epidemiology.<br> <br> Some of the posts here are largely notes to myself to help in writing an e-book about Reproducible Medical Research in R (RMRWR). Other posts will essentially be first drafts of future chapters of RMRWR, which is a work in progress. The RMRWR e-book can be found here: <a href="https://bookdown.org/pdr_higgins/rmrwr/" class="uri">https://bookdown.org/pdr_higgins/rmrwr/</a></p>
-<h3 id="about-this-blog">About This Blog</h3>
-<p>I am blogging about the use of R with medical data, and will tackle topics like</p>
+<h2 id="how-to-make-an-embeddable-micro-flipbook">How to make an embeddable micro-flipbook</h2>
+<p>Start with picking a topic or function you want to teach.</p>
+<p>Draft, on paper, a rough outline of the topic and the examples you want to show, building in complexity.</p>
+<p>Open the mini-flipbooks project in RStudio. You can fork this from <a href="https://github.com/higgi13425/mini_flipbooks" class="uri">https://github.com/higgi13425/mini_flipbooks</a> if you would like.</p>
+<h3 id="new-file">New File</h3>
+<p>Open a new file - File/New/Rmarkdown/From Template/Ninja Themed Presentation</p>
+<p>(Note: you could also just copy/paste in a working example, like <strong>across_microflip_1</strong> - this will include YAML edits, setup packages, etc.)</p>
+<h3 id="name-it">Name it</h3>
+<p>Then give it a name, like <br> function-name_microflip_# (increment # for each additional example)</p>
+<h3 id="delete-lots-of-stuff">Delete Lots of Stuff</h3>
+<p>Then delete everything from line 30 - line 576 if you are using the Ninja template.</p>
+<h3 id="edit-the-yaml">Edit the YAML</h3>
+<p>Update</p>
 <ul>
-<li>best practices for data collection and entry</li>
-<li>data security and PHI</li>
-<li>how to build <code>learnr</code> modules for teaching</li>
-<li>how to build <code>flipbooks</code> for teaching</li>
-<li>how to build an e-book with bookdown</li>
+<li>title</li>
+<li>edit or remove subtitle</li>
+<li>author</li>
+<li>add one line to nature:
+<ul>
+<li><code>ratio: 16:9</code></li>
+</ul></li>
 </ul>
-<h3 id="contact">Contact</h3>
-<p>You should probably just tweet me <a href="https://twitter.com/ibddoctor"><code>@ibddoctor</code></a>.</p>
-<h3 id="would-you-like-to-build-your-own-blog">Would you like to build your own blog?</h3>
-<p>If you would like to build a <code>distill</code>-based blog like this, start with the walk-through from Thomas Mock at:</p>
-<p><a href="https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/" class="uri">https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/</a></p>
-<p>and also follow the RStudio guide at:</p>
-<p><a href="https://rstudio.github.io/distill/publish_website.html" class="uri">https://rstudio.github.io/distill/publish_website.html</a></p>
-<p>This website is published with Github Pages (using Rmarkdown and the <code>distill</code> framework, rather than Github’s <code>jekyll</code> default), and details on how to set up your Github repo as a webpage can be found at:</p>
-<p><a href="https://guides.github.com/features/pages/" class="uri">https://guides.github.com/features/pages/</a></p>
+<h3 id="edit-the-setup-chunk">Edit the Setup chunk</h3>
+Edit opts_chunk$set to include
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>and delete options(htmltools.dir.version = FALSE)</p>
+<p>Then Add</p>
+<ul>
+<li><code>library(flipbookr)</code></li>
+<li><code>library(xaringan)</code></li>
+<li><code>library(xaringanthemer)</code></li>
+<li><code>library(medicaldata)</code> or other data source</li>
+<li>other libraries that are needed for functions</li>
+<li>load any data files needed into a named dataframe, like <br> <br> prostate &lt;- medicaldata::blood_storage %&gt;% as_tibble()</li>
+</ul>
+<h3 id="edit-the-xaringan-themer-chunk">Edit the xaringan-themer chunk</h3>
+<p>For a consistent style, I use:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+xaringanthemer::style_duo_accent(
+  primary_color = &quot;#00274C&quot;,
+  secondary_color = &quot;#FFCB05&quot;,
+  header_font_google = google_font(&quot;Lato&quot;),
+  text_font_google   = google_font(&quot;Manrope&quot;),
+  code_font_google   = google_font(&quot;Roboto Mono&quot;),
+  base_font_size = &quot;20px&quot;,
+   code_font_size = &quot;2rem&quot;,
+)   </code></pre>
+</div>
+<p>You can make your own version.</p>
+<h3 id="start-adding-headers">Start adding headers</h3>
+<p>3 hashtags - title line on slide <br> 4 hashtags - subhead text <br> Can also add body text to explain what you are going to be showing.</p>
+<p>then add a divider to start a new slide with 3 horizontal dashes on a single line. <br> This next slide will be your flipbook slide</p>
+<h3 id="add-your-named-chunk-of-r-code">Add your named chunk of R code</h3>
+<ul>
+<li>give it a name, like <em>ttest1</em></li>
+<li>use include = FALSE</li>
+<li>Example:</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+# start with data
+prostate %&gt;%
+# apply t_test from infer
+# with correct arguments
+  t_test(TVol ~ AA, 
+         order = c(&quot;0&quot;, &quot;1&quot;))
+# Interpreting the output:
+# The t statistic is first
+# followed by degrees of freedom
+# then the p value
+# the default alternative: two.sided
+# then the confidence bounds
+# output is a tibble so that it is 
+# easy to use these results</code></pre>
+</div>
+<p><br> Note that explanatory material is put in comments with a hashtag - can be in-between code lines, or at the end</p>
+<p>Then <strong>reveal</strong> your code line by line with inline r code using the <code>chunk_reveal</code> function:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+chunk_reveal(&quot;ttest1&quot;, 
+    break_type = &quot;auto&quot;, 
+    title = &quot;Tidy version from the {infer} package&quot;)`</code></pre>
+</div>
+<p><br> Note that this uses the name of the chunk above, <br> sets the break_type to “auto”, and <br> gives the microflipbook slide itself a title.</p>
+<p>Then (if you want more explanatory material) insert a new slide by adding 3 dashes alone on a single line</p>
+<p>Add the explanatory text with Rmd formatting.</p>
+<p>Then (if desired) add a css chunk (example below) to adjust your code font - can adjust line height or font size.</p>
+<p>This css chunk does not have to be on a separate line</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="css"><code>
+.remark-code{line-height: 1.5; font-size: 80%}</code></pre>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -17,6 +17,14 @@
       <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
     </item>
     <item>
+      <title>micro-flipbooks</title>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/posts/2020-10-14-micro-flipbooks</link>
+      <description>How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books</description>
+      <guid>https://higgi13425.github.io/posts/2020-10-14-micro-flipbooks</guid>
+      <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>Why a Medical R Blog?</title>
       <dc:creator>Peter Higgins</dc:creator>
       <link>https://higgi13425.github.io/posts/2020-10-14-why-a-medical-r-blog</link>

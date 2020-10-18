@@ -1,0 +1,169 @@
+---
+title: "Building a Data Package"
+description: |
+  For building a package that is largely about making datasets readily available in R.
+author:
+  - name: Peter Higgins
+    url: https://example.com/norajones
+date: 10-18-2020
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Getting Started on a Data Package
+
+Most blog posts about building packages and arm are about bundling functions that are related into a single package.This is a common usage of packages, but at times you may want to share some common data sets with users in the form of a package. This is not as well-documented, but can be valuable.
+<br><br>
+A few examples of data packages include:
+
+- babynames
+- fueleconomy
+- nasaweather
+- nycflights13
+- usdanutrients
+<br><br>
+To get started, you will want to follow the guidance in the R Packages Book at: https://r-pkgs.org/whole-game.html.
+This will be a quick getting started guide, relative to the big book (but use it as a reference if you get stuck).
+
+## Setup
+You want to have a new project open in RStudio, with the project named something like {datapackage} (pick a more appropriate name for your package). You then want to load (library commands in the Console) some critical packages including {devtools}, {usethis}, and {roxygen2}.
+
+- `library(devtools)`
+- `library(usethis)`
+- `library(roxygen2)`
+
+## Creating the Package
+Then use the *create_package()* function to create your new package {datapackage}, by running this function in the Console (pick a better name than datapackage):
+
+`create_package("datapackage")`
+
+This will set up your directories and folders in the current project to help you create a package.
+
+## Versioning with Git and Github
+If you have never used git before for version control, this would be a good time to install and initialize git on your computer, using the guidance in Chapter 6 of **Happy Git with R**, at: 
+https://happygitwithr.com/install-git.html 
+
+Details on how to configure git are in chapter 7, at https://happygitwithr.com/hello-git.html
+
+Now make a git repository to track your versions, by running this in the Console: 
+
+`use_git()`
+
+Go ahead and commit files when prompted to do so.
+
+If you have never used GitHub before for version control and collaboration, this would be a good time set up a Github account and add a PAT (Personal Access Token) to your computer, using the guidance in Chapter 4 of **Happy Git with R**, at: 
+https://happygitwithr.com/github-acct.html
+
+Details on PATs (you want one, trust me) are found in Appendix B, at: https://happygitwithr.com/github-pat.html
+
+## Edit the Description
+Look in your Files tab, open the DESCRIPTION file, and edit:
+
+- Make yourself the author (add collaborators!)
+- add a title
+- add a longer Description - who is it for, why would they want this data, what is a use case?
+
+## Add a License
+Mke your life easy, and 
+run 
+`use_mit_license()`
+in the Console
+
+## Add data
+In the Files tab in RStudio, create a `raw-data` folder. Add the files that you want to turn into your accessible datasets. 
+Now create a separate `data` folder. 
+
+In the `raw-data` folder, create a new R script named `prep_data.R`.
+In this file, wrangle, filter, or otherwise prepare your datasets. Let's pretend you have a datafile that you have wrangled from Excel, and it is now a dataframe named `sportsdata`.
+
+Then save these datasets in `*.rda` format. Pick the names carefully, as you will have to live with them for a long time.
+
+In this script, do this with
+`saveRDS(sportsdata, "data-raw/sportsdata.Rdata")`
+
+Then use the data (put in proper format in the `data` folder) with the following line in your script:
+
+`usethis::use_data(sportsdata, overwrite = TRUE)`
+
+## Basic documentation
+Create an R script in the R/ folder, named something like `datapackage.R`.
+
+In this file, you can add roxygen2 documentation, which looks like a long list of funny-looking comments (they start with `#"` rather than just a hashtag).
+
+Typically you include 
+
+- a short description, in a sentence or two.
+- after the @format statement, details on the format (dataframe) and the dimensions (how many rows, how many columns), and a short description of each variable
+- after the @source statement, a description of where the data came from, often including a link.
+
+This looks something like:
+
+#' Prices of 50,000 round cut diamonds.
+#'
+#' A dataset containing the prices and other attributes of almost 54,000
+#' diamonds.
+#'
+#' @format A data frame with 53940 rows and 10 variables:
+#' \describe{
+#'   \item{price}{price, in US dollars}
+#'   \item{carat}{weight of the diamond, in carats}
+#'   ...
+#' }
+#' @source \url{http://www.diamondse.info/}
+"diamonds"
+
+
+## Advanced documentation
+*Description Document* You can write a long description of the provenance of the data, when and how it was collected, where it was published in a journal, etc. (go for it, provide all the details!) in a Rmarkdown file (named something like datapackage_desc.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can read up on your datasets.
+<br><br>
+*Codebook Document* You can create a nice table of each variable, a longer description, units of measurement, levels/category codes and what they mean, in a nicely formatted Rmd table. Create a Rmarkdown file (named something like datapackage_codebook.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can know what each variable in your dataset is about.
+
+## Install
+
+## Deal with Dependencies
+Do you need to use other packages to run functions (most of the time not, for a data package)?
+
+On the off chance you do, you will want to run:
+`use_package()`
+
+As in, if you need readr to read in some data, run in the Console:
+
+`use_package('readr')`
+
+## Set up for push to GitHub
+Run in the Console:
+
+`use_github()`
+This will link your project to a Github repository, so that you can share your datapackage with the world.
+
+## Add a README
+Just run the following in the Console:
+
+`use_readme_rmd()`
+
+Then open README.Rmd and edit this.
+This is a good place to put a description of the package, who it is intended for, and some likely use cases. 
+
+This is a helpful place to let users, especially new users, know how to load your package, and how to access the datasets. Show an example or two.
+
+It is also a good place to add a table with the names of the datasets and links to the descriptions and codebooks.
+
+
+## Check and install
+
+`check()`
+
+`install()`
+
+## Build
+
+The Build tab in RStudio will let you `Build Package` which will also restart R.
+
+This will give you a clean slate and library your datapackage.
+
+Once you are happy with the datapackage, commit and push to Github. Now anyone can use you datapackage.

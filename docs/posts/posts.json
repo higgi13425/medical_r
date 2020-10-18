@@ -1,5 +1,21 @@
 [
   {
+    "path": "posts/2020-10-18-building-a-data-package/",
+    "title": "Building a Data Package",
+    "description": "For building a package that is largely about making datasets readily available in R.",
+    "author": [
+      {
+        "name": "Peter Higgins",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2020-10-18",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-10-18T17:59:10-04:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2020-10-14-how-to-post/",
     "title": "How to Post",
     "description": "A reference for future me, on how to create posts.",

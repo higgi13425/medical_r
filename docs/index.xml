@@ -7,7 +7,15 @@
     <description>A blog about the use of R with medical data.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 14 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 18 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Building a Data Package</title>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/posts/2020-10-18-building-a-data-package</link>
+      <description>For building a package that is largely about making datasets readily available in R.</description>
+      <guid>https://higgi13425.github.io/posts/2020-10-18-building-a-data-package</guid>
+      <pubDate>Sun, 18 Oct 2020 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>How to Post</title>
       <dc:creator>Peter Higgins</dc:creator>

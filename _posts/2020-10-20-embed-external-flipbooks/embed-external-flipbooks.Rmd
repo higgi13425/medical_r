@@ -88,3 +88,14 @@ Then, build your website or bookdown book with this chunk in it.
 It may be helpful to preface the first microflipbook with a bit of orientation for new users. Something like:
 
 See the example flipbook below. You can click on it and move forward or backward in the slides with the left and right arrows to see what each line of code actually does.
+
+And your micro-flipbook should look something like this:
+
+<!---FLIPBOOK EX 1--> 
+
+<iframe style="margin:0 auto; border: solid black;" 
+id="myIframe8" 
+width = "763" height = "432" src="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" 
+scrolling="no"></iframe> 
+
+<!-------------> 

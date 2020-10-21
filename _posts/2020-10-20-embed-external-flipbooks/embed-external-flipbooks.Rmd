@@ -57,7 +57,7 @@ Once you have working HTML at github.io with a web address, you are in business.
 Just insert some _iframe_ code between these comment fences, as in the code chunk below.
 This is actually *easier* than inserting a _learnr_ app - with no resizing messes.
 
-Note that it is essentially two html tags, one to open the iframe: `<iframe>` with a bunch of options,
+Note that it is essentially two html tags, one to open the iframe: `<iframe>` with a bunch of options/arguments,
 
 and then one to close the iframe: `</iframe>`
 

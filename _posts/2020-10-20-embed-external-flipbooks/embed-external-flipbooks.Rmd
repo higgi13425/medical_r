@@ -61,7 +61,8 @@ Note that it is essentially two html tags, one to open the iframe: `<iframe>` wi
 
 and then one to close the iframe: `</iframe>`
 
-The style argument is basically some inline CSS styling.
+The style argument is basically some inline CSS styling. Note that I know almost zero CSS. You can get surprisingly far with web searches. Learn some minimal CSS here if you need to:  
+https://www.w3schools.com/css/css_intro.asp 
 
 Note that if you have multiple iframes in your HTML, each one needs a unique id.
 

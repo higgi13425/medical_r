@@ -7,7 +7,15 @@
     <description>A blog about the use of R with medical data.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 18 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>How to Embed External micro-Flipbooks in Bookdown</title>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/posts/2020-10-20-embed-external-flipbooks</link>
+      <description>After you have created micro-flipbooks in your miniflipbook project, how do you embed them in Rmarkdown and bookdown projects?</description>
+      <guid>https://higgi13425.github.io/posts/2020-10-20-embed-external-flipbooks</guid>
+      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Building a Data Package</title>
       <dc:creator>Peter Higgins</dc:creator>

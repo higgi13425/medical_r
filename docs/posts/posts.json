@@ -1,5 +1,21 @@
 [
   {
+    "path": "posts/2020-10-20-embed-external-flipbooks/",
+    "title": "How to Embed External micro-Flipbooks in Bookdown",
+    "description": "After you have created micro-flipbooks in your miniflipbook project, how do you embed them in Rmarkdown and bookdown projects?",
+    "author": [
+      {
+        "name": "Peter Higgins",
+        "url": "https://higgi13425.github.io/medical_r/"
+      }
+    ],
+    "date": "2020-10-20",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-10-20T20:07:56-04:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2020-10-18-building-a-data-package/",
     "title": "Building a Data Package",
     "description": "For building a package that is largely about making datasets readily available in R.",

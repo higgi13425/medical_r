@@ -172,7 +172,7 @@ Then add the directional annotations (Comment #8)
 
 and add the arrows below (Comment #9)
 
-```{r, fig.height=6.5, fig.width=9, units = "in"}
+```{r, fig.height=7.5, fig.width=9, units = "in"}
 g <- ggplot(data = df, # Comment 1
        mapping = aes(x = risk_diff_pct, 
                      y = fct_reorder(num, desc(as.numeric(num))))) +

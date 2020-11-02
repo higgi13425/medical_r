@@ -1102,7 +1102,7 @@ write_xlsx(df, &quot;indomethacin_ride.xlsx&quot;)</code></pre>
 <p>This is (mostly) a straightforward ggplot, with x as the risk difference percentage, and y the groups and subgroups, as indicated by the num variable (essentially the row number). (Comment #1)</p>
 <p>We then add <code>geom_point()</code> for the point estimates, and <code>geom_errorbarh()</code> for the confidence bounds. (Comment #2)</p>
 <p>Then we add a vertical black line to indicate the line of zero effect, and a vertical red line to indicate the overall effect. (Comment #3)</p>
-<p>Then add labels, title, and subtitle. (Comment #4)</p>
+<p>Then add labels, title, and subtitle. (Comment #4) Note that the subtitle has some hacky spacing to make this work.</p>
 <p>Then set theme_minimal()</p>
 <p>Then add geom_text for the effect estimates (will skip lines for NA) (Comment #5)</p>
 <p>Then set the x axis scale (Comment #6)</p>
@@ -1120,7 +1120,7 @@ g &lt;- ggplot(data = df, # Comment 1
   geom_vline(xintercept =0, col= &#39;black&#39;) + # Comment 3
   geom_vline(xintercept =2.31, col= &#39;red&#39;) +
   labs(x =&#39;Percent Risk Difference \n(95% CI)&#39;,
-    y = &quot;&quot;, subtitle = &quot;  N per subgroup             Overall Effect&quot;,
+    y = &quot;&quot;, subtitle = &quot;  N per subgroup                                                  Overall Effect&quot;,
     title = &quot;Subgroup Effects on Risk Difference&quot;) + #Comment 4
   theme_minimal() +
   geom_text(data=df, size = 3, #Comment 5

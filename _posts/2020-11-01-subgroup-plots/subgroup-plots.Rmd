@@ -159,6 +159,7 @@ We then add `geom_point()` for the point estimates, and `geom_errorbarh()` for t
 Then we add a vertical black line to indicate the line of zero effect, and a vertical red line to indicate the overall effect. (Comment #3)
 
 Then add labels, title, and subtitle. (Comment #4)
+Note that the subtitle has some hacky spacing to make this work.
 
 Then set theme_minimal()
 
@@ -182,7 +183,7 @@ g <- ggplot(data = df, # Comment 1
   geom_vline(xintercept =0, col= 'black') + # Comment 3
   geom_vline(xintercept =2.31, col= 'red') +
   labs(x ='Percent Risk Difference \n(95% CI)',
-    y = "", subtitle = "  N per subgroup             Overall Effect",
+    y = "", subtitle = "  N per subgroup                                                  Overall Effect",
     title = "Subgroup Effects on Risk Difference") + #Comment 4
   theme_minimal() +
   geom_text(data=df, size = 3, #Comment 5

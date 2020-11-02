@@ -269,12 +269,13 @@ g
 ## Now Save a Nice Version - Several Formats - Take your Pick
 
 Depending on what your particular journal requires.
+Note that you may want to tweak width and height based on your own data and the number of subgroups.
 
 ```{r}
-ggsave("subgroup_plot.jpeg", width = 6.5, height = 9, units = "in", dpi = 320)
+ggsave("subgroup_plot.jpeg", width = 7.5, height = 9, units = "in", dpi = 320)
 
-ggsave("subgroup_plot.tiff", width = 6.5, height = 9,  units = "in", dpi = 320)
+ggsave("subgroup_plot.tiff", width = 7.5, height = 9,  units = "in", dpi = 320)
 
-ggsave("subgroup_plot.pdf", width = 6.5, height = 9,  units = "in", dpi = 320)
+ggsave("subgroup_plot.pdf", width = 7.5, height = 9,  units = "in", dpi = 320)
 ```
 

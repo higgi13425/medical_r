@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/2020-11-01-subgroup-plots/",
+    "title": "Subgroup Plots for Clinical Trials",
+    "description": "Sometimes editors ask for _post hoc_ analysis of subgroups in clinical trials, and will refuse the manuscript without them. How you can make these in R, in a somewhat kludgy way.",
+    "author": [
+      {
+        "name": "Peter Higgins",
+        "url": "https://higgi13425.github.io/medical_r/"
+      }
+    ],
+    "date": "2020-11-01",
+    "categories": [],
+    "preview": "posts/2020-11-01-subgroup-plots/subgroup-plots_files/figure-html5/unnamed-chunk-4-1.png",
+    "last_modified": "2020-11-01T20:35:49-05:00",
+    "input_file": {},
+    "preview_width": 1248,
+    "preview_height": 768
+  },
+  {
     "path": "posts/2020-10-20-embed-external-flipbooks/",
     "title": "How to Embed External micro-Flipbooks in Bookdown",
     "description": "After you have created micro-flipbooks in your miniflipbook project, how do you embed them in Rmarkdown and bookdown projects?",

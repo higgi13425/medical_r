@@ -7,7 +7,16 @@
     <description>A blog about the use of R with medical data.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 20 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 01 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Subgroup Plots for Clinical Trials</title>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/posts/2020-11-01-subgroup-plots</link>
+      <description>Sometimes editors ask for _post hoc_ analysis of subgroups in clinical trials, and will refuse the manuscript without them. How you can make these in R, in a somewhat kludgy way.</description>
+      <guid>https://higgi13425.github.io/posts/2020-11-01-subgroup-plots</guid>
+      <pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://higgi13425.github.io/posts/2020-11-01-subgroup-plots/subgroup-plots_files/figure-html5/unnamed-chunk-4-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>How to Embed External micro-Flipbooks in Bookdown</title>
       <dc:creator>Peter Higgins</dc:creator>

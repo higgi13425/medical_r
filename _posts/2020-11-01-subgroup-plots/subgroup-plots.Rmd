@@ -151,7 +151,7 @@ df <- df %>%  mutate(num = as.character(1:62))
 write_xlsx(df, "indomethacin_ride.xlsx")
 ```
 
-## Building the Plot - Step 1
+## Building the Plot - with Annotation by Comment
 This is (mostly) a straightforward ggplot, with x as the risk difference percentage, and y the groups and subgroups, as indicated by the num variable  (essentially the row number). (Comment #1)
 
 We then add `geom_point()` for the point estimates, and `geom_errorbarh()` for the confidence bounds. (Comment #2)
@@ -172,7 +172,7 @@ Then add the directional annotations (Comment #8)
 
 and add the arrows below (Comment #9)
 
-```{r, fig.height=8, fig.width=9.5}
+```{r, fig.height=6.5, fig.width=9, units = "in"}
 g <- ggplot(data = df, # Comment 1
        mapping = aes(x = risk_diff_pct, 
                      y = fct_reorder(num, desc(as.numeric(num))))) +

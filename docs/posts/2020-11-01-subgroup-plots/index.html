@@ -36,8 +36,8 @@
 <meta property="og:description" content="Sometimes editors ask for _post hoc_ analysis of subgroups in clinical trials, and will refuse the manuscript without them. How you can make these in R, in a somewhat kludgy way."/>
 <meta property="og:url" content="https://higgi13425.github.io/posts/2020-11-01-subgroup-plots/"/>
 <meta property="og:image" content="https://higgi13425.github.io/posts/2020-11-01-subgroup-plots/subgroup-plots_files/figure-html5/unnamed-chunk-4-1.png"/>
-<meta property="og:image:width" content="1824"/>
-<meta property="og:image:height" content="1536"/>
+<meta property="og:image:width" content="1728"/>
+<meta property="og:image:height" content="1248"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Medical R"/>
 
@@ -47,8 +47,8 @@
 <meta property="twitter:description" content="Sometimes editors ask for _post hoc_ analysis of subgroups in clinical trials, and will refuse the manuscript without them. How you can make these in R, in a somewhat kludgy way."/>
 <meta property="twitter:url" content="https://higgi13425.github.io/posts/2020-11-01-subgroup-plots/"/>
 <meta property="twitter:image" content="https://higgi13425.github.io/posts/2020-11-01-subgroup-plots/subgroup-plots_files/figure-html5/unnamed-chunk-4-1.png"/>
-<meta property="twitter:image:width" content="1824"/>
-<meta property="twitter:image:height" content="1536"/>
+<meta property="twitter:image:width" content="1728"/>
+<meta property="twitter:image:height" content="1248"/>
 <meta property="twitter:site" content="@ibddoctor"/>
 <meta property="twitter:creator" content="@ibddoctor"/>
 
@@ -1512,7 +1512,7 @@ df &lt;- tibble(group_subgroup, lcb, risk_diff_pct, ucb, number)
 df &lt;- df %&gt;%  mutate(num = as.character(1:62))
 write_xlsx(df, &quot;indomethacin_ride.xlsx&quot;)</code></pre>
 </div>
-<h2 id="building-the-plot---step-1">Building the Plot - Step 1</h2>
+<h2 id="building-the-plot---with-annotation-by-comment">Building the Plot - with Annotation by Comment</h2>
 <p>This is (mostly) a straightforward ggplot, with x as the risk difference percentage, and y the groups and subgroups, as indicated by the num variable (essentially the row number). (Comment #1)</p>
 <p>We then add <code>geom_point()</code> for the point estimates, and <code>geom_errorbarh()</code> for the confidence bounds. (Comment #2)</p>
 <p>Then we add a vertical black line to indicate the line of zero effect, and a vertical red line to indicate the overall effect. (Comment #3)</p>
@@ -1615,7 +1615,7 @@ g &lt;- ggplot(data = df, # Comment 1
   ) 
 
 g</code></pre>
-<p><img src="subgroup-plots_files/figure-html5/unnamed-chunk-4-1.png" width="912" /></p>
+<p><img src="subgroup-plots_files/figure-html5/unnamed-chunk-4-1.png" width="864" /></p>
 </div>
 <h2 id="now-save-a-nice-version---several-formats---take-your-pick">Now Save a Nice Version - Several Formats - Take your Pick</h2>
 <p>Depending on what your particular journal requires.</p>

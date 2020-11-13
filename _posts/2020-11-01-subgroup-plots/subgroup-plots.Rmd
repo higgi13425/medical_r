@@ -36,6 +36,11 @@ So how to make this work for your use case?
 
 Let's walk you through how I did this for a 2020 paper in Lancet Gastroenterology. Note that I have a master's degree in statistics, not a Ph.D. My day job is in gastroenterology and IBD research. So not being someone like Richard Peto, I am not in a position to do level 10 statistical trolling. So even though I know that this is statistically a bad idea, when the editors demand a subgroup plot, I am going to help out my co-authors and produce one.
 
+## Note: a way better version
+Randy Boyes created here (@randyboyes)
+https://github.com/rdboyes/Forest_plot_with_table
+
+
 ## Loading the Libraries
 
 We are going to start with the {tidyverse} and then add in {glue} and {scales}. I added {writexl} to store a copy of the oddly-formatted data in Excel for future reference (and to show co-authors how to format it if they wanted to change any \#s). The packages {grid} and {gridExtra} are to do some fancy stuff outside of the plotting rectangle.

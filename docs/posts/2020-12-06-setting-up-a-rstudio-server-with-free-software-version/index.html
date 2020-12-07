@@ -18,50 +18,124 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #545454; font-weight: bold; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #a1024a; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007faa; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #008000; } /* Char */
+code span.cn { color: #d91e18; } /* Constant */
+code span.co { color: #545454; } /* Comment */
+code span.cv { color: #545454; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #aa5d00; } /* DataType */
+code span.dv { color: #a1024a; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #a1024a; } /* Float */
+code span.fu { color: #4254a7; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #545454; font-weight: bold; } /* Information */
+code span.kw { color: #007faa; font-weight: bold; } /* Keyword */
+code span.op { color: #696969; } /* Operator */
+code span.ot { color: #007faa; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #008000; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #008000; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #008000; } /* VerbatimString */
+code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
   <!--radix_placeholder_meta_tags-->
-<title>Medical R: How to Embed External micro-Flipbooks in Bookdown</title>
+<title>Medical R: Setting Up a RStudio Server with the Open Source Edition</title>
 
-<meta property="description" itemprop="description" content="After you have created micro-flipbooks in your miniflipbook project, how do you embed them in Rmarkdown and bookdown projects?"/>
+<meta property="description" itemprop="description" content="This is a basic setup guide for setting up a Linux-based server with RStudio Server and Shiny Server (the free versions). This was contributed by Javan Thompson, who works in IT at the University of Michigan Medical Center, and was a great help in setting this up for me. He has graciously provided a basic walkthrough for anyone else to follow."/>
 
-<link rel="canonical" href="https://higgi13425.github.io/posts/2020-10-20-embed-external-flipbooks/"/>
+<link rel="canonical" href="https://higgi13425.github.io/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2020-10-20"/>
-<meta property="article:created" itemprop="dateCreated" content="2020-10-20"/>
+<meta property="article:published" itemprop="datePublished" content="2020-12-06"/>
+<meta property="article:created" itemprop="dateCreated" content="2020-12-06"/>
+<meta name="article:author" content="Javan Thompson"/>
 <meta name="article:author" content="Peter Higgins"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Medical R: How to Embed External micro-Flipbooks in Bookdown"/>
+<meta property="og:title" content="Medical R: Setting Up a RStudio Server with the Open Source Edition"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="After you have created micro-flipbooks in your miniflipbook project, how do you embed them in Rmarkdown and bookdown projects?"/>
-<meta property="og:url" content="https://higgi13425.github.io/posts/2020-10-20-embed-external-flipbooks/"/>
+<meta property="og:description" content="This is a basic setup guide for setting up a Linux-based server with RStudio Server and Shiny Server (the free versions). This was contributed by Javan Thompson, who works in IT at the University of Michigan Medical Center, and was a great help in setting this up for me. He has graciously provided a basic walkthrough for anyone else to follow."/>
+<meta property="og:url" content="https://higgi13425.github.io/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/"/>
+<meta property="og:image" content="https://higgi13425.github.io/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/rstudio_server_open_source.png"/>
+<meta property="og:image:width" content="1165"/>
+<meta property="og:image:height" content="547"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Medical R"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
-<meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="Medical R: How to Embed External micro-Flipbooks in Bookdown"/>
-<meta property="twitter:description" content="After you have created micro-flipbooks in your miniflipbook project, how do you embed them in Rmarkdown and bookdown projects?"/>
-<meta property="twitter:url" content="https://higgi13425.github.io/posts/2020-10-20-embed-external-flipbooks/"/>
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:title" content="Medical R: Setting Up a RStudio Server with the Open Source Edition"/>
+<meta property="twitter:description" content="This is a basic setup guide for setting up a Linux-based server with RStudio Server and Shiny Server (the free versions). This was contributed by Javan Thompson, who works in IT at the University of Michigan Medical Center, and was a great help in setting this up for me. He has graciously provided a basic walkthrough for anyone else to follow."/>
+<meta property="twitter:url" content="https://higgi13425.github.io/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/"/>
+<meta property="twitter:image" content="https://higgi13425.github.io/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/rstudio_server_open_source.png"/>
+<meta property="twitter:image:width" content="1165"/>
+<meta property="twitter:image:height" content="547"/>
 <meta property="twitter:site" content="@ibddoctor"/>
 <meta property="twitter:creator" content="@ibddoctor"/>
 
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
-<meta name="citation_title" content="Medical R: How to Embed External micro-Flipbooks in Bookdown"/>
-<meta name="citation_fulltext_html_url" content="https://higgi13425.github.io/posts/2020-10-20-embed-external-flipbooks/"/>
-<meta name="citation_online_date" content="2020/10/20"/>
-<meta name="citation_publication_date" content="2020/10/20"/>
+<meta name="citation_title" content="Medical R: Setting Up a RStudio Server with the Open Source Edition"/>
+<meta name="citation_fulltext_html_url" content="https://higgi13425.github.io/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/"/>
+<meta name="citation_online_date" content="2020/12/06"/>
+<meta name="citation_publication_date" content="2020/12/06"/>
+<meta name="citation_author" content="Javan Thompson"/>
 <meta name="citation_author" content="Peter Higgins"/>
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["How to Embed External micro-Flipbooks in Bookdown"]},{"type":"character","attributes":{},"value":["After you have created micro-flipbooks in your miniflipbook project, how do you embed them in Rmarkdown and bookdown projects?"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Peter Higgins"]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/medical_r/"]}]}]},{"type":"character","attributes":{},"value":["10-20-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/posts/2020-10-20-embed-external-flipbooks/"]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/posts/2020-10-20-embed-external-flipbooks/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","authors","url","date","output","author","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Setting Up a RStudio Server with the Open Source Edition"]},{"type":"character","attributes":{},"value":["This is a basic setup guide for setting up a Linux-based server with RStudio Server and Shiny Server (the free versions). This was contributed by Javan Thompson, who works in IT at the University of Michigan Medical Center, and was a great help in setting this up for me. He has graciously provided a basic walkthrough for anyone else to follow."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Javan Thompson"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Peter Higgins"]}]}]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/medical_r/"]},{"type":"character","attributes":{},"value":["12-06-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Javan Thompson"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Peter Higgins"]}]}]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/"]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["embed-external-flipbooks_files/bowser-1.9.3/bowser.min.js","embed-external-flipbooks_files/distill-2.2.21/template.v2.js","embed-external-flipbooks_files/header-attrs-2.4/header-attrs.js","embed-external-flipbooks_files/jquery-1.11.3/jquery.min.js","embed-external-flipbooks_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["rstudio_server_open_source.png","setting-up-a-rstudio-server-with-free-software-version_files/anchor-4.2.2/anchor.min.js","setting-up-a-rstudio-server-with-free-software-version_files/bowser-1.9.3/bowser.min.js","setting-up-a-rstudio-server-with-free-software-version_files/distill-2.2.21/template.v2.js","setting-up-a-rstudio-server-with-free-software-version_files/header-attrs-2.5/header-attrs.js","setting-up-a-rstudio-server-with-free-software-version_files/jquery-1.11.3/jquery.min.js","setting-up-a-rstudio-server-with-free-software-version_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -1949,8 +2023,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.4/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.5/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -2012,7 +2087,7 @@ background: #ededed;
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"How to Embed External micro-Flipbooks in Bookdown","description":"After you have created micro-flipbooks in your miniflipbook project, how do you embed them in Rmarkdown and bookdown projects?","authors":[{"author":"Peter Higgins","authorURL":"https://higgi13425.github.io/medical_r/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-10-20T00:00:00.000-04:00","citationText":"Higgins, 2020"}
+{"title":"Setting Up a RStudio Server with the Open Source Edition","description":"This is a basic setup guide for setting up a Linux-based server with RStudio Server and Shiny Server (the free versions). This was contributed by Javan Thompson, who works in IT at the University of Michigan Medical Center, and was a great help in setting this up for me. He has graciously provided a basic walkthrough for anyone else to follow.","authors":[{"author":"Javan Thompson","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Peter Higgins","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-12-06T00:00:00.000-05:00","citationText":"Thompson & Higgins, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2035,83 +2110,188 @@ background: #ededed;
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>How to Embed External micro-Flipbooks in Bookdown</h1>
-<p><p>After you have created micro-flipbooks in your miniflipbook project, how do you embed them in Rmarkdown and bookdown projects?</p></p>
+<h1>Setting Up a RStudio Server with the Open Source Edition</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>This is a basic setup guide for setting up a Linux-based server with RStudio Server and Shiny Server (the free versions). This was contributed by Javan Thompson, who works in IT at the University of Michigan Medical Center, and was a great help in setting this up for me. He has graciously provided a basic walkthrough for anyone else to follow.</p></p>
 </div>
 
-<div class="d-byline">
-  Peter Higgins <a href="https://higgi13425.github.io/medical_r/" class="uri">https://higgi13425.github.io/medical_r/</a> 
-  
-<br/>10-20-2020
-</div>
 
 <div class="d-article">
-<h2 id="how-to-micro-flipbook">How to micro-flipbook</h2>
-<p>Let’s assume you followed along in the micro-flipbooks blog post,</p>
-<p><a href="https://higgi13425.github.io/medical_r/posts/2020-10-14-micro-flipbooks/" class="uri">https://higgi13425.github.io/medical_r/posts/2020-10-14-micro-flipbooks/</a></p>
-<p>and you now have an RStudio project with at least one micro-flipbook, which has been pushed to Github, and is now viewable at your github.io site, much like this one:</p>
-<h2 id="example-micro-flipbook">Example micro-flipbook</h2>
-<p>Try it out - click on the link below, then use the left and right arrows to go forward and back in the xaringan slides.</p>
-<p><a href="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" class="uri">https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1</a></p>
-<p>So now that this is on the web as a viewable flipbook, how are you going to embed it in your Rmarkdown or bookdown project?</p>
-<p>Some great ideas on how to do this properly (not the slapdash [but quick] way that I do it) from the source of all flipbooks, Evangeline Reynolds, are here: <a href="https://evangelinereynolds.netlify.app/post/embedding-flipbook-mini-in-html-document/" class="uri">https://evangelinereynolds.netlify.app/post/embedding-flipbook-mini-in-html-document/</a></p>
-<p>Also, lots more flipbook knowledge/options here:</p>
-<p><a href="https://evangelinereynolds.netlify.app/#posts" class="uri">https://evangelinereynolds.netlify.app/#posts</a></p>
-<h2 id="fun-with-iframes">Fun with iframes!</h2>
-<p>Yes, in addition to stealing the brilliant idea of flipbooks from Evangeline Reynolds (<span class="citation" data-cites="evamaerey">@evamaerey</span>), we are going to steal a trick or three from the <em>iframe</em> knowledge of Desiree DeLeon’s (<span class="citation" data-cites="docossyle">@docossyle</span>) blog post on how to use iframes to embed <em>learnr</em> apps.</p>
-<p>For full details on how to do this properly, refer to Desiree’s blog post at:</p>
-<p><a href="http://desiree.rbind.io/post/2020/learnr-iframes/" class="uri">http://desiree.rbind.io/post/2020/learnr-iframes/</a></p>
-<h2 id="down-to-the-details">Down to the details</h2>
-<p>This is actually not that hard.</p>
-<p>Once you have working HTML at github.io with a web address, you are in business.</p>
-<p>Just insert some <em>iframe</em> code between these comment fences, as in the code chunk below. This is actually <em>easier</em> than inserting a <em>learnr</em> app - with no resizing messes.</p>
-<p>Note that it is essentially two html tags, one to open the iframe: <code>&lt;iframe&gt;</code> with a bunch of options/arguments,</p>
-<p>and then one to close the iframe: <code>&lt;/iframe&gt;</code></p>
-<p>The style argument is basically some inline CSS styling. Note that I know almost zero CSS. You can get surprisingly far with web searches. Learn some minimal CSS here if you need to:<br />
-<a href="https://www.w3schools.com/css/css_intro.asp" class="uri">https://www.w3schools.com/css/css_intro.asp</a></p>
-<p>Note that if you have multiple iframes in your HTML, each one needs a unique id.</p>
-<p>You can set the width and height (these seemed to work for me).</p>
-<p>Then set the source (src) to the link to github.io, with the first xaringan slide (#1) as the starting point.</p>
-<p>Then usually set scrolling to “no”. Your call.</p>
+<h2 id="getting-started">Getting Started</h2>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-&lt;!---FLIPBOOK EX 1--&gt; 
-
-&lt;iframe style=&quot;margin:0 auto; border: solid black;&quot; 
-id=&quot;myIframe8&quot; 
-width = &quot;763&quot; height = &quot;432&quot;
-src=&quot;https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1&quot; 
-scrolling=&quot;no&quot;&gt;&lt;/iframe&gt; 
-
-&lt;!-------------&gt; </code></pre>
-<pre><code>
-Error: &lt;text&gt;:1:1: unexpected &#39;&lt;&#39;
-1: &lt;
-    ^</code></pre>
+<p><img src="rstudio_server_open_source.png" width="582" data-distill-preview=1 /></p>
 </div>
-<p>Then, build your website or bookdown book with this chunk in it.</p>
-<p>It may be helpful to preface the first microflipbook with a bit of orientation for new users. Something like:</p>
-<p>See the example flipbook below. You can click on it and move forward or backward in the slides with the left and right arrows to see what each line of code actually does.</p>
-<p>And your micro-flipbook should look something like this: <em>Note that it will look like an empty box in the RStudio viewer, but trust:</em> 3 steps:</p>
-<ul>
-<li>Knit the Rmd page</li>
-<li>Build the website/book (Build tab)</li>
-<li>Git commit and push to Github</li>
-</ul>
-<p>in a minute or two, you will have a working flipbook on the web.</p>
-<!---FLIPBOOK EX 1-->
-<iframe style="margin:0 auto; border: solid black;" id="myIframe8" width="763" height="432" src="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" scrolling="no">
-</iframe>
-<!------------->
+<p>These are general instructions on how to setup and install RStudio Server and Shiny server on a Linux machine. For the purposes of this walkthrough, we will assume that the server is running Red Hat Enterprise Linux 8 and that we have sudo rights to run all commands.</p>
+<h2 id="install-apache">Install Apache</h2>
+<p>While Apache is not a required component to run RStudio, I suggest using Apache (or nginx) to proxy the site so that users do not need to type or remember a port to access the webpage. Using apache also allows us to easily implement SSL/TLS. For our instance, start with:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> yum install httpd mod_ssl </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl start httpd </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl enable httpd</span></code></pre></div>
+</div>
+<h2 id="install-r">Install R</h2>
+<p>This walkthrough will have you install R by compiling it from source. You can install R via your package manager (yum or apt). We’ve chosen to install it via source, the main reason being stability and consistency. If you install via the package manager, when a newer version of R is released, it will update your version if you update the system.</p>
+<p>Because of this, I have seen instances where users would not update or patch their systems because they did not want to impact their version of R. By compiling from source, we allow users to properly keep their systems patched and updated without any worry about impacting their R version.</p>
+<p>Also, researchers sometimes build code and pipelines based on a certain version of R. A sudden change to that version could cause potential issues. If these are not issues in your scenario, than you can install via the package manager if you like.</p>
+<h2 id="install-r-prerequisite-packages">Install R Prerequisite Packages</h2>
+<p>These development packages help to ensure that R compiles with all of the capabilities R has available.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> yum install bzip2-devel zlib-devel openssl-devel readline-devel libffi-devel libXext-devel libXt-devel xz-devel libcurl-devel libpng-devel libtiff-devel cairo-devel libjpeg-devel libicu-devel sqlite-devel libarchive-devel libXmu-devel blas-devel lapack-devel libxml2-devel</span></code></pre></div>
+</div>
+<h2 id="copy-script">Copy Script</h2>
+<p>Using your preferred editor, e.g. vim, nano, etc., copy the contents of the following script to the server. For the purposes of this walkthrough, I’ll call this script <code>R-install.sh</code>. You should also edit the prefix in the configure function line to match where you want R installed. Make sure you can actually to write to the directory you choose, or else the script will fail with <code>permission denied</code> errors.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">VERSION=</span>4.0.3 </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> /tmp/builddir </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /tmp/builddir </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cran.r-project.org/src/base/R-4/R-<span class="va">$VERSION</span>.tar.gz </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xvf R-<span class="va">$VERSION</span>.tar.gz </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> R-<span class="va">$VERSION</span> ./configure --prefix=/app/apps/rhel8/R/<span class="va">$VERSION</span> --enable-R-shlib </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> install </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> -rf /tmp/builddir </span></code></pre></div>
+</div>
+<h2 id="run-script">Run script</h2>
+<p>For this walkthrough, I saved the script to <code>/opt</code>.<br />
+This process should take 10-15 minutes to complete.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> /opt/R-install.sh </span></code></pre></div>
+</div>
+<h1 id="set-r-into-the-path">Set R into the PATH</h1>
+<p>Again edit the listed path to match where R was installed.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&lt;&lt;eof&gt;&gt;</span><span class="ex">/etc/profile.d/R.sh</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>export PATH=/app/apps/rhel8/R/4.0.3/bin:<span class="dt">\$</span>PATH</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>EOF</span></code></pre></div>
+</div>
+<h2 id="install-rstudio">Install RStudio</h2>
+<p>RStudio provides updated links to the latest install. Go to the RStudio download page, <a href="https://rstudio.com/products/rstudio/download-server/" class="uri">https://rstudio.com/products/rstudio/download-server/</a><br />
+and select the appropriate OS for your installation.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://download2.rstudio.org/server/centos8/x86_64/rstudio-server-rhel-1.3.1093-x86_64.rpm </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> yum install rstudio-server-rhel-1.3.1093-x86_64.rpm</span></code></pre></div>
+</div>
+<h2 id="configure-rstudio">Configure RStudio</h2>
+<p>You need to edit the configuration file <code>/etc/rstudio/rserver.conf</code> to include the following line.</p>
+<p>As we did earlier, make sure this path is the same path where you installed R.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rsession-which-r</span>=/app/apps/rhel8/R/4.0.2/bin/R</span></code></pre></div>
+</div>
+<h2 id="edit-systemd-service-file">Edit Systemd Service File</h2>
+<p>This is a tweak to fix an issue that could cause Rstudio to not startup properly. First copy the original systemd service file.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> cp /usr/lib/systemd/system/rstudio-server.service /etc/systemd/system/rstudio-server.service</span></code></pre></div>
+</div>
+<p>Then, using your preferred editor, add the following line after <code>'Type=forking'</code></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="va">StartLimitIntervalSec=</span>0</span></code></pre></div>
+</div>
+<p>Reload the systemd daemon and start the Rstudio Service as in the code chunk below.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl daemon-reload </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl start rstudio-server </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl enable rstudio-server</span></code></pre></div>
+</div>
+<h2 id="configure-rstudio-vhost">Configure RStudio Vhost</h2>
+<p>Copy the following code to a new configuration file for apache. For RHEL8, the configuration directory is <code>/etc/httpd/conf.d</code><br />
+You can call the file <code>rstudio-vhost.conf</code>.<br />
+You will need to change the ServerName to the name you will be using for the webhost.<br />
+You will need to change the information for the SSL Certificate as well.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="ex">VirtualHost</span> _default_:80=<span class="st">&quot;&quot;</span><span class="op">&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">RewriteEngine</span> On </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">RewriteCond</span> %<span class="dt">{HTTPS}</span> !=on </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">RewriteRule</span> ^/?(.*) <span class="ex">https</span>://%<span class="dt">{SERVER_NAME}</span>/<span class="va">$1</span> [R=301,L]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>/<span class="ex">VirtualHost</span><span class="op">&gt;</span> </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="ex">VirtuaHost</span> *:443=<span class="st">&quot;&quot;</span><span class="op">&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">ServerName</span> rstudio.example.com </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">ErrorLog</span> logs/ssl_error_log </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Does not work with IP v6 only IP v4</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="ex">SetEnvIf</span> X-Forwarded-For <span class="st">&quot;^.*\..*\..*\..*&quot;</span> forwarded </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="ex">CustomLog</span> logs/ssl_access_log combined env=!forwarded </span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="ex">CustomLog</span> logs/ssl_access_log proxy env=forwarded </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="ex">LogLevel</span> warn </span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="ex">ProxyPass</span> / http://localhost:8787/</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  <span class="ex">ProxyPassReverse</span> / http://localhost:8787/</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="ex">SSLCertificateFile</span> /etc/pki/tls/certs/rstudio.example.com.crt</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="ex">SSLCertificateKeyFile</span> /etc/pki/tls/private/rstudio.example.com.key</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>/<span class="ex">VirtualHost</span><span class="op">&gt;</span> </span></code></pre></div>
+</div>
+<p>Once the configuration is in place, you can restart Apache.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl restart httpd</span></code></pre></div>
+</div>
+<h2 id="other-considerations">Other Considerations</h2>
+<p>###SELinux If you are running with SELinux in enforcing mode, you will need to set an SELinux boolean for Apache.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> setsebool -P httpd_can_network_connect 1</span></code></pre></div>
+</div>
+<h2 id="install-r-packages">Install R Packages</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">install.packages</span>(c(<span class="st">&#39;shiny&#39;</span>,<span class="st">&#39;rmarkdown&#39;</span>,<span class="st">&#39;devtools&#39;</span>)) </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">q()</span></span></code></pre></div>
+</div>
+<h2 id="install-rshiny">Install RShiny</h2>
+<p>RShiny provides updated links to the latest install. Go to the RShiny download page, <a href="https://rstudio.com/products/rstudio/download-server/" class="uri">https://rstudio.com/products/rstudio/download-server/</a><br />
+and select the appropriate OS for your installation.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://download3.rstudio.org/centos6.3/x86_64/shiny-server-1.5.15.953-x86_64.rpm </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> yum install --nogpgcheck shiny-server-1.5.15.953-x86_64.rpm</span></code></pre></div>
+</div>
+<h2 id="start-and-enable-the-shiny-server">Start and Enable the Shiny Server</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl start shiny-server </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl enable shiny-server </span></code></pre></div>
+</div>
+<h2 id="configure-rshiny-vhost">Configure RShiny Vhost</h2>
+<p>Copy the following code to a new configuration file for apache. For RHEL8, the configuration directory is <code>/etc/httpd/conf.d</code>. You can call the file <code>rshiny-vhost.conf</code>. You will need to change the ServerName to the name you will be using for the webhost. You will need to change the information for the SSL Certificate as well.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="ex">VirtualHost</span> _default_:80=<span class="st">&quot;&quot;</span><span class="op">&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">RewriteEngine</span> On </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">RewriteCond</span> %<span class="dt">{HTTPS}</span> !=on </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">RewriteRule</span> ^/?(.*) <span class="ex">https</span>://%<span class="dt">{SERVER_NAME}</span>/<span class="va">$1</span> [R=301,L]</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>/<span class="ex">VirtualHost</span><span class="op">&gt;</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="ex">VirtualHost</span> *:443=<span class="st">&quot;&quot;</span><span class="op">&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">ServerName</span> rshiny.example.com </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="ex">ErrorLog</span> logs/ssl_error_log </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Does not work with IP v6 only IP v4</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="ex">SetEnvIf</span> X-Forwarded-For <span class="st">&quot;^.*\..*\..*\..*&quot;</span> forwarded </span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="ex">CustomLog</span> logs/ssl_access_log combined env=!forwarded </span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="ex">CustomLog</span> logs/ssl_access_log proxy env=forwarded </span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="ex">LogLevel</span> warn </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="ex">ProxyPass</span> / http://localhost:3838/</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="ex">ProxyPassReverse</span> / http://localhost:3838/</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="ex">SSLCertificateFile</span> /etc/pki/tls/certs/rshiny.example.com.crt</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  <span class="ex">SSLCertificateKeyFile</span> /etc/pki/tls/private/rshiny.example.com.key</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>/<span class="ex">VirtualHost</span><span class="op">&gt;</span> </span></code></pre></div>
+</div>
+<p>Once the configuration is in place,<br />
+you can restart Apache.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl restart httpd</span></code></pre></div>
+</div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">
   <p class="social_footer">
     <span class="article-sharing">
       Share: &nbsp;
-      <a href="https://twitter.com/share?text=How%20to%20Embed%20External%20micro-Flipbooks%20in%20Bookdown&amp;url=https%3A%2F%2Fhiggi13425.github.io%2Fposts%2F2020-10-20-embed-external-flipbooks%2F">
+      <a href="https://twitter.com/share?text=Setting%20Up%20a%20RStudio%20Server%20with%20the%20Open%20Source%20Edition&amp;url=https%3A%2F%2Fhiggi13425.github.io%2Fposts%2F2020-12-06-setting-up-a-rstudio-server-with-free-software-version%2F">
         <i class="fab fa-twitter"></i>
       </a>
-      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fhiggi13425.github.io%2Fposts%2F2020-10-20-embed-external-flipbooks%2F&amp;title=How%20to%20Embed%20External%20micro-Flipbooks%20in%20Bookdown">
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fhiggi13425.github.io%2Fposts%2F2020-12-06-setting-up-a-rstudio-server-with-free-software-version%2F&amp;title=Setting%20Up%20a%20RStudio%20Server%20with%20the%20Open%20Source%20Edition">
         <i class="fab fa-linkedin"></i>
       </a>
     </span>
@@ -2140,12 +2320,12 @@ Error: &lt;text&gt;:1:1: unexpected &#39;&lt;&#39;
 <div class="appendix-bottom">
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Higgins (2020, Oct. 20). Medical R: How to Embed External micro-Flipbooks in Bookdown. Retrieved from https://higgi13425.github.io/posts/2020-10-20-embed-external-flipbooks/</pre>
+  <pre class="citation-appendix short">Thompson &amp; Higgins (2020, Dec. 6). Medical R: Setting Up a RStudio Server with the Open Source Edition. Retrieved from https://higgi13425.github.io/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/</pre>
   <p>BibTeX citation</p>
-  <pre class="citation-appendix long">@misc{higgins2020how,
-  author = {Higgins, Peter},
-  title = {Medical R: How to Embed External micro-Flipbooks in Bookdown},
-  url = {https://higgi13425.github.io/posts/2020-10-20-embed-external-flipbooks/},
+  <pre class="citation-appendix long">@misc{thompson2020setting,
+  author = {Thompson, Javan and Higgins, Peter},
+  title = {Medical R: Setting Up a RStudio Server with the Open Source Edition},
+  url = {https://higgi13425.github.io/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/},
   year = {2020}
 }</pre>
 </div>

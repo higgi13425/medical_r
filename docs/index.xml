@@ -7,7 +7,17 @@
     <description>A blog about the use of R with medical data.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 01 Nov 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 06 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Setting Up a RStudio Server with the Open Source Edition</title>
+      <dc:creator>Javan Thompson</dc:creator>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version</link>
+      <description>This is a basic setup guide for setting up a Linux-based server with RStudio Server and Shiny Server (the free versions). This was contributed by Javan Thompson, who works in IT at the University of Michigan Medical Center, and was a great help in setting this up for me. He has graciously provided a basic walkthrough for anyone else to follow.</description>
+      <guid>https://higgi13425.github.io/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version</guid>
+      <pubDate>Sun, 06 Dec 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://higgi13425.github.io/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/rstudio_server_open_source.png" medium="image" type="image/png" width="1165" height="547"/>
+    </item>
     <item>
       <title>Subgroup Plots for Clinical Trials</title>
       <dc:creator>Peter Higgins</dc:creator>

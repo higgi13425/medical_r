@@ -76,6 +76,7 @@
     var header = $('header').get(0);
     var headerHeight = header.offsetHeight;
     var headroom = new Headroom(header, {
+      tolerance: 5,
       onPin : function() {
         if (window.headroom_prevent_pin) {
           window.headroom_prevent_pin = false;
@@ -423,22 +424,19 @@ function offsetURL(url) {
   return offset ? offset + '/' + url : url;
 }
 
-function createIndex() {
-  var options = {
-    keys: [
-      "title",
-      "categories",
-      "description",
-      "contents"
-    ]
-  };
-  return new window.Fuse([],options);
-}
-
 function createFuseIndex() {
 
   // create fuse index
-  var options = { keys: ["title", "description", "contents"] };
+  var options = {
+    keys: [
+      { name: 'title', weight: 20 },
+      { name: 'categories', weight: 15 },
+      { name: 'description', weight: 10 },
+      { name: 'contents', weight: 5 },
+    ],
+    ignoreLocation: true,
+    threshold: 0
+  };
   var fuse = new window.Fuse([], options);
 
   // fetch the main search.json
@@ -506,12 +504,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             shouldSort: true,
             minMatchCharLength: 2,
             limit: 10,
-            keys: [
-              { name: 'title', weight: 20 },
-              { name: 'categories', weight: 15 },
-              { name: 'description', weight: 10 },
-              { name: 'contents', weight: 5 },
-            ],
           };
           var results = fuse.search(query, searchOptions);
           callback(results
@@ -809,7 +801,7 @@ d-article pre code {
 d-article pre,
 d-article div.sourceCode,
 d-article div.sourceCode pre {
-  overflow: hidden;
+  overflow: auto;
 }
 
 d-article div.sourceCode {
@@ -1992,7 +1984,7 @@ html, body, p {
 code {
   font-family: 'Fira Mono', sans-serif;
   color: #000000;
-  background: #D3D3D3;
+  background: #FFFFF0;
   font-weight: 400;
   font-size: 1.1em;
 }
@@ -2011,7 +2003,7 @@ background: #ededed;
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"micro-flipbooks","description":"How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books","authors":[{"author":"Peter Higgins","authorURL":"https://higgi13425.github.io/medical_r/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-10-14T00:00:00.000-04:00","citationText":"Higgins, 2020"}
+{"title":"micro-flipbooks","description":"How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books","authors":[{"author":"Peter Higgins","authorURL":"https://higgi13425.github.io/medical_r/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-10-14T00:00:00.000+00:00","citationText":"Higgins, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->

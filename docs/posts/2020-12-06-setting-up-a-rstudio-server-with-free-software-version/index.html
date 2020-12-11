@@ -150,6 +150,7 @@ code span.wa { color: #545454; font-weight: bold; font-style: italic; } /* Warni
     var header = $('header').get(0);
     var headerHeight = header.offsetHeight;
     var headroom = new Headroom(header, {
+      tolerance: 5,
       onPin : function() {
         if (window.headroom_prevent_pin) {
           window.headroom_prevent_pin = false;
@@ -497,22 +498,19 @@ function offsetURL(url) {
   return offset ? offset + '/' + url : url;
 }
 
-function createIndex() {
-  var options = {
-    keys: [
-      "title",
-      "categories",
-      "description",
-      "contents"
-    ]
-  };
-  return new window.Fuse([],options);
-}
-
 function createFuseIndex() {
 
   // create fuse index
-  var options = { keys: ["title", "description", "contents"] };
+  var options = {
+    keys: [
+      { name: 'title', weight: 20 },
+      { name: 'categories', weight: 15 },
+      { name: 'description', weight: 10 },
+      { name: 'contents', weight: 5 },
+    ],
+    ignoreLocation: true,
+    threshold: 0
+  };
   var fuse = new window.Fuse([], options);
 
   // fetch the main search.json
@@ -580,12 +578,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             shouldSort: true,
             minMatchCharLength: 2,
             limit: 10,
-            keys: [
-              { name: 'title', weight: 20 },
-              { name: 'categories', weight: 15 },
-              { name: 'description', weight: 10 },
-              { name: 'contents', weight: 5 },
-            ],
           };
           var results = fuse.search(query, searchOptions);
           callback(results
@@ -883,7 +875,7 @@ d-article pre code {
 d-article pre,
 d-article div.sourceCode,
 d-article div.sourceCode pre {
-  overflow: hidden;
+  overflow: auto;
 }
 
 d-article div.sourceCode {
@@ -2068,7 +2060,7 @@ html, body, p {
 code {
   font-family: 'Fira Mono', sans-serif;
   color: #000000;
-  background: #D3D3D3;
+  background: #FFFFF0;
   font-weight: 400;
   font-size: 1.1em;
 }
@@ -2087,7 +2079,7 @@ background: #ededed;
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Setting Up a RStudio Server with the Open Source Edition","description":"This is a basic setup guide for setting up a Linux-based server with RStudio Server and Shiny Server (the free versions). This was contributed by Javan Thompson, who works in IT at the University of Michigan Medical Center, and was a great help in setting this up for me. He has graciously provided a basic walkthrough for anyone else to follow.","authors":[{"author":"Javan Thompson","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Peter Higgins","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-12-06T00:00:00.000-05:00","citationText":"Thompson & Higgins, 2020"}
+{"title":"Setting Up a RStudio Server with the Open Source Edition","description":"This is a basic setup guide for setting up a Linux-based server with RStudio Server and Shiny Server (the free versions). This was contributed by Javan Thompson, who works in IT at the University of Michigan Medical Center, and was a great help in setting this up for me. He has graciously provided a basic walkthrough for anyone else to follow.","authors":[{"author":"Javan Thompson","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Peter Higgins","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-12-06T00:00:00.000+00:00","citationText":"Thompson & Higgins, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->

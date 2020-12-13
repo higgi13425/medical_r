@@ -7,7 +7,15 @@
     <description>A blog about the use of R with medical data.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 06 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 12 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Publishing a {bookdown} book on bookdown.org</title>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/posts/2020-12-12-publishing-a-bookdown-book-on-bookdownorg</link>
+      <description>A short overview of creating a {bookdown} book and publishing on bookdown.org</description>
+      <guid>https://higgi13425.github.io/posts/2020-12-12-publishing-a-bookdown-book-on-bookdownorg</guid>
+      <pubDate>Sat, 12 Dec 2020 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Setting Up a RStudio Server with the Open Source Edition</title>
       <dc:creator>Javan Thompson</dc:creator>

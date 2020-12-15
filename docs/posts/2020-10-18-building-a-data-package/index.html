@@ -18,6 +18,72 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
   <!--radix_placeholder_meta_tags-->
 <title>Medical R: Building a Data Package</title>
 
@@ -61,7 +127,7 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["building-a-data-package_files/bowser-1.9.3/bowser.min.js","building-a-data-package_files/distill-2.2.21/template.v2.js","building-a-data-package_files/header-attrs-2.4/header-attrs.js","building-a-data-package_files/jquery-1.11.3/jquery.min.js","building-a-data-package_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["building-a-data-package_files/anchor-4.2.2/anchor.min.js","building-a-data-package_files/bowser-1.9.3/bowser.min.js","building-a-data-package_files/distill-2.2.21/template.v2.js","building-a-data-package_files/header-attrs-2.4/header-attrs.js","building-a-data-package_files/header-attrs-2.5/header-attrs.js","building-a-data-package_files/jquery-1.11.3/jquery.min.js","building-a-data-package_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -1941,8 +2007,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.4/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.5/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -1980,14 +2047,6 @@ html, body, p {
   font-style: normal;
   
 }
-
-/*  Commented out
-d-code {
-    overflow-x: auto !important;
-    font-size: 12px;
-    font-family: 'Fira Mono', monospace;
-  }
-*/
 
 /* Change the appearance of regular code chunks */
 d-article div.sourceCode code, 
@@ -2044,6 +2103,8 @@ code {
 
 <div class="d-title">
 <h1>Building a Data Package</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
 <p><p>For building a package that is largely about making datasets readily available in R.</p></p>
 </div>
 
@@ -2085,7 +2146,7 @@ code {
 <h2 id="edit-the-description">Edit the Description</h2>
 <p>Look in your Files tab, open the DESCRIPTION file, and edit:</p>
 <ul>
-<li>Make yourself the author (add collaborators!)</li>
+<li>Make yourself the author (and add collaborators!)</li>
 <li>add a title</li>
 <li>add a longer Description - who is it for, why would they want this data, what is a use case?</li>
 </ul>
@@ -2094,23 +2155,10 @@ code {
 <h2 id="add-data">Add data</h2>
 <p>In the Files tab in RStudio, create a <code>raw-data</code> folder. Add the files that you want to turn into your accessible datasets. Now create a separate <code>data</code> folder.</p>
 <p>In the <code>raw-data</code> folder, create a new R script named <code>prep_data.R</code>. In this file, wrangle, filter, or otherwise prepare your datasets. Let’s pretend you have a datafile that you have wrangled from Excel, and it is now a dataframe named <code>sportsdata</code>.</p>
-<p>Then save these datasets in <code>*.rda</code> format. Pick the names carefully, as you will have to live with them for a long time.</p>
-<p>In this script, do this with <code>saveRDS(sportsdata, "data-raw/sportsdata.Rdata")</code></p>
-<p>Then use the data (put in proper format in the <code>data</code> folder) with the following line in your script:</p>
+<p>Then save this datasets in <code>*.rda</code> format, as <code>sportsdata.rda</code>. Pick the name carefully, as you will have to live with it for a long time.</p>
+<p>In this script, do this saving with with <code>saveRDS(sportsdata, "data-raw/sportsdata.Rdata")</code></p>
+<p>Then <strong>use</strong> the data (put in proper format in the <code>data</code> folder) with the following line in your script:</p>
 <p><code>usethis::use_data(sportsdata, overwrite = TRUE)</code></p>
-<h2 id="basic-documentation">Basic documentation</h2>
-<p>Create an R script in the R/ folder, named something like <code>datapackage.R</code>.</p>
-<p>In this file, you can add roxygen2 documentation, which looks like a long list of funny-looking comments (they start with <code>#"</code> rather than just a hashtag).</p>
-<p>Typically you include</p>
-<ul>
-<li>a short description, in a sentence or two.</li>
-<li>after the <span class="citation" data-cites="format">@format</span> statement, details on the format (dataframe) and the dimensions (how many rows, how many columns), and a short description of each variable</li>
-<li>after the <span class="citation" data-cites="source">@source</span> statement, a description of where the data came from, often including a link.</li>
-</ul>
-<p>This looks something like:</p>
-<p>#’ Prices of 50,000 round cut diamonds. #’ #’ A dataset containing the prices and other attributes of almost 54,000 #’ diamonds. #’ #’ <span class="citation" data-cites="format">@format</span> A data frame with 53940 rows and 10 variables: #’  #’ <span class="citation" data-cites="source">@source</span>  “diamonds”</p>
-<h2 id="advanced-documentation">Advanced documentation</h2>
-<p><em>Description Document</em> You can write a long description of the provenance of the data, when and how it was collected, where it was published in a journal, etc. (go for it, provide all the details!) in a Rmarkdown file (named something like datapackage_desc.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can read up on your datasets. <br><br> <em>Codebook Document</em> You can create a nice table of each variable, a longer description, units of measurement, levels/category codes and what they mean, in a nicely formatted Rmd table. Create a Rmarkdown file (named something like datapackage_codebook.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can know what each variable in your dataset is about.</p>
 <h2 id="install">Install</h2>
 <h2 id="deal-with-dependencies">Deal with Dependencies</h2>
 <p>Do you need to use other packages to run functions (most of the time not, for a data package)?</p>
@@ -2120,6 +2168,54 @@ code {
 <h2 id="set-up-for-push-to-github">Set up for push to GitHub</h2>
 <p>Run in the Console:</p>
 <p><code>use_github()</code> This will link your project to a Github repository, so that you can share your datapackage with the world.</p>
+<h2 id="basic-documentation">Basic documentation</h2>
+<p>Create an R script in the <code>R/</code> folder, named something like <code>datapackage.R</code>.</p>
+<p>In this file, you can add roxygen2 documentation, which looks like a long list of funny-looking comments (they start with <code>#'</code> rather than just a hashtag).</p>
+<p>Typically you include:</p>
+<ul>
+<li>a short description, in a sentence or two.</li>
+<li>after the <span class="citation" data-cites="format">@format</span> statement, details on the format (dataframe) and the dimensions (how many rows, how many columns), and a short description of each variable, with levels or units; and the data type.</li>
+<li>after the <span class="citation" data-cites="source">@source</span> statement, a description of where the data came from, often including a link.</li>
+</ul>
+<p>This looks something like:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='co'>#' Baby names.</span>
+<span class='co'>#'</span>
+<span class='co'>#' Full baby name data provided by the SSA. This includes all names with at</span>
+<span class='co'>#' least 5 uses.</span>
+<span class='co'>#'</span>
+<span class='co'>#' Lifetables</span>
+<span class='co'>#'</span>
+<span class='co'>#' Cohort life tables data as provided by SSA.</span>
+<span class='co'>#'</span>
+<span class='co'>#' @format A data frame with nine variables:</span>
+<span class='co'>#' \describe{</span>
+<span class='co'>#' \item{\code{x}}{age in years}</span>
+<span class='co'>#' \item{\code{qx}}{probability of death at age \code{x}}</span>
+<span class='co'>#' \item{\code{lx}}{number of survivors, of birth cohort of 100,000, at next integral age}</span>
+<span class='co'>#' \item{\code{dx}}{number of deaths that would occur between integral ages}</span>
+<span class='co'>#' \item{\code{Lx}}{Number of person-years lived between \code{x} and \code{x+1}}</span>
+<span class='co'>#' \item{\code{Tx}}{Total number of person-years lived beyond age \code{x}}</span>
+<span class='co'>#' \item{\code{ex}}{Average number of years of life remaining for members of cohort alive at age \code{x}}</span>
+<span class='co'>#' \item{\code{sex}}{Sex}</span>
+<span class='co'>#' \item{\code{year}}{Year}</span>
+<span class='co'>#' }</span>
+<span class='co'>#'</span>
+<span class='co'>#' For further details, see \url{http://www.ssa.gov/oact/NOTES/as120/LifeTables_Body.html#wp1168594}</span>
+<span class='co'>#'</span>
+<span class='st'>"lifetables"</span>
+</code></pre>
+</div>
+</div>
+<p>To build this into a proper help file, you need to run <code>devtools::document()</code>. This will use roxygen2 to convert this to a *.Rd file in the <code>man</code> folder. This provides the “manual” for your data.</p>
+<p>To build this into the package, re-build the package, with Cmd-Shift-B (Mac) or Ctrl-Shift-B (Windows). This will rebuild the package and restart R.</p>
+<p>Now you should be able to call from the console:</p>
+<p><code>?dataset</code> or <code>help(dataset)</code></p>
+<p>and see your documentation.</p>
+<p>Then save it and make a Git commit and push the updated package up to your Github repository.</p>
+<h2 id="advanced-documentation">Advanced documentation</h2>
+<p><em>Description Document</em> You can write a long description of the provenance of the data, when and how it was collected, where it was published in a journal, etc. (go for it, provide all the details!) in a Rmarkdown file (named something like datapackage_desc.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can read up on your datasets. <br><br> <em>Codebook Document</em> You can create a nice table of each variable, a longer description, units of measurement, levels/category codes and what they mean, in a nicely formatted Rmd table. Create a Rmarkdown file (named something like datapackage_codebook.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can know what each variable in your dataset is about.</p>
 <h2 id="add-a-readme">Add a README</h2>
 <p>Just run the following in the Console:</p>
 <p><code>use_readme_rmd()</code></p>
@@ -2131,8 +2227,9 @@ code {
 <p><code>install()</code></p>
 <h2 id="build">Build</h2>
 <p>The Build tab in RStudio will let you <code>Build Package</code> which will also restart R.</p>
-<p>This will give you a clean slate and library your datapackage.</p>
+<p>This will give you a clean slate and re-load (library) your datapackage.</p>
 <p>Once you are happy with the datapackage, commit and push to Github. Now anyone can use you datapackage.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">
   <p class="social_footer">

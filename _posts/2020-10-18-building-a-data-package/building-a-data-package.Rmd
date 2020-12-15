@@ -64,7 +64,7 @@ Details on PATs (you want one, trust me) are found in Appendix B, at: https://ha
 ## Edit the Description
 Look in your Files tab, open the DESCRIPTION file, and edit:
 
-- Make yourself the author (add collaborators!)
+- Make yourself the author (and add collaborators!)
 - add a title
 - add a longer Description - who is it for, why would they want this data, what is a use case?
 
@@ -81,47 +81,14 @@ Now create a separate `data` folder.
 In the `raw-data` folder, create a new R script named `prep_data.R`.
 In this file, wrangle, filter, or otherwise prepare your datasets. Let's pretend you have a datafile that you have wrangled from Excel, and it is now a dataframe named `sportsdata`.
 
-Then save these datasets in `*.rda` format. Pick the names carefully, as you will have to live with them for a long time.
+Then save this datasets in `*.rda` format, as `sportsdata.rda`. Pick the name carefully, as you will have to live with it for a long time.
 
-In this script, do this with
+In this script, do this saving with with
 `saveRDS(sportsdata, "data-raw/sportsdata.Rdata")`
 
-Then use the data (put in proper format in the `data` folder) with the following line in your script:
+Then **use** the data (put in proper format in the `data` folder) with the following line in your script:
 
 `usethis::use_data(sportsdata, overwrite = TRUE)`
-
-## Basic documentation
-Create an R script in the R/ folder, named something like `datapackage.R`.
-
-In this file, you can add roxygen2 documentation, which looks like a long list of funny-looking comments (they start with `#"` rather than just a hashtag).
-
-Typically you include 
-
-- a short description, in a sentence or two.
-- after the @format statement, details on the format (dataframe) and the dimensions (how many rows, how many columns), and a short description of each variable
-- after the @source statement, a description of where the data came from, often including a link.
-
-This looks something like:
-
-#' Prices of 50,000 round cut diamonds.
-#'
-#' A dataset containing the prices and other attributes of almost 54,000
-#' diamonds.
-#'
-#' @format A data frame with 53940 rows and 10 variables:
-#' \describe{
-#'   \item{price}{price, in US dollars}
-#'   \item{carat}{weight of the diamond, in carats}
-#'   ...
-#' }
-#' @source \url{http://www.diamondse.info/}
-"diamonds"
-
-
-## Advanced documentation
-*Description Document* You can write a long description of the provenance of the data, when and how it was collected, where it was published in a journal, etc. (go for it, provide all the details!) in a Rmarkdown file (named something like datapackage_desc.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can read up on your datasets.
-<br><br>
-*Codebook Document* You can create a nice table of each variable, a longer description, units of measurement, levels/category codes and what they mean, in a nicely formatted Rmd table. Create a Rmarkdown file (named something like datapackage_codebook.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can know what each variable in your dataset is about.
 
 ## Install
 
@@ -140,6 +107,66 @@ Run in the Console:
 
 `use_github()`
 This will link your project to a Github repository, so that you can share your datapackage with the world.
+
+## Basic documentation
+Create an R script in the `R/` folder, named something like `datapackage.R`.
+
+In this file, you can add roxygen2 documentation, which looks like a long list of funny-looking comments (they start with `#'` rather than just a hashtag).
+
+Typically you include: 
+
+- a short description, in a sentence or two.
+- after the @format statement, details on the format (dataframe) and the dimensions (how many rows, how many columns), and a short description of each variable, with levels or units; and the data type.
+- after the @source statement, a description of where the data came from, often including a link.
+
+This looks something like:
+
+```{r, echo=TRUE, eval=FALSE}
+#' Baby names.
+#'
+#' Full baby name data provided by the SSA. This includes all names with at
+#' least 5 uses.
+#'
+#' Lifetables
+#'
+#' Cohort life tables data as provided by SSA.
+#'
+#' @format A data frame with nine variables:
+#' \describe{
+#' \item{\code{x}}{age in years}
+#' \item{\code{qx}}{probability of death at age \code{x}}
+#' \item{\code{lx}}{number of survivors, of birth cohort of 100,000, at next integral age}
+#' \item{\code{dx}}{number of deaths that would occur between integral ages}
+#' \item{\code{Lx}}{Number of person-years lived between \code{x} and \code{x+1}}
+#' \item{\code{Tx}}{Total number of person-years lived beyond age \code{x}}
+#' \item{\code{ex}}{Average number of years of life remaining for members of cohort alive at age \code{x}}
+#' \item{\code{sex}}{Sex}
+#' \item{\code{year}}{Year}
+#' }
+#'
+#' For further details, see \url{http://www.ssa.gov/oact/NOTES/as120/LifeTables_Body.html#wp1168594}
+#'
+"lifetables"
+```
+
+To build this into a proper help file, you need to run
+`devtools::document()`.  This will use roxygen2 to convert this to a *.Rd file in the `man` folder. This provides the "manual" for your data.
+
+To build this into the package, re-build the package, with Cmd-Shift-B (Mac) or Ctrl-Shift-B (Windows). This will rebuild the package and restart R.
+
+Now you should be able to call from the console:    
+
+`?dataset` or `help(dataset)`
+
+and see your documentation.
+
+Then save it and make a Git commit and push the updated package up to your Github repository.
+
+
+## Advanced documentation
+*Description Document* You can write a long description of the provenance of the data, when and how it was collected, where it was published in a journal, etc. (go for it, provide all the details!) in a Rmarkdown file (named something like datapackage_desc.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can read up on your datasets.
+<br><br>
+*Codebook Document* You can create a nice table of each variable, a longer description, units of measurement, levels/category codes and what they mean, in a nicely formatted Rmd table. Create a Rmarkdown file (named something like datapackage_codebook.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can know what each variable in your dataset is about.
 
 ## Add a README
 Just run the following in the Console:
@@ -164,6 +191,6 @@ It is also a good place to add a table with the names of the datasets and links 
 
 The Build tab in RStudio will let you `Build Package` which will also restart R.
 
-This will give you a clean slate and library your datapackage.
+This will give you a clean slate and re-load (library) your datapackage.
 
 Once you are happy with the datapackage, commit and push to Github. Now anyone can use you datapackage.

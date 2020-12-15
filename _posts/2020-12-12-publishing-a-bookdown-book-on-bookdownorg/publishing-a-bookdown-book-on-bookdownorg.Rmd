@@ -37,7 +37,7 @@ You can now start editing and adding new chapters.
 
 You can edit your `_bookdown.yml` file, which controls the setup of your book. I chose to have 'manual' control of chapter order, by listing the 'ready for prime time' chapters in the `_bookdown.yml` file in order. Draft chapters will not be included in the published book until I list them in this file.
 
-My `_bookdown.yml` file looks like this:
+My `_bookdown.yml` file looks something like this (more chapters being added):
 
 ```{r, echo=TRUE, eval=FALSE}
 book_filename: "rmrwr"

@@ -1,0 +1,23 @@
+---
+title: "Creating Mini learnr Apps and Hosting on a Server"
+description: |
+  This post will explain how to create your own learnr apps and push them to an RStudio Server Open Source server.
+author:
+  - name: Peter Higgins
+    url: {}
+date: 12-27-2020
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Distill is a publication format for scientific and technical writing, native to the web.
+
+Learn more about using Distill at <https://rstudio.github.io/distill>.
+
+

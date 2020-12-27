@@ -149,6 +149,8 @@ Then (if you want more explanatory material) insert a new slide by adding 3 dash
 
 Add the explanatory text with Rmd formatting.
 
+### Prettifying with CSS
+
 Then (if desired) add a css chunk (example below) to adjust your code font - can adjust line height or font size.
 
 This css chunk does not have to be on a separate slide
@@ -156,6 +158,8 @@ This css chunk does not have to be on a separate slide
 ```{css, eval = FALSE, echo = TRUE}
 .remark-code{line-height: 1.5; font-size: 80%}
 ```
+
+### Ending Clearly
 
 To clarify that your student has reached the end of the flipbook, you can add a comment line, like ### THE END
 

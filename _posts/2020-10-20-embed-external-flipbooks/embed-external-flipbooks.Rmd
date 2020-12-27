@@ -70,7 +70,7 @@ Then set the source (src) to the link to github.io, with the first xaringan slid
 
 Then usually set scrolling to "no". Your call.
 
-```{r, eval FALSE, echo=TRUE, error=TRUE, warning=FALSE, message=FALSE}
+```{r, eval=FALSE, echo=TRUE, error=TRUE, warning=FALSE, message=FALSE}
 <!---FLIPBOOK EX 1--> 
 
 <iframe style="margin:0 auto; border: solid black;" 
@@ -103,4 +103,4 @@ in a minute or two, you will have a working flipbook on the web.
 
 </iframe>
 
-\<!-------------
+\<!-------------\>

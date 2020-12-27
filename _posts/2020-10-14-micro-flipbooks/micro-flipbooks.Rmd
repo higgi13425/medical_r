@@ -33,13 +33,14 @@ Open the mini-flipbooks project in RStudio. You can fork this from https://githu
 Open a new file -
 File/New/Rmarkdown/From Template/Ninja Themed Presentation
 
-(Note: you could also just copy/paste in a working example, like **across_microflip_1** -
-this will include YAML edits, setup packages, etc.)
+(Note: it is often easiest to open a working example, like **across_microflip_1** -
+this will include YAML edits, setup packages, etc.,
+and Save As.. to the name of your new micro-flipbook)
 
 ### Name it
 Then give it a name, like
 <br>
-function-name_microflip_#
+function-name_microflip_#_topic.Rmd
 (increment # for each additional example)
 
 ### Delete Lots of Stuff
@@ -99,6 +100,8 @@ you can make your own version.
 4 hashtags - subhead text <br>
 Also add body text to explain what you are going to be showing.
 
+Show the syntax and arguments
+
 then add a divider to start a new slide with 3 horizontal dashes on a single line. <br>
 This next slide will be your flipbook slide
 
@@ -153,3 +156,11 @@ This css chunk does not have to be on a separate slide
 ```{css, eval = FALSE, echo = TRUE}
 .remark-code{line-height: 1.5; font-size: 80%}
 ```
+
+To clarify that your student has reached the end of the flipbook, you can add a comment line, like ### THE END
+
+or even a divider line
+
+With 3 dashes `---`
+
+to create a new slide with #THE END

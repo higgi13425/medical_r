@@ -11,13 +11,236 @@ output:
     self_contained: false
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(janitor)
+library(medicaldata)
+
+prostate <- medicaldata::blood_storage %>% 
+  clean_names() %>% as_tibble()
+covid <- medicaldata::covid_testing %>% 
+  clean_names() %>% as_tibble()
+cmv <- medicaldata::cytomegalovirus %>% 
+  clean_names() %>% as_tibble()
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
+## Building your Own `learnr` apps
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
+Apps built with the {learnr} package allow students to practice coding in a controlled environment.
+
+You can add hints, solutions, and allow them to run their own code.
+
+You can assess their responses with the {gradethis} package.
+
+But how do you
+
+1.  Build these?
+2.  Upload and Serve them on an RStudio Server Open Source server?
+3.  Incorporate them into a blog post or a bookdown book?
+
+## Building a learnr app
+
+First, plan out what you want to teach. Break it into several steps and functions. Think about exceptions you want to point out. Remember to point out and warn about common errors. Sketch out each of your examples.
+
+For each example, plan out which dataset you will use. I generally use datasets from the {medicaldata} package. You can install this package with
+
+```{r, eval=FALSE}
+install.packages('remotes')
+remotes::install_github('higgi13425/medicaldata)
+```
+
+You also need to have the {learnr} package installed from CRAN, along with its dependencies (like Shiny) with:
+
+```{r, eval=FALSE}
+install.packages('learnr')
+```
+
+I generally build and store learnr apps in one project, titled learnR_apps. Open this project. Check in the Files tab that you are in the root directory for this project (Home/Documents/RCode/learnR_apps for me), rather than in an app folder.
+
+### Leveraging existing Apps
+
+1.  Create a new folder in the root directory of learnR_apps named for your new app, e.g. learn_function\#
+
+2.  Go to an existing app folder, and copy the learnr.Rmd file to your new folder
+
+3.  Go to your new folder, and rename the learnr.Rmd file to your new app name (be careful to avoid typos - this should match the folder name).
+
+4.  Open the Rmd and start editing
+
+### Starting Anew
+
+Then open a new {learnr} app by doing File/New File/Rmarkdown/From Template/Interactive Tutorial.\
+Give this a title like learn_function\# (numbering if you will have more than one on that topic.)
+
+Your {learnr} file will open in the Source Pane.
+
+## Editing the YAML
+
+Edit the title to something meaningful, like "FIltering Exercise". The output and runtime should remain the same, and should look something like this:
+
+---
+
+title: "FIltering Exercise"
+
+output: learnr::tutorial
+
+runtime: shiny_prerendered
+
+---
+
+## Setting up the Setup Chunk
+
+Add important libraries after `library(learnr)`
+
+I often include {tidyverse}, {janitor}, and {medicaldata}. Other packages will depend on your topic.
+
+You can then load individual datasets in the setup chunk, with assignment arrows to new objects, as shown below
+
+```{r , eval=FALSE}
+library(learnr)
+library(tidyverse)
+library(janitor)
+library(medicaldata)
+
+knitr::opts_chunk$set(echo = FALSE)
+
+prostate <- medicaldata::blood_storage %>% 
+  clean_names() %>% as_tibble()
+covid <- medicaldata::covid_testing %>% 
+  clean_names() %>% as_tibble()
+cmv <- medicaldata::cytomegalovirus %>% 
+  clean_names() %>% as_tibble()
+```
+
+## Your First Exercise
+
+Set up your first Exercise (Exercise 1)
+
+as an H2 heading with two \#\#
+
+Then add a short description of what you want the student to do:
+
+"Write the R code required to filter the prostate dataset to rows with a prostate volume (p_vol) greater than or equal to 90:"
+
+Then add your first R code chunk. Give it a name, like `function1`, and set options to <br> **"exercise=TRUE, error=TRUE, lines = 5"**. <br>
+Make sure to include error=TRUE if you have blanks in the code.
+
+The top line of your code chunk should read<br>
+**{r function1, exercise=TRUE, error=TRUE, lines=5}**
+
+Then add to the code block your solution code. Run it to make sure everything works. For this example, we will use:<br>
+prostate %>% <br>
+  filter(age >= 90)
+
+Then copy the entire code chunk, including options, and paste it a few lines below. Edit the name of this new code chunk to be function1-solution, as below:
+
+**{r function1-solution, eval=FALSE, lines = 5}**
+
+Now copy the code in the solution chunk to the exercise chunk.
+
+Replace a few key items (arguments, function names) in the exercise code chunk with a blank --- (three dashes). This will produce an error, but this is OK, as you set error = TRUE in the exercise chunk options. This will require the students to fill in in the blank.
+Something like:<br>
+prostate %>% 
+  filter(--- >= ---)
+  
+Start with only a few blanks at first, and increase the amount of typing that students have to do with each exercise chunk, until they can write a whole code pipeline on their own.
+
+### Adding a hint
+
+Copy the solution code chunk, and paste the chunk *in between* the exercise and the solution. Rename this code chunk as **function1-hint.** Make sure to include error=TRUE if you have blanks in the code.
+
+**{r function1-hint, error=TRUE, lines = 5}** <br>
+prostate %>% <br>
+  filter(age >= ---)
 
 
+Edit the code in this chunk to provide an intermediate hint between the *exercise* and the *solution*. Sometimes it is better to make the solution the only hint in simple exercises.
+
+### Run your learnr app to test it
+
+Click on the **Run document** button in the top center of the Source pane. This should generate a working learnr app. Test it with working and with non-working code. Test that the hints work, and that these can be copied to the exercise pane, and the code run successfully with the **Run code** button.
+
+## More Exercises
+
+Add a new level 2 \#\# header for Exercise 2 after the completion of exercise 1. Copy your exercise, hint, and solution chunks as one blob, and paste these below. Change the chunk names to function-2, and add appropriate captions, like "Exercise 2: Filtering on Strings"
+
+After each exercise, test it with **Run Document**. When done, save your {learnr} app, commit to git, and push to GitHub.
+
+## Putting Apps on the Shiny Server
+
+For this example, I will refer to an RStudio Server Open Source with Shiny Server Open Source installed.
+
+To access this, I need to be on campus, or connect via VPN.
+
+Once the VPN is established, I can log into the server at <https://higginslab-rstudio.med.umich.edu/> with my level 2 password.
+
+I can then go to the Files tab in RStudio, and click on the *ellipses* button in the upper right corner - on the same level as the path. This will allow me to enter a new path. In my case, I enter:
+
+/srv/shiny-server/shiny-apps/
+
+When I am in the correct folder, I create a new folder for the new app - named something like "learn_filter2".
+
+Then click on this folder to open it.
+
+Then click on the **Upload** button to upload the **.Rmd** file of the new learnr app. Use the **Choose File** button, browse to my local computer, through Rcode/learnR_apps, and find the local version of the app in the learnR_apps project. Open the folder for the local app, choose the **.Rmd** file, and click OK to upload.
+
+Now that the file is on the server, it will generate the appropriate HTML file.
+
+Return to the home directory in RStudio Server by clicking on the *ellipses* button in the Files tab, and enter "\~" (tilde) to return to the home directory.
+
+## Testing the New App
+
+You should now be able to go to
+
+[https://higginslab-rshiny.med.umich.edu/shiny-apps](https://higginslab-rshiny.med.umich.edu/shiny-apps/name_of_new_learnr_app)/
+
+and find the new app, and test it.
+
+You can link to this app with the link <https://higginslab-rshiny.med.umich.edu/shiny-apps/name_of_new_learnr_app>
+
+## Inserting the New App into a Bookdown book
+
+You can insert learnr apps with *iframes*.
+
+It should look like this:    
+
+<br>
+
+\#\#\# Your Turn - learnr exercises
+
+<!---LEARNR TUTORIAL EX 1-->
+
+\<iframe style="margin:0 auto; border: solid black;" id="myIframe9" width="763" height="763" src="[https://higginslab-rshiny.med.umich.edu/shiny-apps/learn_filter1/"](https://higginslab-rshiny.med.umich.edu/shiny-apps/learn_filter1/") scrolling="yes"\>
+
+\</iframe\>
+
+<!---LEARNR TUTORIAL EX 1-->
+<br>
+<br>
+Leave scrolling = "yes" if you have multiple exercises.
+
+Each iframe should have a unique id.
+
+The source (src) should be equal to the link to the new app.
+
+The same *iframe* approach works for blog posts.   
+
+
+## Making this App Live in a Bookdown book
+
+After inserting the learnr app, add an appropriate header text introduction above.
+
+Then save the Rmd for this chapter.
+
+Then render the book with `bookdown::render_book('index.html')`
+
+This will take a couple of minutes.
+
+Then publish the book to your bookdown.org account. In my case, this is \
+`bookdown::publish_book(account = 'pdr_higgins')`
+
+Enter `y` to agree to update the book.
+
+Within a minute, the book will be updated online.

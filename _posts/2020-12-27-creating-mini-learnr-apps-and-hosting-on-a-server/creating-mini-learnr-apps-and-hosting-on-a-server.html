@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
   <meta name="generator" content="distill" />
-  <link rel="alternate" type="application/rss+xml" href="https://higgi13425.github.io/index.xml" />
 
   <style type="text/css">
   /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
@@ -86,623 +85,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Medical R</title>
+  <title>Creating Mini learnr Apps and Hosting on a Server</title>
+
+  <meta property="description" itemprop="description" content="This post will explain how to create your own learnr apps and push them to an RStudio Server Open Source server."/>
 
 
-
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2020-12-27"/>
+  <meta property="article:created" itemprop="dateCreated" content="2020-12-27"/>
+  <meta name="article:author" content="Peter Higgins"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Medical R"/>
+  <meta property="og:title" content="Creating Mini learnr Apps and Hosting on a Server"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="This post will explain how to create your own learnr apps and push them to an RStudio Server Open Source server."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="Medical R"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Medical R"/>
-  <meta property="twitter:site" content="@ibddoctor"/>
-  <meta property="twitter:creator" content="@ibddoctor"/>
+  <meta property="twitter:title" content="Creating Mini learnr Apps and Hosting on a Server"/>
+  <meta property="twitter:description" content="This post will explain how to create your own learnr apps and push them to an RStudio Server Open Source server."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing","categories"]}},"value":[{"type":"character","attributes":{},"value":["Medical R"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["posts"]},{"type":"character","attributes":{},"value":["general","flipbooks","learnr","bookdown"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Creating Mini learnr Apps and Hosting on a Server"]},{"type":"character","attributes":{},"value":["This post will explain how to create your own learnr apps and push them to an RStudio Server Open Source server.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Peter Higgins"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["12-27-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["creating-mini-learnr-apps-and-hosting-on-a-server_files/anchor-4.2.2/anchor.min.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/bowser-1.9.3/bowser.min.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/distill-2.2.21/template.v2.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/header-attrs-2.6/header-attrs.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/jquery-1.11.3/jquery.min.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
   <!--radix_placeholder_navigation_in_header-->
-  <meta name="distill:offset" content=""/>
-
-  <script type="application/javascript">
-
-    window.headroom_prevent_pin = false;
-
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        tolerance: 5,
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
-  </script>
-
-  <style type="text/css">
-
-  /* Theme (user-documented overrideables for nav appearance) */
-
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #0F2E3D;
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .distill-site-nav a:hover {
-    color: white;
-  }
-
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-
-  .distill-site-header {
-
-  }
-
-  .distill-site-footer {
-
-  }
-
-
-  /* Site Header */
-
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-
-
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-
-  .distill-site-header .title {
-    font-size: 18px;
-    min-width: 150px;
-  }
-
-  .distill-site-header .logo {
-    padding: 0;
-  }
-
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-
-
-
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-
-
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-dropdown-active {
-    display: block;
-  }
-
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative; min-height: 500px; }
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-
-  /* Site Footer */
-
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-
-  /* Headroom */
-
-  d-title {
-    padding-top: 6rem;
-  }
-
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-
-  .headroom--unpinned {
-    top: -100px;
-  }
-
-  .headroom--pinned {
-    top: 0;
-  }
-
-  </style>
-
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-
-  <script type="application/javascript">
-
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-
-  function createFuseIndex() {
-
-    // create fuse index
-    var options = {
-      keys: [
-        { name: 'title', weight: 20 },
-        { name: 'categories', weight: 15 },
-        { name: 'description', weight: 10 },
-        { name: 'contents', weight: 5 },
-      ],
-      ignoreLocation: true,
-      threshold: 0
-    };
-    var fuse = new window.Fuse([], options);
-
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-
-    createFuseIndex()
-      .then(function(fuse) {
-
-        // make search box visible
-        searchEl.classList.remove('hidden');
-
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-              .filter(function(item) { return !!item.description; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description}
-                  </div>
-                  <div class="search-item-preview">
-                    <img src="${suggestion.preview ? offsetURL(suggestion.preview) : ''}"</img>
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-  });
-
-  </script>
-
-  <style type="text/css">
-
-  /* Algolioa Autocomplete */
-
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  </style>
-
-
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -1988,441 +1403,152 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="creating-mini-learnr-apps-and-hosting-on-a-server_files/header-attrs-2.6/header-attrs.js"></script>
+  <script src="creating-mini-learnr-apps-and-hosting-on-a-server_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="creating-mini-learnr-apps-and-hosting-on-a-server_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="creating-mini-learnr-apps-and-hosting-on-a-server_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="creating-mini-learnr-apps-and-hosting-on-a-server_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="creating-mini-learnr-apps-and-hosting-on-a-server_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
-  <style type="text/css">
-  .distill-site-nav {
-    color: #FFFFFF; 
-    background-color: #01824F;
-    font-size: 20px;
-    font-weight: 900;
-  }
-
-  .distill-site-nav a:hover {
-    color: #333333;
-  }
-
-  /* Change appearance of headers */
-  h1, h2, h3, h4, h5 {
-    font-family: 'Lato', sans-serif;
-    color: color: #333333;
-  }
-
-  /* Import fonts from Google's API */
-  @import url('https://fonts.googleapis.com/css2?family=Lato');
-  @import url('https://fonts.googleapis.com/css2?family=Fira+Mono');
-
-  /* Use specific font in the body of the text */
-  html, body, p {
-    
-    font-family: 'Lato', sans-serif;
-    font-weight: 200;
-    line-height: 1.3; 
-    font-size: 1.0em;
-    color: #333333;
-    font-style: normal;
-    
-  }
-
-  /* Change the appearance of regular code chunks */
-  d-article div.sourceCode code, 
-  d-article pre code {
-  	font-family: "Fira Code", monospace;
-  	color: #000000;
-    background-color: #FFFFF0; 
-    line-height: 80%;
-    font-weight: 400;
-  	font-size: 1.1rem;
-  }
-
-  /* Change the appearance of in-line code chunks */
-  code {
-    font-family: 'Fira Code', Monospace;
-    color: #000000;
-    background-color: #FFFFF0; 
-    line-height: 80%;
-    font-weight: 400;
-    font-size: 1em;
-  }
-  </style>
   <!--/radix_placeholder_site_in_header-->
 
-  <link rel="stylesheet" href="styles.css" type="text/css"/>
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Medical R","authors":[]}
+{"title":"Creating Mini learnr Apps and Hosting on a Server","description":"This post will explain how to create your own learnr apps and push them to an RStudio Server Open Source server.","authors":[{"author":"Peter Higgins","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-12-27T00:00:00.000+00:00","citationText":"Higgins, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">Medical R</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).load(function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash && window.location.hash.startsWith("#category:")) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace(/^#category:/, "");
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
-
-      // update the list_caption
-      var list_caption = $('.posts-list-caption');
-      var caption = (page_category || '').toLowerCase() === "articles"
-        ? list_caption.attr('data-caption')
-        : ('Category: ' + page_category.replace(/_/g," "));
-      list_caption.text(caption);
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-      // reset list caption
-      var list_caption = $('.posts-list-caption');
-      list_caption.text(list_caption.attr('data-caption'));
-
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // click handling for tags
-  $('.dt-tag').click(function(ev) {
-    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
-    return false;
-  })
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
-<div class="posts-list">
-<h1 class="posts-list-caption" data-caption="Medical R">Medical R</h1>
-<a href="posts/2020-12-27-creating-mini-learnr-apps-and-hosting-on-a-server/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Dec. 27, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Creating Mini learnr Apps and Hosting on a Server</h2>
-<div class="dt-tags"></div>
-<p>This post will explain how to create your own learnr apps and push them to an RStudio Server Open Source server.</p>
-</div>
-</a>
-<a href="posts/2020-12-12-publishing-a-bookdown-book-on-bookdownorg/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Dec. 12, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Publishing a {bookdown} book on bookdown.org</h2>
-<div class="dt-tags"></div>
-<p>A short overview of creating a {bookdown} book and publishing on bookdown.org</p>
-</div>
-</a>
-<a href="posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Dec. 6, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Javan Thompson</div>
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/rstudio_server_open_source.png"/>
-</div>
-<div class="description">
-<h2>Setting Up a RStudio Server with the Open Source Edition</h2>
-<div class="dt-tags"></div>
-<p>This is a basic setup guide for setting up a Linux-based server with RStudio Server and Shiny Server (the free versions). This was contributed by Javan Thompson, who works in IT at the University of Michigan Medical Center, and was a great help in setting this up for me. He has graciously provided a basic walkthrough for anyone else to follow.</p>
-</div>
-</a>
-<a href="posts/2020-11-01-subgroup-plots/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Nov. 1, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2020-11-01-subgroup-plots/subgroup-plots_files/figure-html5/unnamed-chunk-4-1.png"/>
-</div>
-<div class="description">
-<h2>Subgroup Plots for Clinical Trials</h2>
-<div class="dt-tags"></div>
-<p>Sometimes editors ask for _post hoc_ analysis of subgroups in clinical trials, and will refuse the manuscript without them. How you can make these in R, in a somewhat kludgy way.</p>
-</div>
-</a>
-<a href="posts/2020-10-20-embed-external-flipbooks/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 20, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>How to Embed External micro-Flipbooks in Bookdown</h2>
-<div class="dt-tags"></div>
-<p>After you have created micro-flipbooks in your miniflipbook project, how do you embed them in Rmarkdown and bookdown projects?</p>
-</div>
-</a>
-<a href="posts/2020-10-18-building-a-data-package/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 18, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Building a Data Package</h2>
-<div class="dt-tags"></div>
-<p>For building a package that is largely about making datasets readily available in R.</p>
-</div>
-</a>
-<a href="posts/2020-10-14-how-to-post/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 14, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>How to Post</h2>
-<div class="dt-tags"></div>
-<p>A reference for future me, on how to create posts.</p>
-</div>
-</a>
-<a href="posts/2020-10-14-micro-flipbooks/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 14, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>micro-flipbooks</h2>
-<div class="dt-tags"></div>
-<p>How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books</p>
-</div>
-</a>
-<a href="posts/2020-10-14-why-a-medical-r-blog/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 14, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Why a Medical R Blog?</h2>
-<div class="dt-tags"></div>
-<p>A starting point and few Theses.</p>
-</div>
-</a>
-<a href="posts/welcome/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 14, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Welcome to Medical R</h2>
-<div class="dt-tags"></div>
-<p>Welcome to my blog, Medical R. I will blog on topics related to using R with medical data. I hope you enjoy reading and find this useful!</p>
-</div>
-</a>
-</div>
-<div class="posts-sidebar">
-<div class="sidebar-section subscribe">
-<h3>Subscribe</h3>
-<form method='post' action='https://blogtrottr.com'>
-  <p>Enjoy this blog? Get notified of new posts via email:</p>
-  <input type='text' name='btr_email' />
-  <input type='hidden' name='btr_url'
-         value='https://themockup.blog/index.xml'/>
-  <input type='hidden' name='schedule_type' value='0' />
-  <input type='submit' value='Subscribe' />
-</form>
-</div>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>Medical R</h1>
+<h1>Creating Mini learnr Apps and Hosting on a Server</h1>
 <!--radix_placeholder_categories-->
-<div class="dt-tags">
-<div class="dt=tag">general</div>
-<div class="dt=tag">flipbooks</div>
-<div class="dt=tag">learnr</div>
-<div class="dt=tag">bookdown</div>
-</div>
 <!--/radix_placeholder_categories-->
-
+<p><p>This post will explain how to create your own learnr apps and push them to an RStudio Server Open Source server.</p></p>
 </div>
 
+<div class="d-byline">
+  Peter Higgins true 
+  
+<br/>12-27-2020
+</div>
 
 <div class="d-article">
+<h2 id="building-your-own-learnr-apps">Building your Own <code>learnr</code> apps</h2>
+<p>Apps built with the {learnr} package allow students to practice coding in a controlled environment.</p>
+<p>You can add hints, solutions, and allow them to run their own code.</p>
+<p>You can assess their responses with the {gradethis} package.</p>
+<p>But how do you</p>
+<ol type="1">
+<li>Build these?</li>
+<li>Upload and Serve them on an RStudio Server Open Source server?</li>
+<li>Incorporate them into a blog post or a bookdown book?</li>
+</ol>
+<h2 id="building-a-learnr-app">Building a learnr app</h2>
+<p>First, plan out what you want to teach. Break it into several steps and functions. Think about exceptions you want to point out. Remember to point out and warn about common errors. Sketch out each of your examples.</p>
+<p>For each example, plan out which dataset you will use. I generally use datasets from the {medicaldata} package. You can install this package with</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>You also need to have the {learnr} package installed from CRAN, along with its dependencies (like Shiny) with:</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>I generally build and store learnr apps in one project, titled learnR_apps. Open this project. Check in the Files tab that you are in the root directory for this project (Home/Documents/RCode/learnR_apps for me), rather than in an app folder.</p>
+<h3 id="leveraging-existing-apps">Leveraging existing Apps</h3>
+<ol type="1">
+<li><p>Create a new folder in the root directory of learnR_apps named for your new app, e.g. learn_function#</p></li>
+<li><p>Go to an existing app folder, and copy the learnr.Rmd file to your new folder</p></li>
+<li><p>Go to your new folder, and rename the learnr.Rmd file to your new app name (be careful to avoid typos - this should match the folder name).</p></li>
+<li><p>Open the Rmd and start editing</p></li>
+</ol>
+<h3 id="starting-anew">Starting Anew</h3>
+<p>Then open a new {learnr} app by doing File/New File/Rmarkdown/From Template/Interactive Tutorial.<br />
+Give this a title like learn_function# (numbering if you will have more than one on that topic.)</p>
+<p>Your {learnr} file will open in the Source Pane.</p>
+<h2 id="editing-the-yaml">Editing the YAML</h2>
+<p>Edit the title to something meaningful, like “FIltering Exercise”. The output and runtime should remain the same, and should look something like this:</p>
+<hr />
+<p>title: “FIltering Exercise”</p>
+<p>output: learnr::tutorial</p>
+<p>runtime: shiny_prerendered</p>
+<hr />
+<h2 id="setting-up-the-setup-chunk">Setting up the Setup Chunk</h2>
+<p>Add important libraries after <code>library(learnr)</code></p>
+<p>I often include {tidyverse}, {janitor}, and {medicaldata}. Other packages will depend on your topic.</p>
+<p>You can then load individual datasets in the setup chunk, with assignment arrows to new objects, as shown below</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<h2 id="your-first-exercise">Your First Exercise</h2>
+<p>Set up your first Exercise (Exercise 1)</p>
+<p>as an H2 heading with two ##</p>
+<p>Then add a short description of what you want the student to do:</p>
+<p>“Write the R code required to filter the prostate dataset to rows with a prostate volume (p_vol) greater than or equal to 90:”</p>
+<p>Then add your first R code chunk. Give it a name, like <code>function1</code>, and set options to <br> <strong>“exercise=TRUE, error=TRUE, lines = 5”</strong>. <br> Make sure to include error=TRUE if you have blanks in the code.</p>
+<p>The top line of your code chunk should read<br> <strong>{r function1, exercise=TRUE, error=TRUE, lines=5}</strong></p>
+<p>Then add to the code block your solution code. Run it to make sure everything works. For this example, we will use:<br> prostate %&gt;% <br> filter(age &gt;= 90)</p>
+<p>Then copy the entire code chunk, including options, and paste it a few lines below. Edit the name of this new code chunk to be function1-solution, as below:</p>
+<p><strong>{r function1-solution, eval=FALSE, lines = 5}</strong></p>
+<p>Now copy the code in the solution chunk to the exercise chunk.</p>
+<p>Replace a few key items (arguments, function names) in the exercise code chunk with a blank — (three dashes). This will produce an error, but this is OK, as you set error = TRUE in the exercise chunk options. This will require the students to fill in in the blank. Something like:<br> prostate %&gt;% filter(— &gt;= —)</p>
+<p>Start with only a few blanks at first, and increase the amount of typing that students have to do with each exercise chunk, until they can write a whole code pipeline on their own.</p>
+<h3 id="adding-a-hint">Adding a hint</h3>
+<p>Copy the solution code chunk, and paste the chunk <em>in between</em> the exercise and the solution. Rename this code chunk as <strong>function1-hint.</strong> Make sure to include error=TRUE if you have blanks in the code.</p>
+<p><strong>{r function1-hint, error=TRUE, lines = 5}</strong> <br> prostate %&gt;% <br> filter(age &gt;= —)</p>
+<p>Edit the code in this chunk to provide an intermediate hint between the <em>exercise</em> and the <em>solution</em>. Sometimes it is better to make the solution the only hint in simple exercises.</p>
+<h3 id="run-your-learnr-app-to-test-it">Run your learnr app to test it</h3>
+<p>Click on the <strong>Run document</strong> button in the top center of the Source pane. This should generate a working learnr app. Test it with working and with non-working code. Test that the hints work, and that these can be copied to the exercise pane, and the code run successfully with the <strong>Run code</strong> button.</p>
+<h2 id="more-exercises">More Exercises</h2>
+<p>Add a new level 2 ## header for Exercise 2 after the completion of exercise 1. Copy your exercise, hint, and solution chunks as one blob, and paste these below. Change the chunk names to function-2, and add appropriate captions, like “Exercise 2: Filtering on Strings”</p>
+<p>After each exercise, test it with <strong>Run Document</strong>. When done, save your {learnr} app, commit to git, and push to GitHub.</p>
+<h2 id="putting-apps-on-the-shiny-server">Putting Apps on the Shiny Server</h2>
+<p>For this example, I will refer to an RStudio Server Open Source with Shiny Server Open Source installed.</p>
+<p>To access this, I need to be on campus, or connect via VPN.</p>
+<p>Once the VPN is established, I can log into the server at <a href="https://higginslab-rstudio.med.umich.edu/" class="uri">https://higginslab-rstudio.med.umich.edu/</a> with my level 2 password.</p>
+<p>I can then go to the Files tab in RStudio, and click on the <em>ellipses</em> button in the upper right corner - on the same level as the path. This will allow me to enter a new path. In my case, I enter:</p>
+<p>/srv/shiny-server/shiny-apps/</p>
+<p>When I am in the correct folder, I create a new folder for the new app - named something like “learn_filter2”.</p>
+<p>Then click on this folder to open it.</p>
+<p>Then click on the <strong>Upload</strong> button to upload the <strong>.Rmd</strong> file of the new learnr app. Use the <strong>Choose File</strong> button, browse to my local computer, through Rcode/learnR_apps, and find the local version of the app in the learnR_apps project. Open the folder for the local app, choose the <strong>.Rmd</strong> file, and click OK to upload.</p>
+<p>Now that the file is on the server, it will generate the appropriate HTML file.</p>
+<p>Return to the home directory in RStudio Server by clicking on the <em>ellipses</em> button in the Files tab, and enter “~” (tilde) to return to the home directory.</p>
+<h2 id="testing-the-new-app">Testing the New App</h2>
+<p>You should now be able to go to</p>
+<p><a href="https://higginslab-rshiny.med.umich.edu/shiny-apps/name_of_new_learnr_app">https://higginslab-rshiny.med.umich.edu/shiny-apps</a>/</p>
+<p>and find the new app, and test it.</p>
+<p>You can link to this app with the link <a href="https://higginslab-rshiny.med.umich.edu/shiny-apps/name_of_new_learnr_app" class="uri">https://higginslab-rshiny.med.umich.edu/shiny-apps/name_of_new_learnr_app</a></p>
+<h2 id="inserting-the-new-app-into-a-bookdown-book">Inserting the New App into a Bookdown book</h2>
+<p>You can insert learnr apps with <em>iframes</em>.</p>
+<p>It should look like this:</p>
+<p><br></p>
+<p>### Your Turn - learnr exercises</p>
+<!---LEARNR TUTORIAL EX 1-->
+<p>&lt;iframe style=“margin:0 auto; border: solid black;” id=“myIframe9” width=“763” height=“763” src=“<a href="https://higginslab-rshiny.med.umich.edu/shiny-apps/learn_filter1/%22">https://higginslab-rshiny.med.umich.edu/shiny-apps/learn_filter1/"</a> scrolling=”yes"&gt;</p>
+<p>&lt;/iframe&gt;</p>
+<!---LEARNR TUTORIAL EX 1-->
+<p><br> <br> Leave scrolling = “yes” if you have multiple exercises.</p>
+<p>Each iframe should have a unique id.</p>
+<p>The source (src) should be equal to the link to the new app.</p>
+<p>The same <em>iframe</em> approach works for blog posts.</p>
+<h2 id="making-this-app-live-in-a-bookdown-book">Making this App Live in a Bookdown book</h2>
+<p>After inserting the learnr app, add an appropriate header text introduction above.</p>
+<p>Then save the Rmd for this chapter.</p>
+<p>Then render the book with <code>bookdown::render_book('index.html')</code></p>
+<p>This will take a couple of minutes.</p>
+<p>Then publish the book to your bookdown.org account. In my case, this is<br />
+<code>bookdown::publish_book(account = 'pdr_higgins')</code></p>
+<p>Enter <code>y</code> to agree to update the book.</p>
+<p>Within a minute, the book will be updated online.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

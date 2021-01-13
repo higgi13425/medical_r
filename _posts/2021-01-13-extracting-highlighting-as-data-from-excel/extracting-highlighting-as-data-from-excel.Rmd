@@ -14,6 +14,10 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyxl)
+library(readxl)
+library(tidyverse)
+library(here)
 ```
 
 ## The Excel Spreadsheet
@@ -31,9 +35,7 @@ Fortunately, the {tidyxl} package can help, by getting under the hood and into t
 Let's start with a simple example, included in the {tidyxl} package. First load the tidyxl and readxl packages, and read in the excel file from the package.
 
 ```{r}
-library(tidyxl)
-library(readxl)
-library(tidyverse)
+
 # read in file from package
 titanic <- system.file("extdata/titanic.xlsx", package = "tidyxl")
 readxl::read_excel(titanic)
@@ -114,7 +116,7 @@ So the highlighted values are 3 and 20.
 Imagine a pilot trial of blood pressure medication with the study arm encoded as a highlighting color by row. Let's read in the excel file.
 
 ```{r}
-pilot_path <- "_posts/2021-01-13-extracting-highlighting-as-data-from-excel/bp_pilot.xlsx"
+pilot_path <- here("_posts/2021-01-13-extracting-highlighting-as-data-from-excel/bp_pilot.xlsx")
 pilot <- read_xlsx(pilot_path)
 pilot
 

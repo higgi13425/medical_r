@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["extracting-highlighting-as-data-from-excel_files/anchor-4.2.2/anchor.min.js","extracting-highlighting-as-data-from-excel_files/bowser-1.9.3/bowser.min.js","extracting-highlighting-as-data-from-excel_files/distill-2.2.21/template.v2.js","extracting-highlighting-as-data-from-excel_files/header-attrs-2.6/header-attrs.js","extracting-highlighting-as-data-from-excel_files/jquery-1.11.3/jquery.min.js","extracting-highlighting-as-data-from-excel_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["~$bp_pilot.xlsx","bp_pilot.xlsx","extracting-highlighting-as-data-from-excel_files/anchor-4.2.2/anchor.min.js","extracting-highlighting-as-data-from-excel_files/bowser-1.9.3/bowser.min.js","extracting-highlighting-as-data-from-excel_files/distill-2.2.21/template.v2.js","extracting-highlighting-as-data-from-excel_files/header-attrs-2.6/header-attrs.js","extracting-highlighting-as-data-from-excel_files/jquery-1.11.3/jquery.min.js","extracting-highlighting-as-data-from-excel_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1452,10 +1452,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Let’s start with a simple example, included in the {tidyxl} package. First load the tidyxl and readxl packages, and read in the excel file from the package.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/nacnudus/tidyxl'>tidyxl</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readxl.tidyverse.org'>readxl</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-<span class='co'># read in file from package</span>
+<pre><code><span class='co'># read in file from package</span>
 <span class='va'>titanic</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata/titanic.xlsx"</span>, package <span class='op'>=</span> <span class='st'>"tidyxl"</span><span class='op'>)</span>
 <span class='fu'>readxl</span><span class='fu'>::</span><span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='va'>titanic</span><span class='op'>)</span>
 </code></pre>
@@ -1478,7 +1475,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>We would like to identify and extract the cells highlighted in yellow. In this case, these are the cells in row 10 (row 11 in Excel, counting the header row), for the variables Adult and …7. But this is not obvious from the tibble. So we will have to dig deeper into the xlsx file with the help of {tidyxl}. Let’s use the <em>xlsx_cells()</em> function to get more information on each cell, and store this in the object, x.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyxl/man/xlsx_cells.html'>xlsx_cells</a></span><span class='op'>(</span><span class='va'>titanic</span><span class='op'>)</span>
+<pre><code><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>xlsx_cells</span><span class='op'>(</span><span class='va'>titanic</span><span class='op'>)</span>
 <span class='va'>x</span>
 </code></pre>
 </div>
@@ -1506,7 +1503,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>But we also need to get at the formatting. This can be done with <em>xls_formats()</em> from {tidyxl}. <strong>Warning:</strong> the output will be very long and icky. Be prepared to scroll down a lot.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='va'>formats</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyxl/man/xlsx_formats.html'>xlsx_formats</a></span><span class='op'>(</span><span class='va'>titanic</span><span class='op'>)</span>
+<pre><code><span class='va'>formats</span> <span class='op'>&lt;-</span> <span class='fu'>xlsx_formats</span><span class='op'>(</span><span class='va'>titanic</span><span class='op'>)</span>
 <span class='va'>formats</span>
 </code></pre>
 </div>
@@ -2372,12 +2369,941 @@ Normal
 2 G11          20</code></pre>
 </div>
 <p>So the highlighted values are 3 and 20.</p>
+<h2 id="a-pilot-trial">A Pilot Trial</h2>
+<p>Imagine a pilot trial of blood pressure medication with the study arm encoded as a highlighting color by row. Let’s read in the excel file.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>pilot_path</span> <span class='op'>&lt;-</span> <span class='fu'>here</span><span class='op'>(</span><span class='st'>"_posts/2021-01-13-extracting-highlighting-as-data-from-excel/bp_pilot.xlsx"</span><span class='op'>)</span>
+<span class='va'>pilot</span> <span class='op'>&lt;-</span> <span class='fu'>read_xlsx</span><span class='op'>(</span><span class='va'>pilot_path</span><span class='op'>)</span>
+<span class='va'>pilot</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 11 x 7
+   pat_id  sbp1  sbp2   hr1   hr2  dbp1  dbp2
+    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1      1   147   129    72    73    94    82
+ 2      2   161   163    75    77    88    87
+ 3      3   154   133    68    66    96    84
+ 4      4   150   152    84    88    89    88
+ 5      5   179   159    82    80    92    81
+ 6      6   166   164    71    69    92    93
+ 7      7   168   137    65    53    95    82
+ 8      8   154   155    77    75    94    95
+ 9      9   146   122    83    81    92    78
+10     10   172   171    86    84    95    95
+11     11   147   148    74    74    88    89</code></pre>
+</div>
+<p>From this tibble, we can’t see which rows were coded as test (red) vs. control (green). Let’s follow the same approach - first we will extract cell data.</p>
+<h2 id="extracting-cell-data-1">Extracting Cell Data</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>pilot_cells</span> <span class='op'>&lt;-</span> <span class='fu'>xlsx_cells</span><span class='op'>(</span><span class='va'>pilot_path</span><span class='op'>)</span>
+<span class='va'>pilot_cells</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 84 x 21
+   sheet address   row   col is_blank data_type error logical numeric
+   &lt;chr&gt; &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;lgl&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;lgl&gt;     &lt;dbl&gt;
+ 1 Shee… A1          1     1 FALSE    character &lt;NA&gt;  NA           NA
+ 2 Shee… B1          1     2 FALSE    character &lt;NA&gt;  NA           NA
+ 3 Shee… C1          1     3 FALSE    character &lt;NA&gt;  NA           NA
+ 4 Shee… D1          1     4 FALSE    character &lt;NA&gt;  NA           NA
+ 5 Shee… E1          1     5 FALSE    character &lt;NA&gt;  NA           NA
+ 6 Shee… F1          1     6 FALSE    character &lt;NA&gt;  NA           NA
+ 7 Shee… G1          1     7 FALSE    character &lt;NA&gt;  NA           NA
+ 8 Shee… A2          2     1 FALSE    numeric   &lt;NA&gt;  NA            1
+ 9 Shee… B2          2     2 FALSE    numeric   &lt;NA&gt;  NA          147
+10 Shee… C2          2     3 FALSE    numeric   &lt;NA&gt;  NA          129
+# … with 74 more rows, and 12 more variables: date &lt;dttm&gt;,
+#   character &lt;chr&gt;, character_formatted &lt;list&gt;, formula &lt;chr&gt;,
+#   is_array &lt;lgl&gt;, formula_ref &lt;chr&gt;, formula_group &lt;int&gt;,
+#   comment &lt;chr&gt;, height &lt;dbl&gt;, width &lt;dbl&gt;, style_format &lt;chr&gt;,
+#   local_format_id &lt;int&gt;</code></pre>
+</div>
+<p>There are four different local_format_id values (1 through 4). But which is green, and which is red highlighting?</p>
+<p>Let’s dig into the formats.</p>
+<p>Extracting Formatting Data</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>pilot_formats</span> <span class='op'>&lt;-</span> <span class='fu'>xlsx_formats</span><span class='op'>(</span><span class='va'>pilot_path</span><span class='op'>)</span>
+<span class='va'>pilot_formats</span>
+</code></pre>
+</div>
+<pre><code>$local
+$local$numFmt
+[1] &quot;General&quot; &quot;General&quot; &quot;General&quot;
+
+$local$font
+$local$font$bold
+[1] FALSE FALSE FALSE
+
+$local$font$italic
+[1] FALSE FALSE FALSE
+
+$local$font$underline
+[1] NA NA NA
+
+$local$font$strike
+[1] FALSE FALSE FALSE
+
+$local$font$vertAlign
+[1] NA NA NA
+
+$local$font$size
+[1] 12 12 12
+
+$local$font$color
+$local$font$color$rgb
+[1] &quot;FF000000&quot; &quot;FF000000&quot; &quot;FF000000&quot;
+
+$local$font$color$theme
+[1] &quot;text1&quot; &quot;text1&quot; &quot;text1&quot;
+
+$local$font$color$indexed
+[1] NA NA NA
+
+$local$font$color$tint
+[1] NA NA NA
+
+
+$local$font$name
+[1] &quot;Calibri&quot; &quot;Calibri&quot; &quot;Calibri&quot;
+
+$local$font$family
+[1] 2 2 2
+
+$local$font$scheme
+[1] &quot;minor&quot; &quot;minor&quot; &quot;minor&quot;
+
+
+$local$fill
+$local$fill$patternFill
+$local$fill$patternFill$fgColor
+$local$fill$patternFill$fgColor$rgb
+[1] NA         &quot;FFED7D31&quot; &quot;FF92D050&quot;
+
+$local$fill$patternFill$fgColor$theme
+[1] NA        &quot;accent2&quot; NA       
+
+$local$fill$patternFill$fgColor$indexed
+[1] NA NA NA
+
+$local$fill$patternFill$fgColor$tint
+[1]        NA 0.5999939        NA
+
+
+$local$fill$patternFill$bgColor
+$local$fill$patternFill$bgColor$rgb
+[1] NA         &quot;FFFFFFFF&quot; &quot;FFFFFFFF&quot;
+
+$local$fill$patternFill$bgColor$theme
+[1] NA NA NA
+
+$local$fill$patternFill$bgColor$indexed
+[1] NA 65 65
+
+$local$fill$patternFill$bgColor$tint
+[1] NA NA NA
+
+
+$local$fill$patternFill$patternType
+[1] NA      &quot;solid&quot; &quot;solid&quot;
+
+
+$local$fill$gradientFill
+$local$fill$gradientFill$type
+[1] NA NA NA
+
+$local$fill$gradientFill$degree
+[1] NA NA NA
+
+$local$fill$gradientFill$left
+[1] NA NA NA
+
+$local$fill$gradientFill$right
+[1] NA NA NA
+
+$local$fill$gradientFill$top
+[1] NA NA NA
+
+$local$fill$gradientFill$bottom
+[1] NA NA NA
+
+$local$fill$gradientFill$stop1
+$local$fill$gradientFill$stop1$position
+[1] NA NA NA
+
+$local$fill$gradientFill$stop1$color
+$local$fill$gradientFill$stop1$color$rgb
+[1] NA NA NA
+
+$local$fill$gradientFill$stop1$color$theme
+[1] NA NA NA
+
+$local$fill$gradientFill$stop1$color$indexed
+[1] NA NA NA
+
+$local$fill$gradientFill$stop1$color$tint
+[1] NA NA NA
+
+
+
+$local$fill$gradientFill$stop2
+$local$fill$gradientFill$stop2$position
+[1] NA NA NA
+
+$local$fill$gradientFill$stop2$color
+$local$fill$gradientFill$stop2$color$rgb
+[1] NA NA NA
+
+$local$fill$gradientFill$stop2$color$theme
+[1] NA NA NA
+
+$local$fill$gradientFill$stop2$color$indexed
+[1] NA NA NA
+
+$local$fill$gradientFill$stop2$color$tint
+[1] NA NA NA
+
+
+
+
+
+$local$border
+$local$border$diagonalDown
+[1] FALSE FALSE FALSE
+
+$local$border$diagonalUp
+[1] FALSE FALSE FALSE
+
+$local$border$outline
+[1] FALSE FALSE FALSE
+
+$local$border$left
+$local$border$left$style
+[1] NA NA NA
+
+$local$border$left$color
+$local$border$left$color$rgb
+[1] NA NA NA
+
+$local$border$left$color$theme
+[1] NA NA NA
+
+$local$border$left$color$indexed
+[1] NA NA NA
+
+$local$border$left$color$tint
+[1] NA NA NA
+
+
+
+$local$border$right
+$local$border$right$style
+[1] NA NA NA
+
+$local$border$right$color
+$local$border$right$color$rgb
+[1] NA NA NA
+
+$local$border$right$color$theme
+[1] NA NA NA
+
+$local$border$right$color$indexed
+[1] NA NA NA
+
+$local$border$right$color$tint
+[1] NA NA NA
+
+
+
+$local$border$start
+$local$border$start$style
+[1] NA NA NA
+
+$local$border$start$color
+$local$border$start$color$rgb
+[1] NA NA NA
+
+$local$border$start$color$theme
+[1] NA NA NA
+
+$local$border$start$color$indexed
+[1] NA NA NA
+
+$local$border$start$color$tint
+[1] NA NA NA
+
+
+
+$local$border$end
+$local$border$end$style
+[1] NA NA NA
+
+$local$border$end$color
+$local$border$end$color$rgb
+[1] NA NA NA
+
+$local$border$end$color$theme
+[1] NA NA NA
+
+$local$border$end$color$indexed
+[1] NA NA NA
+
+$local$border$end$color$tint
+[1] NA NA NA
+
+
+
+$local$border$top
+$local$border$top$style
+[1] NA NA NA
+
+$local$border$top$color
+$local$border$top$color$rgb
+[1] NA NA NA
+
+$local$border$top$color$theme
+[1] NA NA NA
+
+$local$border$top$color$indexed
+[1] NA NA NA
+
+$local$border$top$color$tint
+[1] NA NA NA
+
+
+
+$local$border$bottom
+$local$border$bottom$style
+[1] NA NA NA
+
+$local$border$bottom$color
+$local$border$bottom$color$rgb
+[1] NA NA NA
+
+$local$border$bottom$color$theme
+[1] NA NA NA
+
+$local$border$bottom$color$indexed
+[1] NA NA NA
+
+$local$border$bottom$color$tint
+[1] NA NA NA
+
+
+
+$local$border$diagonal
+$local$border$diagonal$style
+[1] NA NA NA
+
+$local$border$diagonal$color
+$local$border$diagonal$color$rgb
+[1] NA NA NA
+
+$local$border$diagonal$color$theme
+[1] NA NA NA
+
+$local$border$diagonal$color$indexed
+[1] NA NA NA
+
+$local$border$diagonal$color$tint
+[1] NA NA NA
+
+
+
+$local$border$vertical
+$local$border$vertical$style
+[1] NA NA NA
+
+$local$border$vertical$color
+$local$border$vertical$color$rgb
+[1] NA NA NA
+
+$local$border$vertical$color$theme
+[1] NA NA NA
+
+$local$border$vertical$color$indexed
+[1] NA NA NA
+
+$local$border$vertical$color$tint
+[1] NA NA NA
+
+
+
+$local$border$horizontal
+$local$border$horizontal$style
+[1] NA NA NA
+
+$local$border$horizontal$color
+$local$border$horizontal$color$rgb
+[1] NA NA NA
+
+$local$border$horizontal$color$theme
+[1] NA NA NA
+
+$local$border$horizontal$color$indexed
+[1] NA NA NA
+
+$local$border$horizontal$color$tint
+[1] NA NA NA
+
+
+
+
+$local$alignment
+$local$alignment$horizontal
+[1] &quot;general&quot; &quot;general&quot; &quot;general&quot;
+
+$local$alignment$vertical
+[1] &quot;bottom&quot; &quot;bottom&quot; &quot;bottom&quot;
+
+$local$alignment$wrapText
+[1] FALSE FALSE FALSE
+
+$local$alignment$readingOrder
+[1] &quot;context&quot; &quot;context&quot; &quot;context&quot;
+
+$local$alignment$indent
+[1] 0 0 0
+
+$local$alignment$justifyLastLine
+[1] FALSE FALSE FALSE
+
+$local$alignment$shrinkToFit
+[1] FALSE FALSE FALSE
+
+$local$alignment$textRotation
+[1] 0 0 0
+
+
+$local$protection
+$local$protection$locked
+[1] TRUE TRUE TRUE
+
+$local$protection$hidden
+[1] FALSE FALSE FALSE
+
+
+
+$style
+$style$numFmt
+   Normal 
+&quot;General&quot; 
+
+$style$font
+$style$font$bold
+Normal 
+ FALSE 
+
+$style$font$italic
+Normal 
+ FALSE 
+
+$style$font$underline
+Normal 
+    NA 
+
+$style$font$strike
+Normal 
+ FALSE 
+
+$style$font$vertAlign
+Normal 
+    NA 
+
+$style$font$size
+Normal 
+    12 
+
+$style$font$color
+$style$font$color$rgb
+    Normal 
+&quot;FF000000&quot; 
+
+$style$font$color$theme
+ Normal 
+&quot;text1&quot; 
+
+$style$font$color$indexed
+Normal 
+    NA 
+
+$style$font$color$tint
+Normal 
+    NA 
+
+
+$style$font$name
+   Normal 
+&quot;Calibri&quot; 
+
+$style$font$family
+Normal 
+     2 
+
+$style$font$scheme
+ Normal 
+&quot;minor&quot; 
+
+
+$style$fill
+$style$fill$patternFill
+$style$fill$patternFill$fgColor
+$style$fill$patternFill$fgColor$rgb
+Normal 
+    NA 
+
+$style$fill$patternFill$fgColor$theme
+Normal 
+    NA 
+
+$style$fill$patternFill$fgColor$indexed
+Normal 
+    NA 
+
+$style$fill$patternFill$fgColor$tint
+Normal 
+    NA 
+
+
+$style$fill$patternFill$bgColor
+$style$fill$patternFill$bgColor$rgb
+Normal 
+    NA 
+
+$style$fill$patternFill$bgColor$theme
+Normal 
+    NA 
+
+$style$fill$patternFill$bgColor$indexed
+Normal 
+    NA 
+
+$style$fill$patternFill$bgColor$tint
+Normal 
+    NA 
+
+
+$style$fill$patternFill$patternType
+Normal 
+    NA 
+
+
+$style$fill$gradientFill
+$style$fill$gradientFill$type
+Normal 
+    NA 
+
+$style$fill$gradientFill$degree
+Normal 
+    NA 
+
+$style$fill$gradientFill$left
+Normal 
+    NA 
+
+$style$fill$gradientFill$right
+Normal 
+    NA 
+
+$style$fill$gradientFill$top
+Normal 
+    NA 
+
+$style$fill$gradientFill$bottom
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop1
+$style$fill$gradientFill$stop1$position
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop1$color
+$style$fill$gradientFill$stop1$color$rgb
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop1$color$theme
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop1$color$indexed
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop1$color$tint
+Normal 
+    NA 
+
+
+
+$style$fill$gradientFill$stop2
+$style$fill$gradientFill$stop2$position
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop2$color
+$style$fill$gradientFill$stop2$color$rgb
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop2$color$theme
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop2$color$indexed
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop2$color$tint
+Normal 
+    NA 
+
+
+
+
+
+$style$border
+$style$border$diagonalDown
+Normal 
+ FALSE 
+
+$style$border$diagonalUp
+Normal 
+ FALSE 
+
+$style$border$outline
+Normal 
+ FALSE 
+
+$style$border$left
+$style$border$left$style
+Normal 
+    NA 
+
+$style$border$left$color
+$style$border$left$color$rgb
+Normal 
+    NA 
+
+$style$border$left$color$theme
+Normal 
+    NA 
+
+$style$border$left$color$indexed
+Normal 
+    NA 
+
+$style$border$left$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$right
+$style$border$right$style
+Normal 
+    NA 
+
+$style$border$right$color
+$style$border$right$color$rgb
+Normal 
+    NA 
+
+$style$border$right$color$theme
+Normal 
+    NA 
+
+$style$border$right$color$indexed
+Normal 
+    NA 
+
+$style$border$right$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$start
+$style$border$start$style
+Normal 
+    NA 
+
+$style$border$start$color
+$style$border$start$color$rgb
+Normal 
+    NA 
+
+$style$border$start$color$theme
+Normal 
+    NA 
+
+$style$border$start$color$indexed
+Normal 
+    NA 
+
+$style$border$start$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$end
+$style$border$end$style
+Normal 
+    NA 
+
+$style$border$end$color
+$style$border$end$color$rgb
+Normal 
+    NA 
+
+$style$border$end$color$theme
+Normal 
+    NA 
+
+$style$border$end$color$indexed
+Normal 
+    NA 
+
+$style$border$end$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$top
+$style$border$top$style
+Normal 
+    NA 
+
+$style$border$top$color
+$style$border$top$color$rgb
+Normal 
+    NA 
+
+$style$border$top$color$theme
+Normal 
+    NA 
+
+$style$border$top$color$indexed
+Normal 
+    NA 
+
+$style$border$top$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$bottom
+$style$border$bottom$style
+Normal 
+    NA 
+
+$style$border$bottom$color
+$style$border$bottom$color$rgb
+Normal 
+    NA 
+
+$style$border$bottom$color$theme
+Normal 
+    NA 
+
+$style$border$bottom$color$indexed
+Normal 
+    NA 
+
+$style$border$bottom$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$diagonal
+$style$border$diagonal$style
+Normal 
+    NA 
+
+$style$border$diagonal$color
+$style$border$diagonal$color$rgb
+Normal 
+    NA 
+
+$style$border$diagonal$color$theme
+Normal 
+    NA 
+
+$style$border$diagonal$color$indexed
+Normal 
+    NA 
+
+$style$border$diagonal$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$vertical
+$style$border$vertical$style
+Normal 
+    NA 
+
+$style$border$vertical$color
+$style$border$vertical$color$rgb
+Normal 
+    NA 
+
+$style$border$vertical$color$theme
+Normal 
+    NA 
+
+$style$border$vertical$color$indexed
+Normal 
+    NA 
+
+$style$border$vertical$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$horizontal
+$style$border$horizontal$style
+Normal 
+    NA 
+
+$style$border$horizontal$color
+$style$border$horizontal$color$rgb
+Normal 
+    NA 
+
+$style$border$horizontal$color$theme
+Normal 
+    NA 
+
+$style$border$horizontal$color$indexed
+Normal 
+    NA 
+
+$style$border$horizontal$color$tint
+Normal 
+    NA 
+
+
+
+
+$style$alignment
+$style$alignment$horizontal
+   Normal 
+&quot;general&quot; 
+
+$style$alignment$vertical
+  Normal 
+&quot;bottom&quot; 
+
+$style$alignment$wrapText
+Normal 
+ FALSE 
+
+$style$alignment$readingOrder
+   Normal 
+&quot;context&quot; 
+
+$style$alignment$indent
+Normal 
+     0 
+
+$style$alignment$justifyLastLine
+Normal 
+ FALSE 
+
+$style$alignment$shrinkToFit
+Normal 
+ FALSE 
+
+$style$alignment$textRotation
+Normal 
+     0 
+
+
+$style$protection
+$style$protection$locked
+Normal 
+  TRUE 
+
+$style$protection$hidden
+Normal 
+ FALSE </code></pre>
+</div>
+<p>Now open the pilot_formats object by clicking on it in the Environment Tab. In the source pane, explore the nested list by clicking on blue arrows for</p>
+<ul>
+<li><p>local</p></li>
+<li><p>fill</p></li>
+<li><p>patternFill</p></li>
+<li><p>fgColor</p></li>
+<li><p>rgb</p></li>
+</ul>
+<p>and you will see 3 options in rgb - NA, and 2 RGB colors.</p>
+<p>Now let’s pull these with</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>pilot_formats</span><span class='op'>$</span><span class='va'>local</span><span class='op'>$</span><span class='va'>fill</span><span class='op'>$</span><span class='va'>patternFill</span><span class='op'>$</span><span class='va'>fgColor</span><span class='op'>$</span><span class='va'>rgb</span>
+</code></pre>
+</div>
+<pre><code>[1] NA         &quot;FFED7D31&quot; &quot;FF92D050&quot;</code></pre>
+</div>
+<p>Ignore the first FF, and the rest of the 2 strings represent a code for an RGB color. Go to <a href="https://www.colorhexa.com" class="uri">https://www.colorhexa.com</a> and type in the codes (prefix these with a hashtag) for #ED7D31 and then #92D050.</p>
+<p>These two RGB colors are orangish-red and green, respectively.</p>
+<p>So if the color “FFED7D31” is present in the cell formatting, that row is a trial participant in the test arm, and if the color “FF92D050”, that row is a trial participant in the control arm.</p>
+<p>Now we can mutate to create a new variable, <strong>study_arm</strong> and fill it with “test” and “control”.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>pilot_cells</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>local_format_id</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>pilot_formats</span><span class='op'>$</span><span class='va'>local</span><span class='op'>$</span><span class='va'>fill</span><span class='op'>$</span><span class='va'>patternFill</span><span class='op'>$</span><span class='va'>fgColor</span><span class='op'>$</span><span class='va'>rgb</span> <span class='op'>==</span> <span class='st'>"FFED7D31"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>address</span>, <span class='va'>row</span>, <span class='va'>data_type</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>address</span>,<span class='st'>"A"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>tibblerow <span class='op'>=</span> <span class='va'>row</span> <span class='op'>-</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>pull</span><span class='op'>(</span><span class='va'>tibblerow</span><span class='op'>)</span> <span class='op'>-&gt;</span>
+<span class='va'>test_rows</span>
+<span class='va'>test_rows</span>
+</code></pre>
+</div>
+<pre><code>[1] 1 3 5 7 9</code></pre>
+</div>
+<p>Now we can use the test_rows vector to mutate the correct rows to “test” for a new variable, study_arm</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>pilot</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>rownames_to_column</span><span class='op'>(</span>var <span class='op'>=</span> <span class='st'>"rowname"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>study_arm <span class='op'>=</span> 
+    <span class='fu'>case_when</span><span class='op'>(</span><span class='va'>rowname</span> <span class='op'>%in%</span> <span class='va'>test_rows</span> <span class='op'>~</span> <span class='st'>"test"</span>, <span class='cn'>TRUE</span> <span class='op'>~</span> <span class='st'>"control"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>rowname</span>, <span class='va'>sbp1</span><span class='op'>:</span><span class='va'>sbp2</span>, <span class='va'>dbp1</span><span class='op'>:</span><span class='va'>dbp2</span>, <span class='va'>study_arm</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 11 x 6
+   rowname  sbp1  sbp2  dbp1  dbp2 study_arm
+   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    
+ 1 1         147   129    94    82 test     
+ 2 2         161   163    88    87 control  
+ 3 3         154   133    96    84 test     
+ 4 4         150   152    89    88 control  
+ 5 5         179   159    92    81 test     
+ 6 6         166   164    92    93 control  
+ 7 7         168   137    95    82 test     
+ 8 8         154   155    94    95 control  
+ 9 9         146   122    92    78 test     
+10 10        172   171    95    95 control  
+11 11        147   148    88    89 control  </code></pre>
+</div>
 <p>–</p>
 <p>You can get more information about {tidyxl} and where to find formatting like bold, etc. <a href="https://cran.r-project.org/web/packages/tidyxl/vignettes/tidyxl.html">here</a>. The official pkgdown website and reference manual for {tidyxl} can be found <a href="https://nacnudus.github.io/tidyxl/index.html">here</a>. You can unpack lots of badly assembled spreadsheets with the {tidyxl} and {unpivotr} packages. This is well beyond the scope of this post, but there are lots of worked <a href="https://github.com/nacnudus/ukfarm">examples</a>, an online <a href="https://nacnudus.github.io/spreadsheet-munging-strategies/">cookbook</a>, and even <a href="https://www.youtube.com/watch?v=1sinC7wsS5U">screencasts</a>.</p>
 <hr />
 <p>This blog was created with the {distill} package. Distill is a publication format for scientific and technical writing, native to the web.</p>
 <p>Learn more about using Distill at <a href="https://rstudio.github.io/distill" class="uri">https://rstudio.github.io/distill</a>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

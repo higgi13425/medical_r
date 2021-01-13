@@ -32,7 +32,7 @@ Fortunately, the {tidyxl} package can help, by getting under the hood and into t
 
 ## Getting started
 
-Let's start with a simple example, included in the {tidyxl} package. First load the tidyxl and readxl packages, and read in the excel file from the package.
+Let's start with a simple titanic example, included in the {tidyxl} package. First load the tidyxl and readxl packages, and read in the excel file from the package.
 
 ```{r}
 
@@ -43,7 +43,14 @@ readxl::read_excel(titanic)
 
 ## Extracting Cell Data
 
-We would like to identify and extract the cells highlighted in yellow. In this case, these are the cells in row 10 (row 11 in Excel, counting the header row), for the variables Adult and ...7. But this is not obvious from the tibble. So we will have to dig deeper into the xlsx file with the help of {tidyxl}. Let's use the *xlsx_cells()* function to get more information on each cell, and store this in the object, x.
+We would like to identify and extract the cells highlighted in yellow. In this case, these are the cells in row 10 (row 11 in Excel, counting the header row), for the variables Adult and ...7. But this is not obvious from the tibble.
+
+```{r, echo=FALSE, fig.width=9}
+knitr::include_graphics(here("_posts/2021-01-13-extracting-highlighting-as-data-from-excel/titanic.png"))
+
+```
+
+So we will have to dig deeper into the xlsx file with the help of {tidyxl}. Let's use the *xlsx_cells()* function to get more information on each cell, and store this in the object, x.
 
 ```{r}
 x <- xlsx_cells(titanic)
@@ -56,14 +63,14 @@ Now we have information on each cell (identified by address) in each sheet, with
 
 But we also need to get at the formatting. This can be done with *xls_formats()* from {tidyxl}. **Warning:** the output will be very long and icky. Be prepared to scroll down a lot.
 
-```{r}
+```{r, results='hide'}
 formats <- xlsx_formats(titanic)
 formats
 ```
 
-This gives you the formats object, which is of the *list* class. This is a highly nested data structure, which you can get a feel of from the printed output. You can also explore **formats** by clicking on it in the Environment Tab, then a tab for formats will open up in the Source Pane. Click on the blue arrow to the left of formats in the Source Pane - then dig deeper into the nesting by clicking on the blue arrow in turn for
+This gives you the formats object, which is of the *list* class. This is a highly nested data structure. You can explore **formats** by clicking on it in the Environment Tab, then a tab for formats will open up in the Source Pane. Click on the blue arrow to the left of formats in the Source Pane - then dig deeper into the nesting by clicking on the blue arrow in turn for
 
--   local
+-   local, then
 
 -   fill
 
@@ -81,7 +88,7 @@ This can be found programmatically with
 formats$local$fill$patternFill$fgColor$rgb
 ```
 
-which is honestly, quite hideous.
+which is honestly, quite hideous, but is just following the layers of nesting above that you clicked through in the Source Pane.
 
 But a nested list is an efficient way to store information when there are a lot of empty cells. Most of the cells will not be highlighted, so the folks who wrote Excel used this approach. The output identifies one RGB highlighting color used as a fill in this spreadsheet, "FFFFFF00", which is yellow.
 
@@ -91,7 +98,8 @@ The hard part is knowing where to hunt for the formatting you want to find. Digg
 
 ```{r}
 x %>% 
-  filter(local_format_id %in% which(formats$local$fill$patternFill$fgColor$rgb == "FFFFFF00")) %>%
+  filter(local_format_id %in% 
+      which(formats$local$fill$patternFill$fgColor$rgb == "FFFFFF00")) %>%
   select(address, data_type) ->
 location
 location
@@ -113,7 +121,14 @@ So the highlighted values are 3 and 20.
 
 ## A Pilot Trial
 
-Imagine a pilot trial of blood pressure medication with the study arm encoded as a highlighting color by row. Let's read in the excel file.
+Imagine a pilot trial of blood pressure medication with the study arm encoded as a highlighting color by row. Here is a picture of the original spreadsheet.
+
+```{r, echo=FALSE, fig.width=9}
+knitr::include_graphics(here("_posts/2021-01-13-extracting-highlighting-as-data-from-excel/pilot.png"))
+
+```
+
+Let's read in the excel file.
 
 ```{r}
 pilot_path <- here("_posts/2021-01-13-extracting-highlighting-as-data-from-excel/bp_pilot.xlsx")
@@ -137,7 +152,7 @@ Let's dig into the formats.
 
 Extracting Formatting Data
 
-```{r}
+```{r, results='hide'}
 pilot_formats <- xlsx_formats(pilot_path)
 pilot_formats
 ```
@@ -173,7 +188,8 @@ Now we can mutate to create a new variable, **study_arm** and fill it with "test
 
 ```{r}
 pilot_cells %>% 
-  filter(local_format_id %in% which(pilot_formats$local$fill$patternFill$fgColor$rgb == "FFED7D31")) %>%
+  filter(local_format_id %in% 
+  which(pilot_formats$local$fill$patternFill$fgColor$rgb == "FFED7D31")) %>%
   select(address, row, data_type) %>% 
   filter(str_detect(address,"A")) %>% 
   mutate(tibblerow = row - 1) %>% 
@@ -188,9 +204,19 @@ Now we can use the test_rows vector to mutate the correct rows to "test" for a n
 pilot %>% 
   rownames_to_column(var = "rowname") %>% 
   mutate(study_arm = 
-    case_when(rowname %in% test_rows ~ "test", TRUE ~ "control")) %>% 
+    case_when(rowname %in% test_rows ~ "test", 
+              TRUE ~ "control")) %>% 
   select(rowname, sbp1:sbp2, dbp1:dbp2, study_arm)
 ```
+
+which does, in fact, match up with the original spreadsheet.
+
+```{r, echo=FALSE, fig.width=9}
+knitr::include_graphics(here("_posts/2021-01-13-extracting-highlighting-as-data-from-excel/pilot.png"))
+
+```
+
+So if you are ever facing a spreadsheet where data is encoded as colors, hopefully this walk-through will help.
 
 --
 

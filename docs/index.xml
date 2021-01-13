@@ -7,7 +7,15 @@
     <description>A blog about the use of R with medical data.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 27 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Extracting Highlighting as Data from Excel Spreadsheets with {tidyxl}</title>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/posts/2021-01-13-extracting-highlighting-as-data-from-excel</link>
+      <description>Sometimes well-meaning people encode variables in medical data as highlighting with colors. For example, a spreadsheet where the control patients are in the green rows, and the test patients are in the red rows. This should have been encoded as a study_arm variable with values control and test. How to fix this - the {tidyxl} package can get under the hood of an excel spreadsheet and extract this information.</description>
+      <guid>https://higgi13425.github.io/posts/2021-01-13-extracting-highlighting-as-data-from-excel</guid>
+      <pubDate>Wed, 13 Jan 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Creating Mini learnr Apps and Hosting on a Server</title>
       <dc:creator>Peter Higgins</dc:creator>

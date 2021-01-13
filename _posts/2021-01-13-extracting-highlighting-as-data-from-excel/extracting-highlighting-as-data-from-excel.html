@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
   <meta name="generator" content="distill" />
-  <link rel="alternate" type="application/rss+xml" href="https://higgi13425.github.io/index.xml" />
 
   <style type="text/css">
   /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
@@ -86,623 +85,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Medical R</title>
+  <title>Extracting Highlighting as Data from Excel Spreadsheets with {tidyxl}</title>
+
+  <meta property="description" itemprop="description" content="Sometimes well-meaning people encode variables in medical data as highlighting with colors. For example, a spreadsheet where the control patients are in the green rows, and the test patients are in the red rows. This should have been encoded as a study_arm variable with values control and test. How to fix this - the {tidyxl} package can get under the hood of an excel spreadsheet and extract this information."/>
 
 
-
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-01-13"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-01-13"/>
+  <meta name="article:author" content="Peter Higgins"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Medical R"/>
+  <meta property="og:title" content="Extracting Highlighting as Data from Excel Spreadsheets with {tidyxl}"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Sometimes well-meaning people encode variables in medical data as highlighting with colors. For example, a spreadsheet where the control patients are in the green rows, and the test patients are in the red rows. This should have been encoded as a study_arm variable with values control and test. How to fix this - the {tidyxl} package can get under the hood of an excel spreadsheet and extract this information."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="Medical R"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Medical R"/>
-  <meta property="twitter:site" content="@ibddoctor"/>
-  <meta property="twitter:creator" content="@ibddoctor"/>
+  <meta property="twitter:title" content="Extracting Highlighting as Data from Excel Spreadsheets with {tidyxl}"/>
+  <meta property="twitter:description" content="Sometimes well-meaning people encode variables in medical data as highlighting with colors. For example, a spreadsheet where the control patients are in the green rows, and the test patients are in the red rows. This should have been encoded as a study_arm variable with values control and test. How to fix this - the {tidyxl} package can get under the hood of an excel spreadsheet and extract this information."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing","categories"]}},"value":[{"type":"character","attributes":{},"value":["Medical R"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["posts"]},{"type":"character","attributes":{},"value":["general","flipbooks","learnr","bookdown"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Extracting Highlighting as Data from Excel Spreadsheets with {tidyxl}"]},{"type":"character","attributes":{},"value":["Sometimes well-meaning people encode variables in medical data as highlighting with colors. For example, a spreadsheet where the control patients are in the green rows, and the test patients are in the red rows. This should have been encoded as a study_arm variable with values control and test. How to fix this - the {tidyxl} package can get under the hood of an excel spreadsheet and extract this information.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Peter Higgins"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["01-13-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["extracting-highlighting-as-data-from-excel_files/anchor-4.2.2/anchor.min.js","extracting-highlighting-as-data-from-excel_files/bowser-1.9.3/bowser.min.js","extracting-highlighting-as-data-from-excel_files/distill-2.2.21/template.v2.js","extracting-highlighting-as-data-from-excel_files/header-attrs-2.6/header-attrs.js","extracting-highlighting-as-data-from-excel_files/jquery-1.11.3/jquery.min.js","extracting-highlighting-as-data-from-excel_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
   <!--radix_placeholder_navigation_in_header-->
-  <meta name="distill:offset" content=""/>
-
-  <script type="application/javascript">
-
-    window.headroom_prevent_pin = false;
-
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        tolerance: 5,
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
-  </script>
-
-  <style type="text/css">
-
-  /* Theme (user-documented overrideables for nav appearance) */
-
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #0F2E3D;
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .distill-site-nav a:hover {
-    color: white;
-  }
-
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-
-  .distill-site-header {
-
-  }
-
-  .distill-site-footer {
-
-  }
-
-
-  /* Site Header */
-
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-
-
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-
-  .distill-site-header .title {
-    font-size: 18px;
-    min-width: 150px;
-  }
-
-  .distill-site-header .logo {
-    padding: 0;
-  }
-
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-
-
-
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-
-
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-dropdown-active {
-    display: block;
-  }
-
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative; min-height: 500px; }
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-
-  /* Site Footer */
-
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-
-  /* Headroom */
-
-  d-title {
-    padding-top: 6rem;
-  }
-
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-
-  .headroom--unpinned {
-    top: -100px;
-  }
-
-  .headroom--pinned {
-    top: 0;
-  }
-
-  </style>
-
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-
-  <script type="application/javascript">
-
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-
-  function createFuseIndex() {
-
-    // create fuse index
-    var options = {
-      keys: [
-        { name: 'title', weight: 20 },
-        { name: 'categories', weight: 15 },
-        { name: 'description', weight: 10 },
-        { name: 'contents', weight: 5 },
-      ],
-      ignoreLocation: true,
-      threshold: 0
-    };
-    var fuse = new window.Fuse([], options);
-
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-
-    createFuseIndex()
-      .then(function(fuse) {
-
-        // make search box visible
-        searchEl.classList.remove('hidden');
-
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-              .filter(function(item) { return !!item.description; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description}
-                  </div>
-                  <div class="search-item-preview">
-                    <img src="${suggestion.preview ? offsetURL(suggestion.preview) : ''}"</img>
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-  });
-
-  </script>
-
-  <style type="text/css">
-
-  /* Algolioa Autocomplete */
-
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  </style>
-
-
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -1988,459 +1403,981 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="extracting-highlighting-as-data-from-excel_files/header-attrs-2.6/header-attrs.js"></script>
+  <script src="extracting-highlighting-as-data-from-excel_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="extracting-highlighting-as-data-from-excel_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="extracting-highlighting-as-data-from-excel_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="extracting-highlighting-as-data-from-excel_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="extracting-highlighting-as-data-from-excel_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
-  <style type="text/css">
-  .distill-site-nav {
-    color: #FFFFFF; 
-    background-color: #01824F;
-    font-size: 20px;
-    font-weight: 900;
-  }
-
-  .distill-site-nav a:hover {
-    color: #333333;
-  }
-
-  /* Change appearance of headers */
-  h1, h2, h3, h4, h5 {
-    font-family: 'Lato', sans-serif;
-    color: color: #333333;
-  }
-
-  /* Import fonts from Google's API */
-  @import url('https://fonts.googleapis.com/css2?family=Lato');
-  @import url('https://fonts.googleapis.com/css2?family=Fira+Mono');
-
-  /* Use specific font in the body of the text */
-  html, body, p {
-    
-    font-family: 'Lato', sans-serif;
-    font-weight: 200;
-    line-height: 1.3; 
-    font-size: 1.0em;
-    color: #333333;
-    font-style: normal;
-    
-  }
-
-  /* Change the appearance of regular code chunks */
-  d-article div.sourceCode code, 
-  d-article pre code {
-  	font-family: "Fira Code", monospace;
-  	color: #000000;
-    background-color: #FFFFF0; 
-    line-height: 80%;
-    font-weight: 400;
-  	font-size: 1.1rem;
-  }
-
-  /* Change the appearance of in-line code chunks */
-  code {
-    font-family: 'Fira Code', Monospace;
-    color: #000000;
-    background-color: #FFFFF0; 
-    line-height: 80%;
-    font-weight: 400;
-    font-size: 1em;
-  }
-  </style>
   <!--/radix_placeholder_site_in_header-->
 
-  <link rel="stylesheet" href="styles.css" type="text/css"/>
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Medical R","authors":[]}
+{"title":"Extracting Highlighting as Data from Excel Spreadsheets with {tidyxl}","description":"Sometimes well-meaning people encode variables in medical data as highlighting with colors. For example, a spreadsheet where the control patients are in the green rows, and the test patients are in the red rows. This should have been encoded as a study_arm variable with values control and test. How to fix this - the {tidyxl} package can get under the hood of an excel spreadsheet and extract this information.","authors":[{"author":"Peter Higgins","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-01-13T00:00:00.000+00:00","citationText":"Higgins, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">Medical R</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).load(function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash && window.location.hash.startsWith("#category:")) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace(/^#category:/, "");
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
-
-      // update the list_caption
-      var list_caption = $('.posts-list-caption');
-      var caption = (page_category || '').toLowerCase() === "articles"
-        ? list_caption.attr('data-caption')
-        : ('Category: ' + page_category.replace(/_/g," "));
-      list_caption.text(caption);
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-      // reset list caption
-      var list_caption = $('.posts-list-caption');
-      list_caption.text(list_caption.attr('data-caption'));
-
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // click handling for tags
-  $('.dt-tag').click(function(ev) {
-    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
-    return false;
-  })
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
-<div class="posts-list">
-<h1 class="posts-list-caption" data-caption="Medical R">Medical R</h1>
-<a href="posts/2021-01-13-extracting-highlighting-as-data-from-excel/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Jan. 13, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Extracting Highlighting as Data from Excel Spreadsheets with {tidyxl}</h2>
-<div class="dt-tags"></div>
-<p>Sometimes well-meaning people encode variables in medical data as highlighting with colors. For example, a spreadsheet where the control patients are in the green rows, and the test patients are in the red rows. This should have been encoded as a study_arm variable with values control and test. How to fix this - the {tidyxl} package can get under the hood of an excel spreadsheet and extract this information.</p>
-</div>
-</a>
-<a href="posts/2020-12-27-creating-mini-learnr-apps-and-hosting-on-a-server/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Dec. 27, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Creating Mini learnr Apps and Hosting on a Server</h2>
-<div class="dt-tags"></div>
-<p>This post will explain how to create your own learnr apps and push them to an RStudio Server Open Source server.</p>
-</div>
-</a>
-<a href="posts/2020-12-12-publishing-a-bookdown-book-on-bookdownorg/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Dec. 12, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Publishing a {bookdown} book on bookdown.org</h2>
-<div class="dt-tags"></div>
-<p>A short overview of creating a {bookdown} book and publishing on bookdown.org</p>
-</div>
-</a>
-<a href="posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Dec. 6, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Javan Thompson</div>
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/rstudio_server_open_source.png"/>
-</div>
-<div class="description">
-<h2>Setting Up a RStudio Server with the Open Source Edition</h2>
-<div class="dt-tags"></div>
-<p>This is a basic setup guide for setting up a Linux-based server with RStudio Server and Shiny Server (the free versions). This was contributed by Javan Thompson, who works in IT at the University of Michigan Medical Center, and was a great help in setting this up for me. He has graciously provided a basic walkthrough for anyone else to follow.</p>
-</div>
-</a>
-<a href="posts/2020-11-01-subgroup-plots/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Nov. 1, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2020-11-01-subgroup-plots/subgroup-plots_files/figure-html5/unnamed-chunk-4-1.png"/>
-</div>
-<div class="description">
-<h2>Subgroup Plots for Clinical Trials</h2>
-<div class="dt-tags"></div>
-<p>Sometimes editors ask for _post hoc_ analysis of subgroups in clinical trials, and will refuse the manuscript without them. How you can make these in R, in a somewhat kludgy way.</p>
-</div>
-</a>
-<a href="posts/2020-10-20-embed-external-flipbooks/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 20, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>How to Embed External micro-Flipbooks in Bookdown</h2>
-<div class="dt-tags"></div>
-<p>After you have created micro-flipbooks in your miniflipbook project, how do you embed them in Rmarkdown and bookdown projects?</p>
-</div>
-</a>
-<a href="posts/2020-10-18-building-a-data-package/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 18, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Building a Data Package</h2>
-<div class="dt-tags"></div>
-<p>For building a package that is largely about making datasets readily available in R.</p>
-</div>
-</a>
-<a href="posts/2020-10-14-how-to-post/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 14, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>How to Post</h2>
-<div class="dt-tags"></div>
-<p>A reference for future me, on how to create posts.</p>
-</div>
-</a>
-<a href="posts/2020-10-14-micro-flipbooks/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 14, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>micro-flipbooks</h2>
-<div class="dt-tags"></div>
-<p>How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books</p>
-</div>
-</a>
-<a href="posts/2020-10-14-why-a-medical-r-blog/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 14, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Why a Medical R Blog?</h2>
-<div class="dt-tags"></div>
-<p>A starting point and few Theses.</p>
-</div>
-</a>
-<a href="posts/welcome/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Oct. 14, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Higgins</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Welcome to Medical R</h2>
-<div class="dt-tags"></div>
-<p>Welcome to my blog, Medical R. I will blog on topics related to using R with medical data. I hope you enjoy reading and find this useful!</p>
-</div>
-</a>
-</div>
-<div class="posts-sidebar">
-<div class="sidebar-section subscribe">
-<h3>Subscribe</h3>
-<form method='post' action='https://blogtrottr.com'>
-  <p>Enjoy this blog? Get notified of new posts via email:</p>
-  <input type='text' name='btr_email' />
-  <input type='hidden' name='btr_url'
-         value='https://themockup.blog/index.xml'/>
-  <input type='hidden' name='schedule_type' value='0' />
-  <input type='submit' value='Subscribe' />
-</form>
-</div>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>Medical R</h1>
+<h1>Extracting Highlighting as Data from Excel Spreadsheets with {tidyxl}</h1>
 <!--radix_placeholder_categories-->
-<div class="dt-tags">
-<div class="dt=tag">general</div>
-<div class="dt=tag">flipbooks</div>
-<div class="dt=tag">learnr</div>
-<div class="dt=tag">bookdown</div>
-</div>
 <!--/radix_placeholder_categories-->
-
+<p><p>Sometimes well-meaning people encode variables in medical data as highlighting with colors. For example, a spreadsheet where the control patients are in the green rows, and the test patients are in the red rows. This should have been encoded as a study_arm variable with values control and test. How to fix this - the {tidyxl} package can get under the hood of an excel spreadsheet and extract this information.</p></p>
 </div>
 
+<div class="d-byline">
+  Peter Higgins true 
+  
+<br/>01-13-2021
+</div>
 
 <div class="d-article">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="the-excel-spreadsheet">The Excel Spreadsheet</h2>
+<p>So you, have unfortunately, agreed to try to analyze data in which a well-meaning person has encoded a variable as highlighter colors.</p>
+<p>Yellow rows = control arm<br> Red rows = test arm <br></p>
+<p>Is there an alternative to manually typing in a new variable, <strong>study_arm</strong>, with values “control” and “test”?</p>
+<p>Fortunately, the {tidyxl} package can help, by getting under the hood and into the structure of this excel (xlsx) spreadsheet.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>Let’s start with a simple example, included in the {tidyxl} package. First load the tidyxl and readxl packages, and read in the excel file from the package.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/nacnudus/tidyxl'>tidyxl</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readxl.tidyverse.org'>readxl</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='co'># read in file from package</span>
+<span class='va'>titanic</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata/titanic.xlsx"</span>, package <span class='op'>=</span> <span class='st'>"tidyxl"</span><span class='op'>)</span>
+<span class='fu'>readxl</span><span class='fu'>::</span><span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='va'>titanic</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 10 x 7
+   ...1  ...2   Age      Child ...5  Adult ...7 
+   &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 &lt;NA&gt;  &lt;NA&gt;   Survived No    Yes   No    Yes  
+ 2 Class Sex    &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+ 3 1st   Male   &lt;NA&gt;     0     5     118   57   
+ 4 &lt;NA&gt;  Female &lt;NA&gt;     0     1     4     140  
+ 5 2nd   Male   &lt;NA&gt;     0     11    154   14   
+ 6 &lt;NA&gt;  Female &lt;NA&gt;     0     13    13    80   
+ 7 3rd   Male   &lt;NA&gt;     35    13    387   75   
+ 8 &lt;NA&gt;  Female &lt;NA&gt;     17    14    89    76   
+ 9 Crew  Male   &lt;NA&gt;     0     0     670   192  
+10 &lt;NA&gt;  Female &lt;NA&gt;     0     0     3     20   </code></pre>
+</div>
+<h2 id="extracting-cell-data">Extracting Cell Data</h2>
+<p>We would like to identify and extract the cells highlighted in yellow. In this case, these are the cells in row 10 (row 11 in Excel, counting the header row), for the variables Adult and …7. But this is not obvious from the tibble. So we will have to dig deeper into the xlsx file with the help of {tidyxl}. Let’s use the <em>xlsx_cells()</em> function to get more information on each cell, and store this in the object, x.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyxl/man/xlsx_cells.html'>xlsx_cells</a></span><span class='op'>(</span><span class='va'>titanic</span><span class='op'>)</span>
+<span class='va'>x</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 60 x 21
+   sheet address   row   col is_blank data_type error logical numeric
+   &lt;chr&gt; &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;lgl&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;lgl&gt;     &lt;dbl&gt;
+ 1 Shee… C1          1     3 FALSE    character &lt;NA&gt;  NA           NA
+ 2 Shee… D1          1     4 FALSE    character &lt;NA&gt;  NA           NA
+ 3 Shee… E1          1     5 TRUE     blank     &lt;NA&gt;  NA           NA
+ 4 Shee… F1          1     6 FALSE    character &lt;NA&gt;  NA           NA
+ 5 Shee… G1          1     7 TRUE     blank     &lt;NA&gt;  NA           NA
+ 6 Shee… C2          2     3 FALSE    character &lt;NA&gt;  NA           NA
+ 7 Shee… D2          2     4 FALSE    character &lt;NA&gt;  NA           NA
+ 8 Shee… E2          2     5 FALSE    character &lt;NA&gt;  NA           NA
+ 9 Shee… F2          2     6 FALSE    character &lt;NA&gt;  NA           NA
+10 Shee… G2          2     7 FALSE    character &lt;NA&gt;  NA           NA
+# … with 50 more rows, and 12 more variables: date &lt;dttm&gt;,
+#   character &lt;chr&gt;, character_formatted &lt;list&gt;, formula &lt;chr&gt;,
+#   is_array &lt;lgl&gt;, formula_ref &lt;chr&gt;, formula_group &lt;int&gt;,
+#   comment &lt;chr&gt;, height &lt;dbl&gt;, width &lt;dbl&gt;, style_format &lt;chr&gt;,
+#   local_format_id &lt;int&gt;</code></pre>
+</div>
+<p>Now we have information on each cell (identified by address) in each sheet, with row and column information, details on data_type, formulas, comments, style_format, and the underlying data in separate columns by data type. This helps us find (and filter) for specific cells or rows.</p>
+<h2 id="extracting-formatting-data">Extracting Formatting Data</h2>
+<p>But we also need to get at the formatting. This can be done with <em>xls_formats()</em> from {tidyxl}. <strong>Warning:</strong> the output will be very long and icky. Be prepared to scroll down a lot.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>formats</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidyxl/man/xlsx_formats.html'>xlsx_formats</a></span><span class='op'>(</span><span class='va'>titanic</span><span class='op'>)</span>
+<span class='va'>formats</span>
+</code></pre>
+</div>
+<pre><code>$local
+$local$numFmt
+[1] &quot;General&quot; &quot;General&quot; &quot;General&quot; &quot;General&quot;
+
+$local$font
+$local$font$bold
+[1] FALSE  TRUE FALSE FALSE
+
+$local$font$italic
+[1] FALSE FALSE  TRUE FALSE
+
+$local$font$underline
+[1] NA NA NA NA
+
+$local$font$strike
+[1] FALSE FALSE FALSE FALSE
+
+$local$font$vertAlign
+[1] NA NA NA NA
+
+$local$font$size
+[1] 11 11 11 11
+
+$local$font$color
+$local$font$color$rgb
+[1] &quot;FF000000&quot; &quot;FF000000&quot; &quot;FF000000&quot; &quot;FF000000&quot;
+
+$local$font$color$theme
+[1] &quot;text1&quot; &quot;text1&quot; &quot;text1&quot; &quot;text1&quot;
+
+$local$font$color$indexed
+[1] NA NA NA NA
+
+$local$font$color$tint
+[1] NA NA NA NA
+
+
+$local$font$name
+[1] &quot;Calibri&quot; &quot;Calibri&quot; &quot;Calibri&quot; &quot;Calibri&quot;
+
+$local$font$family
+[1] 2 2 2 2
+
+$local$font$scheme
+[1] &quot;minor&quot; &quot;minor&quot; &quot;minor&quot; &quot;minor&quot;
+
+
+$local$fill
+$local$fill$patternFill
+$local$fill$patternFill$fgColor
+$local$fill$patternFill$fgColor$rgb
+[1] NA         NA         NA         &quot;FFFFFF00&quot;
+
+$local$fill$patternFill$fgColor$theme
+[1] NA NA NA NA
+
+$local$fill$patternFill$fgColor$indexed
+[1] NA NA NA NA
+
+$local$fill$patternFill$fgColor$tint
+[1] NA NA NA NA
+
+
+$local$fill$patternFill$bgColor
+$local$fill$patternFill$bgColor$rgb
+[1] NA         NA         NA         &quot;FFFFFFFF&quot;
+
+$local$fill$patternFill$bgColor$theme
+[1] NA NA NA NA
+
+$local$fill$patternFill$bgColor$indexed
+[1] NA NA NA 65
+
+$local$fill$patternFill$bgColor$tint
+[1] NA NA NA NA
+
+
+$local$fill$patternFill$patternType
+[1] NA      NA      NA      &quot;solid&quot;
+
+
+$local$fill$gradientFill
+$local$fill$gradientFill$type
+[1] NA NA NA NA
+
+$local$fill$gradientFill$degree
+[1] NA NA NA NA
+
+$local$fill$gradientFill$left
+[1] NA NA NA NA
+
+$local$fill$gradientFill$right
+[1] NA NA NA NA
+
+$local$fill$gradientFill$top
+[1] NA NA NA NA
+
+$local$fill$gradientFill$bottom
+[1] NA NA NA NA
+
+$local$fill$gradientFill$stop1
+$local$fill$gradientFill$stop1$position
+[1] NA NA NA NA
+
+$local$fill$gradientFill$stop1$color
+$local$fill$gradientFill$stop1$color$rgb
+[1] NA NA NA NA
+
+$local$fill$gradientFill$stop1$color$theme
+[1] NA NA NA NA
+
+$local$fill$gradientFill$stop1$color$indexed
+[1] NA NA NA NA
+
+$local$fill$gradientFill$stop1$color$tint
+[1] NA NA NA NA
+
+
+
+$local$fill$gradientFill$stop2
+$local$fill$gradientFill$stop2$position
+[1] NA NA NA NA
+
+$local$fill$gradientFill$stop2$color
+$local$fill$gradientFill$stop2$color$rgb
+[1] NA NA NA NA
+
+$local$fill$gradientFill$stop2$color$theme
+[1] NA NA NA NA
+
+$local$fill$gradientFill$stop2$color$indexed
+[1] NA NA NA NA
+
+$local$fill$gradientFill$stop2$color$tint
+[1] NA NA NA NA
+
+
+
+
+
+$local$border
+$local$border$diagonalDown
+[1] FALSE FALSE FALSE FALSE
+
+$local$border$diagonalUp
+[1] FALSE FALSE FALSE FALSE
+
+$local$border$outline
+[1] FALSE FALSE FALSE FALSE
+
+$local$border$left
+$local$border$left$style
+[1] NA NA NA NA
+
+$local$border$left$color
+$local$border$left$color$rgb
+[1] NA NA NA NA
+
+$local$border$left$color$theme
+[1] NA NA NA NA
+
+$local$border$left$color$indexed
+[1] NA NA NA NA
+
+$local$border$left$color$tint
+[1] NA NA NA NA
+
+
+
+$local$border$right
+$local$border$right$style
+[1] NA NA NA NA
+
+$local$border$right$color
+$local$border$right$color$rgb
+[1] NA NA NA NA
+
+$local$border$right$color$theme
+[1] NA NA NA NA
+
+$local$border$right$color$indexed
+[1] NA NA NA NA
+
+$local$border$right$color$tint
+[1] NA NA NA NA
+
+
+
+$local$border$start
+$local$border$start$style
+[1] NA NA NA NA
+
+$local$border$start$color
+$local$border$start$color$rgb
+[1] NA NA NA NA
+
+$local$border$start$color$theme
+[1] NA NA NA NA
+
+$local$border$start$color$indexed
+[1] NA NA NA NA
+
+$local$border$start$color$tint
+[1] NA NA NA NA
+
+
+
+$local$border$end
+$local$border$end$style
+[1] NA NA NA NA
+
+$local$border$end$color
+$local$border$end$color$rgb
+[1] NA NA NA NA
+
+$local$border$end$color$theme
+[1] NA NA NA NA
+
+$local$border$end$color$indexed
+[1] NA NA NA NA
+
+$local$border$end$color$tint
+[1] NA NA NA NA
+
+
+
+$local$border$top
+$local$border$top$style
+[1] NA NA NA NA
+
+$local$border$top$color
+$local$border$top$color$rgb
+[1] NA NA NA NA
+
+$local$border$top$color$theme
+[1] NA NA NA NA
+
+$local$border$top$color$indexed
+[1] NA NA NA NA
+
+$local$border$top$color$tint
+[1] NA NA NA NA
+
+
+
+$local$border$bottom
+$local$border$bottom$style
+[1] NA NA NA NA
+
+$local$border$bottom$color
+$local$border$bottom$color$rgb
+[1] NA NA NA NA
+
+$local$border$bottom$color$theme
+[1] NA NA NA NA
+
+$local$border$bottom$color$indexed
+[1] NA NA NA NA
+
+$local$border$bottom$color$tint
+[1] NA NA NA NA
+
+
+
+$local$border$diagonal
+$local$border$diagonal$style
+[1] NA NA NA NA
+
+$local$border$diagonal$color
+$local$border$diagonal$color$rgb
+[1] NA NA NA NA
+
+$local$border$diagonal$color$theme
+[1] NA NA NA NA
+
+$local$border$diagonal$color$indexed
+[1] NA NA NA NA
+
+$local$border$diagonal$color$tint
+[1] NA NA NA NA
+
+
+
+$local$border$vertical
+$local$border$vertical$style
+[1] NA NA NA NA
+
+$local$border$vertical$color
+$local$border$vertical$color$rgb
+[1] NA NA NA NA
+
+$local$border$vertical$color$theme
+[1] NA NA NA NA
+
+$local$border$vertical$color$indexed
+[1] NA NA NA NA
+
+$local$border$vertical$color$tint
+[1] NA NA NA NA
+
+
+
+$local$border$horizontal
+$local$border$horizontal$style
+[1] NA NA NA NA
+
+$local$border$horizontal$color
+$local$border$horizontal$color$rgb
+[1] NA NA NA NA
+
+$local$border$horizontal$color$theme
+[1] NA NA NA NA
+
+$local$border$horizontal$color$indexed
+[1] NA NA NA NA
+
+$local$border$horizontal$color$tint
+[1] NA NA NA NA
+
+
+
+
+$local$alignment
+$local$alignment$horizontal
+[1] &quot;general&quot; &quot;general&quot; &quot;general&quot; &quot;general&quot;
+
+$local$alignment$vertical
+[1] &quot;bottom&quot; &quot;bottom&quot; &quot;bottom&quot; &quot;bottom&quot;
+
+$local$alignment$wrapText
+[1] FALSE FALSE FALSE FALSE
+
+$local$alignment$readingOrder
+[1] &quot;context&quot; &quot;context&quot; &quot;context&quot; &quot;context&quot;
+
+$local$alignment$indent
+[1] 0 0 0 0
+
+$local$alignment$justifyLastLine
+[1] FALSE FALSE FALSE FALSE
+
+$local$alignment$shrinkToFit
+[1] FALSE FALSE FALSE FALSE
+
+$local$alignment$textRotation
+[1] 0 0 0 0
+
+
+$local$protection
+$local$protection$locked
+[1] TRUE TRUE TRUE TRUE
+
+$local$protection$hidden
+[1] FALSE FALSE FALSE FALSE
+
+
+
+$style
+$style$numFmt
+   Normal 
+&quot;General&quot; 
+
+$style$font
+$style$font$bold
+Normal 
+ FALSE 
+
+$style$font$italic
+Normal 
+ FALSE 
+
+$style$font$underline
+Normal 
+    NA 
+
+$style$font$strike
+Normal 
+ FALSE 
+
+$style$font$vertAlign
+Normal 
+    NA 
+
+$style$font$size
+Normal 
+    11 
+
+$style$font$color
+$style$font$color$rgb
+    Normal 
+&quot;FF000000&quot; 
+
+$style$font$color$theme
+ Normal 
+&quot;text1&quot; 
+
+$style$font$color$indexed
+Normal 
+    NA 
+
+$style$font$color$tint
+Normal 
+    NA 
+
+
+$style$font$name
+   Normal 
+&quot;Calibri&quot; 
+
+$style$font$family
+Normal 
+     2 
+
+$style$font$scheme
+ Normal 
+&quot;minor&quot; 
+
+
+$style$fill
+$style$fill$patternFill
+$style$fill$patternFill$fgColor
+$style$fill$patternFill$fgColor$rgb
+Normal 
+    NA 
+
+$style$fill$patternFill$fgColor$theme
+Normal 
+    NA 
+
+$style$fill$patternFill$fgColor$indexed
+Normal 
+    NA 
+
+$style$fill$patternFill$fgColor$tint
+Normal 
+    NA 
+
+
+$style$fill$patternFill$bgColor
+$style$fill$patternFill$bgColor$rgb
+Normal 
+    NA 
+
+$style$fill$patternFill$bgColor$theme
+Normal 
+    NA 
+
+$style$fill$patternFill$bgColor$indexed
+Normal 
+    NA 
+
+$style$fill$patternFill$bgColor$tint
+Normal 
+    NA 
+
+
+$style$fill$patternFill$patternType
+Normal 
+    NA 
+
+
+$style$fill$gradientFill
+$style$fill$gradientFill$type
+Normal 
+    NA 
+
+$style$fill$gradientFill$degree
+Normal 
+    NA 
+
+$style$fill$gradientFill$left
+Normal 
+    NA 
+
+$style$fill$gradientFill$right
+Normal 
+    NA 
+
+$style$fill$gradientFill$top
+Normal 
+    NA 
+
+$style$fill$gradientFill$bottom
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop1
+$style$fill$gradientFill$stop1$position
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop1$color
+$style$fill$gradientFill$stop1$color$rgb
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop1$color$theme
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop1$color$indexed
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop1$color$tint
+Normal 
+    NA 
+
+
+
+$style$fill$gradientFill$stop2
+$style$fill$gradientFill$stop2$position
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop2$color
+$style$fill$gradientFill$stop2$color$rgb
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop2$color$theme
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop2$color$indexed
+Normal 
+    NA 
+
+$style$fill$gradientFill$stop2$color$tint
+Normal 
+    NA 
+
+
+
+
+
+$style$border
+$style$border$diagonalDown
+Normal 
+ FALSE 
+
+$style$border$diagonalUp
+Normal 
+ FALSE 
+
+$style$border$outline
+Normal 
+ FALSE 
+
+$style$border$left
+$style$border$left$style
+Normal 
+    NA 
+
+$style$border$left$color
+$style$border$left$color$rgb
+Normal 
+    NA 
+
+$style$border$left$color$theme
+Normal 
+    NA 
+
+$style$border$left$color$indexed
+Normal 
+    NA 
+
+$style$border$left$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$right
+$style$border$right$style
+Normal 
+    NA 
+
+$style$border$right$color
+$style$border$right$color$rgb
+Normal 
+    NA 
+
+$style$border$right$color$theme
+Normal 
+    NA 
+
+$style$border$right$color$indexed
+Normal 
+    NA 
+
+$style$border$right$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$start
+$style$border$start$style
+Normal 
+    NA 
+
+$style$border$start$color
+$style$border$start$color$rgb
+Normal 
+    NA 
+
+$style$border$start$color$theme
+Normal 
+    NA 
+
+$style$border$start$color$indexed
+Normal 
+    NA 
+
+$style$border$start$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$end
+$style$border$end$style
+Normal 
+    NA 
+
+$style$border$end$color
+$style$border$end$color$rgb
+Normal 
+    NA 
+
+$style$border$end$color$theme
+Normal 
+    NA 
+
+$style$border$end$color$indexed
+Normal 
+    NA 
+
+$style$border$end$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$top
+$style$border$top$style
+Normal 
+    NA 
+
+$style$border$top$color
+$style$border$top$color$rgb
+Normal 
+    NA 
+
+$style$border$top$color$theme
+Normal 
+    NA 
+
+$style$border$top$color$indexed
+Normal 
+    NA 
+
+$style$border$top$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$bottom
+$style$border$bottom$style
+Normal 
+    NA 
+
+$style$border$bottom$color
+$style$border$bottom$color$rgb
+Normal 
+    NA 
+
+$style$border$bottom$color$theme
+Normal 
+    NA 
+
+$style$border$bottom$color$indexed
+Normal 
+    NA 
+
+$style$border$bottom$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$diagonal
+$style$border$diagonal$style
+Normal 
+    NA 
+
+$style$border$diagonal$color
+$style$border$diagonal$color$rgb
+Normal 
+    NA 
+
+$style$border$diagonal$color$theme
+Normal 
+    NA 
+
+$style$border$diagonal$color$indexed
+Normal 
+    NA 
+
+$style$border$diagonal$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$vertical
+$style$border$vertical$style
+Normal 
+    NA 
+
+$style$border$vertical$color
+$style$border$vertical$color$rgb
+Normal 
+    NA 
+
+$style$border$vertical$color$theme
+Normal 
+    NA 
+
+$style$border$vertical$color$indexed
+Normal 
+    NA 
+
+$style$border$vertical$color$tint
+Normal 
+    NA 
+
+
+
+$style$border$horizontal
+$style$border$horizontal$style
+Normal 
+    NA 
+
+$style$border$horizontal$color
+$style$border$horizontal$color$rgb
+Normal 
+    NA 
+
+$style$border$horizontal$color$theme
+Normal 
+    NA 
+
+$style$border$horizontal$color$indexed
+Normal 
+    NA 
+
+$style$border$horizontal$color$tint
+Normal 
+    NA 
+
+
+
+
+$style$alignment
+$style$alignment$horizontal
+   Normal 
+&quot;general&quot; 
+
+$style$alignment$vertical
+  Normal 
+&quot;bottom&quot; 
+
+$style$alignment$wrapText
+Normal 
+ FALSE 
+
+$style$alignment$readingOrder
+   Normal 
+&quot;context&quot; 
+
+$style$alignment$indent
+Normal 
+     0 
+
+$style$alignment$justifyLastLine
+Normal 
+ FALSE 
+
+$style$alignment$shrinkToFit
+Normal 
+ FALSE 
+
+$style$alignment$textRotation
+Normal 
+     0 
+
+
+$style$protection
+$style$protection$locked
+Normal 
+  TRUE 
+
+$style$protection$hidden
+Normal 
+ FALSE </code></pre>
+</div>
+<p>This gives you the formats object, which is of the <em>list</em> class. This is a highly nested data structure, which you can get a feel of from the printed output. You can also explore <strong>formats</strong> by clicking on it in the Environment Tab, then a tab for formats will open up in the Source Pane. Click on the blue arrow to the left of formats in the Source Pane - then dig deeper into the nesting by clicking on the blue arrow in turn for</p>
+<ul>
+<li><p>local</p></li>
+<li><p>fill</p></li>
+<li><p>patternFill</p></li>
+<li><p>fgColor (foreground color)</p></li>
+<li><p>rgb (the only one with content)</p></li>
+</ul>
+<p>We are looking for the fill (highlighting) for the two cells highlighted in yellow.</p>
+<p>This can be found programmatically with</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>formats</span><span class='op'>$</span><span class='va'>local</span><span class='op'>$</span><span class='va'>fill</span><span class='op'>$</span><span class='va'>patternFill</span><span class='op'>$</span><span class='va'>fgColor</span><span class='op'>$</span><span class='va'>rgb</span>
+</code></pre>
+</div>
+<pre><code>[1] NA         NA         NA         &quot;FFFFFF00&quot;</code></pre>
+</div>
+<p>which is honestly, quite hideous.</p>
+<p>But a nested list is an efficient way to store information when there are a lot of empty cells. Most of the cells will not be highlighted, so the folks who wrote Excel used this approach. The output identifies one RGB highlighting color used as a fill in this spreadsheet, “FFFFFF00”, which is yellow.</p>
+<h2 id="isolating-the-highlighted-cells">Isolating the Highlighted Cells</h2>
+<p>The hard part is knowing where to hunt for the formatting you want to find. Digging around in the nested structure in the Source pane can help (especially if you have suggestions from the {tidyxl} web page). Once we have this color information, we can filter our x object to just the yellow-highlighted cells, with</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>x</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>local_format_id</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>formats</span><span class='op'>$</span><span class='va'>local</span><span class='op'>$</span><span class='va'>fill</span><span class='op'>$</span><span class='va'>patternFill</span><span class='op'>$</span><span class='va'>fgColor</span><span class='op'>$</span><span class='va'>rgb</span> <span class='op'>==</span> <span class='st'>"FFFFFF00"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>address</span>, <span class='va'>data_type</span><span class='op'>)</span> <span class='op'>-&gt;</span>
+<span class='va'>location</span>
+<span class='va'>location</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 2 x 2
+  address data_type
+  &lt;chr&gt;   &lt;chr&gt;    
+1 F11     numeric  
+2 G11     numeric  </code></pre>
+</div>
+<p>This takes the <code>x</code> object, then filters it on the local_format_id variable for a local format in which the fill color is yellow (which in this case turns out to be local_format_id = 4). Then we select the address column to get the cells that have been highlighted in the spreadsheet (F11 and G11 in this case).</p>
+<h2 id="finding-the-highlighted-values">Finding the Highlighted Values</h2>
+<p>To get the highlighted values out, as these cells both contain numeric data, we can do the following:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre><code><span class='va'>x</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>address</span> <span class='op'>%in%</span> <span class='va'>location</span><span class='op'>$</span><span class='va'>address</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>select</span><span class='op'>(</span><span class='va'>address</span>, <span class='va'>numeric</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 2 x 2
+  address numeric
+  &lt;chr&gt;     &lt;dbl&gt;
+1 F11           3
+2 G11          20</code></pre>
+</div>
+<p>So the highlighted values are 3 and 20.</p>
+<p>–</p>
+<p>You can get more information about {tidyxl} and where to find formatting like bold, etc. <a href="https://cran.r-project.org/web/packages/tidyxl/vignettes/tidyxl.html">here</a>. The official pkgdown website and reference manual for {tidyxl} can be found <a href="https://nacnudus.github.io/tidyxl/index.html">here</a>. You can unpack lots of badly assembled spreadsheets with the {tidyxl} and {unpivotr} packages. This is well beyond the scope of this post, but there are lots of worked <a href="https://github.com/nacnudus/ukfarm">examples</a>, an online <a href="https://nacnudus.github.io/spreadsheet-munging-strategies/">cookbook</a>, and even <a href="https://www.youtube.com/watch?v=1sinC7wsS5U">screencasts</a>.</p>
+<hr />
+<p>This blog was created with the {distill} package. Distill is a publication format for scientific and technical writing, native to the web.</p>
+<p>Learn more about using Distill at <a href="https://rstudio.github.io/distill" class="uri">https://rstudio.github.io/distill</a>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -1,0 +1,201 @@
+---
+title: "Extracting Highlighting as Data from Excel Spreadsheets with {tidyxl}"
+description: |
+  Sometimes well-meaning people encode variables in medical data as highlighting with colors. For example, a spreadsheet where the control patients are in the green rows, and the test patients are in the red rows. This should have been encoded as a study_arm variable with values control and test. How to fix this - the {tidyxl} package can get under the hood of an excel spreadsheet and extract this information.
+  
+author:
+  - name: Peter Higgins
+    url: {}
+date: 01-13-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The Excel Spreadsheet
+
+So you, have unfortunately, agreed to try to analyze data in which a well-meaning person has encoded a variable as highlighter colors.
+
+Yellow rows = control arm<br> Red rows = test arm <br>
+
+Is there an alternative to manually typing in a new variable, **study_arm**, with values "control" and "test"?
+
+Fortunately, the {tidyxl} package can help, by getting under the hood and into the structure of this excel (xlsx) spreadsheet.
+
+## Getting started
+
+Let's start with a simple example, included in the {tidyxl} package. First load the tidyxl and readxl packages, and read in the excel file from the package.
+
+```{r}
+library(tidyxl)
+library(readxl)
+library(tidyverse)
+# read in file from package
+titanic <- system.file("extdata/titanic.xlsx", package = "tidyxl")
+readxl::read_excel(titanic)
+```
+
+## Extracting Cell Data
+
+We would like to identify and extract the cells highlighted in yellow. In this case, these are the cells in row 10 (row 11 in Excel, counting the header row), for the variables Adult and ...7. But this is not obvious from the tibble. So we will have to dig deeper into the xlsx file with the help of {tidyxl}. Let's use the *xlsx_cells()* function to get more information on each cell, and store this in the object, x.
+
+```{r}
+x <- xlsx_cells(titanic)
+x
+```
+
+Now we have information on each cell (identified by address) in each sheet, with row and column information, details on data_type, formulas, comments, style_format, and the underlying data in separate columns by data type. This helps us find (and filter) for specific cells or rows.
+
+## Extracting Formatting Data
+
+But we also need to get at the formatting. This can be done with *xls_formats()* from {tidyxl}. **Warning:** the output will be very long and icky. Be prepared to scroll down a lot.
+
+```{r}
+formats <- xlsx_formats(titanic)
+formats
+```
+
+This gives you the formats object, which is of the *list* class. This is a highly nested data structure, which you can get a feel of from the printed output. You can also explore **formats** by clicking on it in the Environment Tab, then a tab for formats will open up in the Source Pane. Click on the blue arrow to the left of formats in the Source Pane - then dig deeper into the nesting by clicking on the blue arrow in turn for
+
+-   local
+
+-   fill
+
+-   patternFill
+
+-   fgColor (foreground color)
+
+-   rgb (the only one with content)
+
+We are looking for the fill (highlighting) for the two cells highlighted in yellow.
+
+This can be found programmatically with
+
+```{r}
+formats$local$fill$patternFill$fgColor$rgb
+```
+
+which is honestly, quite hideous.
+
+But a nested list is an efficient way to store information when there are a lot of empty cells. Most of the cells will not be highlighted, so the folks who wrote Excel used this approach. The output identifies one RGB highlighting color used as a fill in this spreadsheet, "FFFFFF00", which is yellow.
+
+## Isolating the Highlighted Cells
+
+The hard part is knowing where to hunt for the formatting you want to find. Digging around in the nested structure in the Source pane can help (especially if you have suggestions from the {tidyxl} web page). Once we have this color information, we can filter our x object to just the yellow-highlighted cells, with
+
+```{r}
+x %>% 
+  filter(local_format_id %in% which(formats$local$fill$patternFill$fgColor$rgb == "FFFFFF00")) %>%
+  select(address, data_type) ->
+location
+location
+```
+
+This takes the `x` object, then filters it on the local_format_id variable for a local format in which the fill color is yellow (which in this case turns out to be local_format_id = 4). Then we select the address column to get the cells that have been highlighted in the spreadsheet (F11 and G11 in this case).
+
+## Finding the Highlighted Values
+
+To get the highlighted values out, as these cells both contain numeric data, we can do the following:
+
+```{r}
+x %>% 
+  filter(address %in% location$address) %>% 
+  select(address, numeric)
+```
+
+So the highlighted values are 3 and 20.
+
+## A Pilot Trial
+
+Imagine a pilot trial of blood pressure medication with the study arm encoded as a highlighting color by row. Let's read in the excel file.
+
+```{r}
+pilot_path <- "_posts/2021-01-13-extracting-highlighting-as-data-from-excel/bp_pilot.xlsx"
+pilot <- read_xlsx(pilot_path)
+pilot
+
+```
+
+From this tibble, we can't see which rows were coded as test (red) vs. control (green). Let's follow the same approach - first we will extract cell data.
+
+## Extracting Cell Data
+
+```{r}
+pilot_cells <- xlsx_cells(pilot_path)
+pilot_cells
+```
+
+There are four different local_format_id values (1 through 4). But which is green, and which is red highlighting?
+
+Let's dig into the formats.
+
+Extracting Formatting Data
+
+```{r}
+pilot_formats <- xlsx_formats(pilot_path)
+pilot_formats
+```
+
+Now open the pilot_formats object by clicking on it in the Environment Tab. In the source pane, explore the nested list by clicking on blue arrows for
+
+-   local
+
+-   fill
+
+-   patternFill
+
+-   fgColor
+
+-   rgb
+
+and you will see 3 options in rgb - NA, and 2 RGB colors.
+
+Now let's pull these with
+
+```{r}
+pilot_formats$local$fill$patternFill$fgColor$rgb
+
+```
+
+Ignore the first FF, and the rest of the 2 strings represent a code for an RGB color. Go to <https://www.colorhexa.com> and type in the codes (prefix these with a hashtag) for \#ED7D31 and then \#92D050.
+
+These two RGB colors are orangish-red and green, respectively.
+
+So if the color "FFED7D31" is present in the cell formatting, that row is a trial participant in the test arm, and if the color "FF92D050", that row is a trial participant in the control arm.
+
+Now we can mutate to create a new variable, **study_arm** and fill it with "test" and "control".
+
+```{r}
+pilot_cells %>% 
+  filter(local_format_id %in% which(pilot_formats$local$fill$patternFill$fgColor$rgb == "FFED7D31")) %>%
+  select(address, row, data_type) %>% 
+  filter(str_detect(address,"A")) %>% 
+  mutate(tibblerow = row - 1) %>% 
+  pull(tibblerow) ->
+test_rows
+test_rows
+```
+
+Now we can use the test_rows vector to mutate the correct rows to "test" for a new variable, study_arm
+
+```{r}
+pilot %>% 
+  rownames_to_column(var = "rowname") %>% 
+  mutate(study_arm = 
+    case_when(rowname %in% test_rows ~ "test", TRUE ~ "control")) %>% 
+  select(rowname, sbp1:sbp2, dbp1:dbp2, study_arm)
+```
+
+--
+
+You can get more information about {tidyxl} and where to find formatting like bold, etc. [here](https://cran.r-project.org/web/packages/tidyxl/vignettes/tidyxl.html). The official pkgdown website and reference manual for {tidyxl} can be found [here](https://nacnudus.github.io/tidyxl/index.html). You can unpack lots of badly assembled spreadsheets with the {tidyxl} and {unpivotr} packages. This is well beyond the scope of this post, but there are lots of worked [examples](https://github.com/nacnudus/ukfarm), an online [cookbook](https://nacnudus.github.io/spreadsheet-munging-strategies/), and even [screencasts](https://www.youtube.com/watch?v=1sinC7wsS5U).
+
+---
+
+This blog was created with the {distill} package. Distill is a publication format for scientific and technical writing, native to the web.
+
+Learn more about using Distill at <https://rstudio.github.io/distill>.

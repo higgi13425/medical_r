@@ -7,7 +7,15 @@
     <description>A blog about the use of R with medical data.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 13 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 13 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Resources for Getting Started in R</title>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/posts/2021-06-13-resources-for-getting-started-in-r</link>
+      <description>A short description of the post.</description>
+      <guid>https://higgi13425.github.io/posts/2021-06-13-resources-for-getting-started-in-r</guid>
+      <pubDate>Sun, 13 Jun 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Extracting Highlighting as Data from Excel Spreadsheets with {tidyxl}</title>
       <dc:creator>Peter Higgins</dc:creator>

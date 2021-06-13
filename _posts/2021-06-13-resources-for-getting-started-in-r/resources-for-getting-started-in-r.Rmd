@@ -1,0 +1,87 @@
+---
+title: "Resources for Getting Started in R"
+description: |
+  A short description of the post.
+author:
+  - name: Peter Higgins
+    url: {}
+date: 06-13-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+```
+
+I am often asked for resources to help folks get started in R, especially for folks doing some form of self-study.
+
+## Beginning at the Beginning
+
+One of my favorites for installing and getting started, especially for medical data, is the Reproducible Medical Research with R e-book which can be found [here](https://bookdown.org/pdr_higgins/rmrwr/). Chapter 2 covers installation of R and RStudio, and Chapter 3 gives a quick overview of some of the cool things you can do.
+
+## An Antipodean Starter
+
+Another favorite for beginners is the RYouWithMe? [website](https://rladiessydney.org/courses/ryouwithme/) from R-Ladies Sydney. This website has a lot of good starter tutorials on data cleaning, visualization, and producing output documents with RMarkdown.
+
+## Start Tidy (in a Box)
+
+I recommend learning the tidyverse first, as these packages are built to work together, and have a consistent logic. Adding some base R later is important as well.
+
+This is the approach taken by Mine Cetinkaya-Rundel for the [Data Science in a Box](https://datasciencebox.org/index.html) website, which has lots of great information about learning to use R.
+
+## A video course
+
+[Getting Started with R](https://rfortherestofus.com/courses/getting-started/) helps a lot of people get started, and is in a video format.
+
+## The Wide (and growing) World of E-Books
+
+### Starting out
+
+The R basics [book](https://rbasics.netlify.app) can help get you started.
+
+### Just past beginner
+
+Hands on Programming with R, aka [HOPR](https://rstudio-education.github.io/hopr/)
+
+Another late-beginner level book, Modern Dive is a intro Statistics-course focused e-book featuring the tidyverse, which can be found [here](https://moderndive.com).
+
+A common reference for "How do I do X in R?" is the [R Cookbook](https://rc2e.com).
+
+### R for Data Science
+
+Most people really dig in to data science with [R4DS](https://r4ds.had.co.nz).
+
+This is **the main** data science "textbook" that most people use when digging into R in a serious way. For early intermediate users.
+
+There is even an exercises [Solution Manual](https://jrnold.github.io/r4ds-exercise-solutions/) available online.
+
+### Brushing up on Stats
+
+If you want to brush up on your statistics while learning R, there are several good resources
+
+-   [Learning Statistics with R](https://learningstatisticswithr.com/book/)
+
+-   [OpenIntro Statistics: Labs for R](https://nulib.github.io/kuyper-stat202/) is a companion for the [OpenIntro Statistics textbook](https://www.openintro.org/stat/index.php)
+
+### More Advanced
+
+1.  Rmarkdown has 2 helpful books - [The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) and the [Rmarkdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)
+
+2.  You can see how to do a lot with R graphics with the [R Graphics Cookbook](https://r-graphics.org). Other good graphics resources include [Fundamentals of Data Visualization](<https://clauswilke.com/dataviz/>)
+
+3.  You can learn how to make your own web applications in R in the Shiny framework with [Mastering Shiny](https://mastering-shiny.org)
+
+4.  If text mining is your area, consider [Text Mining with R](https://www.tidytextmining.com).
+
+5.  [Efficient R programming](https://csgillespie.github.io/efficientR/) helps you develop good coding habits (good for intermediate users)
+
+6.  If you are using big data on a server, you may need to use [R at the Command Line](https://www.datascienceatthecommandline.com/1e/)
+
+7.  If you want to build your own R packages, you need the [R Packages](<https://r-pkgs.org>) book.
+
+8.  [Advanced R](https://adv-r.hadley.nz) really gets under the hood of R
+
+9.  Many, many other field-specific books and resources are compiled and organized in the [Big Book of R](https://www.bigbookofr.com/shiny.html)

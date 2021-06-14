@@ -41,9 +41,9 @@ This is the approach taken by Ted Laderas in [Ready for R](https://ready4r.netli
 
 This is also the approach taken by Mine Cetinkaya-Rundel for the [Data Science in a Box](https://datasciencebox.org/index.html) website, which has lots of great lessons and tutorials for learning to use R.
 
-### The Tutorials Tab
+### The Tutorial Tab
 
-There are a number of interactive tutorials in RStudio. These can be found under the **Tutorials** tab at the top right - just click on one of these to get started.
+There are a number of interactive tutorials in RStudio. These can be found under the **Tutorial** tab at the top right - just click on one of these to get started.
 
 ## A video course
 

@@ -33,11 +33,7 @@ Another favorite for beginners is the **RYouWithMe?** [website](https://rladiess
 
 I recommend learning the *tidyverse* first, as these packages are built to work together, and have a consistent logic. Adding some base R later is important as well.
 
-<<<<<<< HEAD
 This is the approach taken by Ted Laderas in [Ready for R](https://ready4r.netlify.app), which is a self-learning course online.
-=======
-This is the approach taken by Ted Laderas in [Ready for R](https://ready4r.netlify.app)
->>>>>>> 80a08e35363421ab09da9d5930431deb1c81454d
 
 This is also the approach taken by Mine Cetinkaya-Rundel for the [Data Science in a Box](https://datasciencebox.org/index.html) website, which has lots of great lessons and tutorials for learning to use R.
 

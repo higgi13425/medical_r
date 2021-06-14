@@ -13,7 +13,10 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(here)
 library(tidyverse)
+library(knitr)
+library(rmarkdown)
 ```
 
 I am often asked for resources to help folks get started in R, especially for folks doing some form of self-study. I **strongly** recommend using R in the RStudio IDE, which makes everything easier.
@@ -74,7 +77,7 @@ If you want to brush up on your statistics while learning R, there are several g
 
 1.  Rmarkdown has 2 helpful books - [The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) and the [Rmarkdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)
 
-2.  You can see how to do a lot with R graphics with the [R Graphics Cookbook](https://r-graphics.org). Other good graphics resources include [Fundamentals of Data Visualization](<https://clauswilke.com/dataviz/>)
+2.  You can see how to do a lot with R graphics with the [R Graphics Cookbook](https://r-graphics.org). Other good graphics resources include [Fundamentals of Data Visualization](<https://clauswilke.com/dataviz/>) and [Data Vizualization](https://socviz.co)
 
 3.  You can learn how to make your own web applications in R in the Shiny framework with [Mastering Shiny](https://mastering-shiny.org)
 

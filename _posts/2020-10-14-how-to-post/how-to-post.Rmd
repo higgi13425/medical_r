@@ -22,7 +22,6 @@ in the R project **medical_r**
 
 and viewable on the web at https://higgi13425.github.io/medical_r/
 
-
 ## 1. Create a new post
 
 run in the Console in RStudio <br>
@@ -51,6 +50,7 @@ knitr::include_graphics(
 
 
 ## 3. Save and Knit
+
 Check the resulting HTML in the Viewer window.
 Repeat steps 2 (Editing) and 3 (Knitting) until you are happy with the post.
 
@@ -58,6 +58,7 @@ Note that you can keep draft = TRUE in the YAML until you are ready to share wit
 
 
 ## 4. Sharing
+
 Make sure draft= FALSE in the YAML of your post.
 
 Then Knit it to HTML for a final time.
@@ -68,6 +69,7 @@ Double check that the HTML looks good before Commit and Push.
 
 
 ## 5. Commit and Push
+
 Click on the Git tab, stage the changed files, Commit them,
 and Push to Github.
 

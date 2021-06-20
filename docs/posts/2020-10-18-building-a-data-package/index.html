@@ -465,8 +465,15 @@ d-title {
   top: 0;
 }
 
+/* adjust viewport for navbar height */
+/* helps vertically center bootstrap (non-distill) content */
+.min-vh-100 {
+  min-height: calc(100vh - 100px) !important;
+}
+
 </style>
 
+<script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
 <link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
 <link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -574,19 +581,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           var results = fuse.search(query, searchOptions);
           callback(results
             .map(function(result) { return result.item; })
-            .filter(function(item) { return !!item.description; })
           );
         },
         templates: {
           suggestion: function(suggestion) {
+            var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+              ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+              : '';
             var html = `
               <div class="search-item">
                 <h3>${suggestion.title}</h3>
                 <div class="search-item-description">
-                  ${suggestion.description}
+                  ${suggestion.description || ''}
                 </div>
                 <div class="search-item-preview">
-                  <img src="${suggestion.preview ? offsetURL(suggestion.preview) : ''}"</img>
+                  ${img}
                 </div>
               </div>
             `;
@@ -609,6 +618,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 
 <style type="text/css">
+
+.nav-search {
+  font-size: x-small;
+}
 
 /* Algolioa Autocomplete */
 
@@ -684,6 +697,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 }
 
 .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+  font-size: 1rem;
   margin-block-start: 0;
   margin-block-end: 5px;
 }
@@ -911,6 +925,11 @@ d-article pre a:hover {
   text-decoration: underline;
 }
 
+d-article details {
+  grid-column: text;
+  margin-bottom: 0.8em;
+}
+
 @media(min-width: 768px) {
 
 d-article pre,
@@ -1065,6 +1084,17 @@ d-article .citation {
 
 div.hanging-indent{
   margin-left: 1em; text-indent: -1em;
+}
+
+/* Citation hover box */
+
+.tippy-box[data-theme~=light-border] {
+  background-color: rgba(250, 250, 250, 0.95);
+}
+
+.tippy-content > p {
+  margin-bottom: 0;
+  padding: 2px;
 }
 
 
@@ -1732,7 +1762,7 @@ function init_distill() {
     var layout = $(this).attr('data-layout');
 
     // apply layout to markdown level block elements
-    var elements = $(this).children().not('div.sourceCode, pre, script');
+    var elements = $(this).children().not('details, div.sourceCode, pre, script');
     elements.each(function(i, el) {
       var layout_div = $('<div class="' + layout + '"></div>');
       if (layout_div.hasClass('shaded')) {
@@ -1847,6 +1877,20 @@ function init_distill() {
     // move appendix-bottom entries to the bottom
     $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
     $('.appendix-bottom').remove();
+
+    // hoverable references
+    $('span.citation[data-cites]').each(function() {
+      var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+      window.tippy(this, {
+        allowHTML: true,
+        content: refHtml,
+        maxWidth: 500,
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start'
+      });
+    });
 
     // clear polling timer
     clearInterval(tid);
@@ -2007,8 +2051,12 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.5/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.9/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
   <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
@@ -2116,16 +2164,16 @@ code {
 
 <div class="d-article">
 <h2 id="getting-started-on-a-data-package">Getting Started on a Data Package</h2>
-<p>Most blog posts about building packages and arm are about bundling functions that are related into a single package.This is a common usage of packages, but at times you may want to share some common data sets with users in the form of a package. This is not as well-documented, but can be valuable. <br><br> A few examples of data packages include:</p>
+<p>Most blog posts about building packages are about bundling functions that are related to each other into a single, thematic package. This is a common usage of packages, but at times you may want to share some common data sets with users in the form of a package. This is not as well-documented, but can be valuable. <br><br> A few examples of data packages include:</p>
 <ul>
 <li>babynames</li>
 <li>fueleconomy</li>
 <li>nasaweather</li>
 <li>nycflights13</li>
-<li>usdanutrients <br><br> To get started, you will want to follow the guidance in the R Packages Book at: <a href="https://r-pkgs.org/whole-game.html" class="uri">https://r-pkgs.org/whole-game.html</a>. This will be a quick getting started guide, relative to the big book (but use it as a reference if you get stuck).</li>
+<li>usdanutrients <br><br> To get started, you will want to follow the guidance in the R Packages Book at: <a href="https://r-pkgs.org/whole-game.html" class="uri">https://r-pkgs.org/whole-game.html</a>. This blog post will be a quick getting started guide, relative to the big R Packages book (but use RP as a reference if you get stuck).</li>
 </ul>
 <h2 id="setup">Setup</h2>
-<p>You want to have a new project open in RStudio, with the project named something like {datapackage} (pick a more appropriate name for your package). You then want to load (library commands in the Console) some critical packages including {devtools}, {usethis}, and {roxygen2}.</p>
+<p>You want to have a new project open in RStudio, with the project named something like {datapackage} (pick a more appropriate name for your particular package). You then want to load (library commands in the Console) some critical packages including {devtools}, {usethis}, and {roxygen2}.</p>
 <ul>
 <li><code>library(devtools)</code></li>
 <li><code>library(usethis)</code></li>
@@ -2141,7 +2189,7 @@ code {
 <p>Now make a git repository to track your versions, by running this in the Console:</p>
 <p><code>use_git()</code></p>
 <p>Go ahead and commit files when prompted to do so.</p>
-<p>If you have never used GitHub before for version control and collaboration, this would be a good time set up a Github account and add a PAT (Personal Access Token) to your computer, using the guidance in Chapter 4 of <strong>Happy Git with R</strong>, at: <a href="https://happygitwithr.com/github-acct.html" class="uri">https://happygitwithr.com/github-acct.html</a></p>
+<p>If you have never used GitHub before for version control and collaboration, this would be a good time set up a Github account at www.github.com and to add a PAT (Personal Access Token) to your computer, using the guidance in Chapter 4 of <strong>Happy Git with R</strong>, at: <a href="https://happygitwithr.com/github-acct.html" class="uri">https://happygitwithr.com/github-acct.html</a></p>
 <p>Details on PATs (you want one, trust me) are found in Appendix B, at: <a href="https://happygitwithr.com/github-pat.html" class="uri">https://happygitwithr.com/github-pat.html</a></p>
 <h2 id="edit-the-description">Edit the Description</h2>
 <p>Look in your Files tab, open the DESCRIPTION file, and edit:</p>
@@ -2153,16 +2201,16 @@ code {
 <h2 id="add-a-license">Add a License</h2>
 <p>Mke your life easy, and run <code>use_mit_license()</code> in the Console</p>
 <h2 id="add-data">Add data</h2>
-<p>In the Files tab in RStudio, create a <code>raw-data</code> folder. Add the files that you want to turn into your accessible datasets. Now create a separate <code>data</code> folder.</p>
+<p>In the Files tab in RStudio, create a <code>raw-data</code> folder in your project. Add the raw files (csv, excel, etc.) that you want to turn into your accessible datasets. <br> Now create a separate <code>data</code> folder in your project.</p>
 <p>In the <code>raw-data</code> folder, create a new R script named <code>prep_data.R</code>. In this file, wrangle, filter, or otherwise prepare your datasets. Let’s pretend you have a datafile that you have wrangled from Excel, and it is now a dataframe named <code>sportsdata</code>.</p>
-<p>Then save this datasets in <code>*.rda</code> format, as <code>sportsdata.rda</code>. Pick the name carefully, as you will have to live with it for a long time.</p>
-<p>In this script, do this saving with with <code>saveRDS(sportsdata, "data-raw/sportsdata.Rdata")</code></p>
-<p>Then <strong>use</strong> the data (put in proper format in the <code>data</code> folder) with the following line in your script:</p>
+<p>Now you want to save this datasets in <code>*.rda</code> format, as <code>sportsdata.rda</code>. Pick the name carefully, as you will have to live with it for a long time.</p>
+<p>In this script, do this saving step with with <code>saveRDS(sportsdata, "data-raw/sportsdata.Rdata")</code></p>
+<p>Then <strong>use</strong> the data (put the data in the proper format in the <code>data</code> folder) with the following line in your script:</p>
 <p><code>usethis::use_data(sportsdata, overwrite = TRUE)</code></p>
-<h2 id="install">Install</h2>
+<h2 id="installing-the-package">Installing the Package</h2>
 <h2 id="deal-with-dependencies">Deal with Dependencies</h2>
 <p>Do you need to use other packages to run functions (most of the time not, for a data package)?</p>
-<p>On the off chance you do, you will want to run: <code>use_package()</code></p>
+<p>On the off chance you do, you will want to run: <code>use_package("packagename")</code></p>
 <p>As in, if you need readr to read in some data, run in the Console:</p>
 <p><code>use_package('readr')</code></p>
 <h2 id="set-up-for-push-to-github">Set up for push to GitHub</h2>
@@ -2174,13 +2222,13 @@ code {
 <p>Typically you include:</p>
 <ul>
 <li>a short description, in a sentence or two.</li>
-<li>after the <span class="citation" data-cites="format">@format</span> statement, details on the format (dataframe) and the dimensions (how many rows, how many columns), and a short description of each variable, with levels or units; and the data type.</li>
+<li>after the <span class="citation" data-cites="format">@format</span> statement, details on the format (dataframe) and the dimensions (how many rows, how many columns), and a short description of each variable (item), with levels or units; and the data type.</li>
 <li>after the <span class="citation" data-cites="source">@source</span> statement, a description of where the data came from, often including a link.</li>
 </ul>
 <p>This looks something like:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='co'>#' Baby names.</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#' Baby names.</span>
 <span class='co'>#'</span>
 <span class='co'>#' Full baby name data provided by the SSA. This includes all names with at</span>
 <span class='co'>#' least 5 uses.</span>
@@ -2208,12 +2256,13 @@ code {
 </code></pre>
 </div>
 </div>
-<p>To build this into a proper help file, you need to run <code>devtools::document()</code>. This will use roxygen2 to convert this to a *.Rd file in the <code>man</code> folder. This provides the “manual” for your data.</p>
-<p>To build this into the package, re-build the package, with Cmd-Shift-B (Mac) or Ctrl-Shift-B (Windows). This will rebuild the package and restart R.</p>
+<p>Note that use can use Rmarkdown formatting for this file (and for similar files throughout your package) if you add the following line to your package DESCRIPTION file: <br> <code>Roxygen: list(markdown = TRUE)</code></p>
+<p>To build your roxygen2 document into a proper help file, you need to run <code>devtools::document()</code>. This will use roxygen2 to convert this <code>*.R</code> script file to a <code>*.Rd</code> file in the <code>man</code> folder. This provides the “manual” for your data.</p>
+<p>To build this into the package, re-build the package, with Cmd-Shift-B (Mac) or Ctrl-Shift-B (Windows), or click on the <code>Install and Restart</code> button under the Build tab in RStudio. This will rebuild the package, restart R, install the package, and load (library) the package.</p>
 <p>Now you should be able to call from the console:</p>
 <p><code>?dataset</code> or <code>help(dataset)</code></p>
 <p>and see your documentation.</p>
-<p>Then save it and make a Git commit and push the updated package up to your Github repository.</p>
+<p>Then save the files and make a Git commit and then push the updated package up to your Github repository.</p>
 <h2 id="advanced-documentation">Advanced documentation</h2>
 <p><em>Description Document</em> You can write a long description of the provenance of the data, when and how it was collected, where it was published in a journal, etc. (go for it, provide all the details!) in a Rmarkdown file (named something like datapackage_desc.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can read up on your datasets. <br><br> <em>Codebook Document</em> You can create a nice table of each variable, a longer description, units of measurement, levels/category codes and what they mean, in a nicely formatted Rmd table. Create a Rmarkdown file (named something like datapackage_codebook.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can know what each variable in your dataset is about.</p>
 <h2 id="add-a-readme">Add a README</h2>

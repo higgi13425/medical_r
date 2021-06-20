@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Getting Started on a Data Package
 
-Most blog posts about building packages and arm are about bundling functions that are related into a single package.This is a common usage of packages, but at times you may want to share some common data sets with users in the form of a package. This is not as well-documented, but can be valuable.
+Most blog posts about building packages are about bundling functions that are related to each other into a single, thematic package. This is a common usage of packages, but at times you may want to share some common data sets with users in the form of a package. This is not as well-documented, but can be valuable.
 <br><br>
 A few examples of data packages include:
 
@@ -28,10 +28,10 @@ A few examples of data packages include:
 - usdanutrients
 <br><br>
 To get started, you will want to follow the guidance in the R Packages Book at: https://r-pkgs.org/whole-game.html.
-This will be a quick getting started guide, relative to the big book (but use it as a reference if you get stuck).
+This blog post will be a quick getting started guide, relative to the big R Packages book (but use RP as a reference if you get stuck).
 
 ## Setup
-You want to have a new project open in RStudio, with the project named something like {datapackage} (pick a more appropriate name for your package). You then want to load (library commands in the Console) some critical packages including {devtools}, {usethis}, and {roxygen2}.
+You want to have a new project open in RStudio, with the project named something like {datapackage} (pick a more appropriate name for your particular package). You then want to load (library commands in the Console) some critical packages including {devtools}, {usethis}, and {roxygen2}.
 
 - `library(devtools)`
 - `library(usethis)`
@@ -45,6 +45,7 @@ Then use the *create_package()* function to create your new package {datapackage
 This will set up your directories and folders in the current project to help you create a package.
 
 ## Versioning with Git and Github
+
 If you have never used git before for version control, this would be a good time to install and initialize git on your computer, using the guidance in Chapter 6 of **Happy Git with R**, at: 
 https://happygitwithr.com/install-git.html 
 
@@ -56,7 +57,7 @@ Now make a git repository to track your versions, by running this in the Console
 
 Go ahead and commit files when prompted to do so.
 
-If you have never used GitHub before for version control and collaboration, this would be a good time set up a Github account and add a PAT (Personal Access Token) to your computer, using the guidance in Chapter 4 of **Happy Git with R**, at: 
+If you have never used GitHub before for version control and collaboration, this would be a good time set up a Github account at www.github.com and to add a PAT (Personal Access Token) to your computer, using the guidance in Chapter 4 of **Happy Git with R**, at: 
 https://happygitwithr.com/github-acct.html
 
 Details on PATs (you want one, trust me) are found in Appendix B, at: https://happygitwithr.com/github-pat.html
@@ -75,28 +76,29 @@ run
 in the Console
 
 ## Add data
-In the Files tab in RStudio, create a `raw-data` folder. Add the files that you want to turn into your accessible datasets. 
-Now create a separate `data` folder. 
+In the Files tab in RStudio, create a `raw-data` folder in your project. Add the raw files (csv, excel, etc.) that you want to turn into your accessible datasets. 
+<br>
+Now create a separate `data` folder in your project. 
 
 In the `raw-data` folder, create a new R script named `prep_data.R`.
 In this file, wrangle, filter, or otherwise prepare your datasets. Let's pretend you have a datafile that you have wrangled from Excel, and it is now a dataframe named `sportsdata`.
 
-Then save this datasets in `*.rda` format, as `sportsdata.rda`. Pick the name carefully, as you will have to live with it for a long time.
+Now you want to save this datasets in `*.rda` format, as `sportsdata.rda`. Pick the name carefully, as you will have to live with it for a long time.
 
-In this script, do this saving with with
+In this script, do this saving step with with
 `saveRDS(sportsdata, "data-raw/sportsdata.Rdata")`
 
-Then **use** the data (put in proper format in the `data` folder) with the following line in your script:
+Then **use** the data (put the data in the proper format in the `data` folder) with the following line in your script:
 
 `usethis::use_data(sportsdata, overwrite = TRUE)`
 
-## Install
+## Installing the Package
 
 ## Deal with Dependencies
 Do you need to use other packages to run functions (most of the time not, for a data package)?
 
 On the off chance you do, you will want to run:
-`use_package()`
+`use_package("packagename")`
 
 As in, if you need readr to read in some data, run in the Console:
 
@@ -116,7 +118,7 @@ In this file, you can add roxygen2 documentation, which looks like a long list o
 Typically you include: 
 
 - a short description, in a sentence or two.
-- after the @format statement, details on the format (dataframe) and the dimensions (how many rows, how many columns), and a short description of each variable, with levels or units; and the data type.
+- after the @format statement, details on the format (dataframe) and the dimensions (how many rows, how many columns), and a short description of each variable (item), with levels or units; and the data type.
 - after the @source statement, a description of where the data came from, often including a link.
 
 This looks something like:
@@ -149,10 +151,13 @@ This looks something like:
 "lifetables"
 ```
 
-To build this into a proper help file, you need to run
-`devtools::document()`.  This will use roxygen2 to convert this to a *.Rd file in the `man` folder. This provides the "manual" for your data.
+Note that use can use Rmarkdown formatting for this file (and for similar files throughout your package) if you add the following line to your package DESCRIPTION file: <br>
+`Roxygen: list(markdown = TRUE)`
 
-To build this into the package, re-build the package, with Cmd-Shift-B (Mac) or Ctrl-Shift-B (Windows). This will rebuild the package and restart R.
+To build your roxygen2 document into a proper help file, you need to run
+`devtools::document()`.  This will use roxygen2 to convert this `*.R` script file to a `*.Rd` file in the `man` folder. This provides the "manual" for your data.
+
+To build this into the package, re-build the package, with Cmd-Shift-B (Mac) or Ctrl-Shift-B (Windows), or click on the `Install and Restart` button under the Build tab in RStudio. This will rebuild the package, restart R, install the package, and load (library) the package.
 
 Now you should be able to call from the console:    
 
@@ -160,7 +165,7 @@ Now you should be able to call from the console:
 
 and see your documentation.
 
-Then save it and make a Git commit and push the updated package up to your Github repository.
+Then save the files and make a Git commit and then push the updated package up to your Github repository.
 
 
 ## Advanced documentation

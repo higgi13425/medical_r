@@ -29,6 +29,12 @@ One of my favorites for installing and getting started with R and RStudio, espec
 
 Another favorite for beginners is the **RYouWithMe?** [website](https://rladiessydney.org/courses/ryouwithme/) from R-Ladies Sydney. This website has a lot of good starter tutorials on data cleaning, visualization, and producing output documents with RMarkdown.
 
+```{r, echo=FALSE, fig.width=9}
+knitr::include_graphics(here("_posts/2021-06-13-resources-for-getting-started-in-r/RYouWithMe.jpg"))
+```
+
+
+
 ## Start Tidy (in a Box)
 
 I recommend learning the *tidyverse* first, as these packages are built to work together, and have a consistent logic. Adding some base R later is important as well.

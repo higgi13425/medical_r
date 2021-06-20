@@ -222,7 +222,7 @@ So if you are ever facing a spreadsheet where data is encoded as colors, hopeful
 
 You can get more information about {tidyxl} and where to find formatting like bold, etc. [here](https://cran.r-project.org/web/packages/tidyxl/vignettes/tidyxl.html). The official pkgdown website and reference manual for {tidyxl} can be found [here](https://nacnudus.github.io/tidyxl/index.html). You can unpack lots of badly assembled spreadsheets with the {tidyxl} and {unpivotr} packages. This is well beyond the scope of this post, but there are lots of worked [examples](https://github.com/nacnudus/ukfarm), an online [cookbook](https://nacnudus.github.io/spreadsheet-munging-strategies/), and even [screencasts](https://www.youtube.com/watch?v=1sinC7wsS5U).
 
----
+------------------------------------------------------------------------
 
 This blog was created with the {distill} package. Distill is a publication format for scientific and technical writing, native to the web.
 

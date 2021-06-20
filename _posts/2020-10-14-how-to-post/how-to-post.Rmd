@@ -37,6 +37,16 @@ All the usual Rmarkdown features, including embedding code chunks, images, video
 
 https://rmarkdown.rstudio.com/authoring_basics.html 
 
+### Adding Images to your Post
+1. load the `here()` package in the setup chunk.
+2. save the image you want with a short name in the same post folder as your blog post, adjacent to the Rmd file. Note the image name and extension.
+3. Insert a code chunk that looks like this, but with echo = FALSE, and eval = TRUE
+```{r, echo=TRUE, fig.width=9, eval=FALSE, error= TRUE}
+knitr::include_graphics(
+  here("_posts/YYYY-MM-DD-post-name/image-name.jpg or png"))
+# spacer comment
+
+```
 
 ## 3. Save and Knit
 Check the resulting HTML in the Viewer window.

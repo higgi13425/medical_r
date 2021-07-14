@@ -85,640 +85,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Medical R: About this blog</title>
+  <title>Using {webex} to add mini-interactive exercises to bookdown</title>
 
-  <meta property="description" itemprop="description" content="Some additional details about the blog."/>
+  <meta property="description" itemprop="description" content="Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
 
 
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-07-14"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-07-14"/>
+  <meta name="article:author" content="Peter Higgins"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Medical R: About this blog"/>
+  <meta property="og:title" content="Using {webex} to add mini-interactive exercises to bookdown"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Some additional details about the blog."/>
+  <meta property="og:description" content="Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="Medical R"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Medical R: About this blog"/>
-  <meta property="twitter:description" content="Some additional details about the blog."/>
-  <meta property="twitter:site" content="@ibddoctor"/>
-  <meta property="twitter:creator" content="@ibddoctor"/>
+  <meta property="twitter:title" content="Using {webex} to add mini-interactive exercises to bookdown"/>
+  <meta property="twitter:description" content="Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["About this blog"]},{"type":"character","attributes":{},"value":["Some additional details about the blog."]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Using {webex} to add mini-interactive exercises to bookdown"]},{"type":"character","attributes":{},"value":["Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Peter Higgins"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["07-14-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["using-webex-to-add-mini-interactive-exercises-to-bookdown_files/anchor-4.2.2/anchor.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/bowser-1.9.3/bowser.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/distill-2.2.21/template.v2.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/header-attrs-2.9/header-attrs.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/jquery-1.11.3/jquery.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/popper-2.6.0/popper.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy-bundle.umd.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy-light-border.css","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy.css","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy.umd.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
   <!--radix_placeholder_navigation_in_header-->
-  <meta name="distill:offset" content=""/>
-
-  <script type="application/javascript">
-
-    window.headroom_prevent_pin = false;
-
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        tolerance: 5,
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
-  </script>
-
-  <style type="text/css">
-
-  /* Theme (user-documented overrideables for nav appearance) */
-
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #0F2E3D;
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .distill-site-nav a:hover {
-    color: white;
-  }
-
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-
-  .distill-site-header {
-
-  }
-
-  .distill-site-footer {
-
-  }
-
-
-  /* Site Header */
-
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-
-
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-
-  .distill-site-header .title {
-    font-size: 18px;
-    min-width: 150px;
-  }
-
-  .distill-site-header .logo {
-    padding: 0;
-  }
-
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-
-
-
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-
-
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-dropdown-active {
-    display: block;
-  }
-
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative; min-height: 500px; }
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-
-  /* Site Footer */
-
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-
-  /* Headroom */
-
-  d-title {
-    padding-top: 6rem;
-  }
-
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-
-  .headroom--unpinned {
-    top: -100px;
-  }
-
-  .headroom--pinned {
-    top: 0;
-  }
-
-  /* adjust viewport for navbar height */
-  /* helps vertically center bootstrap (non-distill) content */
-  .min-vh-100 {
-    min-height: calc(100vh - 100px) !important;
-  }
-
-  </style>
-
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-
-  <script type="application/javascript">
-
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-
-  function createFuseIndex() {
-
-    // create fuse index
-    var options = {
-      keys: [
-        { name: 'title', weight: 20 },
-        { name: 'categories', weight: 15 },
-        { name: 'description', weight: 10 },
-        { name: 'contents', weight: 5 },
-      ],
-      ignoreLocation: true,
-      threshold: 0
-    };
-    var fuse = new window.Fuse([], options);
-
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-
-    createFuseIndex()
-      .then(function(fuse) {
-
-        // make search box visible
-        searchEl.classList.remove('hidden');
-
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
-                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
-                : '';
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description || ''}
-                  </div>
-                  <div class="search-item-preview">
-                    ${img}
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-  });
-
-  </script>
-
-  <style type="text/css">
-
-  .nav-search {
-    font-size: x-small;
-  }
-
-  /* Algolioa Autocomplete */
-
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    font-size: 1rem;
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  </style>
-
-
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -2034,74 +1433,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
-  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
-  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
-  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
-  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/header-attrs-2.9/header-attrs.js"></script>
+  <script src="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/popper-2.6.0/popper.min.js"></script>
+  <link href="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
-  <style type="text/css">
-  .distill-site-nav {
-    color: #FFFFFF; 
-    background-color: #01824F;
-    font-size: 20px;
-    font-weight: 900;
-  }
-
-  .distill-site-nav a:hover {
-    color: #333333;
-  }
-
-  /* Change appearance of headers */
-  h1, h2, h3, h4, h5 {
-    font-family: 'Lato', sans-serif;
-    color: color: #333333;
-  }
-
-  /* Import fonts from Google's API */
-  @import url('https://fonts.googleapis.com/css2?family=Lato');
-  @import url('https://fonts.googleapis.com/css2?family=Fira+Mono');
-
-  /* Use specific font in the body of the text */
-  html, body, p {
-    
-    font-family: 'Lato', sans-serif;
-    font-weight: 200;
-    line-height: 1.3; 
-    font-size: 1.0em;
-    color: #333333;
-    font-style: normal;
-    
-  }
-
-  /* Change the appearance of regular code chunks */
-  d-article div.sourceCode code, 
-  d-article pre code {
-  	font-family: "Fira Code", monospace;
-  	color: #000000;
-    background-color: #FFFFF0; 
-    line-height: 80%;
-    font-weight: 400;
-  	font-size: 1.1rem;
-  }
-
-  /* Change the appearance of in-line code chunks */
-  code {
-    font-family: 'Fira Code', Monospace;
-    color: #000000;
-    background-color: #FFFFF0; 
-    line-height: 80%;
-    font-weight: 400;
-    font-size: 1em;
-  }
-  </style>
   <!--/radix_placeholder_site_in_header-->
 
-  <link rel="stylesheet" href="styles.css" type="text/css"/>
 
 </head>
 
@@ -2110,57 +1454,99 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"About this blog","description":"Some additional details about the blog.","authors":[]}
+{"title":"Using {webex} to add mini-interactive exercises to bookdown","description":"Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.","authors":[{"author":"Peter Higgins","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-14T00:00:00.000+00:00","citationText":"Higgins, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a href="index.html" class="title">Medical R</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>About this blog</h1>
+<h1>Using {webex} to add mini-interactive exercises to bookdown</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Some additional details about the blog.</p></p>
+<p><p>Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.</p></p>
 </div>
 
+<div class="d-byline">
+  Peter Higgins true 
+  
+<br/>07-14-2021
+</div>
 
 <div class="d-article">
-<h3 id="about-me">About me</h3>
-<p>My name is Peter Higgins, and I work at the University of Michigan, where I am a Professor of Internal Medicine and take care of patients with Inflammatory Bowel Disease. I do a variety of research projects related to Inflammatory Bowel Disease, which range from basic science to translational drug development to clinical trials to epidemiology.<br> <br> Some of the posts here are largely notes to myself to help in writing an e-book about Reproducible Medical Research in R (RMRWR). Other posts will essentially be first drafts of future chapters of RMRWR, which is a work in progress. The RMRWR e-book can be found here: <a href="https://bookdown.org/pdr_higgins/rmrwr/" class="uri">https://bookdown.org/pdr_higgins/rmrwr/</a></p>
-<h3 id="about-this-blog">About This Blog</h3>
-<p>I am blogging about the use of R with medical data, and will tackle topics like</p>
+<h1 id="putting-web-exercises-in-a-bookdown-book">Putting Web Exercises in a Bookdown book</h1>
+<p>There is a large benefit to providing rapid, frequent interactive feedback during teaching, to test and challenge whether students truly understood the most recent chunk of the material. This is familiar in medicine to folks who used Dubin’s book to learn EKG interpretation. <a href="https://www.amazon.com/Rapid-Interpretation-EKGs-Sixth-Dubin/dp/0912912065l" class="uri">https://www.amazon.com/Rapid-Interpretation-EKGs-Sixth-Dubin/dp/0912912065l</a>.</p>
+<p>The {webex} package, by Prof. Lisa Debruine and her PsyTeachR team at the University of Glasgow, allows insertion of small web exercises into a bookdown book.</p>
+<h2 id="setup">Setup</h2>
+<p>You want to set up an “include” folder in the root directory of your bookdown book. Go to the root directory (open your bookdown project, use the directory with the your_book_name.Rproj file), and click on New Folder at the top left of the Files tab. Name the new folder “include”.</p>
+<p>Use File/New File/CSS to create a new, empty CSS file. Save this in the ‘include’ folder as webex.css. Leave this file open.</p>
+<p>Use File/New File/Javascript to create a new, empty Javascript file. Save this in the ‘include’ folder as webex.js. Leave this file open.</p>
+<p>You need the latest webex.css and webex.js files from the PsyTeachR project. These can be found at: <a href="https://github.com/PsyTeachR/webex/tree/master/inst/reports/default" class="uri">https://github.com/PsyTeachR/webex/tree/master/inst/reports/default</a>. Use a web browser to go to this github repository, then open the webex.css file.</p>
+<p>Copy the contents of the webex.css file in the github repository, then paste this into the webex.css file in RStudio. Now save this file. You can now close this file.</p>
+<p>Now copy the contents of the webex.js file in the github repository, then paste this into the webex.js file in RStudio. Now save this file. You can now close this file.</p>
+<p>Now go back to the root directory of your bookdown project. Find and open the output.yml file.</p>
+<p>This likely looks something like:</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>You will need to edit the css line. It should end up looking like this:</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>This will use the webex.css instructions, then your local style.css instructions. Be sure to use the brackets and comma.</p>
+<p>Now you need to add the reference to the javascript file. Edit your _outlook.yml file to look like this:</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>Be careful with the tabs and colons, or the javascript won’t be found.</p>
+<h2 id="coding-some-mini-exercises">Coding some mini-exercises</h2>
+<p>There are four types of available exercises</p>
+<ol type="1">
+<li>True/False (torf)</li>
+<li>Multiple choice question (mcq)</li>
+<li>Fill in the blank (fitb)</li>
+<li>Hide and unhide (hide/unhide) for hints and solutions, or more explanation.</li>
+</ol>
+<p>These are created with inline R code, which requires backticks at beginning and end, and needs to start with r, like <br> <br> 2^3 is <code>`r fitb('8')`</code></p>
+<p>You can do this with TRUE/FALSE</p>
+<h3 id="true-or-false">True or False</h3>
+<p>England always wins the World Cup. This statement is <code>`r torf(FALSE)`</code></p>
+<h3 id="multiple-choice">Multiple choice</h3>
+<p>Which actor played Luke Skywalker in the movie Star Wars? <code>`r webex::mcq(c('Alec Guinness', answer = 'Mark Hamill', 'Harrison Ford'))`</code></p>
+<h3 id="fill-in-the-blank">Fill in the blank</h3>
+<p>2^3 is <code>`r fitb('8')`</code></p>
+<h3 id="hide-and-unhide">Hide and Unhide</h3>
+<p>This is helpful for hints, solutions, or detailed explanations that not everyone will want to/need to read.</p>
+<p>You create a Button with a text label on it, then text and/or a code chunk in a box that will be revealed when the button is clicked.</p>
+<p>This starts with one line</p>
+<p><code>`r hide('text on the button')`</code></p>
+<p>Then a blank line. Then your solution or hint text, and/or a code chunk. Then a blank line.</p>
+<p>Followed by a line</p>
+<p><code>`r unhide()`</code></p>
+<h2 id="fencing-these-off">Fencing these off</h2>
+<p>You can create horizontal lines with 5 asterisks</p>
+<hr />
+<p>interactive exercises and buttons here</p>
+<hr />
+<h2 id="rendering">Rendering</h2>
+<p>This will not work in chapter Preview - the whole yaml needs to be processed. So render the book with</p>
+<p><code>bookdown::render_book('index.Rmd')</code></p>
+<p>Then view the resulting <code>_book/index.html</code> file in your browser to see these webex HTML widgets in action.</p>
+<h2 id="tweaking-the-css-format">Tweaking the css format</h2>
+<p>You can fiddle with:</p>
 <ul>
-<li>best practices for data collection and entry</li>
-<li>data security and PHI</li>
-<li>how to build <code>learnr</code> modules for teaching</li>
-<li>how to build <code>flipbooks</code> for teaching</li>
-<li>how to build an e-book with bookdown</li>
+<li>background-color</li>
+<li>color (text color)</li>
+<li>height (in em)</li>
+<li>margin-bottom</li>
+<li>border-radius (in px)</li>
+<li>border-color</li>
+<li>padding (in em)</li>
 </ul>
-<h3 id="contact">Contact</h3>
-<p>You should probably just tweet me <a href="https://twitter.com/ibddoctor"><code>@ibddoctor</code></a>.</p>
-<h3 id="would-you-like-to-build-your-own-blog">Would you like to build your own blog?</h3>
-<p>If you would like to build a <code>distill</code>-based blog like this, start with the walk-through from Thomas Mock at:</p>
-<p><a href="https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/" class="uri">https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/</a></p>
-<p>and also follow the RStudio guide at:</p>
-<p><a href="https://rstudio.github.io/distill/publish_website.html" class="uri">https://rstudio.github.io/distill/publish_website.html</a></p>
-<p>This website is published with Github Pages (using Rmarkdown and the <code>distill</code> framework, rather than Github’s <code>jekyll</code> default), and details on how to set up your Github repo as a webpage can be found at:</p>
-<p><a href="https://guides.github.com/features/pages/" class="uri">https://guides.github.com/features/pages/</a></p>
+<p>Named CSS colors can be found here <a href="https://www.w3schools.com/cssref/css_colors.asp" class="uri">https://www.w3schools.com/cssref/css_colors.asp</a> or use #rgbhex like #F0FFFF, or rgba (a is alpha), like rgba(0,0,0,0.1) is a light gray.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

@@ -7,7 +7,15 @@
     <description>A blog about the use of R with medical data.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 13 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Using {webex} to add mini-interactive exercises to bookdown</title>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown</link>
+      <description>Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.</description>
+      <guid>https://higgi13425.github.io/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown</guid>
+      <pubDate>Wed, 14 Jul 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Resources for Getting Started in R</title>
       <dc:creator>Peter Higgins</dc:creator>
@@ -15,6 +23,7 @@
       <description>An assortment of resources for learning R, for beginner to advanced users.</description>
       <guid>https://higgi13425.github.io/posts/2021-06-13-resources-for-getting-started-in-r</guid>
       <pubDate>Sun, 13 Jun 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://higgi13425.github.io/posts/2021-06-13-resources-for-getting-started-in-r/RYouWithMe.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
       <title>Extracting Highlighting as Data from Excel Spreadsheets with {tidyxl}</title>

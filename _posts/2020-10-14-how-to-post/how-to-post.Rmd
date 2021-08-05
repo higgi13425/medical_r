@@ -45,7 +45,6 @@ https://rmarkdown.rstudio.com/authoring_basics.html
 knitr::include_graphics(
   here("_posts/YYYY-MM-DD-post-name/image-name.jpg or png"))
 # spacer comment
-
 ```
 
 

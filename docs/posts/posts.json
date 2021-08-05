@@ -176,8 +176,8 @@
     "categories": [],
     "contents": "\nFor the distill blog Medical R, based on the repo at https://github.com/higgi13425/medical_r\nin the R project medical_r\nand viewable on the web at https://higgi13425.github.io/medical_r/\n1. Create a new post\nrun in the Console in RStudio distill::create_post(\"title-of-post\")\nthis creates a new Rmd document for editing, inside the _posts folder, and within its own date-title specific folder inside the _posts folder. You can now edit this Rmd, including the title in the YAML header.\n2. Editing\nAll the usual Rmarkdown features, including embedding code chunks, images, videos, etc.\nhttps://rmarkdown.rstudio.com/authoring_basics.html\nAdding Images to your Post\nload the here() package in the setup chunk.\nsave the image you want with a short name in the same post folder as your blog post, adjacent to the Rmd file. Note the image name and extension.\nInsert a code chunk that looks like this, but with echo = FALSE, and eval = TRUE\n\n\nknitr::include_graphics(\n  here(\"_posts/YYYY-MM-DD-post-name/image-name.jpg or png\"))\n# spacer comment\n\n\n\n\n3. Save and Knit\nCheck the resulting HTML in the Viewer window. Repeat steps 2 (Editing) and 3 (Knitting) until you are happy with the post.\nNote that you can keep draft = TRUE in the YAML until you are ready to share with the world\n4. Sharing\nMake sure draft= FALSE in the YAML of your post.\nThen Knit it to HTML for a final time.\nThen click on the Build Tab, and click on Build Website.\nDouble check that the HTML looks good before Commit and Push.\n5. Commit and Push\nClick on the Git tab, stage the changed files, Commit them, and Push to Github.\nWait 1-3 min, then refresh the website at Medical R https://higgi13425.github.io/medical_r/\nto see the results.\n6. A Warning Note\nBuilding the website will not re-knit posts. You have to choose to knit any post that you edit.\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-06-20T15:53:55-04:00",
-    "input_file": {}
+    "last_modified": "2021-08-05T18:48:15-04:00",
+    "input_file": "how-to-post.knit.md"
   },
   {
     "path": "posts/2020-10-14-micro-flipbooks/",

@@ -151,6 +151,8 @@ This looks something like:
 "lifetables"
 ```
 
+Note that this is fairly easy to do for 2-22 variables, but can get ugly to do by hand when you have over 100 variables. At this point, it can be helpful to use a code solution to automate creating the `items`. The `generate_variable_items_roxygen.R` file in the RCode folder is very helpful for this. It will glue together text to make a rough draft of all the items, with output in the Console. You can copy and paste this into your `dataset.R` file to get started. The NAs need to be edited to full variable name, add units, or definitions of numeric codes.
+
 (OPTIONAL} Note that use can use Rmarkdown formatting for this file (and for similar files throughout your package) if you add the following line to your package DESCRIPTION file: <br>
 `Roxygen: list(markdown = TRUE)`
 

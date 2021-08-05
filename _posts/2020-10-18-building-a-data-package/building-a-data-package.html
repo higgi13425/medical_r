@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["building-a-data-package_files/anchor-4.2.2/anchor.min.js","building-a-data-package_files/bowser-1.9.3/bowser.min.js","building-a-data-package_files/distill-2.2.21/template.v2.js","building-a-data-package_files/header-attrs-2.4/header-attrs.js","building-a-data-package_files/header-attrs-2.5/header-attrs.js","building-a-data-package_files/jquery-1.11.3/jquery.min.js","building-a-data-package_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["building-a-data-package_files/anchor-4.2.2/anchor.min.js","building-a-data-package_files/bowser-1.9.3/bowser.min.js","building-a-data-package_files/distill-2.2.21/template.v2.js","building-a-data-package_files/header-attrs-2.4/header-attrs.js","building-a-data-package_files/header-attrs-2.5/header-attrs.js","building-a-data-package_files/header-attrs-2.9/header-attrs.js","building-a-data-package_files/jquery-1.11.3/jquery.min.js","building-a-data-package_files/popper-2.6.0/popper.min.js","building-a-data-package_files/tippy-6.2.7/tippy-bundle.umd.min.js","building-a-data-package_files/tippy-6.2.7/tippy-light-border.css","building-a-data-package_files/tippy-6.2.7/tippy.css","building-a-data-package_files/tippy-6.2.7/tippy.umd.min.js","building-a-data-package_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1570,13 +1570,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<p>Note that use can use Rmarkdown formatting for this file (and for similar files throughout your package) if you add the following line to your package DESCRIPTION file: <br> <code>Roxygen: list(markdown = TRUE)</code></p>
+<p>(OPTIONAL} Note that use can use Rmarkdown formatting for this file (and for similar files throughout your package) if you add the following line to your package DESCRIPTION file: <br> <code>Roxygen: list(markdown = TRUE)</code></p>
 <p>To build your roxygen2 document into a proper help file, you need to run <code>devtools::document()</code>. This will use roxygen2 to convert this <code>*.R</code> script file to a <code>*.Rd</code> file in the <code>man</code> folder. This provides the “manual” for your data.</p>
 <p>To build this into the package, re-build the package, with Cmd-Shift-B (Mac) or Ctrl-Shift-B (Windows), or click on the <code>Install and Restart</code> button under the Build tab in RStudio. This will rebuild the package, restart R, install the package, and load (library) the package.</p>
 <p>Now you should be able to call from the console:</p>
 <p><code>?dataset</code> or <code>help(dataset)</code></p>
 <p>and see your documentation.</p>
 <p>Then save the files and make a Git commit and then push the updated package up to your Github repository.</p>
+<h2 id="documenting-for-a-pkgdown-website">Documenting for a pkgdown website</h2>
+<p>If you have built a pkgdown website, you will want to add your new datasets to the website when you add them to the package.</p>
+<ul>
+<li>build the *.R documentation in the R folder</li>
+<li>build the *.Rd documentation in the man folder, with <code>devtools::document()</code></li>
+<li>add the new dataset to the _pkgdown.yml file as <br> <code>- dataset</code></li>
+<li>run <code>pkgdown::build_site()</code></li>
+<li>check the website preview - if OK</li>
+<li>Commit and push project to GitHub</li>
+</ul>
 <h2 id="advanced-documentation">Advanced documentation</h2>
 <p><em>Description Document</em> You can write a long description of the provenance of the data, when and how it was collected, where it was published in a journal, etc. (go for it, provide all the details!) in a Rmarkdown file (named something like datapackage_desc.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can read up on your datasets. <br><br> <em>Codebook Document</em> You can create a nice table of each variable, a longer description, units of measurement, levels/category codes and what they mean, in a nicely formatted Rmd table. Create a Rmarkdown file (named something like datapackage_codebook.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can know what each variable in your dataset is about.</p>
 <h2 id="add-a-readme">Add a README</h2>

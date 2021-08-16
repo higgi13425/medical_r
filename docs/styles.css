@@ -22,14 +22,12 @@ h1, h2, h3, h4, h5 {
 
 /* Use specific font in the body of the text */
 html, body, p {
-  
   font-family: 'Atkinson Hyperlegible', sans-serif;
   font-weight: 200;
   line-height: 1.6; 
   font-size: 1.4em;
   color: #333333;
   font-style: normal;
-  
 }
 
 /* Change the appearance of regular code chunks */
@@ -51,4 +49,23 @@ code {
   line-height: 80%;
   font-weight: 400;
   font-size: 1em;
+}
+
+/* Change the appearance of text links */
+/* unvisited text link */
+p a:link  {
+    color: #01824F;
+    border-bottom: 1px dashed;
+}
+/* mouse over link */
+p a:hover  {
+    color: #006400;
+    border-bottom: 1px solid;
+    background: #7CFC00;
+}
+/* click link */
+p a:active  {
+    color: #000000;
+    border-bottom: 2px solid;
+    background: #90EE90;
 }

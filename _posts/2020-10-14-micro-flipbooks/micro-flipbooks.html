@@ -307,6 +307,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-decoration: underline;
   }
 
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
   @media(min-width: 768px) {
 
   d-article pre,
@@ -461,6 +466,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   div.hanging-indent{
     margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
   }
 
 
@@ -1128,7 +1144,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       var layout = $(this).attr('data-layout');
 
       // apply layout to markdown level block elements
-      var elements = $(this).children().not('div.sourceCode, pre, script');
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
       elements.each(function(i, el) {
         var layout_div = $('<div class="' + layout + '"></div>');
         if (layout_div.hasClass('shaded')) {
@@ -1243,6 +1259,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       // move appendix-bottom entries to the bottom
       $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
       $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
 
       // clear polling timer
       clearInterval(tid);
@@ -1403,8 +1433,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="micro-flipbooks_files/header-attrs-2.6/header-attrs.js"></script>
+  <script src="micro-flipbooks_files/header-attrs-2.10/header-attrs.js"></script>
   <script src="micro-flipbooks_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="micro-flipbooks_files/popper-2.6.0/popper.min.js"></script>
+  <link href="micro-flipbooks_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="micro-flipbooks_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="micro-flipbooks_files/tippy-6.2.7/tippy.umd.min.js"></script>
   <script src="micro-flipbooks_files/anchor-4.2.2/anchor.min.js"></script>
   <script src="micro-flipbooks_files/bowser-1.9.3/bowser.min.js"></script>
   <script src="micro-flipbooks_files/webcomponents-2.0.0/webcomponents.js"></script>
@@ -1484,12 +1518,12 @@ Edit opts_chunk$set to include
 <p>For a consistent style, I use:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='fu'>xaringanthemer</span><span class='fu'>::</span><span class='fu'><a href='https://pkg.garrickadenbuie.com/xaringanthemer//reference/style_duo_accent.html'>style_duo_accent</a></span><span class='op'>(</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>xaringanthemer</span><span class='fu'>::</span><span class='fu'><a href='https://pkg.garrickadenbuie.com/xaringanthemer//reference/style_duo_accent.html'>style_duo_accent</a></span><span class='op'>(</span>
   primary_color <span class='op'>=</span> <span class='st'>"#00274C"</span>,
   secondary_color <span class='op'>=</span> <span class='st'>"#FFCB05"</span>,
-  header_font_google <span class='op'>=</span> <span class='fu'>google_font</span><span class='op'>(</span><span class='st'>"Lato"</span><span class='op'>)</span>,
-  text_font_google   <span class='op'>=</span> <span class='fu'>google_font</span><span class='op'>(</span><span class='st'>"Manrope"</span><span class='op'>)</span>,
-  code_font_google   <span class='op'>=</span> <span class='fu'>google_font</span><span class='op'>(</span><span class='st'>"Roboto Mono"</span><span class='op'>)</span>,
+  header_font_google <span class='op'>=</span> <span class='fu'><a href='https://pkg.garrickadenbuie.com/xaringanthemer//reference/google_font.html'>google_font</a></span><span class='op'>(</span><span class='st'>"Lato"</span><span class='op'>)</span>,
+  text_font_google   <span class='op'>=</span> <span class='fu'><a href='https://pkg.garrickadenbuie.com/xaringanthemer//reference/google_font.html'>google_font</a></span><span class='op'>(</span><span class='st'>"Manrope"</span><span class='op'>)</span>,
+  code_font_google   <span class='op'>=</span> <span class='fu'><a href='https://pkg.garrickadenbuie.com/xaringanthemer//reference/google_font.html'>google_font</a></span><span class='op'>(</span><span class='st'>"Roboto Mono"</span><span class='op'>)</span>,
   base_font_size <span class='op'>=</span> <span class='st'>"20px"</span>,
    code_font_size <span class='op'>=</span> <span class='st'>"2rem"</span>,
 <span class='op'>)</span>   
@@ -1510,11 +1544,11 @@ Edit opts_chunk$set to include
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='co'># start with data</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># start with data</span>
 <span class='va'>prostate</span> <span class='op'>%&gt;%</span>
 <span class='co'># apply t_test from infer</span>
 <span class='co'># with correct arguments</span>
-  <span class='fu'>t_test</span><span class='op'>(</span><span class='va'>TVol</span> <span class='op'>~</span> <span class='va'>AA</span>, 
+  <span class='fu'><a href='https://infer.tidymodels.org/reference/t_test.html'>t_test</a></span><span class='op'>(</span><span class='va'>TVol</span> <span class='op'>~</span> <span class='va'>AA</span>, 
          order <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"0"</span>, <span class='st'>"1"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Interpreting the output:</span>
 <span class='co'># The t statistic is first</span>

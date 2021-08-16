@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["how-to-post_files/anchor-4.2.2/anchor.min.js","how-to-post_files/bowser-1.9.3/bowser.min.js","how-to-post_files/distill-2.2.21/template.v2.js","how-to-post_files/header-attrs-2.9/header-attrs.js","how-to-post_files/jquery-1.11.3/jquery.min.js","how-to-post_files/popper-2.6.0/popper.min.js","how-to-post_files/tippy-6.2.7/tippy-bundle.umd.min.js","how-to-post_files/tippy-6.2.7/tippy-light-border.css","how-to-post_files/tippy-6.2.7/tippy.css","how-to-post_files/tippy-6.2.7/tippy.umd.min.js","how-to-post_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["how-to-post_files/anchor-4.2.2/anchor.min.js","how-to-post_files/bowser-1.9.3/bowser.min.js","how-to-post_files/distill-2.2.21/template.v2.js","how-to-post_files/header-attrs-2.10/header-attrs.js","how-to-post_files/header-attrs-2.9/header-attrs.js","how-to-post_files/jquery-1.11.3/jquery.min.js","how-to-post_files/popper-2.6.0/popper.min.js","how-to-post_files/tippy-6.2.7/tippy-bundle.umd.min.js","how-to-post_files/tippy-6.2.7/tippy-light-border.css","how-to-post_files/tippy-6.2.7/tippy.css","how-to-post_files/tippy-6.2.7/tippy.umd.min.js","how-to-post_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1490,15 +1490,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ol type="1">
 <li>load the <code>here()</code> package in the setup chunk.</li>
 <li>save the image you want with a short name in the same post folder as your blog post, adjacent to the Rmd file. Note the image name and extension.</li>
-<li>Insert a code chunk that looks like this, but with echo = FALSE, and eval = TRUE
+<li>Insert a code chunk that looks like this, but with echo = FALSE, and eval = TRUE</li>
+</ol>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/include_graphics.html'>include_graphics</a></span><span class='op'>(</span>
   <span class='fu'>here</span><span class='op'>(</span><span class='st'>"_posts/YYYY-MM-DD-post-name/image-name.jpg or png"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># spacer comment</span>
 </code></pre>
-</div></li>
-</ol>
+</div>
 </div>
 <h2 id="save-and-knit">3. Save and Knit</h2>
 <p>Check the resulting HTML in the Viewer window. Repeat steps 2 (Editing) and 3 (Knitting) until you are happy with the post.</p>

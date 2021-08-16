@@ -67,7 +67,7 @@
       <description>Sometimes editors ask for _post hoc_ analysis of subgroups in clinical trials, and will refuse the manuscript without them. How you can make these in R, in a somewhat kludgy way.</description>
       <guid>https://higgi13425.github.io/posts/2020-11-01-subgroup-plots</guid>
       <pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate>
-      <media:content url="https://higgi13425.github.io/posts/2020-11-01-subgroup-plots/subgroup-plots_files/figure-html5/unnamed-chunk-4-1.png" medium="image" type="image/png" width="1728" height="1440"/>
+      <media:content url="https://higgi13425.github.io/posts/2020-11-01-subgroup-plots/subgroup-plots_files/figure-html5/plot-1.png" medium="image" type="image/png" width="1728" height="1440"/>
     </item>
     <item>
       <title>How to Embed External micro-Flipbooks in Bookdown</title>

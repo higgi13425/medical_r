@@ -20,6 +20,7 @@ library(writexl)
 library(grid)
 library(gridExtra)
 library(scales)
+library(here)
 ```
 
 ## Getting Started with Subgroup Plots
@@ -37,15 +38,14 @@ So how to make this work for your use case?
 Let's walk you through how I did this for a 2020 paper in Lancet Gastroenterology. Note that I have a master's degree in statistics, not a Ph.D. My day job is in gastroenterology and IBD research. So not being someone like Richard Peto, I am not in a position to do level 10 statistical trolling. So even though I know that this is statistically a bad idea, when the editors demand a subgroup plot, I am going to help out my co-authors and produce one.
 
 ## Note: a way better version
-Randy Boyes created here (@randyboyes)
-https://github.com/rdboyes/Forest_plot_with_table
+Randy Boyes (Twitter: randyboyes) created a package to do this more elegantly [here] (https://github.com/rdboyes/Forest_plot_with_table)
 
 
 ## Loading the Libraries
 
 We are going to start with the {tidyverse} and then add in {glue} and {scales}. I added {writexl} to store a copy of the oddly-formatted data in Excel for future reference (and to show co-authors how to format it if they wanted to change any \#s). The packages {grid} and {gridExtra} are to do some fancy stuff outside of the plotting rectangle.
 
-```{r}
+```{r lib}
 library(tidyverse)
 library(glue)
 library(scales)
@@ -80,8 +80,8 @@ You can read in an example of this kind of formatted data with the code chunk be
 
 Note that you have one row with the group name in the group_subgroup column (which has all NAs in the numeric columns), followed by rows with the names of each subgroup with counts, estimates (in this case, risk difference percentages), and upper and lower confidence bounds.
 
-```{r}
-indo_data <- readxl::read_excel("indomethacin_ride.xlsx")
+```{r data}
+indo_data <- readxl::read_excel(here("_posts/2020-11-01-subgroup-plots/indomethacin_ride.xlsx"))
 head(indo_data, n=12)
 
 ```
@@ -92,7 +92,7 @@ Pretty lame, but it worked at the time.
 
 But if anyone can come up with a slicker way to build the dataframe (using the example below), please let me know.
 
-```{r}
+```{r new_data}
 group_subgroup <- c(
   "Age                  ", "45 or under", "Over 45", 
   "Sex                  ", 'Female', 'Male', 
@@ -178,7 +178,7 @@ Then add the directional annotations (Comment #8)
 
 and add the arrows below (Comment #9)
 
-```{r, fig.height=7.5, fig.width=9, units = "in"}
+```{r plot, fig.height=7.5, fig.width=9, units = "in"}
 g <- ggplot(data = df, # Comment 1
        mapping = aes(x = risk_diff_pct, 
                      y = fct_reorder(num, desc(as.numeric(num))))) +
@@ -277,7 +277,7 @@ g
 Depending on what your particular journal requires.
 Note that you may want to tweak width and height based on your own data and the number of subgroups.
 
-```{r}
+```{r save, eval=FALSE}
 ggsave("subgroup_plot.jpeg", width = 7.5, height = 9, units = "in", dpi = 320)
 
 ggsave("subgroup_plot.tiff", width = 7.5, height = 9,  units = "in", dpi = 320)

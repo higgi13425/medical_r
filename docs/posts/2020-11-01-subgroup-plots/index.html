@@ -18,6 +18,72 @@
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
   <!--radix_placeholder_meta_tags-->
 <title>Medical R: Subgroup Plots for Clinical Trials</title>
 
@@ -35,7 +101,7 @@
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="Sometimes editors ask for _post hoc_ analysis of subgroups in clinical trials, and will refuse the manuscript without them. How you can make these in R, in a somewhat kludgy way."/>
 <meta property="og:url" content="https://higgi13425.github.io/posts/2020-11-01-subgroup-plots/"/>
-<meta property="og:image" content="https://higgi13425.github.io/posts/2020-11-01-subgroup-plots/subgroup-plots_files/figure-html5/unnamed-chunk-4-1.png"/>
+<meta property="og:image" content="https://higgi13425.github.io/posts/2020-11-01-subgroup-plots/subgroup-plots_files/figure-html5/plot-1.png"/>
 <meta property="og:image:width" content="1728"/>
 <meta property="og:image:height" content="1440"/>
 <meta property="og:locale" content="en_US"/>
@@ -46,7 +112,7 @@
 <meta property="twitter:title" content="Medical R: Subgroup Plots for Clinical Trials"/>
 <meta property="twitter:description" content="Sometimes editors ask for _post hoc_ analysis of subgroups in clinical trials, and will refuse the manuscript without them. How you can make these in R, in a somewhat kludgy way."/>
 <meta property="twitter:url" content="https://higgi13425.github.io/posts/2020-11-01-subgroup-plots/"/>
-<meta property="twitter:image" content="https://higgi13425.github.io/posts/2020-11-01-subgroup-plots/subgroup-plots_files/figure-html5/unnamed-chunk-4-1.png"/>
+<meta property="twitter:image" content="https://higgi13425.github.io/posts/2020-11-01-subgroup-plots/subgroup-plots_files/figure-html5/plot-1.png"/>
 <meta property="twitter:image:width" content="1728"/>
 <meta property="twitter:image:height" content="1440"/>
 <meta property="twitter:site" content="@ibddoctor"/>
@@ -67,7 +133,7 @@
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["indomethacin_ride.xlsx","ISIS-1_Lancet_1988_subgroup_zodiacal_sign.pdf","lancetgastro_2020_indomethacin.pdf","subgroup_plot.jpeg","subgroup_plot.pdf","subgroup_plot.tiff","subgroup-plots_files/bowser-1.9.3/bowser.min.js","subgroup-plots_files/distill-2.2.21/template.v2.js","subgroup-plots_files/figure-html5/unnamed-chunk-4-1.png","subgroup-plots_files/figure-html5/unnamed-chunk-5-1.png","subgroup-plots_files/header-attrs-2.4.5/header-attrs.js","subgroup-plots_files/jquery-1.11.3/jquery.min.js","subgroup-plots_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["indomethacin_ride.xlsx","ISIS-1_Lancet_1988_subgroup_zodiacal_sign.pdf","lancetgastro_2020_indomethacin.pdf","subgroup_plot.jpeg","subgroup_plot.pdf","subgroup_plot.tiff","subgroup-plots_files/bowser-1.9.3/bowser.min.js","subgroup-plots_files/distill-2.2.21/template.v2.js","subgroup-plots_files/figure-html5/plot-1.png","subgroup-plots_files/figure-html5/unnamed-chunk-4-1.png","subgroup-plots_files/figure-html5/unnamed-chunk-5-1.png","subgroup-plots_files/header-attrs-2.4.5/header-attrs.js","subgroup-plots_files/jquery-1.11.3/jquery.min.js","subgroup-plots_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -1991,8 +2057,13 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.4.5/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.10/header-attrs.js"></script>
   <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
@@ -2087,6 +2158,8 @@ code {
 
 <div class="d-title">
 <h1>Subgroup Plots for Clinical Trials</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
 <p><p>Sometimes editors ask for <em>post hoc</em> analysis of subgroups in clinical trials, and will refuse the manuscript without them. How you can make these in R, in a somewhat kludgy way.</p></p>
 </div>
 
@@ -2105,19 +2178,21 @@ code {
 <p>So how to make this work for your use case?</p>
 <p>Let’s walk you through how I did this for a 2020 paper in Lancet Gastroenterology. Note that I have a master’s degree in statistics, not a Ph.D. My day job is in gastroenterology and IBD research. So not being someone like Richard Peto, I am not in a position to do level 10 statistical trolling. So even though I know that this is statistically a bad idea, when the editors demand a subgroup plot, I am going to help out my co-authors and produce one.</p>
 <h2 id="note-a-way-better-version">Note: a way better version</h2>
-<p>Randy Boyes created here (<span class="citation" data-cites="randyboyes">@randyboyes</span>) <a href="https://github.com/rdboyes/Forest_plot_with_table" class="uri">https://github.com/rdboyes/Forest_plot_with_table</a></p>
+<p>Randy Boyes (Twitter: randyboyes) created a package to do this more elegantly [here] (<a href="https://github.com/rdboyes/Forest_plot_with_table" class="uri">https://github.com/rdboyes/Forest_plot_with_table</a>)</p>
 <h2 id="loading-the-libraries">Loading the Libraries</h2>
 <p>We are going to start with the {tidyverse} and then add in {glue} and {scales}. I added {writexl} to store a copy of the oddly-formatted data in Excel for future reference (and to show co-authors how to format it if they wanted to change any #s). The packages {grid} and {gridExtra} are to do some fancy stuff outside of the plotting rectangle.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-library(tidyverse)
-library(glue)
-library(scales)
-library(readxl)
-library(writexl)
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidyverse/glue'>glue</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://scales.r-lib.org'>scales</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readxl.tidyverse.org'>readxl</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://docs.ropensci.org/writexl/'>writexl</a></span><span class='op'>)</span>
 
-library(grid)
-library(gridExtra)</code></pre>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>grid</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>gridExtra</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <h2 id="reading-in-the-data">Reading in the Data</h2>
 <p>You can take two approaches to produce the oddly formatted data. You will need two different kinds of rows:</p>
@@ -2136,11 +2211,12 @@ library(gridExtra)</code></pre>
 <p>You can read in an example of this kind of formatted data with the code chunk below.</p>
 <p>Note that you have one row with the group name in the group_subgroup column (which has all NAs in the numeric columns), followed by rows with the names of each subgroup with counts, estimates (in this case, risk difference percentages), and upper and lower confidence bounds.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-indo_data &lt;- readxl::read_excel(&quot;indomethacin_ride.xlsx&quot;)
-head(indo_data, n=12)</code></pre>
-<pre><code>
-# A tibble: 12 x 6
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>indo_data</span> <span class='op'>&lt;-</span> <span class='fu'>readxl</span><span class='fu'>::</span><span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>"_posts/2020-11-01-subgroup-plots/indomethacin_ride.xlsx"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>indo_data</span>, n<span class='op'>=</span><span class='fl'>12</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 12 × 6
    group_subgroup                 lcb risk_diff_pct   ucb number num  
    &lt;chr&gt;                        &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;
  1 Age                          NA            NA    NA        NA 1    
@@ -2160,68 +2236,70 @@ head(indo_data, n=12)</code></pre>
 <p>Pretty lame, but it worked at the time.</p>
 <p>But if anyone can come up with a slicker way to build the dataframe (using the example below), please let me know.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-group_subgroup &lt;- c(
-  &quot;Age                  &quot;, &quot;45 or under&quot;, &quot;Over 45&quot;, 
-  &quot;Sex                  &quot;, &#39;Female&#39;, &#39;Male&#39;, 
-  &quot;Obese                &quot;, &quot;Ob No&quot;, &quot;Ob Yes&quot;, 
-  &quot;Sphincter of Oddi Dysfunction &quot;, &quot;SOD No&quot;, &quot;SOD Yes&quot;, 
-  &quot;Hx PEP                &quot;, &quot;HP No&quot;, &quot;HP Yes&quot;, 
-  &quot;Hx Pancreatitis       &quot;, &quot;Hpan No&quot;, &quot;Hpan Yes&quot;, 
-  &quot;Difficult Cannulation                &quot;, &quot;DC No&quot;, &quot;DC Yes&quot;, 
-  &quot;Precut               &quot;, &quot;Pre No&quot;, &quot;Pre Yes&quot;, 
-  &quot;Sphincterotomy               &quot;, &quot;Sph No&quot;, &quot;Sph Yes&quot;, 
-  &quot;Pancreatography              &quot;, &quot;Panc No&quot;, &quot;Panc Yes&quot;,
-  &quot;Acinarization                &quot;, &quot;Ac No&quot;, &quot;Ac Yes&quot;, 
-  &quot;Biliary Sphincterotomy                &quot;, &quot;BS No&quot;, &quot;BS Yes&quot;, 
-  &quot;Ampullectomy                &quot;, &quot;Amp No&quot;, &quot;Amp Yes&quot;, 
-  &quot;Prophy Pancreatic Stent                &quot;, &quot;PS No&quot;, &quot;PS Yes&quot;, 
-  &quot;Ther Pancreatic Stent                &quot;, &quot;PS No&quot;, &quot;PS Yes&quot;,   &quot;Trainee                &quot;, &quot;T No&quot;, &quot;T Yes&quot;, 
-  &quot;Double Wire                &quot;, &quot;DW No&quot;, &quot;DW Yes&quot;, 
-  &quot;Aspirin                &quot;, &quot;Asa No&quot;, &quot;Asa Yes&quot;, 
-  &quot;Site                  &quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;,&quot;5&quot;,&quot;6&quot;,
-  &quot;Overall                &quot;)
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>group_subgroup</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+  <span class='st'>"Age                  "</span>, <span class='st'>"45 or under"</span>, <span class='st'>"Over 45"</span>, 
+  <span class='st'>"Sex                  "</span>, <span class='st'>'Female'</span>, <span class='st'>'Male'</span>, 
+  <span class='st'>"Obese                "</span>, <span class='st'>"Ob No"</span>, <span class='st'>"Ob Yes"</span>, 
+  <span class='st'>"Sphincter of Oddi Dysfunction "</span>, <span class='st'>"SOD No"</span>, <span class='st'>"SOD Yes"</span>, 
+  <span class='st'>"Hx PEP                "</span>, <span class='st'>"HP No"</span>, <span class='st'>"HP Yes"</span>, 
+  <span class='st'>"Hx Pancreatitis       "</span>, <span class='st'>"Hpan No"</span>, <span class='st'>"Hpan Yes"</span>, 
+  <span class='st'>"Difficult Cannulation                "</span>, <span class='st'>"DC No"</span>, <span class='st'>"DC Yes"</span>, 
+  <span class='st'>"Precut               "</span>, <span class='st'>"Pre No"</span>, <span class='st'>"Pre Yes"</span>, 
+  <span class='st'>"Sphincterotomy               "</span>, <span class='st'>"Sph No"</span>, <span class='st'>"Sph Yes"</span>, 
+  <span class='st'>"Pancreatography              "</span>, <span class='st'>"Panc No"</span>, <span class='st'>"Panc Yes"</span>,
+  <span class='st'>"Acinarization                "</span>, <span class='st'>"Ac No"</span>, <span class='st'>"Ac Yes"</span>, 
+  <span class='st'>"Biliary Sphincterotomy                "</span>, <span class='st'>"BS No"</span>, <span class='st'>"BS Yes"</span>, 
+  <span class='st'>"Ampullectomy                "</span>, <span class='st'>"Amp No"</span>, <span class='st'>"Amp Yes"</span>, 
+  <span class='st'>"Prophy Pancreatic Stent                "</span>, <span class='st'>"PS No"</span>, <span class='st'>"PS Yes"</span>, 
+  <span class='st'>"Ther Pancreatic Stent                "</span>, <span class='st'>"PS No"</span>, <span class='st'>"PS Yes"</span>,   <span class='st'>"Trainee                "</span>, <span class='st'>"T No"</span>, <span class='st'>"T Yes"</span>, 
+  <span class='st'>"Double Wire                "</span>, <span class='st'>"DW No"</span>, <span class='st'>"DW Yes"</span>, 
+  <span class='st'>"Aspirin                "</span>, <span class='st'>"Asa No"</span>, <span class='st'>"Asa Yes"</span>, 
+  <span class='st'>"Site                  "</span>, <span class='st'>"1"</span>, <span class='st'>"2"</span>, <span class='st'>"3"</span>, <span class='st'>"4"</span>,<span class='st'>"5"</span>,<span class='st'>"6"</span>,
+  <span class='st'>"Overall                "</span><span class='op'>)</span>
 
-risk_diff_pct &lt;- c(NA,3.98,0.56, NA,2.53,2.65, NA, 1.01, 4.47, #obese
-                   NA,2.28,2.39, 
-                   NA, -0.22,16.87, NA, 1.88,3.04,  NA, 3.27, -0.21, NA, 2.49, 1.81, 
-                   NA, 1.25, 3.29, NA,-4.97,3.2, NA, 0.97, 33.55,  NA, 4.48, 0.86, 
-                   NA, 2.4, 0.63,   NA, 4.18, 0.83, NA, 2.0,7.65,   NA, 2.93, -2.45, 
-                   NA, 2.19, 5.56, NA, 2.82, -0.95, NA, 4.69, -18.43, 0, 1.99, -10.48, -33.33,
-                   2.31)
+<span class='va'>risk_diff_pct</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>,<span class='fl'>3.98</span>,<span class='fl'>0.56</span>, <span class='cn'>NA</span>,<span class='fl'>2.53</span>,<span class='fl'>2.65</span>, <span class='cn'>NA</span>, <span class='fl'>1.01</span>, <span class='fl'>4.47</span>, <span class='co'>#obese</span>
+                   <span class='cn'>NA</span>,<span class='fl'>2.28</span>,<span class='fl'>2.39</span>, 
+                   <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>0.22</span>,<span class='fl'>16.87</span>, <span class='cn'>NA</span>, <span class='fl'>1.88</span>,<span class='fl'>3.04</span>,  <span class='cn'>NA</span>, <span class='fl'>3.27</span>, <span class='op'>-</span><span class='fl'>0.21</span>, <span class='cn'>NA</span>, <span class='fl'>2.49</span>, <span class='fl'>1.81</span>, 
+                   <span class='cn'>NA</span>, <span class='fl'>1.25</span>, <span class='fl'>3.29</span>, <span class='cn'>NA</span>,<span class='op'>-</span><span class='fl'>4.97</span>,<span class='fl'>3.2</span>, <span class='cn'>NA</span>, <span class='fl'>0.97</span>, <span class='fl'>33.55</span>,  <span class='cn'>NA</span>, <span class='fl'>4.48</span>, <span class='fl'>0.86</span>, 
+                   <span class='cn'>NA</span>, <span class='fl'>2.4</span>, <span class='fl'>0.63</span>,   <span class='cn'>NA</span>, <span class='fl'>4.18</span>, <span class='fl'>0.83</span>, <span class='cn'>NA</span>, <span class='fl'>2.0</span>,<span class='fl'>7.65</span>,   <span class='cn'>NA</span>, <span class='fl'>2.93</span>, <span class='op'>-</span><span class='fl'>2.45</span>, 
+                   <span class='cn'>NA</span>, <span class='fl'>2.19</span>, <span class='fl'>5.56</span>, <span class='cn'>NA</span>, <span class='fl'>2.82</span>, <span class='op'>-</span><span class='fl'>0.95</span>, <span class='cn'>NA</span>, <span class='fl'>4.69</span>, <span class='op'>-</span><span class='fl'>18.43</span>, <span class='fl'>0</span>, <span class='fl'>1.99</span>, <span class='op'>-</span><span class='fl'>10.48</span>, <span class='op'>-</span><span class='fl'>33.33</span>,
+                   <span class='fl'>2.31</span><span class='op'>)</span>
 
-lcb &lt;- c(NA,-3.27,-4.37, NA,-2.36, -4.92, NA, -4.15, -2.57, #obese
-         NA,-4.1,-3.07, 
-         NA, -4.6,4.71, NA, -3.24,-4,  
-         NA, -1.53, -8.52, NA, -1.98, -10.06, NA, -4.13, -3.2, NA,-11.82,-1.52,
-         NA, -3.25, 11.03,  NA, -2.27, -4.4,  NA, -1.94, -14.11, 
-         NA, -2.35, -4.51, NA,-2.66,-5.6,   NA, -1.49, -14.73,   
-         NA, -2.06, -16.97, NA, -1.6, -13.07, NA, -0.42, -41.15, 0, -4.03, -32.04, -86.68,
-         -1.87)
+<span class='va'>lcb</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>,<span class='op'>-</span><span class='fl'>3.27</span>,<span class='op'>-</span><span class='fl'>4.37</span>, <span class='cn'>NA</span>,<span class='op'>-</span><span class='fl'>2.36</span>, <span class='op'>-</span><span class='fl'>4.92</span>, <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>4.15</span>, <span class='op'>-</span><span class='fl'>2.57</span>, <span class='co'>#obese</span>
+         <span class='cn'>NA</span>,<span class='op'>-</span><span class='fl'>4.1</span>,<span class='op'>-</span><span class='fl'>3.07</span>, 
+         <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>4.6</span>,<span class='fl'>4.71</span>, <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>3.24</span>,<span class='op'>-</span><span class='fl'>4</span>,  
+         <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>1.53</span>, <span class='op'>-</span><span class='fl'>8.52</span>, <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>1.98</span>, <span class='op'>-</span><span class='fl'>10.06</span>, <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>4.13</span>, <span class='op'>-</span><span class='fl'>3.2</span>, <span class='cn'>NA</span>,<span class='op'>-</span><span class='fl'>11.82</span>,<span class='op'>-</span><span class='fl'>1.52</span>,
+         <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>3.25</span>, <span class='fl'>11.03</span>,  <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>2.27</span>, <span class='op'>-</span><span class='fl'>4.4</span>,  <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>1.94</span>, <span class='op'>-</span><span class='fl'>14.11</span>, 
+         <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>2.35</span>, <span class='op'>-</span><span class='fl'>4.51</span>, <span class='cn'>NA</span>,<span class='op'>-</span><span class='fl'>2.66</span>,<span class='op'>-</span><span class='fl'>5.6</span>,   <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>1.49</span>, <span class='op'>-</span><span class='fl'>14.73</span>,   
+         <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>2.06</span>, <span class='op'>-</span><span class='fl'>16.97</span>, <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>1.6</span>, <span class='op'>-</span><span class='fl'>13.07</span>, <span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>0.42</span>, <span class='op'>-</span><span class='fl'>41.15</span>, <span class='fl'>0</span>, <span class='op'>-</span><span class='fl'>4.03</span>, <span class='op'>-</span><span class='fl'>32.04</span>, <span class='op'>-</span><span class='fl'>86.68</span>,
+         <span class='op'>-</span><span class='fl'>1.87</span><span class='op'>)</span>
 
-ucb &lt;- c(NA, 11.2, 5.49, NA,7.42, 10.22, NA, 6.17, 11.52, #obese
-         NA,8.66,7.85, 
-         NA, 4.16,29.03, NA, 7,10.09,  
-         NA, 8.07, 8.09, NA, 6.95, 13.67, NA, 6.63, 9.78, NA,18.85,7.91,
-         NA, 5.18, 56.07,  NA, 11.23, 6.12,  NA, 6.73, 15.36, 
-         NA, 10.72, 6.18, NA,6.33,24.11,   NA, 7.35, 9.83,   
-         NA, 6.43, 28.08, NA, 7.26, 11.16, NA, 9.81, 4.28, 0, 8, 11.09, 20.01,
-         6.48)
+<span class='va'>ucb</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='fl'>11.2</span>, <span class='fl'>5.49</span>, <span class='cn'>NA</span>,<span class='fl'>7.42</span>, <span class='fl'>10.22</span>, <span class='cn'>NA</span>, <span class='fl'>6.17</span>, <span class='fl'>11.52</span>, <span class='co'>#obese</span>
+         <span class='cn'>NA</span>,<span class='fl'>8.66</span>,<span class='fl'>7.85</span>, 
+         <span class='cn'>NA</span>, <span class='fl'>4.16</span>,<span class='fl'>29.03</span>, <span class='cn'>NA</span>, <span class='fl'>7</span>,<span class='fl'>10.09</span>,  
+         <span class='cn'>NA</span>, <span class='fl'>8.07</span>, <span class='fl'>8.09</span>, <span class='cn'>NA</span>, <span class='fl'>6.95</span>, <span class='fl'>13.67</span>, <span class='cn'>NA</span>, <span class='fl'>6.63</span>, <span class='fl'>9.78</span>, <span class='cn'>NA</span>,<span class='fl'>18.85</span>,<span class='fl'>7.91</span>,
+         <span class='cn'>NA</span>, <span class='fl'>5.18</span>, <span class='fl'>56.07</span>,  <span class='cn'>NA</span>, <span class='fl'>11.23</span>, <span class='fl'>6.12</span>,  <span class='cn'>NA</span>, <span class='fl'>6.73</span>, <span class='fl'>15.36</span>, 
+         <span class='cn'>NA</span>, <span class='fl'>10.72</span>, <span class='fl'>6.18</span>, <span class='cn'>NA</span>,<span class='fl'>6.33</span>,<span class='fl'>24.11</span>,   <span class='cn'>NA</span>, <span class='fl'>7.35</span>, <span class='fl'>9.83</span>,   
+         <span class='cn'>NA</span>, <span class='fl'>6.43</span>, <span class='fl'>28.08</span>, <span class='cn'>NA</span>, <span class='fl'>7.26</span>, <span class='fl'>11.16</span>, <span class='cn'>NA</span>, <span class='fl'>9.81</span>, <span class='fl'>4.28</span>, <span class='fl'>0</span>, <span class='fl'>8</span>, <span class='fl'>11.09</span>, <span class='fl'>20.01</span>,
+         <span class='fl'>6.48</span><span class='op'>)</span>
 
-number &lt;- c(NA,417,620, NA,813, 224, NA,646,391, #obese
-            NA,388,649, 
-            NA, 860,177, NA, 625,412, 
-            NA, 743,294, NA, 920, 117, NA, 561,476,  NA,158,879,
-            NA, 994,43,  NA, 445, 592,  NA, 975, 62, 
-            NA, 336, 701, NA, 945,92,   NA, 885,152,  
-            NA, 1001, 36, NA, 895,142, NA, 760,48,4,179,41,5,
-            1037)
+<span class='va'>number</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>,<span class='fl'>417</span>,<span class='fl'>620</span>, <span class='cn'>NA</span>,<span class='fl'>813</span>, <span class='fl'>224</span>, <span class='cn'>NA</span>,<span class='fl'>646</span>,<span class='fl'>391</span>, <span class='co'>#obese</span>
+            <span class='cn'>NA</span>,<span class='fl'>388</span>,<span class='fl'>649</span>, 
+            <span class='cn'>NA</span>, <span class='fl'>860</span>,<span class='fl'>177</span>, <span class='cn'>NA</span>, <span class='fl'>625</span>,<span class='fl'>412</span>, 
+            <span class='cn'>NA</span>, <span class='fl'>743</span>,<span class='fl'>294</span>, <span class='cn'>NA</span>, <span class='fl'>920</span>, <span class='fl'>117</span>, <span class='cn'>NA</span>, <span class='fl'>561</span>,<span class='fl'>476</span>,  <span class='cn'>NA</span>,<span class='fl'>158</span>,<span class='fl'>879</span>,
+            <span class='cn'>NA</span>, <span class='fl'>994</span>,<span class='fl'>43</span>,  <span class='cn'>NA</span>, <span class='fl'>445</span>, <span class='fl'>592</span>,  <span class='cn'>NA</span>, <span class='fl'>975</span>, <span class='fl'>62</span>, 
+            <span class='cn'>NA</span>, <span class='fl'>336</span>, <span class='fl'>701</span>, <span class='cn'>NA</span>, <span class='fl'>945</span>,<span class='fl'>92</span>,   <span class='cn'>NA</span>, <span class='fl'>885</span>,<span class='fl'>152</span>,  
+            <span class='cn'>NA</span>, <span class='fl'>1001</span>, <span class='fl'>36</span>, <span class='cn'>NA</span>, <span class='fl'>895</span>,<span class='fl'>142</span>, <span class='cn'>NA</span>, <span class='fl'>760</span>,<span class='fl'>48</span>,<span class='fl'>4</span>,<span class='fl'>179</span>,<span class='fl'>41</span>,<span class='fl'>5</span>,
+            <span class='fl'>1037</span><span class='op'>)</span>
 
 
 
-df &lt;- tibble(group_subgroup, lcb, risk_diff_pct, ucb, number)  
-df &lt;- df %&gt;%  mutate(num = as.character(1:62))
-write_xlsx(df, &quot;indomethacin_ride.xlsx&quot;)</code></pre>
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span><span class='va'>group_subgroup</span>, <span class='va'>lcb</span>, <span class='va'>risk_diff_pct</span>, <span class='va'>ucb</span>, <span class='va'>number</span><span class='op'>)</span>  
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='va'>df</span> <span class='op'>%&gt;%</span>  <span class='fu'>mutate</span><span class='op'>(</span>num <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>62</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://docs.ropensci.org/writexl/reference/write_xlsx.html'>write_xlsx</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='st'>"indomethacin_ride.xlsx"</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <h2 id="building-the-plot---with-annotation-by-comment">Building the Plot - with Annotation by Comment</h2>
 <p>This is (mostly) a straightforward ggplot, with x as the risk difference percentage, and y the groups and subgroups, as indicated by the num variable (essentially the row number). (Comment #1)</p>
@@ -2235,109 +2313,114 @@ write_xlsx(df, &quot;indomethacin_ride.xlsx&quot;)</code></pre>
 <p>Then add the directional annotations (Comment #8)</p>
 <p>and add the arrows below (Comment #9)</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-g &lt;- ggplot(data = df, # Comment 1
-       mapping = aes(x = risk_diff_pct, 
-                     y = fct_reorder(num, desc(as.numeric(num))))) +
-  geom_point() + # Comment 2
-  geom_errorbarh(data= df, aes(x = risk_diff_pct,                   xmin = lcb, xmax = ucb, 
-    y = fct_reorder(num, desc(as.numeric(num))))) +
-  geom_vline(xintercept =0, col= &#39;black&#39;) + # Comment 3
-  geom_vline(xintercept =2.31, col= &#39;red&#39;) +
-  labs(x =&#39;Percent Risk Difference \n(95% CI)&#39;,
-    y = &quot;&quot;, subtitle = &quot;  N per subgroup                                                  Overall Effect&quot;,
-    title = &quot;Subgroup Effects on Risk Difference&quot;) + #Comment 4
-  theme_minimal() +
-  geom_text(data=df, size = 3, #Comment 5
-            aes(x = -90, label = number, 
-    y = fct_reorder(num, desc(as.numeric(num))))) +
-  scale_x_continuous(limits = c(-90, 60),
-        breaks =c(-90,-75,-60,-45,-30,-15,0, 15, 30, 60)) +  #Comment 6
-  scale_y_discrete(breaks = 1:62, labels = c(
-    &quot;Age                    &quot;, #Comment 7
-    &quot;45 or Under&quot;,
-    &quot;Over 45&quot;,
-    &quot;Sex                     &quot;,
-    &quot;Female&quot;,
-    &quot;Male&quot;,
-    &quot;Obese                  &quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;Sphincter of Oddi Dysfunction &quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;History of Post-ERCP Pancreatitis  &quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;History of Recurrent Pancreatitis       &quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;Difficult Cannulation &quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;Precut Sphincterotomy  &quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;Pancreatic Sphincterotomy &quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;Pancreatography &quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,   
-    &quot;Acinarization         &quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;Biliary Sphincterotomy&quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;Ampullectomy         &quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;Prophylactic Pancreatic Stent placement &quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;Therapeutic Pancreatic Stent placement &quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;Trainee Involvement &quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;Double Wire technique&quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;Aspirin use          &quot;,
-    &quot;No&quot;,
-    &quot;Yes&quot;,
-    &quot;Study Site          &quot;,
-    &quot;1&quot;,&quot;2&quot;, &quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;6&quot;,
-    &quot;Overall              &quot;
-  )) +
-  annotate(&quot;text&quot;, label = &quot;Favors 100 mg&quot;, x=-45, y=59.5, col=&#39;black&#39;) + #Comment 7
-  annotate(&quot;text&quot;, label = &quot;Favors 200 mg&quot;, x=45, y=59.5, col=&#39;black&#39;) +
-  geom_segment(aes(x=-30, xend=-60, y = 58, yend=58),  #Comment 8
-               linejoin = &quot;mitre&quot;,
-               colour = &quot;black&quot;,
-               arrow= arrow(length = unit(0.1, &quot;cm&quot;),type = &quot;closed&quot;)
-               ) +
-  geom_segment(aes(x=30, xend=60, y = 58, yend=58),
-               linejoin = &quot;mitre&quot;,
-               colour = &quot;black&quot;,
-               arrow= arrow(length = unit(0.1, &quot;cm&quot;),type = &quot;closed&quot;)
-  ) 
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>df</span>, <span class='co'># Comment 1</span>
+       mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>risk_diff_pct</span>, 
+                     y <span class='op'>=</span> <span class='fu'>fct_reorder</span><span class='op'>(</span><span class='va'>num</span>, <span class='fu'>desc</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>num</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># Comment 2</span>
+  <span class='fu'>geom_errorbarh</span><span class='op'>(</span>data<span class='op'>=</span> <span class='va'>df</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>risk_diff_pct</span>,                   xmin <span class='op'>=</span> <span class='va'>lcb</span>, xmax <span class='op'>=</span> <span class='va'>ucb</span>, 
+    y <span class='op'>=</span> <span class='fu'>fct_reorder</span><span class='op'>(</span><span class='va'>num</span>, <span class='fu'>desc</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>num</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_vline</span><span class='op'>(</span>xintercept <span class='op'>=</span><span class='fl'>0</span>, col<span class='op'>=</span> <span class='st'>'black'</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># Comment 3</span>
+  <span class='fu'>geom_vline</span><span class='op'>(</span>xintercept <span class='op'>=</span><span class='fl'>2.31</span>, col<span class='op'>=</span> <span class='st'>'red'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span><span class='st'>'Percent Risk Difference \n(95% CI)'</span>,
+    y <span class='op'>=</span> <span class='st'>""</span>, subtitle <span class='op'>=</span> <span class='st'>"  N per subgroup                                                  Overall Effect"</span>,
+    title <span class='op'>=</span> <span class='st'>"Subgroup Effects on Risk Difference"</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'>#Comment 4</span>
+  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_text</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>df</span>, size <span class='op'>=</span> <span class='fl'>3</span>, <span class='co'>#Comment 5</span>
+            <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='op'>-</span><span class='fl'>90</span>, label <span class='op'>=</span> <span class='va'>number</span>, 
+    y <span class='op'>=</span> <span class='fu'>fct_reorder</span><span class='op'>(</span><span class='va'>num</span>, <span class='fu'>desc</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>num</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_x_continuous</span><span class='op'>(</span>limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>90</span>, <span class='fl'>60</span><span class='op'>)</span>,
+        breaks <span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>90</span>,<span class='op'>-</span><span class='fl'>75</span>,<span class='op'>-</span><span class='fl'>60</span>,<span class='op'>-</span><span class='fl'>45</span>,<span class='op'>-</span><span class='fl'>30</span>,<span class='op'>-</span><span class='fl'>15</span>,<span class='fl'>0</span>, <span class='fl'>15</span>, <span class='fl'>30</span>, <span class='fl'>60</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>  <span class='co'>#Comment 6</span>
+  <span class='fu'>scale_y_discrete</span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>62</span>, labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+    <span class='st'>"Age                    "</span>, <span class='co'>#Comment 7</span>
+    <span class='st'>"45 or Under"</span>,
+    <span class='st'>"Over 45"</span>,
+    <span class='st'>"Sex                     "</span>,
+    <span class='st'>"Female"</span>,
+    <span class='st'>"Male"</span>,
+    <span class='st'>"Obese                  "</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"Sphincter of Oddi Dysfunction "</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"History of Post-ERCP Pancreatitis  "</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"History of Recurrent Pancreatitis       "</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"Difficult Cannulation "</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"Precut Sphincterotomy  "</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"Pancreatic Sphincterotomy "</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"Pancreatography "</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,   
+    <span class='st'>"Acinarization         "</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"Biliary Sphincterotomy"</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"Ampullectomy         "</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"Prophylactic Pancreatic Stent placement "</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"Therapeutic Pancreatic Stent placement "</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"Trainee Involvement "</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"Double Wire technique"</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"Aspirin use          "</span>,
+    <span class='st'>"No"</span>,
+    <span class='st'>"Yes"</span>,
+    <span class='st'>"Study Site          "</span>,
+    <span class='st'>"1"</span>,<span class='st'>"2"</span>, <span class='st'>"3"</span>,<span class='st'>"4"</span>,<span class='st'>"5"</span>,<span class='st'>"6"</span>,
+    <span class='st'>"Overall              "</span>
+  <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>annotate</span><span class='op'>(</span><span class='st'>"text"</span>, label <span class='op'>=</span> <span class='st'>"Favors 100 mg"</span>, x<span class='op'>=</span><span class='op'>-</span><span class='fl'>45</span>, y<span class='op'>=</span><span class='fl'>59.5</span>, col<span class='op'>=</span><span class='st'>'black'</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'>#Comment 7</span>
+  <span class='fu'>annotate</span><span class='op'>(</span><span class='st'>"text"</span>, label <span class='op'>=</span> <span class='st'>"Favors 200 mg"</span>, x<span class='op'>=</span><span class='fl'>45</span>, y<span class='op'>=</span><span class='fl'>59.5</span>, col<span class='op'>=</span><span class='st'>'black'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_segment</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='op'>-</span><span class='fl'>30</span>, xend<span class='op'>=</span><span class='op'>-</span><span class='fl'>60</span>, y <span class='op'>=</span> <span class='fl'>58</span>, yend<span class='op'>=</span><span class='fl'>58</span><span class='op'>)</span>,  <span class='co'>#Comment 8</span>
+               linejoin <span class='op'>=</span> <span class='st'>"mitre"</span>,
+               colour <span class='op'>=</span> <span class='st'>"black"</span>,
+               arrow<span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grid/arrow.html'>arrow</a></span><span class='op'>(</span>length <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grid/unit.html'>unit</a></span><span class='op'>(</span><span class='fl'>0.1</span>, <span class='st'>"cm"</span><span class='op'>)</span>,type <span class='op'>=</span> <span class='st'>"closed"</span><span class='op'>)</span>
+               <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_segment</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='fl'>30</span>, xend<span class='op'>=</span><span class='fl'>60</span>, y <span class='op'>=</span> <span class='fl'>58</span>, yend<span class='op'>=</span><span class='fl'>58</span><span class='op'>)</span>,
+               linejoin <span class='op'>=</span> <span class='st'>"mitre"</span>,
+               colour <span class='op'>=</span> <span class='st'>"black"</span>,
+               arrow<span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grid/arrow.html'>arrow</a></span><span class='op'>(</span>length <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grid/unit.html'>unit</a></span><span class='op'>(</span><span class='fl'>0.1</span>, <span class='st'>"cm"</span><span class='op'>)</span>,type <span class='op'>=</span> <span class='st'>"closed"</span><span class='op'>)</span>
+  <span class='op'>)</span> 
 
-g</code></pre>
-<p><img src="subgroup-plots_files/figure-html5/unnamed-chunk-4-1.png" width="864" /></p>
+<span class='va'>g</span>
+</code></pre>
+</div>
+<p><img src="subgroup-plots_files/figure-html5/plot-1.png" width="864" /></p>
 </div>
 <h2 id="now-save-a-nice-version---several-formats---take-your-pick">Now Save a Nice Version - Several Formats - Take your Pick</h2>
 <p>Depending on what your particular journal requires. Note that you may want to tweak width and height based on your own data and the number of subgroups.</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre class="r"><code>
-ggsave(&quot;subgroup_plot.jpeg&quot;, width = 7.5, height = 9, units = &quot;in&quot;, dpi = 320)
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggsave</span><span class='op'>(</span><span class='st'>"subgroup_plot.jpeg"</span>, width <span class='op'>=</span> <span class='fl'>7.5</span>, height <span class='op'>=</span> <span class='fl'>9</span>, units <span class='op'>=</span> <span class='st'>"in"</span>, dpi <span class='op'>=</span> <span class='fl'>320</span><span class='op'>)</span>
 
-ggsave(&quot;subgroup_plot.tiff&quot;, width = 7.5, height = 9,  units = &quot;in&quot;, dpi = 320)
+<span class='fu'>ggsave</span><span class='op'>(</span><span class='st'>"subgroup_plot.tiff"</span>, width <span class='op'>=</span> <span class='fl'>7.5</span>, height <span class='op'>=</span> <span class='fl'>9</span>,  units <span class='op'>=</span> <span class='st'>"in"</span>, dpi <span class='op'>=</span> <span class='fl'>320</span><span class='op'>)</span>
 
-ggsave(&quot;subgroup_plot.pdf&quot;, width = 7.5, height = 9,  units = &quot;in&quot;, dpi = 320)</code></pre>
+<span class='fu'>ggsave</span><span class='op'>(</span><span class='st'>"subgroup_plot.pdf"</span>, width <span class='op'>=</span> <span class='fl'>7.5</span>, height <span class='op'>=</span> <span class='fl'>9</span>,  units <span class='op'>=</span> <span class='st'>"in"</span>, dpi <span class='op'>=</span> <span class='fl'>320</span><span class='op'>)</span>
+</code></pre>
 </div>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">
   <p class="social_footer">

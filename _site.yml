@@ -19,6 +19,6 @@ twitter:
   creator: "@ibddoctor"
 output: 
   distill::distill_article:
-    css: styles.css
+    css: theme.css
 rss:
   full_content: false

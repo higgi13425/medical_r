@@ -1,7 +1,7 @@
 ---
-title: "Using {webex} to add mini-interactive exercises to bookdown"
+title: "Using the {webexercises} package to add mini-interactive exercises to bookdown"
 description: |
-  Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.
+  Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.
   
 author:
   - name: Peter Higgins
@@ -16,14 +16,14 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
-library(webex)
+library(webexercises)
 ```
 
 # Putting Web Exercises in a Bookdown book
 
 There is a large benefit to providing rapid, frequent interactive feedback during teaching, to test and challenge whether students truly understood the most recent chunk of the material. This is familiar in medicine to folks who used Dubin's book to learn EKG interpretation. <https://www.amazon.com/Rapid-Interpretation-EKGs-Sixth-Dubin/dp/0912912065l>.
 
-The {webex} package, by Prof. Lisa Debruine and her PsyTeachR team at the University of Glasgow, allows insertion of small web exercises into a bookdown book.
+The {webexercises} package, by Prof. Lisa Debruine and her PsyTeachR team at the University of Glasgow, allows insertion of small web exercises into a bookdown book.
 
 ## Setup
 
@@ -98,7 +98,7 @@ England always wins the World Cup. This statement is `` `r knitr::inline_expr("t
 ### Multiple choice
 
 Which actor played Luke Skywalker in the movie Star Wars?
-`` `r knitr::inline_expr("webex::mcq(c('Alec Guinness', answer = 'Mark Hamill', 'Harrison Ford'))")` ``
+`` `r knitr::inline_expr("webexercises::mcq(c('Alec Guinness', answer = 'Mark Hamill', 'Harrison Ford'))")` ``
 
 ### Fill in the blank
 
@@ -138,7 +138,7 @@ This will not work in chapter Preview - the whole yaml needs to be processed. So
 
 `bookdown::render_book('index.Rmd')`
 
-Then view the resulting `_book/index.html` file in your browser to see these webex HTML widgets in action.
+Then view the resulting `_book/index.html` file in your browser to see these webexercises HTML widgets in action.
 
 ## Tweaking the css format
 

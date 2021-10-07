@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -85,9 +86,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Using {webex} to add mini-interactive exercises to bookdown</title>
+  <title>Using the {webexercises} package to add mini-interactive exercises to bookdown</title>
 
-  <meta property="description" itemprop="description" content="Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
+  <meta property="description" itemprop="description" content="Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
 
 
   <!--  https://schema.org/Article -->
@@ -96,26 +97,26 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta name="article:author" content="Peter Higgins"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Using {webex} to add mini-interactive exercises to bookdown"/>
+  <meta property="og:title" content="Using the {webexercises} package to add mini-interactive exercises to bookdown"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
+  <meta property="og:description" content="Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
   <meta property="og:locale" content="en_US"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Using {webex} to add mini-interactive exercises to bookdown"/>
-  <meta property="twitter:description" content="Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
+  <meta property="twitter:title" content="Using the {webexercises} package to add mini-interactive exercises to bookdown"/>
+  <meta property="twitter:description" content="Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Using {webex} to add mini-interactive exercises to bookdown"]},{"type":"character","attributes":{},"value":["Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Peter Higgins"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["07-14-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Using the {webexercises} package to add mini-interactive exercises to bookdown"]},{"type":"character","attributes":{},"value":["Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Peter Higgins"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["07-14-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["using-webex-to-add-mini-interactive-exercises-to-bookdown_files/anchor-4.2.2/anchor.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/bowser-1.9.3/bowser.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/distill-2.2.21/template.v2.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/header-attrs-2.9/header-attrs.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/jquery-1.11.3/jquery.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/popper-2.6.0/popper.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy-bundle.umd.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy-light-border.css","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy.css","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy.umd.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["using-webex-to-add-mini-interactive-exercises-to-bookdown_files/anchor-4.2.2/anchor.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/bowser-1.9.3/bowser.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/distill-2.2.21/template.v2.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/header-attrs-2.10/header-attrs.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/header-attrs-2.11/header-attrs.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/header-attrs-2.9/header-attrs.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/jquery-1.11.3/jquery.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/jquery-3.6.0/jquery-3.6.0.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/jquery-3.6.0/jquery-3.6.0.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/jquery-3.6.0/jquery-3.6.0.min.map","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/popper-2.6.0/popper.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy-bundle.umd.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy-light-border.css","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy.css","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy.umd.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1433,8 +1434,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/header-attrs-2.10/header-attrs.js"></script>
-  <script src="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/popper-2.6.0/popper.min.js"></script>
   <link href="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1454,7 +1455,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Using {webex} to add mini-interactive exercises to bookdown","description":"Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.","authors":[{"author":"Peter Higgins","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-14T00:00:00.000+00:00","citationText":"Higgins, 2021"}
+{"title":"Using the {webexercises} package to add mini-interactive exercises to bookdown","description":"Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.","authors":[{"author":"Peter Higgins","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-14T00:00:00.000+00:00","citationText":"Higgins, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1464,10 +1465,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Using {webex} to add mini-interactive exercises to bookdown</h1>
+<h1>Using the {webexercises} package to add mini-interactive exercises to bookdown</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.</p></p>
+<p><p>Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.</p></p>
 </div>
 
 <div class="d-byline">
@@ -1479,7 +1480,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-article">
 <h1 id="putting-web-exercises-in-a-bookdown-book">Putting Web Exercises in a Bookdown book</h1>
 <p>There is a large benefit to providing rapid, frequent interactive feedback during teaching, to test and challenge whether students truly understood the most recent chunk of the material. This is familiar in medicine to folks who used Dubin’s book to learn EKG interpretation. <a href="https://www.amazon.com/Rapid-Interpretation-EKGs-Sixth-Dubin/dp/0912912065l" class="uri">https://www.amazon.com/Rapid-Interpretation-EKGs-Sixth-Dubin/dp/0912912065l</a>.</p>
-<p>The {webex} package, by Prof. Lisa Debruine and her PsyTeachR team at the University of Glasgow, allows insertion of small web exercises into a bookdown book.</p>
+<p>The {webexercises} package, by Prof. Lisa Debruine and her PsyTeachR team at the University of Glasgow, allows insertion of small web exercises into a bookdown book.</p>
 <h2 id="setup">Setup</h2>
 <p>You want to set up an “include” folder in the root directory of your bookdown book. Go to the root directory (open your bookdown project, use the directory with the your_book_name.Rproj file), and click on New Folder at the top left of the Files tab. Name the new folder “include”.</p>
 <p>Use File/New File/CSS to create a new, empty CSS file. Save this in the ‘include’ folder as webex.css. Leave this file open.</p>
@@ -1515,7 +1516,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3 id="true-or-false">True or False</h3>
 <p>England always wins the World Cup. This statement is <code>`r torf(FALSE)`</code></p>
 <h3 id="multiple-choice">Multiple choice</h3>
-<p>Which actor played Luke Skywalker in the movie Star Wars? <code>`r webex::mcq(c('Alec Guinness', answer = 'Mark Hamill', 'Harrison Ford'))`</code></p>
+<p>Which actor played Luke Skywalker in the movie Star Wars? <code>`r webexercises::mcq(c('Alec Guinness', answer = 'Mark Hamill', 'Harrison Ford'))`</code></p>
 <h3 id="fill-in-the-blank">Fill in the blank</h3>
 <p>2^3 is <code>`r fitb('8')`</code></p>
 <h3 id="hide-and-unhide">Hide and Unhide</h3>
@@ -1534,7 +1535,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="rendering">Rendering</h2>
 <p>This will not work in chapter Preview - the whole yaml needs to be processed. So render the book with</p>
 <p><code>bookdown::render_book('index.Rmd')</code></p>
-<p>Then view the resulting <code>_book/index.html</code> file in your browser to see these webex HTML widgets in action.</p>
+<p>Then view the resulting <code>_book/index.html</code> file in your browser to see these webexercises HTML widgets in action.</p>
 <h2 id="tweaking-the-css-format">Tweaking the css format</h2>
 <p>You can fiddle with:</p>
 <ul>

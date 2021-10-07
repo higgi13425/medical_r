@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -85,9 +86,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-<title>Medical R: Using {webex} to add mini-interactive exercises to bookdown</title>
+<title>Medical R: Using the {webexercises} package to add mini-interactive exercises to bookdown</title>
 
-<meta property="description" itemprop="description" content="Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
+<meta property="description" itemprop="description" content="Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
 
 <link rel="canonical" href="https://higgi13425.github.io/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/"/>
 
@@ -97,23 +98,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta name="article:author" content="Peter Higgins"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Medical R: Using {webex} to add mini-interactive exercises to bookdown"/>
+<meta property="og:title" content="Medical R: Using the {webexercises} package to add mini-interactive exercises to bookdown"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
+<meta property="og:description" content="Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
 <meta property="og:url" content="https://higgi13425.github.io/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Medical R"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="Medical R: Using {webex} to add mini-interactive exercises to bookdown"/>
-<meta property="twitter:description" content="Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
+<meta property="twitter:title" content="Medical R: Using the {webexercises} package to add mini-interactive exercises to bookdown"/>
+<meta property="twitter:description" content="Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."/>
 <meta property="twitter:url" content="https://higgi13425.github.io/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/"/>
 <meta property="twitter:site" content="@ibddoctor"/>
 <meta property="twitter:creator" content="@ibddoctor"/>
 
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
-<meta name="citation_title" content="Medical R: Using {webex} to add mini-interactive exercises to bookdown"/>
+<meta name="citation_title" content="Medical R: Using the {webexercises} package to add mini-interactive exercises to bookdown"/>
 <meta name="citation_fulltext_html_url" content="https://higgi13425.github.io/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/"/>
 <meta name="citation_online_date" content="2021/07/14"/>
 <meta name="citation_publication_date" content="2021/07/14"/>
@@ -122,12 +123,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Using {webex} to add mini-interactive exercises to bookdown"]},{"type":"character","attributes":{},"value":["Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Peter Higgins"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["07-14-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/"]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Using the {webexercises} package to add mini-interactive exercises to bookdown"]},{"type":"character","attributes":{},"value":["Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Peter Higgins"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["07-14-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/"]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["using-webex-to-add-mini-interactive-exercises-to-bookdown_files/anchor-4.2.2/anchor.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/bowser-1.9.3/bowser.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/distill-2.2.21/template.v2.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/header-attrs-2.9/header-attrs.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/jquery-1.11.3/jquery.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/popper-2.6.0/popper.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy-bundle.umd.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy-light-border.css","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy.css","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy.umd.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["using-webex-to-add-mini-interactive-exercises-to-bookdown_files/anchor-4.2.2/anchor.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/bowser-1.9.3/bowser.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/distill-2.2.21/template.v2.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/header-attrs-2.10/header-attrs.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/header-attrs-2.11/header-attrs.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/header-attrs-2.9/header-attrs.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/jquery-1.11.3/jquery.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/jquery-3.6.0/jquery-3.6.0.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/jquery-3.6.0/jquery-3.6.0.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/jquery-3.6.0/jquery-3.6.0.min.map","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/popper-2.6.0/popper.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy-bundle.umd.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy-light-border.css","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy.css","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/tippy-6.2.7/tippy.umd.min.js","using-webex-to-add-mini-interactive-exercises-to-bookdown_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2051,8 +2052,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.10/header-attrs.js"></script>
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2145,7 +2146,7 @@ p a:active  {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Using {webex} to add mini-interactive exercises to bookdown","description":"Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.","authors":[{"author":"Peter Higgins","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-14T00:00:00.000+00:00","citationText":"Higgins, 2021"}
+{"title":"Using the {webexercises} package to add mini-interactive exercises to bookdown","description":"Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.","authors":[{"author":"Peter Higgins","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-07-14T00:00:00.000+00:00","citationText":"Higgins, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2168,10 +2169,10 @@ p a:active  {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Using {webex} to add mini-interactive exercises to bookdown</h1>
+<h1>Using the {webexercises} package to add mini-interactive exercises to bookdown</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Using the {webex} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.</p></p>
+<p><p>Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.</p></p>
 </div>
 
 <div class="d-byline">
@@ -2183,7 +2184,7 @@ p a:active  {
 <div class="d-article">
 <h1 id="putting-web-exercises-in-a-bookdown-book">Putting Web Exercises in a Bookdown book</h1>
 <p>There is a large benefit to providing rapid, frequent interactive feedback during teaching, to test and challenge whether students truly understood the most recent chunk of the material. This is familiar in medicine to folks who used Dubin’s book to learn EKG interpretation. <a href="https://www.amazon.com/Rapid-Interpretation-EKGs-Sixth-Dubin/dp/0912912065l" class="uri">https://www.amazon.com/Rapid-Interpretation-EKGs-Sixth-Dubin/dp/0912912065l</a>.</p>
-<p>The {webex} package, by Prof. Lisa Debruine and her PsyTeachR team at the University of Glasgow, allows insertion of small web exercises into a bookdown book.</p>
+<p>The {webexercises} package, by Prof. Lisa Debruine and her PsyTeachR team at the University of Glasgow, allows insertion of small web exercises into a bookdown book.</p>
 <h2 id="setup">Setup</h2>
 <p>You want to set up an “include” folder in the root directory of your bookdown book. Go to the root directory (open your bookdown project, use the directory with the your_book_name.Rproj file), and click on New Folder at the top left of the Files tab. Name the new folder “include”.</p>
 <p>Use File/New File/CSS to create a new, empty CSS file. Save this in the ‘include’ folder as webex.css. Leave this file open.</p>
@@ -2219,7 +2220,7 @@ p a:active  {
 <h3 id="true-or-false">True or False</h3>
 <p>England always wins the World Cup. This statement is <code>`r torf(FALSE)`</code></p>
 <h3 id="multiple-choice">Multiple choice</h3>
-<p>Which actor played Luke Skywalker in the movie Star Wars? <code>`r webex::mcq(c('Alec Guinness', answer = 'Mark Hamill', 'Harrison Ford'))`</code></p>
+<p>Which actor played Luke Skywalker in the movie Star Wars? <code>`r webexercises::mcq(c('Alec Guinness', answer = 'Mark Hamill', 'Harrison Ford'))`</code></p>
 <h3 id="fill-in-the-blank">Fill in the blank</h3>
 <p>2^3 is <code>`r fitb('8')`</code></p>
 <h3 id="hide-and-unhide">Hide and Unhide</h3>
@@ -2238,7 +2239,7 @@ p a:active  {
 <h2 id="rendering">Rendering</h2>
 <p>This will not work in chapter Preview - the whole yaml needs to be processed. So render the book with</p>
 <p><code>bookdown::render_book('index.Rmd')</code></p>
-<p>Then view the resulting <code>_book/index.html</code> file in your browser to see these webex HTML widgets in action.</p>
+<p>Then view the resulting <code>_book/index.html</code> file in your browser to see these webexercises HTML widgets in action.</p>
 <h2 id="tweaking-the-css-format">Tweaking the css format</h2>
 <p>You can fiddle with:</p>
 <ul>
@@ -2257,10 +2258,10 @@ p a:active  {
   <p class="social_footer">
     <span class="article-sharing">
       Share: &nbsp;
-      <a href="https://twitter.com/share?text=Using%20%7Bwebex%7D%20to%20add%20mini-interactive%20exercises%20to%20bookdown&amp;url=https%3A%2F%2Fhiggi13425.github.io%2Fposts%2F2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown%2F">
+      <a href="https://twitter.com/share?text=Using%20the%20%7Bwebexercises%7D%20package%20to%20add%20mini-interactive%20exercises%20to%20bookdown&amp;url=https%3A%2F%2Fhiggi13425.github.io%2Fposts%2F2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown%2F">
         <i class="fab fa-twitter"></i>
       </a>
-      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fhiggi13425.github.io%2Fposts%2F2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown%2F&amp;title=Using%20%7Bwebex%7D%20to%20add%20mini-interactive%20exercises%20to%20bookdown">
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fhiggi13425.github.io%2Fposts%2F2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown%2F&amp;title=Using%20the%20%7Bwebexercises%7D%20package%20to%20add%20mini-interactive%20exercises%20to%20bookdown">
         <i class="fab fa-linkedin"></i>
       </a>
     </span>
@@ -2289,11 +2290,11 @@ p a:active  {
 <div class="appendix-bottom">
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Higgins (2021, July 14). Medical R: Using {webex} to add mini-interactive exercises to bookdown. Retrieved from https://higgi13425.github.io/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/</pre>
+  <pre class="citation-appendix short">Higgins (2021, July 14). Medical R: Using the {webexercises} package to add mini-interactive exercises to bookdown. Retrieved from https://higgi13425.github.io/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/</pre>
   <p>BibTeX citation</p>
   <pre class="citation-appendix long">@misc{higgins2021using,
   author = {Higgins, Peter},
-  title = {Medical R: Using {webex} to add mini-interactive exercises to bookdown},
+  title = {Medical R: Using the {webexercises} package to add mini-interactive exercises to bookdown},
   url = {https://higgi13425.github.io/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/},
   year = {2021}
 }</pre>

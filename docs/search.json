@@ -6,14 +6,14 @@
       "description": "Some additional details about the blog.",
       "author": [],
       "contents": "\nAbout me\nMy name is Peter Higgins, and I work at the University of Michigan, where I am a Professor of Internal Medicine and take care of patients with Inflammatory Bowel Disease. I do a variety of research projects related to Inflammatory Bowel Disease, which range from basic science to translational drug development to clinical trials to epidemiology. Some of the posts here are largely notes to myself to help in writing an e-book about Reproducible Medical Research in R (RMRWR). Other posts will essentially be first drafts of future chapters of RMRWR, which is a work in progress. The RMRWR e-book can be found here: https://bookdown.org/pdr_higgins/rmrwr/\nAbout This Blog\nI am blogging about the use of R with medical data, and will tackle topics like\nbest practices for data collection and entry\ndata security and PHI\nhow to build learnr modules for teaching\nhow to build flipbooks for teaching\nhow to build an e-book with bookdown\nContact\nYou should probably just tweet me @ibddoctor.\nWould you like to build your own blog?\nIf you would like to build a distill-based blog like this, start with the walk-through from Thomas Mock at:\nhttps://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/\nand also follow the RStudio guide at:\nhttps://rstudio.github.io/distill/publish_website.html\nThis website is published with Github Pages (using Rmarkdown and the distill framework, rather than Github’s jekyll default), and details on how to set up your Github repo as a webpage can be found at:\nhttps://guides.github.com/features/pages/\n\n\n\n",
-      "last_modified": "2021-10-07T16:25:24-04:00"
+      "last_modified": "2021-10-07T16:27:23-04:00"
     },
     {
       "path": "index.html",
       "title": "Medical R",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-10-07T16:25:24-04:00"
+      "last_modified": "2021-10-07T16:27:23-04:00"
     }
   ],
   "collections": ["posts/posts.json"]

@@ -2134,7 +2134,86 @@ d-appendix {
 /*-- Additional custom styles --*/
 /* Add any additional CSS rules below                      */
 </style>
-<style type="text/css">.distill-site-nav {
+<style type="text/css">
+/* base variables */
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+/* Import fonts from Google's API */
+@import url('https://fonts.googleapis.com/css2?family=Lato');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono');
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible');
+
+html {
+  /*-- Main font sizes --*/
+  --title-size:      50px;
+  --body-size:       1.5rem;
+  --code-size:       16px;
+  --aside-size:      15px;
+  --fig-cap-size:    14px;
+  /*-- Main font colors --*/
+  --title-color:     #000000;
+  --header-color:    rgba(0, 0, 0, 0.8);
+  --body-color:      rgba(0, 0, 0, 0.8);
+  --aside-color:     rgba(0, 0, 0, 0.6);
+  --fig-cap-color:   rgba(0, 0, 0, 0.6);
+  /*-- Specify custom fonts ~~~ must be imported above   --*/
+  --heading-font:    sans-serif;
+  --mono-font:       monospace;
+  --body-font:       sans-serif;
+  --navbar-font:     sans-serif;  /* websites + blogs only */
+}
+
+/*-- ARTICLE METADATA --*/
+d-byline {
+  --heading-size:    0.6rem;
+  --heading-color:   rgba(0, 0, 0, 0.5);
+  --body-size:       0.8rem;
+  --body-color:      rgba(0, 0, 0, 0.8);
+}
+
+/*-- ARTICLE TABLE OF CONTENTS --*/
+.d-contents {
+  --heading-size:    18px;
+  --contents-size:   13px;
+}
+
+/*-- ARTICLE APPENDIX --*/
+d-appendix {
+  --heading-size:    15px;
+  --heading-color:   rgba(0, 0, 0, 0.65);
+  --text-size:       0.8em;
+  --text-color:      rgba(0, 0, 0, 0.5);
+}
+
+/*-- WEBSITE HEADER + FOOTER --*/
+/* These properties only apply to Distill sites and blogs  */
+
+.distill-site-header {
+  --title-size:       18px;
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #01824F;
+}
+
+.distill-site-footer {
+  --text-color:       rgba(255, 255, 255, 0.8);
+  --text-size:        15px;
+  --hover-color:      white;
+  --bkgd-color:       #0F2E3D;
+}
+
+.distill-site-nav {
   color: #FFFFFF; 
   background-color: #01824F;
   font-size: 20px;
@@ -2143,67 +2222,6 @@ d-appendix {
 
 .distill-site-nav a:hover {
   color: #333333;
-}
-
-/* Change appearance of headers with Lato font */
-h1, h2, h3, h4, h5 {
-  font-family: 'Atkinson Hyperlegible', sans-serif;
-  color: color: #333333;
-}
-
-/* Import fonts from Google's API */
-@import url('https://fonts.googleapis.com/css2?family=Lato');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono');
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible');
-
-/* Use specific font in the body of the text */
-html, body, p {
-  font-family: 'Atkinson Hyperlegible', sans-serif;
-  font-weight: 200;
-  line-height: 1.6; 
-  font-size: 1.4em;
-  color: #333333;
-  font-style: normal;
-}
-
-/* Change the appearance of regular code chunks */
-d-article div.sourceCode code, 
-d-article pre code {
-	font-family: "Fira Mono", monospace;
-	color: #000000;
-  background-color: #FFFFF0; 
-  line-height: 80%;
-  font-weight: 400;
-	font-size: 1.1rem;
-}
-
-/* Change the appearance of in-line code chunks */
-code {
-  font-family: 'Fira Mono', Monospace;
-  color: #000000;
-  background-color: #FFFFF0; 
-  line-height: 80%;
-  font-weight: 400;
-  font-size: 1em;
-}
-
-/* Change the appearance of text links */
-/* unvisited text link */
-p a:link  {
-    color: #01824F;
-    border-bottom: 1px dashed;
-}
-/* mouse over link */
-p a:hover  {
-    color: #006400;
-    border-bottom: 1px solid;
-    background: #7CFC00;
-}
-/* click link */
-p a:active  {
-    color: #000000;
-    border-bottom: 2px solid;
-    background: #90EE90;
 }</style>
 <style type="text/css">
 /* base style */

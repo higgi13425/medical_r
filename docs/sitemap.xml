@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
-    <loc>https://higgi13425.github.io/about.html</loc>
+    <loc>https://higgi13425.github.io/medical_r/about.html</loc>
     <lastmod>2021-10-11T04:15:41-04:00</lastmod>
   </url>
   <url>
-    <loc>https://higgi13425.github.io/</loc>
+    <loc>https://higgi13425.github.io/medical_r/</loc>
     <lastmod>2021-10-11T04:14:56-04:00</lastmod>
   </url>
   <url>
-    <loc>https://higgi13425.github.io/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/</loc>
+    <loc>https://higgi13425.github.io/medical_r/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/</loc>
     <lastmod>2021-10-07T16:53:19-04:00</lastmod>
   </url>
   <url>
-    <loc>https://higgi13425.github.io/posts/2021-06-13-resources-for-getting-started-in-r/</loc>
+    <loc>https://higgi13425.github.io/medical_r/posts/2021-06-13-resources-for-getting-started-in-r/</loc>
     <lastmod>2021-10-07T16:53:08-04:00</lastmod>
   </url>
   <url>
-    <loc>https://higgi13425.github.io/posts/2021-01-13-extracting-highlighting-as-data-from-excel/</loc>
+    <loc>https://higgi13425.github.io/medical_r/posts/2021-01-13-extracting-highlighting-as-data-from-excel/</loc>
     <lastmod>2021-10-07T16:52:53-04:00</lastmod>
   </url>
   <url>
-    <loc>https://higgi13425.github.io/posts/2020-12-27-creating-mini-learnr-apps-and-hosting-on-a-server/</loc>
+    <loc>https://higgi13425.github.io/medical_r/posts/2020-12-27-creating-mini-learnr-apps-and-hosting-on-a-server/</loc>
     <lastmod>2021-10-07T16:52:27-04:00</lastmod>
   </url>
   <url>
-    <loc>https://higgi13425.github.io/posts/2020-12-12-publishing-a-bookdown-book-on-bookdownorg/</loc>
+    <loc>https://higgi13425.github.io/medical_r/posts/2020-12-12-publishing-a-bookdown-book-on-bookdownorg/</loc>
     <lastmod>2021-10-07T16:52:14-04:00</lastmod>
   </url>
   <url>
-    <loc>https://higgi13425.github.io/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/</loc>
+    <loc>https://higgi13425.github.io/medical_r/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/</loc>
     <lastmod>2021-10-07T16:51:59-04:00</lastmod>
   </url>
   <url>
-    <loc>https://higgi13425.github.io/posts/2020-11-01-subgroup-plots/</loc>
+    <loc>https://higgi13425.github.io/medical_r/posts/2020-11-01-subgroup-plots/</loc>
     <lastmod>2021-10-07T16:51:44-04:00</lastmod>
   </url>
   <url>
-    <loc>https://higgi13425.github.io/posts/2020-10-20-embed-external-flipbooks/</loc>
+    <loc>https://higgi13425.github.io/medical_r/posts/2020-10-20-embed-external-flipbooks/</loc>
     <lastmod>2021-10-07T16:51:24-04:00</lastmod>
   </url>
   <url>
-    <loc>https://higgi13425.github.io/posts/2020-10-18-building-a-data-package/</loc>
+    <loc>https://higgi13425.github.io/medical_r/posts/2020-10-18-building-a-data-package/</loc>
     <lastmod>2021-10-07T16:51:07-04:00</lastmod>
   </url>
   <url>
-    <loc>https://higgi13425.github.io/posts/2020-10-14-how-to-post/</loc>
+    <loc>https://higgi13425.github.io/medical_r/posts/2020-10-14-how-to-post/</loc>
     <lastmod>2021-10-07T16:50:17-04:00</lastmod>
   </url>
   <url>
-    <loc>https://higgi13425.github.io/posts/2020-10-14-micro-flipbooks/</loc>
+    <loc>https://higgi13425.github.io/medical_r/posts/2020-10-14-micro-flipbooks/</loc>
     <lastmod>2021-10-07T16:50:38-04:00</lastmod>
   </url>
   <url>
-    <loc>https://higgi13425.github.io/posts/2020-10-14-why-a-medical-r-blog/</loc>
+    <loc>https://higgi13425.github.io/medical_r/posts/2020-10-14-why-a-medical-r-blog/</loc>
     <lastmod>2021-10-07T16:50:49-04:00</lastmod>
   </url>
   <url>
-    <loc>https://higgi13425.github.io/posts/welcome/</loc>
+    <loc>https://higgi13425.github.io/medical_r/posts/welcome/</loc>
     <lastmod>2020-10-14T14:26:25-04:00</lastmod>
   </url>
 </urlset>

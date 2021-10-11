@@ -1,8 +1,10 @@
 name: "medical_r"
 title: "Medical R"
+output: distill::distill_article
+theme: styles.css
 description: |
   A blog about the use of R with medical data.
-base_url: https://higgi13425.github.io/
+base_url: https://higgi13425.github.io/medical_r/
 collections:
   posts:
     subscribe: _subscribe.html
@@ -16,8 +18,5 @@ navbar:
       href: about.html
 twitter:
   site: "@ibddoctor"
-output: 
-  distill::distill_article:
-    css: theme.css
 rss:
   full_content: false

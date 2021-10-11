@@ -44,6 +44,7 @@
 <meta property="twitter:description" content="Welcome to my blog, Medical R. I will blog on topics related to using R with medical data. I hope you enjoy reading and find this useful!"/>
 <meta property="twitter:url" content="https://higgi13425.github.io/medical_r/posts/welcome/"/>
 <meta property="twitter:site" content="@ibddoctor"/>
+<meta property="twitter:creator" content="@ibddoctor"/>
 
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
 <meta name="citation_title" content="Medical R: Welcome to Medical R"/>
@@ -1814,7 +1815,10 @@ function init_distill() {
 
     // hoverable references
     $('span.citation[data-cites]').each(function() {
-      var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+      var refs = $(this).attr('data-cites').split(" ");
+      var refHtml = refs.map(function(ref) {
+        return "<p>" + $('#ref-' + ref).html() + "</p>";
+      }).join("\n");
       window.tippy(this, {
         allowHTML: true,
         content: refHtml,
@@ -2303,7 +2307,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Welcome to Medical R","description":"Welcome to my blog, Medical R. I will blog on topics related to using R with medical data. I hope you enjoy reading and find this useful!","authors":[{"author":"Peter Higgins","authorURL":"https://higgi13425.github.io/medical_r/","affiliation":"University of Michigan","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-10-14T00:00:00.000+00:00","citationText":"Higgins, 2020"}
+{"title":"Welcome to Medical R","description":"Welcome to my blog, Medical R. I will blog on topics related to using R with medical data. I hope you enjoy reading and find this useful!","authors":[{"author":"Peter Higgins","authorURL":"https://higgi13425.github.io/medical_r/","affiliation":"University of Michigan","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-10-14T00:00:00.000-04:00","citationText":"Higgins, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->

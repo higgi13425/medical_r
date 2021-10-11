@@ -1,7 +1,7 @@
 ---
 title: "About this blog"
 description: |
-  Some additional details about the blog.
+  A blog about the use of R with medical data.
 ---
 
 ```{r setup, include=FALSE}

@@ -2,9 +2,4 @@
 title: "Medical R"
 site: distill::distill_website
 listing: posts
-categories:
-  - general
-  - flipbooks
-  - learnr
-  - bookdown
 ---

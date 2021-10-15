@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>Creating Mini learnr Apps and Hosting on a Server</title>
@@ -116,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["creating-mini-learnr-apps-and-hosting-on-a-server_files/anchor-4.2.2/anchor.min.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/bowser-1.9.3/bowser.min.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/distill-2.2.21/template.v2.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/header-attrs-2.6/header-attrs.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/jquery-1.11.3/jquery.min.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["creating-mini-learnr-apps-and-hosting-on-a-server_files/anchor-4.2.2/anchor.min.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/bowser-1.9.3/bowser.min.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/distill-2.2.21/template.v2.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/header-attrs-2.11.3/header-attrs.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/header-attrs-2.11/header-attrs.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/header-attrs-2.6/header-attrs.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/jquery-1.11.3/jquery.min.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/jquery-3.6.0/jquery-3.6.0.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/jquery-3.6.0/jquery-3.6.0.min.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/jquery-3.6.0/jquery-3.6.0.min.map","creating-mini-learnr-apps-and-hosting-on-a-server_files/popper-2.6.0/popper.min.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/tippy-6.2.7/tippy-bundle.umd.min.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/tippy-6.2.7/tippy-light-border.css","creating-mini-learnr-apps-and-hosting-on-a-server_files/tippy-6.2.7/tippy.css","creating-mini-learnr-apps-and-hosting-on-a-server_files/tippy-6.2.7/tippy.umd.min.js","creating-mini-learnr-apps-and-hosting-on-a-server_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1263,7 +1264,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1434,7 +1438,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="creating-mini-learnr-apps-and-hosting-on-a-server_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="creating-mini-learnr-apps-and-hosting-on-a-server_files/header-attrs-2.11.3/header-attrs.js"></script>
   <script src="creating-mini-learnr-apps-and-hosting-on-a-server_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="creating-mini-learnr-apps-and-hosting-on-a-server_files/popper-2.6.0/popper.min.js"></script>
   <link href="creating-mini-learnr-apps-and-hosting-on-a-server_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1455,7 +1459,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Creating Mini learnr Apps and Hosting on a Server","description":"This post will explain how to create your own learnr apps and push them to an RStudio Server Open Source server.","authors":[{"author":"Peter Higgins","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-12-27T00:00:00.000+00:00","citationText":"Higgins, 2020"}
+{"title":"Creating Mini learnr Apps and Hosting on a Server","description":"This post will explain how to create your own learnr apps and push them to an RStudio Server Open Source server.","authors":[{"author":"Peter Higgins","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-12-27T00:00:00.000-05:00","citationText":"Higgins, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1513,7 +1517,7 @@ Give this a title like learn_function# (numbering if you will have more than one
 <h2 id="editing-the-yaml">Editing the YAML</h2>
 <p>Edit the title to something meaningful, like “FIltering Exercise”. The output and runtime should remain the same, and should look something like this:</p>
 <hr />
-<p>title: “FIltering Exercise”</p>
+<p>title: “Filtering Exercise”</p>
 <p>output: learnr::tutorial</p>
 <p>runtime: shiny_prerendered</p>
 <hr />
@@ -1568,12 +1572,15 @@ Give this a title like learn_function# (numbering if you will have more than one
 <p><br></p>
 <p>### Your Turn - learnr exercises</p>
 <!---LEARNR TUTORIAL EX 1-->
-<p>&lt;iframe style=“margin:0 auto; border: solid black;” id=“myIframe9” width=“763” height=“763” src=“<a href="https://higginslab-rshiny.med.umich.edu/shiny-apps/learn_filter1/%22">https://higginslab-rshiny.med.umich.edu/shiny-apps/learn_filter1/"</a> scrolling=”yes"&gt;</p>
+<p>&lt;iframe style=“margin:0 auto; border: solid black;” id=“myIframe9” width=“763” height=“423” src=“<a href="https://higginslab-rshiny.med.umich.edu/shiny-apps/learn_filter1/%22">https://higginslab-rshiny.med.umich.edu/shiny-apps/learn_filter1/"</a> data-external=”1" allowfullscreen loading= “lazy” scrolling=“yes”&gt;</p>
 <p>&lt;/iframe&gt;</p>
 <!---LEARNR TUTORIAL EX 1-->
 <p><br> <br> Leave scrolling = “yes” if you have multiple exercises.</p>
 <p>Each iframe should have a unique id.</p>
 <p>The source (src) should be equal to the link to the new app.</p>
+<p>You should have spaces between options, but no return characters in the <code>&lt;iframe&gt;</code> tag. Return characters will cause your iframe to silently fail.</p>
+<p>Set data-external=“1” - so that Pandoc will not fail to render this external app.</p>
+<p>set loading = “lazy” so that it will not load until the user scrolls to the learnr app. Note that Shiny (including learnr) apps will time out if not used within a minute or two after loading.</p>
 <p>The same <em>iframe</em> approach works for blog posts.</p>
 <h2 id="making-this-app-live-in-a-bookdown-book">Making this App Live in a Bookdown book</h2>
 <p>After inserting the learnr app, add an appropriate header text introduction above.</p>

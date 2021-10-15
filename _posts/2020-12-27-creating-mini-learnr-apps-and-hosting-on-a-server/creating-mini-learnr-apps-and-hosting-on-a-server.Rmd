@@ -82,7 +82,7 @@ Edit the title to something meaningful, like "FIltering Exercise". The output an
 
 ---
 
-title: "FIltering Exercise"
+title: "Filtering Exercise"
 
 output: learnr::tutorial
 
@@ -212,7 +212,7 @@ It should look like this:
 
 <!---LEARNR TUTORIAL EX 1-->
 
-\<iframe style="margin:0 auto; border: solid black;" id="myIframe9" width="763" height="763" src="[https://higginslab-rshiny.med.umich.edu/shiny-apps/learn_filter1/"](https://higginslab-rshiny.med.umich.edu/shiny-apps/learn_filter1/") scrolling="yes"\>
+\<iframe style="margin:0 auto; border: solid black;" id="myIframe9" width="763" height="423" src="[https://higginslab-rshiny.med.umich.edu/shiny-apps/learn_filter1/"](https://higginslab-rshiny.med.umich.edu/shiny-apps/learn_filter1/") data-external="1" allowfullscreen loading= "lazy" scrolling="yes"\>
 
 \</iframe\>
 
@@ -224,6 +224,14 @@ Leave scrolling = "yes" if you have multiple exercises.
 Each iframe should have a unique id.
 
 The source (src) should be equal to the link to the new app.
+
+You should have spaces between options, but no return characters in the `<iframe>` tag.
+Return characters will cause your iframe to silently fail.
+
+Set data-external="1" - so that Pandoc will not fail to render this external app.
+
+set loading = "lazy" so that it will not load until the user scrolls to the learnr app.
+Note that Shiny (including learnr) apps will time out if not used within a minute or two after loading.
 
 The same *iframe* approach works for blog posts.   
 

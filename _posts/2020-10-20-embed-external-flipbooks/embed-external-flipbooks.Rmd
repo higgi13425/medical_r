@@ -95,7 +95,7 @@ There are 3 steps:
 -   Build the website/book (Build tab)
 -   Git commit and push to Github
 
-in a minute or two, you will have a working flipbook on the web.
+in a minute or two, you will have a working flipbook on the web that looks something like the below example.
 
 <!---FLIPBOOK EX 1-->
 

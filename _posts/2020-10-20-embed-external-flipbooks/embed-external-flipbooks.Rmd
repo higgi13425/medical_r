@@ -78,7 +78,12 @@ NOTE: Your `<iframe>` tag, with many options, should only have spaces between op
 ```{r, eval=FALSE, echo=TRUE, error=TRUE, warning=FALSE, message=FALSE}
 <!---FLIPBOOK EX 1--> 
 
-<iframe style="margin:0 auto; border: solid black;" id="myIframe11" width="763" height="432" src="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" scrolling="no" data-external="1" allowfullscreen loading="lazy">
+<iframe style="margin:0 auto; border: solid black;" 
+id="myIframe11" width="763" height="432"
+src="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" 
+scrolling="no" data-external="1" 
+allowfullscreen
+loading="lazy">
 </iframe>
 
 <!-------------> 

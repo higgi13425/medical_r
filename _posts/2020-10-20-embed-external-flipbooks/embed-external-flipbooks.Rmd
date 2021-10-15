@@ -23,7 +23,7 @@ Let's assume you followed along in the micro-flipbooks blog post,
 
 <https://higgi13425.github.io/medical_r/posts/2020-10-14-micro-flipbooks/>
 
-and you now have an RStudio project with at least one micro-flipbook, which has been pushed to Github, and is now viewable at your github.io site, much like this one:
+and you now have an RStudio project with at least one micro-flipbook, which has been pushed to Github, and is now viewable at your github.io site, much like the one found at the link below.
 
 ## Example micro-flipbook
 
@@ -35,7 +35,7 @@ So now that this is on the web as a viewable flipbook, how are you going to embe
 
 Some great ideas on how to do this properly (not the slapdash [but quick] way that I do it) from the source of all flipbooks, Evangeline Reynolds, are here: <https://evangelinereynolds.netlify.app/post/embedding-flipbook-mini-in-html-document/>
 
-Also, lots more flipbook knowledge/options here:
+Also, there is lots more flipbook knowledge/options here:
 
 <https://evangelinereynolds.netlify.app/#posts>
 
@@ -53,22 +53,24 @@ This is actually not that hard.
 
 Once you have working HTML at github.io with a web address, you are in business.
 
-Just insert some *iframe* code between these comment fences, as in the code chunk below. This is actually *easier* than inserting a *learnr* app - with no resizing messes.
+Just insert some *iframe* code between two comment fences, as in the code chunk below. This is actually *easier* than inserting a *learnr* app - with no resizing messes.
 
 Note that it is essentially two html tags, one to open the iframe: `<iframe>` with a bunch of options/arguments,
 
 and then one to close the iframe: `</iframe>`
 
-The style argument is basically some inline CSS styling. Note that I know almost zero CSS. You can get surprisingly far with web searches. Learn some minimal CSS here if you need to:\
+The style argument is basically some inline CSS styling. Note that I know almost zero CSS. You can get surprisingly far with web searches. You can learn some minimal CSS here if you need to:\
 <https://www.w3schools.com/css/css_intro.asp>
 
-Note that if you have multiple iframes in your HTML, each one needs a unique id.
+Note that if you have multiple iframes in your HTML, each one **must have** a unique id.
 
-You can set the width and height (these seemed to work for me).
+You can set the width and height (these (763 x 432) seemed to work for me).
 
 Then set the source (src) to the link to github.io, with the first xaringan slide (\#1) as the starting point.
 
 Then usually set scrolling to "no". Your call.
+
+NOTE: as of fall 2021, a change in Pandoc means that you must add `data-external="1"` for any externally sourced files (like a flipbook from github, or a learnr app) so that Pandoc won't get grumpy and refuse to render the flipbook.
 
 ```{r, eval=FALSE, echo=TRUE, error=TRUE, warning=FALSE, message=FALSE}
 <!---FLIPBOOK EX 1--> 
@@ -76,7 +78,7 @@ Then usually set scrolling to "no". Your call.
 <iframe style="margin:0 auto; border: solid black;" 
 id="myIframe8" 
 width = "763" height = "432"
-src="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" 
+src="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" data-external="1" 
 scrolling="no"></iframe> 
 
 <!-------------> 
@@ -87,9 +89,10 @@ Then, build your website or bookdown book with this chunk in it.
 
 It may be helpful to preface the first microflipbook with a bit of orientation for new users. Something like:
 
-See the example flipbook below. You can click on it and move forward or backward in the slides with the left and right arrows to see what each line of code actually does.
+> See the example flipbook below. You can click on it and move forward or backward in the slides with the left and right arrows to see what each line of code actually does.
 
-And your micro-flipbook should look something like this: *Note that it will look like an empty box in the RStudio viewer, but trust:* 3 steps:
+And your micro-flipbook should look something like this: *Note that it will look like an empty box in the RStudio viewer, but trust:* \
+There are 3 steps:
 
 -   Knit the Rmd page
 -   Build the website/book (Build tab)
@@ -99,7 +102,13 @@ in a minute or two, you will have a working flipbook on the web.
 
 <!---FLIPBOOK EX 1-->
 
-<iframe style="margin:0 auto; border: solid black;" id="myIframe8" width="763" height="432" src="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" scrolling="no">
+<iframe style="margin:0 auto; border: solid black;" id="myIframe8" width="763" height="432" src="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1"
+
+data-external="1" 
+
+
+
+scrolling="no">
 
 </iframe>
 

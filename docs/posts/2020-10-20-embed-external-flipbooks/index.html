@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
 <title>Medical R: How to Embed External micro-Flipbooks in Bookdown</title>
@@ -128,7 +129,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["embed-external-flipbooks_files/anchor-4.2.2/anchor.min.js","embed-external-flipbooks_files/bowser-1.9.3/bowser.min.js","embed-external-flipbooks_files/distill-2.2.21/template.v2.js","embed-external-flipbooks_files/header-attrs-2.4/header-attrs.js","embed-external-flipbooks_files/header-attrs-2.5/header-attrs.js","embed-external-flipbooks_files/jquery-1.11.3/jquery.min.js","embed-external-flipbooks_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["embed-external-flipbooks_files/anchor-4.2.2/anchor.min.js","embed-external-flipbooks_files/bowser-1.9.3/bowser.min.js","embed-external-flipbooks_files/distill-2.2.21/template.v2.js","embed-external-flipbooks_files/header-attrs-2.11/header-attrs.js","embed-external-flipbooks_files/header-attrs-2.4/header-attrs.js","embed-external-flipbooks_files/header-attrs-2.5/header-attrs.js","embed-external-flipbooks_files/jquery-1.11.3/jquery.min.js","embed-external-flipbooks_files/jquery-3.6.0/jquery-3.6.0.js","embed-external-flipbooks_files/jquery-3.6.0/jquery-3.6.0.min.js","embed-external-flipbooks_files/jquery-3.6.0/jquery-3.6.0.min.map","embed-external-flipbooks_files/popper-2.6.0/popper.min.js","embed-external-flipbooks_files/tippy-6.2.7/tippy-bundle.umd.min.js","embed-external-flipbooks_files/tippy-6.2.7/tippy-light-border.css","embed-external-flipbooks_files/tippy-6.2.7/tippy.css","embed-external-flipbooks_files/tippy-6.2.7/tippy.umd.min.js","embed-external-flipbooks_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2376,7 +2377,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.11.3/header-attrs.js"></script>
   <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2436,13 +2437,13 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h2 id="how-to-micro-flipbook">How to micro-flipbook</h2>
 <p>Let’s assume you followed along in the micro-flipbooks blog post,</p>
 <p><a href="https://higgi13425.github.io/medical_r/posts/2020-10-14-micro-flipbooks/" class="uri">https://higgi13425.github.io/medical_r/posts/2020-10-14-micro-flipbooks/</a></p>
-<p>and you now have an RStudio project with at least one micro-flipbook, which has been pushed to Github, and is now viewable at your github.io site, much like this one:</p>
+<p>and you now have an RStudio project with at least one micro-flipbook, which has been pushed to Github, and is now viewable at your github.io site, much like the one found at the link below.</p>
 <h2 id="example-micro-flipbook">Example micro-flipbook</h2>
 <p>Try it out - click on the link below, then use the left and right arrows to go forward and back in the xaringan slides.</p>
 <p><a href="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" class="uri">https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1</a></p>
 <p>So now that this is on the web as a viewable flipbook, how are you going to embed it in your Rmarkdown or bookdown project?</p>
 <p>Some great ideas on how to do this properly (not the slapdash [but quick] way that I do it) from the source of all flipbooks, Evangeline Reynolds, are here: <a href="https://evangelinereynolds.netlify.app/post/embedding-flipbook-mini-in-html-document/" class="uri">https://evangelinereynolds.netlify.app/post/embedding-flipbook-mini-in-html-document/</a></p>
-<p>Also, lots more flipbook knowledge/options here:</p>
+<p>Also, there is lots more flipbook knowledge/options here:</p>
 <p><a href="https://evangelinereynolds.netlify.app/#posts" class="uri">https://evangelinereynolds.netlify.app/#posts</a></p>
 <h2 id="fun-with-iframes">Fun with iframes!</h2>
 <p>Yes, in addition to stealing the brilliant idea of flipbooks from Evangeline Reynolds (<span class="citation" data-cites="evamaerey">@evamaerey</span>), we are going to steal a trick or three from the <em>iframe</em> knowledge of Desiree DeLeon’s (<span class="citation" data-cites="docossyle">@docossyle</span>) blog post on how to use iframes to embed <em>learnr</em> apps.</p>
@@ -2451,30 +2452,34 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h2 id="down-to-the-details">Down to the details</h2>
 <p>This is actually not that hard.</p>
 <p>Once you have working HTML at github.io with a web address, you are in business.</p>
-<p>Just insert some <em>iframe</em> code between these comment fences, as in the code chunk below. This is actually <em>easier</em> than inserting a <em>learnr</em> app - with no resizing messes.</p>
+<p>Just insert some <em>iframe</em> code between two comment fences, as in the code chunk below. This is actually <em>easier</em> than inserting a <em>learnr</em> app - with no resizing messes.</p>
 <p>Note that it is essentially two html tags, one to open the iframe: <code>&lt;iframe&gt;</code> with a bunch of options/arguments,</p>
 <p>and then one to close the iframe: <code>&lt;/iframe&gt;</code></p>
-<p>The style argument is basically some inline CSS styling. Note that I know almost zero CSS. You can get surprisingly far with web searches. Learn some minimal CSS here if you need to:<br />
+<p>The style argument is basically some inline CSS styling. Note that I know almost zero CSS. You can get surprisingly far with web searches. You can learn some minimal CSS here if you need to:<br />
 <a href="https://www.w3schools.com/css/css_intro.asp" class="uri">https://www.w3schools.com/css/css_intro.asp</a></p>
-<p>Note that if you have multiple iframes in your HTML, each one needs a unique id.</p>
-<p>You can set the width and height (these seemed to work for me).</p>
+<p>Note that if you have multiple iframes in your HTML, each one <strong>must have</strong> a unique id.</p>
+<p>You can set the width and height (these (763 x 432) seemed to work for me).</p>
 <p>Then set the source (src) to the link to github.io, with the first xaringan slide (#1) as the starting point.</p>
 <p>Then usually set scrolling to “no”. Your call.</p>
+<p>NOTE: as of fall 2021, a change in Pandoc means that you must add <code>data-external="1"</code> for any externally sourced files (like a flipbook from github, or a learnr app) so that Pandoc won’t get grumpy and refuse to render the flipbook.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;!---</span>FLIPBOOK EX <span class="dv">1</span><span class="sc">-</span><span class="ot">-&gt;</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>iframe style<span class="ot">=</span><span class="st">&quot;margin:0 auto; border: solid black;&quot;</span> </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>id<span class="ot">=</span><span class="st">&quot;myIframe8&quot;</span> </span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>width <span class="ot">=</span> <span class="st">&quot;763&quot;</span> height <span class="ot">=</span> <span class="st">&quot;432&quot;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>src<span class="ot">=</span><span class="st">&quot;https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1&quot;</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>src<span class="ot">=</span><span class="st">&quot;https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1&quot;</span> data<span class="sc">-</span>external<span class="ot">=</span><span class="st">&quot;1&quot;</span> </span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>scrolling<span class="ot">=</span><span class="st">&quot;no&quot;</span><span class="sc">&gt;</span><span class="er">&lt;/</span>iframe<span class="sc">&gt;</span> </span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span><span class="sc">!------------</span><span class="ot">-&gt;</span> </span></code></pre></div>
 </div>
 <p>Then, build your website or bookdown book with this chunk in it.</p>
 <p>It may be helpful to preface the first microflipbook with a bit of orientation for new users. Something like:</p>
+<blockquote>
 <p>See the example flipbook below. You can click on it and move forward or backward in the slides with the left and right arrows to see what each line of code actually does.</p>
-<p>And your micro-flipbook should look something like this: <em>Note that it will look like an empty box in the RStudio viewer, but trust:</em> 3 steps:</p>
+</blockquote>
+<p>And your micro-flipbook should look something like this: <em>Note that it will look like an empty box in the RStudio viewer, but trust:</em><br />
+There are 3 steps:</p>
 <ul>
 <li>Knit the Rmd page</li>
 <li>Build the website/book (Build tab)</li>
@@ -2482,7 +2487,9 @@ d-appendix d-footnote-list a.footnote-backlink {
 </ul>
 <p>in a minute or two, you will have a working flipbook on the web.</p>
 <!---FLIPBOOK EX 1-->
-<iframe style="margin:0 auto; border: solid black;" id="myIframe8" width="763" height="432" src="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" scrolling="no">
+<p>&lt;iframe style=“margin:0 auto; border: solid black;” id=“myIframe8” width=“763” height=“432” src=“<a href="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" class="uri">https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1</a>”</p>
+<p>data-external=“1” </p>
+<p>scrolling=“no”&gt;</p>
 </iframe>
 <p>&lt;!————-&gt;</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>

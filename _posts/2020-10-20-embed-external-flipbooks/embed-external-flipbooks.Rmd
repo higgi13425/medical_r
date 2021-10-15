@@ -78,8 +78,10 @@ NOTE: as of fall 2021, a change in Pandoc means that you must add `data-external
 <iframe style="margin:0 auto; border: solid black;" 
 id="myIframe8" 
 width = "763" height = "432"
-src="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" data-external="1" 
-scrolling="no"></iframe> 
+src="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" 
+data-external="1" 
+scrolling="no">
+</iframe> 
 
 <!-------------> 
 
@@ -91,7 +93,7 @@ It may be helpful to preface the first microflipbook with a bit of orientation f
 
 > See the example flipbook below. You can click on it and move forward or backward in the slides with the left and right arrows to see what each line of code actually does.
 
-And your micro-flipbook should look something like this: *Note that it will look like an empty box in the RStudio viewer, but trust:* \
+And your micro-flipbook should look something like this: *Note that it will look like an empty box in the RStudio viewer, but trust:*\
 There are 3 steps:
 
 -   Knit the Rmd page
@@ -102,14 +104,10 @@ in a minute or two, you will have a working flipbook on the web.
 
 <!---FLIPBOOK EX 1-->
 
-<iframe style="margin:0 auto; border: solid black;" id="myIframe8" width="763" height="432" src="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1"
+\<iframe style="margin:0 auto; border: solid black;" id="myIframe8" width="763" height="432" src="<https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1>"
 
 data-external="1" 
 
-
-
-scrolling="no">
+scrolling="no"\>
 
 </iframe>
-
-\<!-------------\>

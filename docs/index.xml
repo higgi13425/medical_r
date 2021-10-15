@@ -130,7 +130,7 @@ There are 3 steps:&lt;/p&gt;
 &lt;p&gt;in a minute or two, you will have a working flipbook on the web.&lt;/p&gt;
 &lt;!---FLIPBOOK EX 1--&gt;
 &lt;p&gt;&amp;lt;iframe style=“margin:0 auto; border: solid black;” id=“myIframe8” width=“763” height=“432” src=“&lt;a href="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" class="uri"&gt;https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1&lt;/a&gt;”&lt;/p&gt;
-&lt;p&gt;data-external=“1” &lt;/p&gt;
+&lt;p&gt;data-external=“1”&lt;/p&gt;
 &lt;p&gt;scrolling=“no”&amp;gt;&lt;/p&gt;
 &lt;/iframe&gt;
 &lt;!-------------&gt;

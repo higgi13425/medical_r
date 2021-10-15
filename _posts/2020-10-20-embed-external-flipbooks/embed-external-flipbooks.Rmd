@@ -72,7 +72,7 @@ Then usually set scrolling to "no". Your call.
 
 NOTE: as of fall 2021, a change in Pandoc means that you must add `data-external="1"` for any externally sourced files (like a flipbook from github, or a learnr app) so that Pandoc won't get grumpy and refuse to render the flipbook.
 
-NOTE: Your <iframe> tag, with many options, should only have spaces between options, with **no** return characters. This will make your iframe silently fail.
+NOTE: Your *iframe* tag, with many options, should only have spaces between options, with **no** return characters. This will make your iframe silently fail.
 
 
 ```{r, eval=FALSE, echo=TRUE, error=TRUE, warning=FALSE, message=FALSE}
@@ -91,7 +91,8 @@ It may be helpful to preface the first microflipbook with a bit of orientation f
 
 > See the example flipbook below. You can click on it and move forward or backward in the slides with the left and right arrows to see what each line of code actually does.
 
-And your micro-flipbook should look something like this: *Note that it will look like an empty box in the RStudio viewer, but trust:*\
+And your micro-flipbook should look something like this: *Note that it will look like an empty box in the RStudio viewer, but trust:*
+
 There are 3 steps:
 
 -   Knit the Rmd page

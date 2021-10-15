@@ -73,67 +73,7 @@
       <title>How to Embed External micro-Flipbooks in Bookdown</title>
       <dc:creator>Peter Higgins</dc:creator>
       <link>https://higgi13425.github.io/medical_r/posts/2020-10-20-embed-external-flipbooks</link>
-      <description>
-
-
-&lt;h2 id="how-to-micro-flipbook"&gt;How to micro-flipbook&lt;/h2&gt;
-&lt;p&gt;Let’s assume you followed along in the micro-flipbooks blog post,&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://higgi13425.github.io/medical_r/posts/2020-10-14-micro-flipbooks/" class="uri"&gt;https://higgi13425.github.io/medical_r/posts/2020-10-14-micro-flipbooks/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;and you now have an RStudio project with at least one micro-flipbook, which has been pushed to Github, and is now viewable at your github.io site, much like the one found at the link below.&lt;/p&gt;
-&lt;h2 id="example-micro-flipbook"&gt;Example micro-flipbook&lt;/h2&gt;
-&lt;p&gt;Try it out - click on the link below, then use the left and right arrows to go forward and back in the xaringan slides.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" class="uri"&gt;https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;So now that this is on the web as a viewable flipbook, how are you going to embed it in your Rmarkdown or bookdown project?&lt;/p&gt;
-&lt;p&gt;Some great ideas on how to do this properly (not the slapdash [but quick] way that I do it) from the source of all flipbooks, Evangeline Reynolds, are here: &lt;a href="https://evangelinereynolds.netlify.app/post/embedding-flipbook-mini-in-html-document/" class="uri"&gt;https://evangelinereynolds.netlify.app/post/embedding-flipbook-mini-in-html-document/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Also, there is lots more flipbook knowledge/options here:&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://evangelinereynolds.netlify.app/#posts" class="uri"&gt;https://evangelinereynolds.netlify.app/#posts&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="fun-with-iframes"&gt;Fun with iframes!&lt;/h2&gt;
-&lt;p&gt;Yes, in addition to stealing the brilliant idea of flipbooks from Evangeline Reynolds (&lt;span class="citation"&gt;@evamaerey&lt;/span&gt;), we are going to steal a trick or three from the &lt;em&gt;iframe&lt;/em&gt; knowledge of Desiree DeLeon’s (&lt;span class="citation"&gt;@docossyle&lt;/span&gt;) blog post on how to use iframes to embed &lt;em&gt;learnr&lt;/em&gt; apps.&lt;/p&gt;
-&lt;p&gt;For full details on how to do this properly, refer to Desiree’s blog post at:&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://desiree.rbind.io/post/2020/learnr-iframes/" class="uri"&gt;http://desiree.rbind.io/post/2020/learnr-iframes/&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id="down-to-the-details"&gt;Down to the details&lt;/h2&gt;
-&lt;p&gt;This is actually not that hard.&lt;/p&gt;
-&lt;p&gt;Once you have working HTML at github.io with a web address, you are in business.&lt;/p&gt;
-&lt;p&gt;Just insert some &lt;em&gt;iframe&lt;/em&gt; code between two comment fences, as in the code chunk below. This is actually &lt;em&gt;easier&lt;/em&gt; than inserting a &lt;em&gt;learnr&lt;/em&gt; app - with no resizing messes.&lt;/p&gt;
-&lt;p&gt;Note that it is essentially two html tags, one to open the iframe: &lt;code&gt;&amp;lt;iframe&amp;gt;&lt;/code&gt; with a bunch of options/arguments,&lt;/p&gt;
-&lt;p&gt;and then one to close the iframe: &lt;code&gt;&amp;lt;/iframe&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;The style argument is basically some inline CSS styling. Note that I know almost zero CSS. You can get surprisingly far with web searches. You can learn some minimal CSS here if you need to:&lt;br /&gt;
-&lt;a href="https://www.w3schools.com/css/css_intro.asp" class="uri"&gt;https://www.w3schools.com/css/css_intro.asp&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Note that if you have multiple iframes in your HTML, each one &lt;strong&gt;must have&lt;/strong&gt; a unique id.&lt;/p&gt;
-&lt;p&gt;You can set the width and height (these (763 x 432) seemed to work for me).&lt;/p&gt;
-&lt;p&gt;Then set the source (src) to the link to github.io, with the first xaringan slide (#1) as the starting point.&lt;/p&gt;
-&lt;p&gt;Then usually set scrolling to “no”. Your call.&lt;/p&gt;
-&lt;p&gt;NOTE: as of fall 2021, a change in Pandoc means that you must add &lt;code&gt;data-external="1"&lt;/code&gt; for any externally sourced files (like a flipbook from github, or a learnr app) so that Pandoc won’t get grumpy and refuse to render the flipbook.&lt;/p&gt;
-&lt;pre class="r"&gt;&lt;code&gt;&amp;lt;!---FLIPBOOK EX 1--&amp;gt; 
-
-&amp;lt;iframe style=&amp;quot;margin:0 auto; border: solid black;&amp;quot; 
-id=&amp;quot;myIframe8&amp;quot; 
-width = &amp;quot;763&amp;quot; height = &amp;quot;432&amp;quot;
-src=&amp;quot;https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1&amp;quot; 
-data-external=&amp;quot;1&amp;quot; 
-scrolling=&amp;quot;no&amp;quot;&amp;gt;
-&amp;lt;/iframe&amp;gt; 
-
-&amp;lt;!-------------&amp;gt; &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Then, build your website or bookdown book with this chunk in it.&lt;/p&gt;
-&lt;p&gt;It may be helpful to preface the first microflipbook with a bit of orientation for new users. Something like:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;See the example flipbook below. You can click on it and move forward or backward in the slides with the left and right arrows to see what each line of code actually does.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;And your micro-flipbook should look something like this: &lt;em&gt;Note that it will look like an empty box in the RStudio viewer, but trust:&lt;/em&gt;&lt;br /&gt;
-There are 3 steps:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Knit the Rmd page&lt;/li&gt;
-&lt;li&gt;Build the website/book (Build tab)&lt;/li&gt;
-&lt;li&gt;Git commit and push to Github&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;in a minute or two, you will have a working flipbook on the web.&lt;/p&gt;
-&lt;!---FLIPBOOK EX 1--&gt;
-&lt;p&gt;&amp;lt;iframe style=“margin:0 auto; border: solid black;” id=“myIframe8” width=“763” height=“432” src=“&lt;a href="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" class="uri"&gt;https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1&lt;/a&gt;” data-external=“1” scrolling=“no”&amp;gt;&lt;/p&gt;
-&lt;/iframe&gt;
-&lt;!-------------&gt;
-&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
-      <distill:md5>89eec1f643c8da34f4aab61e2a85a16b</distill:md5>
+      <description>After you have created micro-flipbooks in your miniflipbook project, how do you embed them in Rmarkdown and bookdown projects?</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-10-20-embed-external-flipbooks</guid>
       <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
     </item>

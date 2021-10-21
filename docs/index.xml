@@ -7,7 +7,173 @@
     <description>A blog about the use of R with medical data.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 14 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Creating Standard Mileposts in your Bookdown Book</title>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/medical_r/posts/2021-10-20-creating-standard-mileposts-in-your-bookdown-book</link>
+      <description>
+
+
+&lt;h2 id="tldr---div.tips-in-rmrwr"&gt;TL;DR - Div.tips in RMRWR&lt;/h2&gt;
+&lt;pre class="r"&gt;&lt;code&gt;example of div.warning
+
+:::{.warning}
+warning content 
+:::&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;example of div.tip
+
+:::{.tip}
+tip content 
+:::&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;example of div.tryit
+
+:::{.tryit}
+try an example content 
+:::&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;example of div.challenge
+
+:::{.challenge}
+challenge (end of chapter) content 
+:::&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;example of div.explore
+
+:::{.explore}
+links to explore more within this topic area
+:::&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="div.tips-in-rmrwr"&gt;Div.tips in RMRWR&lt;/h2&gt;
+&lt;p&gt;It is common to want to create standard mileposts for recurring kinds of items in a bookdown book, like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;tips&lt;/li&gt;
+&lt;li&gt;warnings&lt;/li&gt;
+&lt;li&gt;gotchas&lt;/li&gt;
+&lt;li&gt;challenges&lt;/li&gt;
+&lt;li&gt;try it yourself&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;etc.&lt;/p&gt;
+&lt;p&gt;You can set these up, as outlined by Desiree De Leon, with div tips, as seen &lt;a href="https://desiree.rbind.io/post/2019/making-tip-boxes-with-bookdown-and-rmarkdown/"&gt;here&lt;/a&gt;. These are pandoc style custom divs, set up with css. These will work for .Rmd, bookdown, distill, and blogdown, but no tfor xaringan, .md, or .Rmarkdown.&lt;/p&gt;
+&lt;h2 id="key-steps"&gt;Key Steps&lt;/h2&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;set up your CSS file, and customize&lt;/li&gt;
+&lt;li&gt;link up your CSS file to your bookdown book in the YAML header&lt;/li&gt;
+&lt;li&gt;supply small, informative icon files for each kind of div tip you want.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="setting-up-css"&gt;Setting up CSS&lt;/h2&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;If you don’t already have one, create a CSS file by going to File &amp;gt; New File &amp;gt; Text File.&lt;/li&gt;
+&lt;li&gt;Name this file style.css (you can choose a different name) and save it in your project directory. Mine is in the &lt;code&gt;include&lt;/code&gt; subdirectory.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="editing-your-yaml"&gt;Editing your YAML&lt;/h2&gt;
+&lt;p&gt;Open the file &lt;code&gt;_site.yml&lt;/code&gt; and add to the output the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;for straight HTML,&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="r"&gt;&lt;code&gt;output: 
+  html_document: 
+    css: include/style.css &lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;for distill blogposts,&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="r"&gt;&lt;code&gt;output: 
+  distill::distill_article:
+    css: include/style.css&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;and for bookdown books,&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="r"&gt;&lt;code&gt;output: 
+  bookdown::html_document2:
+    css: include/style.css &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For a bookdown in the Gitbook style&lt;/p&gt;
+&lt;p&gt;If you’re working in bookdown, do this by making sure your _output.yml has this:&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;output: 
+  bookdown::gitbook:
+    css: include/style.css&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="now-editing-style.css-to-style-our-div-tips"&gt;Now Editing &lt;code&gt;style.css&lt;/code&gt; to Style our div tips&lt;/h2&gt;
+&lt;p&gt;You can set:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;background-color:&lt;/li&gt;
+&lt;li&gt;color: (of text)&lt;/li&gt;
+&lt;li&gt;border: (thickness, color)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here is an example of css to paste into style.css&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;/* -----------div tips------------- */
+
+  div.puzzle, div.fyi, div.demo, div.note {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 120px;
+    color: #1f5386;
+    background-color: #bed3ec;
+    border: solid 5px #dfedff;
+  }&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Use short names after &lt;code&gt;div.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;You can have different styles for each div.x&lt;/p&gt;
+&lt;p&gt;Consider giving div.tips a different google font, and specify the &lt;code&gt;font-family&lt;/code&gt; in the style.css file.&lt;/p&gt;
+&lt;h2 id="add-images"&gt;Add Images&lt;/h2&gt;
+&lt;p&gt;Pick a distinct, informative image for each div.tip&lt;/p&gt;
+&lt;p&gt;Use .PNG images with transparent backgrounds&lt;/p&gt;
+&lt;p&gt;Save the images in your &lt;code&gt;images&lt;/code&gt; directory. Mine are saved in &lt;code&gt;include/images_included&lt;/code&gt;. This is so that they are easily found relative to &lt;code&gt;style.css&lt;/code&gt;, which is also in the &lt;code&gt;include&lt;/code&gt; folder in my RMRWR bookdown project.&lt;/p&gt;
+&lt;p&gt;Open &lt;code&gt;style.css&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Paste in your style rules to add images, as below&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;div.puzzle {
+  background-image: url(&amp;quot;images_included/warning.png&amp;quot;);
+}
+
+div.fyi {
+ background-image: url(&amp;quot;images_included/fyi.png&amp;quot;);
+}
+
+div.demo {
+  background-image: url(&amp;quot;images_included/Live-code.png&amp;quot;);
+}
+
+div.note {
+  background-image: url(&amp;quot;images_included/lightbulb.png&amp;quot;);
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Change the file path within the &lt;code&gt;url()&lt;/code&gt; field for each div.tip style so that it points to the correct image that you want to use. These urls are &lt;strong&gt;relative&lt;/strong&gt; to where your CSS file (&lt;em&gt;style.css&lt;/em&gt;) lives.&lt;/p&gt;
+&lt;h2 id="now-to-use-your-div.tips"&gt;Now to USE your div.tips&lt;/h2&gt;
+&lt;p&gt;Start off with 3 colons &lt;code&gt;:::&lt;/code&gt; followed by the &lt;code&gt;.{name}&lt;/code&gt;of the div.tip, then &lt;br&gt; on a new line add content, then &lt;br&gt; a new line then add 3 colons to close &lt;code&gt;:::&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;as in:&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;:::{.warning}
+
+content goes here
+
+:::&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="div.tips-in-rmrwr-1"&gt;Div.tips in RMRWR&lt;/h2&gt;
+&lt;pre class="r"&gt;&lt;code&gt;example of div.warning
+
+:::{.warning}
+warning content 
+:::&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;example of div.tip
+
+:::{.tip}
+tip content 
+:::&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;example of div.tryit
+
+:::{.tryit}
+try an example content 
+:::&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;example of div.challenge
+
+:::{.challenge}
+challenge (end of chapter) content 
+:::&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;example of div.explore
+
+:::{.explore}
+links to explore more within this topic area
+:::&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>a30b3e2d27a17c203abdcacb66c520bb</distill:md5>
+      <guid>https://higgi13425.github.io/medical_r/posts/2021-10-20-creating-standard-mileposts-in-your-bookdown-book</guid>
+      <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Using the {webexercises} package to add mini-interactive exercises to bookdown</title>
       <dc:creator>Peter Higgins</dc:creator>

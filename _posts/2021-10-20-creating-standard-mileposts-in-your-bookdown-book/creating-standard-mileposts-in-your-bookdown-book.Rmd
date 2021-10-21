@@ -1,0 +1,245 @@
+---
+title: "Creating Standard Mileposts in your Bookdown Book"
+description: |
+  How to create and use recurring fun icons for mileposts within a bookdown book.
+author:
+  - name: Peter Higgins
+    url: {}
+date: 2021-10-20
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+```
+
+## TL;DR - Div.tips in RMRWR
+
+``` {r  eval = FALSE, echo = TRUE}
+example of div.warning
+
+:::{.warning}
+warning content 
+:::
+```
+
+``` {r  eval = FALSE, echo = TRUE}
+example of div.tip
+
+:::{.tip}
+tip content 
+:::
+```
+
+``` {r  eval = FALSE, echo = TRUE}
+example of div.tryit
+
+:::{.tryit}
+try an example content 
+:::
+```
+
+``` {r  eval = FALSE, echo = TRUE}
+example of div.challenge
+
+:::{.challenge}
+challenge (end of chapter) content 
+:::
+```
+
+``` {r  eval = FALSE, echo = TRUE}
+example of div.explore
+
+:::{.explore}
+links to explore more within this topic area
+:::
+```
+
+## Div.tips in RMRWR
+
+It is common to want to create standard mileposts for recurring kinds of items in a bookdown book, like:
+
+- tips
+- warnings
+- gotchas
+- challenges
+- try it yourself
+
+etc.
+
+You can set these up, as outlined by Desiree De Leon, with div tips, as seen [here](https://desiree.rbind.io/post/2019/making-tip-boxes-with-bookdown-and-rmarkdown/). These are pandoc style custom divs, set up with css. These will work for .Rmd, bookdown, distill, and blogdown, but no tfor xaringan, .md, or .Rmarkdown. 
+
+
+## Key Steps
+1. set up your CSS file, and customize
+2. link up your CSS file to your bookdown book in the YAML header
+3. supply small, informative icon files for each kind of div tip you want.
+
+## Setting up CSS
+1. If you don’t already have one, create a CSS file by going to File > New File > Text File.
+2. Name this file style.css (you can choose a different name) and save it in your project directory. Mine is in the `include` subdirectory.
+
+## Editing your YAML
+
+Open the file `_site.yml` and add to the output the following:
+
+- for straight HTML, 
+
+``` {r  eval = FALSE, echo = TRUE}
+output: 
+  html_document: 
+    css: include/style.css 
+```
+
+- for distill blogposts, 
+
+``` {r  eval = FALSE, echo = TRUE}
+output: 
+  distill::distill_article:
+    css: include/style.css
+```
+
+- and for bookdown books, 
+
+``` {r  eval = FALSE, echo = TRUE}
+output: 
+  bookdown::html_document2:
+    css: include/style.css 
+```
+
+For a bookdown in the Gitbook style
+
+If you’re working in bookdown, do this by making sure your _output.yml has this:
+
+``` {r  eval = FALSE, echo = TRUE}
+output: 
+  bookdown::gitbook:
+    css: include/style.css
+```
+
+## Now Editing `style.css` to Style our div tips
+You can set:
+
+- background-color:
+- color: (of text)
+- border: (thickness, color)
+
+Here is an example of css to paste into style.css
+
+``` {r  eval = FALSE, echo = TRUE}
+/* -----------div tips------------- */
+
+  div.puzzle, div.fyi, div.demo, div.note {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 120px;
+    color: #1f5386;
+    background-color: #bed3ec;
+    border: solid 5px #dfedff;
+  }
+```
+
+Use short names after `div.`
+
+You can have different styles for each div.x
+
+Consider giving div.tips a different google font, and specify the `font-family` in the style.css file.
+
+## Add Images
+
+Pick a distinct, informative image for each div.tip
+
+Use .PNG images with transparent backgrounds
+
+Save the images in your `images` directory. Mine are saved in
+`include/images_included`. This is so that they are easily found relative to `style.css`, which is also in the `include` folder in my RMRWR bookdown project.
+
+Open  `style.css`
+
+Paste in your style rules to add images, as below
+
+``` {r  eval = FALSE, echo = TRUE}
+div.puzzle {
+  background-image: url("images_included/warning.png");
+}
+
+div.fyi {
+ background-image: url("images_included/fyi.png");
+}
+
+div.demo {
+  background-image: url("images_included/Live-code.png");
+}
+
+div.note {
+  background-image: url("images_included/lightbulb.png");
+}
+```
+
+Change the file path within the `url()` field for each div.tip style so that it points to the correct image that you want to use. These urls are **relative** to where your CSS file (_style.css_) lives.
+
+## Now to USE your div.tips
+
+Start off with 3 colons `:::` followed by the `.{name}`of the div.tip, then <br> on a new line add content, then <br> a new line then add 3 colons to close
+`:::`
+
+as in:
+
+``` {r  eval = FALSE, echo = TRUE}
+:::{.warning}
+
+content goes here
+
+:::
+  
+```
+
+## Div.tips in RMRWR
+
+``` {r  eval = FALSE, echo = TRUE}
+example of div.warning
+
+:::{.warning}
+warning content 
+:::
+```
+
+``` {r  eval = FALSE, echo = TRUE}
+example of div.tip
+
+:::{.tip}
+tip content 
+:::
+```
+
+``` {r  eval = FALSE, echo = TRUE}
+example of div.tryit
+
+:::{.tryit}
+try an example content 
+:::
+```
+
+``` {r  eval = FALSE, echo = TRUE}
+example of div.challenge
+
+:::{.challenge}
+challenge (end of chapter) content 
+:::
+```
+
+``` {r  eval = FALSE, echo = TRUE}
+example of div.explore
+
+:::{.explore}
+links to explore more within this topic area
+:::
+```

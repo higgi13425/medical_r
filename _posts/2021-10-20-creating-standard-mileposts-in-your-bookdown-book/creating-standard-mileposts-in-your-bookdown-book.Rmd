@@ -1,7 +1,7 @@
 ---
 title: "Creating Standard Mileposts in your Bookdown Book"
 description: |
-  How to create and use recurring fun icons for mileposts within a bookdown book.
+  How to create and use recurring fun icons for mileposts within a bookdown book, as inspired by the work of Desiree De Leon.
 author:
   - name: Peter Higgins
     url: {}

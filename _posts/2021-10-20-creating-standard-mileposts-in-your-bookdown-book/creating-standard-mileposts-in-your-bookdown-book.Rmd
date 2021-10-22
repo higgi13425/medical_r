@@ -20,41 +20,41 @@ library(tidyverse)
 ## TL;DR - Div.tips in RMRWR
 
 ``` {r  eval = FALSE, echo = TRUE}
-example of div.warning
+example of div.warning (blank line before)
 
-:::{.warning}
+:::warning
 warning content 
 :::
 ```
 
 ``` {r  eval = FALSE, echo = TRUE}
-example of div.tip
+example of div.tip (blank line before)
 
-:::{.tip}
+:::tip
 tip content 
 :::
 ```
 
 ``` {r  eval = FALSE, echo = TRUE}
-example of div.tryit
+example of div.tryit (blank line before)
 
-:::{.tryit}
+:::tryit
 try an example content 
 :::
 ```
 
 ``` {r  eval = FALSE, echo = TRUE}
-example of div.challenge
+example of div.challenge (blank line before)
 
-:::{.challenge}
+:::challenge
 challenge (end of chapter) content 
 :::
 ```
 
 ``` {r  eval = FALSE, echo = TRUE}
-example of div.explore
+example of div.explore (blank line before)
 
-:::{.explore}
+:::explore
 links to explore more within this topic area
 :::
 ```
@@ -188,13 +188,15 @@ Change the file path within the `url()` field for each div.tip style so that it 
 
 ## Now to USE your div.tips
 
-Start off with 3 colons `:::` followed by the `.{name}`of the div.tip, then <br> on a new line add content, then <br> a new line then add 3 colons to close
+Use a blank line before you start <br>
+Then start off with 3 colons `:::` followed by the `name`of the div.tip, then <br> on a new line add content, then <br> on another new line then add 3 colons to close
 `:::`
 
 as in:
 
 ``` {r  eval = FALSE, echo = TRUE}
-:::{.warning}
+
+:::warning
 
 content goes here
 
@@ -207,39 +209,44 @@ content goes here
 ``` {r  eval = FALSE, echo = TRUE}
 example of div.warning
 
-:::{.warning}
+:::warning
 warning content 
 :::
+  
 ```
 
 ``` {r  eval = FALSE, echo = TRUE}
 example of div.tip
 
-:::{.tip}
+:::tip
 tip content 
 :::
+  
 ```
 
 ``` {r  eval = FALSE, echo = TRUE}
 example of div.tryit
 
-:::{.tryit}
+:::tryit
 try an example content 
 :::
+  
 ```
 
 ``` {r  eval = FALSE, echo = TRUE}
 example of div.challenge
 
-:::{.challenge}
+:::challenge
 challenge (end of chapter) content 
 :::
+  
 ```
 
 ``` {r  eval = FALSE, echo = TRUE}
 example of div.explore
 
-:::{.explore}
+:::explore
 links to explore more within this topic area
 :::
+  
 ```

@@ -403,7 +403,7 @@ iframe {
 
 ## Creating Chapters in R Markdown
 
-Each chapter was created in R Markdown, with R code chunks, flipbooks, an learnr apps as exercises.
+Each chapter was created in R Markdown, with R code chunks, flipbooks, microquizzes with {webexercises}, and learnr apps as exercises.
 
 Note that each chapter should start with a level 1 header, which will be the title of the chapter. Each level 1 header starts with a single hashtag, then a space, then the text of the title.   
 
@@ -413,7 +413,7 @@ After saving and knitting each chapter successfully, the finalized chapters can 
 
 ## Chapter Names
 The names of each of my chapters follow the convention,
-io##-Topic.Rmd.
+io###-Topic.Rmd.
 This is so that they will alphabetically follow index.Rmd
 and largely be in order.
 
@@ -435,7 +435,7 @@ Render the book with `bookdown::render_book('index.html')`
 
 ## Publishing the Book
 
-Publish the book with     
+Publish the book with your account name    
 `bookdown::publish_book(account = 'pdr_higgins')`   
 
 Then commit the changes and push to Github  

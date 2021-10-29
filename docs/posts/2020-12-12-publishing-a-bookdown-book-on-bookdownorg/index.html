@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
 <title>Medical R: Publishing a {bookdown} book on bookdown.org</title>
@@ -128,7 +129,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["publishing-a-bookdown-book-on-bookdownorg_files/anchor-4.2.2/anchor.min.js","publishing-a-bookdown-book-on-bookdownorg_files/bowser-1.9.3/bowser.min.js","publishing-a-bookdown-book-on-bookdownorg_files/distill-2.2.21/template.v2.js","publishing-a-bookdown-book-on-bookdownorg_files/header-attrs-2.5/header-attrs.js","publishing-a-bookdown-book-on-bookdownorg_files/jquery-1.11.3/jquery.min.js","publishing-a-bookdown-book-on-bookdownorg_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["publishing-a-bookdown-book-on-bookdownorg_files/anchor-4.2.2/anchor.min.js","publishing-a-bookdown-book-on-bookdownorg_files/bowser-1.9.3/bowser.min.js","publishing-a-bookdown-book-on-bookdownorg_files/distill-2.2.21/template.v2.js","publishing-a-bookdown-book-on-bookdownorg_files/header-attrs-2.11/header-attrs.js","publishing-a-bookdown-book-on-bookdownorg_files/header-attrs-2.5/header-attrs.js","publishing-a-bookdown-book-on-bookdownorg_files/jquery-1.11.3/jquery.min.js","publishing-a-bookdown-book-on-bookdownorg_files/jquery-3.6.0/jquery-3.6.0.js","publishing-a-bookdown-book-on-bookdownorg_files/jquery-3.6.0/jquery-3.6.0.min.js","publishing-a-bookdown-book-on-bookdownorg_files/jquery-3.6.0/jquery-3.6.0.min.map","publishing-a-bookdown-book-on-bookdownorg_files/popper-2.6.0/popper.min.js","publishing-a-bookdown-book-on-bookdownorg_files/tippy-6.2.7/tippy-bundle.umd.min.js","publishing-a-bookdown-book-on-bookdownorg_files/tippy-6.2.7/tippy-light-border.css","publishing-a-bookdown-book-on-bookdownorg_files/tippy-6.2.7/tippy.css","publishing-a-bookdown-book-on-bookdownorg_files/tippy-6.2.7/tippy.umd.min.js","publishing-a-bookdown-book-on-bookdownorg_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2376,7 +2377,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.11.3/header-attrs.js"></script>
   <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2799,12 +2800,12 @@ d-appendix d-footnote-list a.footnote-backlink {
 <span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span></code></pre></div>
 </div>
 <h2 id="creating-chapters-in-r-markdown">Creating Chapters in R Markdown</h2>
-<p>Each chapter was created in R Markdown, with R code chunks, flipbooks, an learnr apps as exercises.</p>
+<p>Each chapter was created in R Markdown, with R code chunks, flipbooks, microquizzes with {webexercises}, and learnr apps as exercises.</p>
 <p>Note that each chapter should start with a level 1 header, which will be the title of the chapter. Each level 1 header starts with a single hashtag, then a space, then the text of the title.</p>
 <p>You can save draft chapters without necessarily publishing them to the final book. They will not be included until you list them in your <code>_bookdown.yml</code> file.</p>
 <p>After saving and knitting each chapter successfully, the finalized chapters can be included in the book build, and ordered, by adding them to the <code>_bookdown.yml</code> file, in between index.Rmd, and io98-title-holder.Rmd.</p>
 <h2 id="chapter-names">Chapter Names</h2>
-<p>The names of each of my chapters follow the convention, io##-Topic.Rmd. This is so that they will alphabetically follow index.Rmd and largely be in order.</p>
+<p>The names of each of my chapters follow the convention, io###-Topic.Rmd. This is so that they will alphabetically follow index.Rmd and largely be in order.</p>
 <h2 id="when-a-chapter-is-ready-for-sharing">When a Chapter is Ready for Sharing</h2>
 <p>Add the new chapter to the list of chapters in order in <code>_bookdown.yml</code>, somewhere in between<br />
 - index.Rmd and<br />
@@ -2814,7 +2815,7 @@ It just works.</p>
 <h2 id="building-the-book">Building the Book</h2>
 <p>Render the book with <code>bookdown::render_book('index.html')</code></p>
 <h2 id="publishing-the-book">Publishing the Book</h2>
-<p>Publish the book with<br />
+<p>Publish the book with your account name<br />
 <code>bookdown::publish_book(account = 'pdr_higgins')</code></p>
 <p>Then commit the changes and push to Github</p>
 <p>Within a minute or three, the updated book will appear at: <br> <a href="https://bookdown.org/pdr_higgins/rmrwr/" class="uri">https://bookdown.org/pdr_higgins/rmrwr/</a></p>

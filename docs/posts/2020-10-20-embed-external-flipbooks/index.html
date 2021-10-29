@@ -2439,7 +2439,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p><a href="https://higgi13425.github.io/medical_r/posts/2020-10-14-micro-flipbooks/" class="uri">https://higgi13425.github.io/medical_r/posts/2020-10-14-micro-flipbooks/</a></p>
 <p>and you now have an RStudio project with at least one micro-flipbook, which has been pushed to Github, and is now viewable at your github.io site, much like the one found at the link below.</p>
 <h2 id="example-micro-flipbook">Example micro-flipbook</h2>
-<p>Try it out - click on the link below, then use the left and right arrows to go forward and back in the xaringan slides.</p>
+<p>Try it out - click on the link below, then use the left and right arrows to go forward and back in the xaringan slides. You can also make it full screen (see bottom bar icons, Esc to return), use Home/End to go to 1st/last slide, or share on social media.</p>
 <p><a href="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" class="uri">https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1</a></p>
 <p>So now that this is on the web as a viewable flipbook, how are you going to embed it in your Rmarkdown or bookdown project?</p>
 <p>Some great ideas on how to do this properly (not the slapdash [but quick] way that I do it) from the source of all flipbooks, Evangeline Reynolds, are here: <a href="https://evangelinereynolds.netlify.app/post/embedding-flipbook-mini-in-html-document/" class="uri">https://evangelinereynolds.netlify.app/post/embedding-flipbook-mini-in-html-document/</a></p>
@@ -2452,16 +2452,30 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h2 id="down-to-the-details">Down to the details</h2>
 <p>This is actually not that hard.</p>
 <p>Once you have working HTML at github.io with a web address, you are in business.</p>
-<p>Just insert some <em>iframe</em> code between two comment fences, as in the code chunk below. This is actually <em>easier</em> than inserting a <em>learnr</em> app - with no resizing messes.</p>
-<p>Note that it is essentially two html tags, one to open the iframe: <code>&lt;iframe&gt;</code> with a bunch of options/arguments,</p>
+<p>Just insert some <em>iframe</em> code between two comment fences, as in the code chunk below. This is actually <em>easier</em> than inserting a <em>learnr</em> app - with no resizing issues.</p>
+<p>Note that it is essentially two html tags, one to open the iframe: <code>&lt;iframe&gt;</code> with a <strong>bunch</strong> of options/arguments,</p>
+<ul>
+<li>style = ““margin:0 auto; border: solid black;”</li>
+<li>id = “myIframeNN-unique name/number here”</li>
+<li>width = “763”</li>
+<li>height = “432”</li>
+<li>src =“<a href="https://actual.link.here" class="uri">https://actual.link.here</a>”</li>
+<li>scrolling = “no”</li>
+<li>data-external=“1”</li>
+<li>allowfullscreen</li>
+<li>loading = “lazy”</li>
+</ul>
 <p>and then one to close the iframe: <code>&lt;/iframe&gt;</code></p>
 <p>The style argument is basically some inline CSS styling. Note that I know almost zero CSS. You can get surprisingly far with web searches. You can learn some minimal CSS here if you need to:<br />
 <a href="https://www.w3schools.com/css/css_intro.asp" class="uri">https://www.w3schools.com/css/css_intro.asp</a></p>
-<p>Note that if you have multiple iframes in your HTML, each one <strong>must have</strong> a unique id.</p>
+<p>Note that if you have multiple iframes in your HTML document/chapter, each one <strong>must have</strong> a unique id.</p>
 <p>You can set the width and height (these (763 x 432) seemed to work for me).</p>
 <p>Then set the source (src) to the link to github.io, with the first xaringan slide (#1) as the starting point.</p>
 <p>Then usually set scrolling to “no”. Your call.</p>
 <p>NOTE: as of fall 2021, a change in Pandoc means that you must add <code>data-external="1"</code> for any externally sourced files (like a flipbook from github, or a learnr app) so that Pandoc won’t get grumpy and refuse to render the flipbook.</p>
+<p>I like to allowfullscreen, especially if there is a lot of code.</p>
+<p>I like to set loading = “lazy”, so that this will not load until the reader scrolls to it. This makes it less likely that the flipbook will time out due to inactivity if you have a long chapter.</p>
+<p>NOTE: if the flipbook does time out, it will turn gray and not function (no advancing with arrow keys). This can be easily fixed by reloading the webpage in the browser, but it is worth letting learners know about this possibility and the solution.</p>
 <p>NOTE: Your <code>&lt;iframe&gt;</code> tag, with many options, should only have spaces between options, with <strong>no</strong> return characters. A return character will make your iframe silently fail.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;!---</span>FLIPBOOK EX <span class="dv">1</span><span class="sc">-</span><span class="ot">-&gt;</span> </span>
@@ -2481,14 +2495,16 @@ d-appendix d-footnote-list a.footnote-backlink {
 <blockquote>
 <p>See the example flipbook below. You can click on it and move forward or backward in the slides with the left and right arrows to see what each line of code actually does.</p>
 </blockquote>
-<p>And your micro-flipbook should look something like this: <em>Note that it will look like an empty box in the RStudio viewer, but trust:</em></p>
-<p>There are 3 steps:</p>
+<p>And your micro-flipbook will look something like the flipbook below when up on the web: * Note that in the RStudio viewer at this point it will look like an empty white box, but hang in there (and trust):*</p>
+<p>To get this up on the web and working, will require several steps:</p>
 <ul>
 <li>Knit the Rmd page</li>
 <li>Build the website/book (Build tab)</li>
 <li>Git commit and push to Github</li>
+<li>Render the book (<em>bookdown::render_book()</em>) - for some reason this may open a web page in your browser that does not connect. Just close it.</li>
+<li>publish the book to bookdown.org (<em>bookdown::publish_book(account = “your account name here”)</em>)</li>
 </ul>
-<p>in a minute or two, you will have a working flipbook on the web that looks something like the below example.</p>
+<p>in a minute or two, you will have a working flipbook in your bookdown book on the web at bookdown.org that looks something like the below example.</p>
 <!---FLIPBOOK EX 1-->
 <iframe style="margin:0 auto; border: solid black;" id="myIframe11" width="763" height="432" src="https://higgi13425.github.io/mini_flipbooks/ttest_flipbook.html#1" scrolling="no" data-external="1" allowfullscreen loading="lazy">
 </iframe>

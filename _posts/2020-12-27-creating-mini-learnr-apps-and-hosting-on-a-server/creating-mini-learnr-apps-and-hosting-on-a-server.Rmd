@@ -32,7 +32,7 @@ Apps built with the {learnr} package allow students to practice coding in a cont
 
 You can add hints, solutions, and allow them to run their own code.
 
-You can assess their responses with the {gradethis} package.
+You can (optional) assess their responses with the {gradethis} package.
 
 But how do you
 

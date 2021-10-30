@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
 <title>Medical R: Building a Data Package</title>
@@ -128,7 +129,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["building-a-data-package_files/anchor-4.2.2/anchor.min.js","building-a-data-package_files/bowser-1.9.3/bowser.min.js","building-a-data-package_files/distill-2.2.21/template.v2.js","building-a-data-package_files/header-attrs-2.4/header-attrs.js","building-a-data-package_files/header-attrs-2.5/header-attrs.js","building-a-data-package_files/header-attrs-2.9/header-attrs.js","building-a-data-package_files/jquery-1.11.3/jquery.min.js","building-a-data-package_files/popper-2.6.0/popper.min.js","building-a-data-package_files/tippy-6.2.7/tippy-bundle.umd.min.js","building-a-data-package_files/tippy-6.2.7/tippy-light-border.css","building-a-data-package_files/tippy-6.2.7/tippy.css","building-a-data-package_files/tippy-6.2.7/tippy.umd.min.js","building-a-data-package_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["building-a-data-package_files/anchor-4.2.2/anchor.min.js","building-a-data-package_files/bowser-1.9.3/bowser.min.js","building-a-data-package_files/distill-2.2.21/template.v2.js","building-a-data-package_files/header-attrs-2.11/header-attrs.js","building-a-data-package_files/header-attrs-2.4/header-attrs.js","building-a-data-package_files/header-attrs-2.5/header-attrs.js","building-a-data-package_files/header-attrs-2.9/header-attrs.js","building-a-data-package_files/jquery-1.11.3/jquery.min.js","building-a-data-package_files/jquery-3.6.0/jquery-3.6.0.js","building-a-data-package_files/jquery-3.6.0/jquery-3.6.0.min.js","building-a-data-package_files/jquery-3.6.0/jquery-3.6.0.min.map","building-a-data-package_files/popper-2.6.0/popper.min.js","building-a-data-package_files/tippy-6.2.7/tippy-bundle.umd.min.js","building-a-data-package_files/tippy-6.2.7/tippy-light-border.css","building-a-data-package_files/tippy-6.2.7/tippy.css","building-a-data-package_files/tippy-6.2.7/tippy.umd.min.js","building-a-data-package_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2545,7 +2546,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <li>Commit and push project to GitHub</li>
 </ul>
 <h2 id="advanced-documentation">Advanced documentation</h2>
-<p><em>Description Document</em> You can write a long description of the provenance of the data, when and how it was collected, where it was published in a journal, etc. (go for it, provide all the details!) in a Rmarkdown file (named something like datapackage_desc.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can read up on your datasets. <br><br> <em>Codebook Document</em> You can create a nice table of each variable, a longer description, units of measurement, levels/category codes and what they mean, in a nicely formatted Rmd table. Create a Rmarkdown file (named something like datapackage_codebook.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can know what each variable in your dataset is about.</p>
+<p><em>Description Document</em> You can write a long description of the provenance of the data, when and how it was collected, where it was published in a journal, etc. (go for it, provide all the details!) in a Rmarkdown file (named something like datapackage_desc.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can read up on your datasets. <br><br> I store these (both the Rmd and the knit HTML files) in a <strong>description_docs</strong> folder which is located within the <strong>man</strong> folder. This does not seem to cause any problems with package building or CRAN checks, as long as my <code>.Rbuildingore</code> file contains the line: <br> <code>^man/description_docs$</code>. <br><br> <em>Codebook Document</em> You can create a nice table of each variable, a longer description, units of measurement, levels/category codes and what they mean, in a nicely formatted Rmd table. Create a Rmarkdown file (named something like datapackage_codebook.Rmd), then knit this to pdf. When you push your project/package to Github, your pdfs show up properly formatted. You can then take the link to the pdf and put it in your README file, so that anyone can know what each variable in your dataset is about. I store these (both the Rmd and the knit HTML files) in a <strong>description_docs</strong> folder which is located within the <strong>man</strong> folder. This does not seem to cause any problems with package building or CRAN checks, as long as my <code>.Rbuildingore</code> file contains the line: <br> <code>^man/description_docs$</code>. <br><br> I store these (both the Rmd and the knit HTML files) in a <strong>codebooks</strong> folder which is located within the <strong>man</strong> folder. This does not seem to cause any problems with package building or CRAN checks, as long as my <code>.Rbuildingore</code> file contains the line: <br> <code>^man/codebooks$</code>. <br><br></p>
 <h2 id="add-a-readme">Add a README</h2>
 <p>Just run the following in the Console:</p>
 <p><code>use_readme_rmd()</code></p>
@@ -2558,7 +2559,27 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h2 id="build">Build</h2>
 <p>The Build tab in RStudio will let you <code>Build Package</code> which will also restart R.</p>
 <p>This will give you a clean slate and re-load (library) your datapackage.</p>
-<p>Once you are happy with the datapackage, commit and push to Github. Now anyone can use you datapackage.</p>
+<p>Once you are happy with the datapackage, commit and push to Github. Now anyone can use your datapackage.</p>
+<h2 id="checklist-for-adding-a-new-dataset">Checklist for adding a new dataset</h2>
+<ol type="1">
+<li>get raw data, wrangle as needed, and save it into your raw-data folder. Save this to .Rdata format with saveRDS if needed. <code>saveRDS(newdata, "data-raw/newdata.Rdata")</code>. Delete the original if needed.</li>
+<li>format the data with <code>usethis::use_data(newdata, overwrite = TRUE)</code>. This will put it into the data folder in .rda format.</li>
+<li>Create a help file in the R folder. Create an R script in the <code>R/</code> folder, named something like <code>newdata.R</code>. Copy and SaveAs from a pre-existing file. Use roxygen2 and rmarkdown formatting as above.</li>
+<li>Run <code>devtools::document()</code> to build this into documentation in the <code>man</code> folder.</li>
+<li>Run <code>help(newdata)</code> to check the help file. Edit if needed, then repeat step 4 and 5 until the help file is satisfactory.</li>
+<li>Generate a description document (similar to the help file) in rmarkdown in the <code>man/description_docs</code> folder. Copy and SaveAs from a pre-existing file. Knit to HTML.</li>
+<li>Generate a codebook document (similar to the help file) in rmarkdown in the <code>man/codebooks</code> folder. Copy and SaveAs from a pre-existing file. Knit to HTML.</li>
+<li>Edit the <code>_pkgdown.yml</code> folder to add to <code>contents:</code> - add a line for your <code>newdata</code>. Save.</li>
+<li>Commit your changes and push to github if you have not already</li>
+<li>Edit the README.Rmd file. Update the number of datasets in the <code>Overview</code> paragraph.<br></li>
+<li>Edit the README.Rmd file. Update the List of Datasets table. Add a line for the new dataset, and add the links to the new description document and codebook (should be similar to the line for the scurvy dataset, but with a different dataset name).</li>
+<li>Commit/push your changes and push to github.</li>
+<li>Rebuild the website with <code>pkgdown::build_site()</code>. Check the website, and edit the README if needed. Repeat steps 11-13 until the website is satisfactory.</li>
+<li>Rebuild the package, with Cmd-Shift-B.</li>
+<li>On the Build tab, run a Check. Fix any errors or problems.</li>
+<li>On the Build tab, run Install and Restart.</li>
+<li>Commit/push all changes to github</li>
+</ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">

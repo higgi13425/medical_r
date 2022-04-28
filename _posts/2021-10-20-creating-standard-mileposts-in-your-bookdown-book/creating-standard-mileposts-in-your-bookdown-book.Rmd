@@ -15,6 +15,12 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
+library(here)
+```
+
+```{r}
+knitr::include_graphics(
+  here("_posts/2021-10-20-creating-standard-mileposts-in-your-bookdown-book/milepost.png"))
 ```
 
 ## TL;DR - Div.tips in RMRWR

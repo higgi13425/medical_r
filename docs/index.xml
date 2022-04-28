@@ -7,7 +7,54 @@
     <description>A blog about the use of R with medical data.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 20 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 28 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Obtaining a Zenodo DOI for your R project or package</title>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/medical_r/posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package</link>
+      <description>
+
+
+&lt;p&gt;&lt;img src="../../../../../../../../Users/peterhiggins/Documents/RCode/medical_r/_posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package/zenodo.jpg" width="178" /&gt;&lt;/p&gt;
+&lt;p&gt;There comes a time when you, or possibly others, want to cite your software code, whether as a project or a package. A DOI (Digital Object Identifier) is a unique and never-changing string assigned to online (journal) articles, books, and other works. DOIs make it easier to retrieve works, which is why citation styles, like APA and MLA Style, recommend including them in citations.&lt;/p&gt;
+&lt;p&gt;Journal articles are assigned DOIs, which look something like this: &lt;code&gt;doi:10.1080/02626667.2018.1560449&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;A good explainer for this entire process can be found at the UC Berkeley library website &lt;a href="https://guides.lib.berkeley.edu/citeyourcode"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Zenodo is an open science research repository, which is itself open source. You can deposit your data, code, preprints, etc. and generate DOIs for citation.&lt;/p&gt;
+&lt;p&gt;Steps:&lt;/p&gt;
+&lt;h2 id="put-your-repo-on-github"&gt;1. Put your repo on GitHub&lt;/h2&gt;
+&lt;h2 id="link-your-github-repo-to-zenodo-details-here"&gt;2. Link your GitHub repo to Zenodo (details &lt;a href="https://zenodo.org/account/settings/github/"&gt;here&lt;/a&gt;)&lt;/h2&gt;
+&lt;ol style="list-style-type: lower-alpha"&gt;
+&lt;li&gt;go to &lt;a href="https://zenodo.org"&gt;Zenodo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The first time you do this, you need to sign up/open an account by authorizing with your GitHub login&lt;/li&gt;
+&lt;li&gt;log in with GitHub ID/pwd&lt;/li&gt;
+&lt;li&gt;From the drop-down menu next to your email address at the top of the Zenodo home page, select GitHub&lt;/li&gt;
+&lt;li&gt;select the repository that you want to archive on Zenodo&lt;/li&gt;
+&lt;li&gt;Toggle the “on” button next to the repository you want to archive&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="creating-a-new-release-of-your-repo-details-here"&gt;3. Creating a new release of your repo (details &lt;a href="https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository"&gt;here&lt;/a&gt;)&lt;/h2&gt;
+&lt;ol style="list-style-type: lower-alpha"&gt;
+&lt;li&gt;Click on the “Create Release” button at the top of the page&lt;/li&gt;
+&lt;li&gt;Zenodo will redirect you back to the GitHub repo to generate a release&lt;/li&gt;
+&lt;li&gt;To the right of the list of files, click on the &lt;code&gt;Releases&lt;/code&gt; button.&lt;/li&gt;
+&lt;li&gt;Click &lt;code&gt;Choose a tag&lt;/code&gt; - and add a version number for this release, like &lt;code&gt;v1.0.0&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Use the drop-down menus to select the correct branch for this release.&lt;/li&gt;
+&lt;li&gt;add a title and description for this release&lt;/li&gt;
+&lt;li&gt;Scroll down and click the &lt;code&gt;Publish release&lt;/code&gt; button.&lt;/li&gt;
+&lt;li&gt;For future releases/versions/DOIs, just update your repo and publish a new release.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="doi-generation"&gt;4. DOI generation&lt;/h2&gt;
+&lt;ol style="list-style-type: lower-alpha"&gt;
+&lt;li&gt;every time you generate a new release (with a new version) of your repo, Zenodo will archive it, and generate a new DOI&lt;/li&gt;
+&lt;li&gt;to check that it is working, go to &lt;code&gt;https://zenodo.org/github-account-name/settings/github/&lt;/code&gt; - you will see that your repo is listed.&lt;/li&gt;
+&lt;li&gt;Scroll down your list of &lt;code&gt;Enabled Repositories&lt;/code&gt; to your repo.&lt;/li&gt;
+&lt;li&gt;Click on the repo DOI badge, and Zenodo will pop up a window with markdown code for a DOI badge that you can add to your repo README file&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>97ec94e066c59f00eb9ddbc70ef64baa</distill:md5>
+      <guid>https://higgi13425.github.io/medical_r/posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package</guid>
+      <pubDate>Thu, 28 Apr 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://higgi13425.github.io/medical_r/posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package/zenodo.jpg" medium="image" type="image/jpeg"/>
+    </item>
     <item>
       <title>Creating Standard Mileposts in your Bookdown Book</title>
       <dc:creator>Peter Higgins</dc:creator>

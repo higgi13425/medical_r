@@ -1,0 +1,63 @@
+---
+title: "Obtaining a Zenodo DOI for your R project or package"
+description: |
+  How to use Zenodo to obtain a Digital Object Identifier (DOI) for your R project or package in a GitHub repo.
+author:
+  - name: Peter Higgins
+    url: {}
+date: 2022-04-28
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(here)
+
+```{r}
+knitr::include_graphics(
+  here("_posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package/zenodo.jpg"))
+# spacer comment
+```
+
+
+There comes a time when you, or possibly others, want to cite your software code, whether as a project or a package. A DOI (Digital Object Identifier) is a unique and never-changing string assigned to online (journal) articles, books, and other works. DOIs make it easier to retrieve works, which is why citation styles, like APA and MLA Style, recommend including them in citations. 
+
+Journal articles are assigned DOIs, which look something like this: `doi:10.1080/02626667.2018.1560449`
+
+A good explainer for this entire process can be found at the UC Berkeley library website [here](https://guides.lib.berkeley.edu/citeyourcode).
+
+Zenodo is an open science research repository, which is itself open source. You can deposit your data, code, preprints, etc. and generate DOIs for citation.
+
+Steps:
+
+## 1. Put your repo on GitHub
+
+## 2. Link your GitHub repo to Zenodo (details [here](https://zenodo.org/account/settings/github/))
+  a. go to [Zenodo](https://zenodo.org)
+  b. The first time you do this, you need to sign up/open an account by authorizing with your GitHub login
+  c. log in with GitHub ID/pwd
+  d. From the drop-down menu next to your email address at the top of the Zenodo home page, select GitHub
+  e. select the repository that you want to archive on Zenodo
+  f. Toggle the "on" button next to the repository you want to archive
+
+## 3. Creating a new release of your repo (details [here](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository))
+  a. Click on the "Create Release" button at the top of the page
+  b. Zenodo will redirect you back to the GitHub repo to generate a release
+  c. To the right of the list of files, click on the `Releases` button.
+  d. Click `Choose a tag` - and add a version number for this release, like `v1.0.0`.
+  e. Use the drop-down menus to select the correct branch for this release.
+  f. add a title and description for this release
+  g. Scroll down and click the `Publish release` button.
+  h. For future releases/versions/DOIs, just update your repo and publish a new release.
+
+## 4. DOI generation 
+  a. every time you generate a new release (with a new version) of your repo, Zenodo will archive it, and generate a new DOI
+  b. to check that it is working, go to `https://zenodo.org/github-account-name/settings/github/` - you will see that your repo is listed.
+  c. Scroll down your list of `Enabled Repositories` to your repo.
+  d. Click on the repo DOI badge, and Zenodo will pop up a window with markdown code for a DOI badge that you can add to your repo README file
+
+
+

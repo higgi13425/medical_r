@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package/",
+    "title": "Obtaining a Zenodo DOI for your R project or package",
+    "description": "How to use Zenodo to obtain a Digital Object Identifier (DOI) for your R project or package in a GitHub repo.",
+    "author": [
+      {
+        "name": "Peter Higgins",
+        "url": {}
+      }
+    ],
+    "date": "2022-04-28",
+    "categories": [],
+    "contents": "\n\n\n\nThere comes a time when you, or possibly others, want to cite your software code, whether as a project or a package. A DOI (Digital Object Identifier) is a unique and never-changing string assigned to online (journal) articles, books, and other works. DOIs make it easier to retrieve works, which is why citation styles, like APA and MLA Style, recommend including them in citations.\nJournal articles are assigned DOIs, which look something like this: doi:10.1080/02626667.2018.1560449\nA good explainer for this entire process can be found at the UC Berkeley library website here.\nZenodo is an open science research repository, which is itself open source. You can deposit your data, code, preprints, etc. and generate DOIs for citation.\nSteps:\n1. Put your repo on GitHub\n2. Link your GitHub repo to Zenodo (details here)\ngo to Zenodo\nThe first time you do this, you need to sign up/open an account by authorizing with your GitHub login\nlog in with GitHub ID/pwd\nFrom the drop-down menu next to your email address at the top of the Zenodo home page, select GitHub\nselect the repository that you want to archive on Zenodo\nToggle the “on” button next to the repository you want to archive\n3. Creating a new release of your repo (details here)\nClick on the “Create Release” button at the top of the page\nZenodo will redirect you back to the GitHub repo to generate a release\nTo the right of the list of files, click on the Releases button.\nClick Choose a tag - and add a version number for this release, like v1.0.0.\nUse the drop-down menus to select the correct branch for this release.\nadd a title and description for this release\nScroll down and click the Publish release button.\nFor future releases/versions/DOIs, just update your repo and publish a new release.\n4. DOI generation\nevery time you generate a new release (with a new version) of your repo, Zenodo will archive it, and generate a new DOI\nto check that it is working, go to https://zenodo.org/github-account-name/settings/github/ - you will see that your repo is listed.\nScroll down your list of Enabled Repositories to your repo.\nClick on the repo DOI badge, and Zenodo will pop up a window with markdown code for a DOI badge that you can add to your repo README file\n\n\n\n",
+    "preview": "posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package/zenodo.jpg",
+    "last_modified": "2022-04-28T12:11:40-04:00",
+    "input_file": "obtaining-a-zenodo-doi-for-your-r-project-or-package.knit.md"
+  },
+  {
     "path": "posts/2021-10-20-creating-standard-mileposts-in-your-bookdown-book/",
     "title": "Creating Standard Mileposts in your Bookdown Book",
     "description": "How to create and use recurring fun icons for mileposts within a bookdown book, as inspired by the work of Desiree De Leon.",

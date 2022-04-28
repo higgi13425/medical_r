@@ -19,7 +19,6 @@ library(here)
 ```{r}
 knitr::include_graphics(
   here("_posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package/zenodo.jpg"))
-# spacer comment
 ```
 
 

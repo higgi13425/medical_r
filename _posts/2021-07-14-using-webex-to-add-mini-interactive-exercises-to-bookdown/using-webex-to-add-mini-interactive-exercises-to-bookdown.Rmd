@@ -17,10 +17,15 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(webexercises)
+library(here)
 ```
 
 # Putting Web Exercises into a Bookdown book
 
+```{r}
+knitr::include_graphics(
+  here("_posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/webexercises.png"))
+```
 There is a large benefit to providing rapid, frequent interactive feedback during teaching, to test and challenge whether students truly understood the most recent chunk of the material. This is familiar in medicine to folks who used Dubin's book to learn EKG interpretation. <https://www.amazon.com/Rapid-Interpretation-EKGs-Sixth-Dubin/dp/0912912065/ref=sr_1_3?dchild=1&keywords=dubin+ekg+interpretation&qid=1634337078&sr=8-3>.
 
 The {webexercises} package, by Prof. Lisa Debruine and her PsyTeachR team at the University of Glasgow, allows insertion of small web exercises into a bookdown book.

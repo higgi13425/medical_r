@@ -129,7 +129,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["building-a-data-package_files/anchor-4.2.2/anchor.min.js","building-a-data-package_files/bowser-1.9.3/bowser.min.js","building-a-data-package_files/distill-2.2.21/template.v2.js","building-a-data-package_files/header-attrs-2.11/header-attrs.js","building-a-data-package_files/header-attrs-2.4/header-attrs.js","building-a-data-package_files/header-attrs-2.5/header-attrs.js","building-a-data-package_files/header-attrs-2.9/header-attrs.js","building-a-data-package_files/jquery-1.11.3/jquery.min.js","building-a-data-package_files/jquery-3.6.0/jquery-3.6.0.js","building-a-data-package_files/jquery-3.6.0/jquery-3.6.0.min.js","building-a-data-package_files/jquery-3.6.0/jquery-3.6.0.min.map","building-a-data-package_files/popper-2.6.0/popper.min.js","building-a-data-package_files/tippy-6.2.7/tippy-bundle.umd.min.js","building-a-data-package_files/tippy-6.2.7/tippy-light-border.css","building-a-data-package_files/tippy-6.2.7/tippy.css","building-a-data-package_files/tippy-6.2.7/tippy.umd.min.js","building-a-data-package_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["building-a-data-package_files/anchor-4.2.2/anchor.min.js","building-a-data-package_files/bowser-1.9.3/bowser.min.js","building-a-data-package_files/distill-2.2.21/template.v2.js","building-a-data-package_files/header-attrs-2.11/header-attrs.js","building-a-data-package_files/header-attrs-2.14/header-attrs.js","building-a-data-package_files/header-attrs-2.4/header-attrs.js","building-a-data-package_files/header-attrs-2.5/header-attrs.js","building-a-data-package_files/header-attrs-2.9/header-attrs.js","building-a-data-package_files/jquery-1.11.3/jquery.min.js","building-a-data-package_files/jquery-3.6.0/jquery-3.6.0.js","building-a-data-package_files/jquery-3.6.0/jquery-3.6.0.min.js","building-a-data-package_files/jquery-3.6.0/jquery-3.6.0.min.map","building-a-data-package_files/popper-2.6.0/popper.min.js","building-a-data-package_files/tippy-6.2.7/tippy-bundle.umd.min.js","building-a-data-package_files/tippy-6.2.7/tippy-light-border.css","building-a-data-package_files/tippy-6.2.7/tippy.css","building-a-data-package_files/tippy-6.2.7/tippy.umd.min.js","building-a-data-package_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2377,7 +2377,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2474,9 +2474,9 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h2 id="add-data">Add data</h2>
 <p>In the Files tab in RStudio, create a <code>raw-data</code> folder in your project. Add the raw files (csv, excel, etc.) that you want to turn into your accessible datasets. <br> Now create a separate <code>data</code> folder in your project.</p>
 <p>In the <code>raw-data</code> folder, create a new R script named <code>prep_data.R</code>. In this file, wrangle, filter, or otherwise prepare your datasets. Let’s pretend you have a datafile that you have wrangled from Excel, and it is now a dataframe named <code>sportsdata</code>.</p>
-<p>Now you want to save this datasets in <code>*.rda</code> format, as <code>sportsdata.rda</code>. Pick the name carefully, as you will have to live with it for a long time.</p>
-<p>In this script, do this saving step with with <code>saveRDS(sportsdata, "data-raw/sportsdata.Rdata")</code></p>
-<p>Then <strong>use</strong> the data (put the data in the proper format in the <code>data</code> folder) with the following line in your script:</p>
+<p>Now you want to save this datasets in <code>*.Rdata</code> format, as <code>sportsdata.Rdata</code> in the <code>raw-data</code> folder. Pick the name carefully, as you will have to live with it for a long time.</p>
+<p>near the end of this script, do this saving step with with <code>saveRDS(sportsdata, "data-raw/sportsdata.Rdata")</code></p>
+<p>Then <strong>use</strong> the data (put the data in the proper final [<code>*.rda</code>] format in the <code>data</code> folder) with the following line in your script:</p>
 <p><code>usethis::use_data(sportsdata, overwrite = TRUE)</code></p>
 <h2 id="installing-the-package">Installing the Package</h2>
 <h2 id="deal-with-dependencies">Deal with Dependencies</h2>
@@ -2562,8 +2562,8 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>Once you are happy with the datapackage, commit and push to Github. Now anyone can use your datapackage.</p>
 <h2 id="checklist-for-adding-a-new-dataset">Checklist for adding a new dataset</h2>
 <ol type="1">
-<li>get raw data, wrangle as needed, and save it into your raw-data folder. Save this to .Rdata format with saveRDS if needed. <code>saveRDS(newdata, "data-raw/newdata.Rdata")</code>. Delete the original if needed.</li>
-<li>format the data with <code>usethis::use_data(newdata, overwrite = TRUE)</code>. This will put it into the data folder in .rda format.</li>
+<li>get raw data, wrangle as needed, and save it into your <code>raw-data</code> folder. Save this to .Rdata format with saveRDS if needed. <code>saveRDS(newdata, "data-raw/newdata.Rdata")</code>. Delete the original if needed.</li>
+<li>format the data with <code>usethis::use_data(newdata, overwrite = TRUE)</code>. This will put it into the <code>data</code> folder in .rda format.</li>
 <li>Create a help file in the R folder. Create an R script in the <code>R/</code> folder, named something like <code>newdata.R</code>. Copy and SaveAs from a pre-existing file. Use roxygen2 and rmarkdown formatting as above.</li>
 <li>Run <code>devtools::document()</code> to build this into documentation in the <code>man</code> folder.</li>
 <li>Run <code>help(newdata)</code> to check the help file. Edit if needed, then repeat step 4 and 5 until the help file is satisfactory.</li>

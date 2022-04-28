@@ -83,12 +83,12 @@ Now create a separate `data` folder in your project.
 In the `raw-data` folder, create a new R script named `prep_data.R`.
 In this file, wrangle, filter, or otherwise prepare your datasets. Let's pretend you have a datafile that you have wrangled from Excel, and it is now a dataframe named `sportsdata`.
 
-Now you want to save this datasets in `*.rda` format, as `sportsdata.rda`. Pick the name carefully, as you will have to live with it for a long time.
+Now you want to save this datasets in `*.Rdata` format, as `sportsdata.Rdata` in the `raw-data` folder. Pick the name carefully, as you will have to live with it for a long time.
 
-In this script, do this saving step with with
+near the end of this script, do this saving step with with
 `saveRDS(sportsdata, "data-raw/sportsdata.Rdata")`
 
-Then **use** the data (put the data in the proper format in the `data` folder) with the following line in your script:
+Then **use** the data (put the data in the proper final [`*.rda`] format in the `data` folder) with the following line in your script:
 
 `usethis::use_data(sportsdata, overwrite = TRUE)`
 
@@ -222,8 +222,8 @@ Once you are happy with the datapackage, commit and push to Github. Now anyone c
 
 ## Checklist for adding a new dataset
 
-1. get raw data, wrangle as needed, and save it into your raw-data folder. Save this to .Rdata format with saveRDS if needed. `saveRDS(newdata, "data-raw/newdata.Rdata")`. Delete the original if needed.
-2. format the data with `usethis::use_data(newdata, overwrite = TRUE)`. This will put it into the data folder in .rda format.
+1. get raw data, wrangle as needed, and save it into your `raw-data` folder. Save this to .Rdata format with saveRDS if needed. `saveRDS(newdata, "data-raw/newdata.Rdata")`. Delete the original if needed.
+2. format the data with `usethis::use_data(newdata, overwrite = TRUE)`. This will put it into the `data` folder in .rda format.
 3. Create a help file in the R folder.  Create an R script in the `R/` folder, named something like `newdata.R`. Copy and SaveAs from a pre-existing file. Use roxygen2 and rmarkdown formatting as above.
 4. Run `devtools::document()` to build this into documentation in the `man` folder.
 5. Run `help(newdata)` to check the help file. Edit if needed, then repeat step 4 and 5 until the help file is satisfactory.

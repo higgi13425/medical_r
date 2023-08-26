@@ -7,14 +7,23 @@
     <description>A blog about the use of R with medical data.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 28 Apr 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>2022-08-26</lastBuildDate>
+    <item>
+      <title>Functions and Functionals: TidyEval Fun</title>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/medical_r/posts/2023-08-26-functions-and-functionals-tidyeval-fun</link>
+      <description>Two approaches to use tidyeval to work in both individyal functions and with functionals like map and map2.</description>
+      <guid>https://higgi13425.github.io/medical_r/posts/2023-08-26-functions-and-functionals-tidyeval-fun</guid>
+      <pubDate>2022-08-26</pubDate>
+      <media:content url="https://higgi13425.github.io/medical_r/posts/2023-08-26-functions-and-functionals-tidyeval-fun/tidyeval.png" medium="image" type="image/png" width="1200" height="600"/>
+    </item>
     <item>
       <title>Obtaining a Zenodo DOI for your R project or package</title>
       <dc:creator>Peter Higgins</dc:creator>
       <link>https://higgi13425.github.io/medical_r/posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package</link>
       <description>How to use Zenodo to obtain a Digital Object Identifier (DOI) for your R project or package in a GitHub repo.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package</guid>
-      <pubDate>Thu, 28 Apr 2022 00:00:00 +0000</pubDate>
+      <pubDate>2022-04-28</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package/zenodo.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -23,7 +32,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2021-10-20-creating-standard-mileposts-in-your-bookdown-book</link>
       <description>How to create and use recurring fun icons for mileposts within a bookdown book, as inspired by the work of Desiree De Leon.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2021-10-20-creating-standard-mileposts-in-your-bookdown-book</guid>
-      <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-10-20</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2021-10-20-creating-standard-mileposts-in-your-bookdown-book/milepost.png" medium="image" type="image/png" width="1284" height="502"/>
     </item>
     <item>
@@ -32,7 +41,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown</link>
       <description>Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide for hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown</guid>
-      <pubDate>Wed, 14 Jul 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-07-14</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/webexercises.png" medium="image" type="image/png" width="1024" height="1024"/>
     </item>
     <item>
@@ -41,7 +50,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2021-06-13-resources-for-getting-started-in-r</link>
       <description>An assortment of resources for learning R, for beginner to advanced users.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2021-06-13-resources-for-getting-started-in-r</guid>
-      <pubDate>Sun, 13 Jun 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-06-13</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2021-06-13-resources-for-getting-started-in-r/RYouWithMe.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -50,7 +59,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2021-01-13-extracting-highlighting-as-data-from-excel</link>
       <description>Sometimes well-meaning people encode variables in medical data as highlighting with colors. For example, a spreadsheet where the control patients are in the green rows, and the test patients are in the red rows. This should have been encoded as a study_arm variable with values control and test. How to fix this - the {tidyxl} package can get under the hood of an excel spreadsheet and extract this information.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2021-01-13-extracting-highlighting-as-data-from-excel</guid>
-      <pubDate>Wed, 13 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-01-13</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2021-01-13-extracting-highlighting-as-data-from-excel/titanic.png" medium="image" type="image/png" width="733" height="360"/>
     </item>
     <item>
@@ -59,7 +68,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-12-27-creating-mini-learnr-apps-and-hosting-on-a-server</link>
       <description>This post will explain how to create your own learnr apps and push them to an RStudio Server Open Source server.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-12-27-creating-mini-learnr-apps-and-hosting-on-a-server</guid>
-      <pubDate>Sun, 27 Dec 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-12-27</pubDate>
     </item>
     <item>
       <title>Publishing a {bookdown} book on bookdown.org</title>
@@ -67,7 +76,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-12-12-publishing-a-bookdown-book-on-bookdownorg</link>
       <description>A short overview of creating a {bookdown} book and publishing on bookdown.org</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-12-12-publishing-a-bookdown-book-on-bookdownorg</guid>
-      <pubDate>Sat, 12 Dec 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-12-12</pubDate>
     </item>
     <item>
       <title>Setting Up a RStudio Server with the Open Source Edition</title>
@@ -76,7 +85,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version</link>
       <description>This is a basic setup guide for setting up a Linux-based server with RStudio Server and Shiny Server (the free versions). This was contributed by Javan Thompson, who works in IT at the University of Michigan Medical Center, and was a great help in setting this up for me. He has graciously provided a basic walkthrough for anyone else to follow.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version</guid>
-      <pubDate>Sun, 06 Dec 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-12-06</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/rstudio_server_open_source.png" medium="image" type="image/png" width="1165" height="547"/>
     </item>
     <item>
@@ -85,7 +94,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-11-01-subgroup-plots</link>
       <description>Sometimes editors ask for _post hoc_ analysis of subgroups in clinical trials, and will refuse the manuscript without them. How you can make these in R, in a somewhat kludgy way.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-11-01-subgroup-plots</guid>
-      <pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-11-01</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2020-11-01-subgroup-plots/subgroup-plots_files/figure-html5/plot-1.png" medium="image" type="image/png" width="1728" height="1440"/>
     </item>
     <item>
@@ -94,7 +103,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-10-20-embed-external-flipbooks</link>
       <description>After you have created micro-flipbooks in your miniflipbook project, how do you embed them in Rmarkdown and bookdown projects?</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-10-20-embed-external-flipbooks</guid>
-      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-10-20</pubDate>
     </item>
     <item>
       <title>Building a Data Package</title>
@@ -102,7 +111,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-10-18-building-a-data-package</link>
       <description>For building a package that is largely about making datasets readily available in R.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-10-18-building-a-data-package</guid>
-      <pubDate>Sun, 18 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-10-18</pubDate>
     </item>
     <item>
       <title>How to Post</title>
@@ -110,7 +119,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-10-14-how-to-post</link>
       <description>A reference for future me, on how to create posts.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-10-14-how-to-post</guid>
-      <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-10-14</pubDate>
     </item>
     <item>
       <title>micro-flipbooks</title>
@@ -118,7 +127,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-10-14-micro-flipbooks</link>
       <description>How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-10-14-micro-flipbooks</guid>
-      <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-10-14</pubDate>
     </item>
     <item>
       <title>Why a Medical R Blog?</title>
@@ -126,7 +135,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-10-14-why-a-medical-r-blog</link>
       <description>A starting point and few Theses.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-10-14-why-a-medical-r-blog</guid>
-      <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-10-14</pubDate>
     </item>
     <item>
       <title>Welcome to Medical R</title>
@@ -134,7 +143,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/welcome</link>
       <description>Welcome to my blog, Medical R. I will blog on topics related to using R with medical data. I hope you enjoy reading and find this useful!</description>
       <guid>https://higgi13425.github.io/medical_r/posts/welcome</guid>
-      <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-10-14</pubDate>
     </item>
   </channel>
 </rss>

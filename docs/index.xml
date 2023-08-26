@@ -18,6 +18,15 @@
       <media:content url="https://higgi13425.github.io/medical_r/posts/2023-08-26-functions-and-functionals-tidyeval-fun/tidyeval.png" medium="image" type="image/png" width="1200" height="600"/>
     </item>
     <item>
+      <title>Making a Multipanel Figure with a Single Bottom Legend</title>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/medical_r/posts/2023-08-26-multipanel-figure-with-legend</link>
+      <description>A way to create the common figure in medical journals with multiple panels and a single legend for all panels at the bottom.</description>
+      <guid>https://higgi13425.github.io/medical_r/posts/2023-08-26-multipanel-figure-with-legend</guid>
+      <pubDate>2022-08-26</pubDate>
+      <media:content url="https://higgi13425.github.io/medical_r/posts/2023-08-26-multipanel-figure-with-legend/multipanel_with_legend.png" medium="image" type="image/png" width="672" height="480"/>
+    </item>
+    <item>
       <title>Obtaining a Zenodo DOI for your R project or package</title>
       <dc:creator>Peter Higgins</dc:creator>
       <link>https://higgi13425.github.io/medical_r/posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package</link>

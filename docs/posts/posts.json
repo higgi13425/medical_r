@@ -19,6 +19,25 @@
     "preview_height": 600
   },
   {
+    "path": "posts/2023-08-26-multipanel-figure-with-legend/",
+    "title": "Making a Multipanel Figure with a Single Bottom Legend",
+    "description": "A way to create the common figure in medical journals with multiple panels and a single legend for all panels at the bottom.",
+    "author": [
+      {
+        "name": "Peter Higgins",
+        "url": {}
+      }
+    ],
+    "date": "2022-08-26",
+    "categories": [],
+    "contents": "\n\n\nknitr::include_graphics(\n  here(\"_posts/2023-08-26-multipanel-figure-with-legend/multipanel_with_legend.png\"))\n\n\n\nThe Multipanel Figure with a Single Legend\nIt is quite common for medical journals (which strictly limit the number of figures) to publish multipanel figures with a single legend for all panels of the figure at the bottom, in its own bounding box.\nNote that this blog post is the result of several discussions at\nhttps://community.rstudio.com/t/plot-in-a-box-with-long-text-legend-in-a-box/51962\nand\nhttps://stackoverflow.com/questions/60142452/multipanel-plots-with-spanning-figure-legend-in-r-with-ggtext-and-gridtext-in-r\nLet’s walk through how to create this.\nData\nFirst, let’s generate data for four dummy figures for the purposes of the layout.\n\n\nd1 <- runif(500)\nd2 <- rep(c(\"Treatment\",\"Control\"), each=250)\nd3 <- rbeta(500, shape1=100, shape2=3)\nd4 <- d3 + rnorm(500, mean=0, sd=0.1)\nplotData <- data.frame(d1, d2, d3, d4)\n\n\nPlots\nNow we will generate the four dummy plots, p1 through p4.\n\n\np1 <- ggplot(data=plotData) + geom_point(aes(x=d3, y=d4)) +\n  theme(plot.background = element_rect(color='black'))\np2 <- ggplot(data=plotData) + geom_boxplot(aes(x=d2,y=d1,fill=d2))+\n  theme(legend.position=\"none\") +\n  theme(plot.background = element_rect(color='black'))\np3 <- ggplot(data=plotData) +\n  geom_histogram(aes(x=d1, color=I(\"black\"),fill=I(\"orchid\"))) +\n  theme(plot.background = element_rect(color='black'))\np4 <- ggplot(data=plotData) +\n  geom_histogram(aes(x=d3, color=I(\"black\"),fill=I(\"goldenrod\"))) +\n  theme(plot.background = element_rect(color='black'))\n\n\nLegend Text\nNow we will generate the legend text.\nThere are some key pieces here that will turn out to be important later.\nSetting the padding around the text in the element_textbox with the {ggtext} package. The plot_annotation function in {ggtext} allows some fine tuning.\nTweaking the margins on left and right, which are inherited (+5/+5) from the plot above. Note that margins and padding are expressed in TROUBLE (T,R,B,L) order.\n\n\nfig_legend <- plot_annotation(\n  caption = \"**Figure 1.**  Testing Control vs. Treatment.   A. Scatterplot. \n  B. The outcomes in the Control Arm were slightly better than \n  the Treatment Arm. C. A Histogram. D. Yet Another Histogram.\",\n  theme = theme(\n    plot.caption = element_textbox_simple(\n      size = 11,\n      box.colour = \"black\",\n      linetype = 1,\n      linewidth = 0.3,\n      padding = unit(c(3, 3, 3, 3), \"pt\"),\n      margin = unit(c(0, -5.2, 0, -5.2), \"pt\"), #note negative left and right margins because inherits margins from plots\n      r = unit(0, \"pt\")\n    )\n  )\n)\n\n\nMultipanel Plot\nNow, to put this all together with {patchwork}.\nI will add tags for general coolness.\n\n\np1 + {\n  p2 + {\n    p3 +\n      p4 +\n      plot_layout(ncol=1)\n  }\n} + fig_legend +\n  plot_layout(ncol=1) +\n  plot_annotation(tag_levels = 'A') & \n  theme(plot.tag = element_text(size = 11, face = 'bold'))\n\n\n\n\n\n\n",
+    "preview": "posts/2023-08-26-multipanel-figure-with-legend/multipanel_with_legend.png",
+    "last_modified": "2023-08-26T15:34:37-04:00",
+    "input_file": {},
+    "preview_width": 672,
+    "preview_height": 480
+  },
+  {
     "path": "posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package/",
     "title": "Obtaining a Zenodo DOI for your R project or package",
     "description": "How to use Zenodo to obtain a Digital Object Identifier (DOI) for your R project or package in a GitHub repo.",

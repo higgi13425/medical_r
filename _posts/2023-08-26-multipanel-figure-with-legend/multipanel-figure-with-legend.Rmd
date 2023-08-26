@@ -89,7 +89,7 @@ fig_legend <- plot_annotation(
       linetype = 1,
       linewidth = 0.3,
       padding = unit(c(3, 3, 3, 3), "pt"),
-      margin = unit(c(0, -5.2, 0, -5.2), "pt"), #note negative left and right margins because inherits margins from plots
+      margin = unit(c(0, -5, 0, -5), "pt"), #note negative left and right margins because inherits margins from plots
       r = unit(0, "pt")
     )
   )

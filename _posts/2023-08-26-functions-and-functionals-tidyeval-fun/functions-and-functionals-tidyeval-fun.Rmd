@@ -159,7 +159,7 @@ So two approaches to tidyeval can work, but are not mutually compatible
 2) QUOTE the in-dataframe variables when you use them in the function
 3) no extras added when you use functionals like _map2_.
 
-### Approach 
+### Approach 2
 
 1) Wrap each {{in-dataframe variable name}} with curly-curly when you build your function
 2) NO NEED to quote the in-dataframe variables when you use them in the function
@@ -174,3 +174,53 @@ So two approaches to tidyeval can work, but are not mutually compatible
 3. Mile McBain Friendly eval interface https://github.com/MilesMcBain/friendlyeval
 
 
+## Additional Fun with Dots and the Walrus
+
+Two other useful pieces for tidyeval can be useful at times.
+
+### Dots (...)
+
+Imagine you want to add a bit of theming to your plots made with your _plot_ function. But you want to be flexible, and not commit to a permanent, constant theme.
+
+You can add options to your plot function with dots - literally using `...` as an argument to the function, like this:
+
+```{r}
+plot3 <- function(data, x, y, ...){ 
+  ggplot(data) + aes({{x}}, {{y}}) +
+    geom_boxplot() +
+    theme_minimal(...)
+  }
+```
+
+You can see how we have left room for function arguments to _theme_minimal_, but we have not committed to anything specific. Also notice that we don't have to worry about .data or curly-curly. The dots take care of themselves. Let's try it out.
+
+```{r}
+# Note font needs to be on your computer already (in Applications/Font Book on Mac)
+plot3 (penguins, 
+       bill_length_mm, island, 
+       base_size = 22, 
+       base_family = "Alex Brush")
+```
+
+### The Walrus Operator
+
+One oddity of R is that is struggles with renaming things on the left hand side of equations within functions. As a workaround, the 'walrus operator' was invented. This looks a little bit like the face of a walrus turned to the side (`:=`). This operator handles mutate functions that require setting new names equal to new things within functions that require tidyeval.
+
+Let's try this out with a sorted barplot function.
+We will mutate the categorical variable to a factor, then sort it by frequency **before** we plot this.
+BUT because of the use of mutate INSIDE a function, we need to change the assignment `=` sign to a walrus operator `:=`. Easy to forget. But anytime you are assigning a variable with curly-curly inside a function, watch your walruses! 
+
+```{r}
+sorted_barplot <- function(data, var){
+  data |> 
+    mutate({{var}} := factor({{var}}) |> 
+      fct_infreq()) |> 
+    ggplot() +
+    geom_bar(aes(y = {{var}}), 
+             fill = 'dodgerblue4') +
+    theme_minimal(base_size = 18,
+                  base_family = "Colonna MT")
+}
+
+sorted_barplot(penguins, species)
+```

@@ -20,6 +20,8 @@ library(here)
 library(tidyverse)
 library(palmerpenguins)
 library(purrr)
+library(ggsignif)
+library(glue)
 ```
 
 ```{r}
@@ -127,8 +129,7 @@ But this gets wonky with functionals like map2 - you get wonky plots - it 'works
 See below, tested with single pairs of x and y
 
 ```{r}
-map2(.x = xvars, .y = yvars, .f = plot2, data = penguins, .progress =
-TRUE) 
+map2(.x = xvars, .y = yvars, .f = plot2, data = penguins) 
 ```
 
 However, embrace/curly-curly works OK with functionals if you then (within the functional) convert both the xvars and yvars into symbols with the _syms_ function, using single pairs of x and y.
@@ -174,9 +175,9 @@ So two approaches to tidyeval can work, but are not mutually compatible
 3. Mile McBain Friendly eval interface https://github.com/MilesMcBain/friendlyeval
 
 
-## Additional Fun with Dots and the Walrus
+## Bonus Material \nAdditional Fun with Dots and the Walrus and {ggsignif}
 
-Two other useful pieces for tidyeval can be useful at times.
+A few other useful pieces for tidyeval can be useful at times.
 
 ### Dots (...)
 
@@ -224,3 +225,80 @@ sorted_barplot <- function(data, var){
 
 sorted_barplot(penguins, species)
 ```
+
+### Programmatically adjusting Titles and Axis Labels, and adjusting ggsignif on the fly
+
+When you generate multiple plots, it is nice to have the title and axis labels programmatically adapt to the data used. We can do this with variables, as in the example shown below.
+
+There is also an issue with geom_signif, as it does not have a programmatic way to adjust bar height to your data. The default is that the bars will tend to be in the same place and overlap with each other. But it needs to measure the max value in your dataset in order to adjust. A way to do this programmatically in a function is below.
+
+This adaptive function will adjust p value bar height, title, and x axis label
+
+```{r}
+plot_cats <- function(data, catvar, contvar){
+  mv <- transmute(data,
+      max := max({{contvar}},na.rm = TRUE)) |>     pull(max) 
+  # mv is needed to adjust bar height later
+  
+ data |> 
+    ggplot() +
+    aes(x = {{contvar}}, y = factor({{catvar}}), 
+        fill=factor({{catvar}})) +
+    geom_boxplot() +
+    geom_jitter(width = 0.6) +
+    geom_signif(comparisons = list(c(1,2))) +
+    geom_signif(comparisons = list(c(1,3)), 
+                y_position = 1.1 * mv) +
+    geom_signif(comparisons = list(c(2,3)), 
+                y_position = 1.2 * mv) +
+    theme_bw() +
+    theme(legend.position = "none",
+          panel.grid.major.x  = element_blank()) +
+    labs(y = "",
+         x = glue("Measurement of {ensym(contvar)}"),
+         title = glue("Comparison of {ensym(contvar)} \nAcross {ensym(catvar)} categories" ))
+}
+```
+
+Test this function out with a single plot
+
+```{r}
+plot_cats(penguins, 
+          catvar = island, 
+          contvar = bill_length_mm)
+```
+
+Now make vector lists of catvars and contvars
+```{r}
+catvars <- c('island', 'species', 'sex')
+
+contvars <- c('bill_length_mm', 'body_mass_g', 'flipper_length_mm')
+```
+
+Now plot the 3 pairs - works find with syms
+though it seems like contvars should be .x
+and catvars should be .y - but this version works
+```{r}
+map2(.x = syms(catvars),
+     .y = syms(contvars),
+     .f = plot_cats, 
+    data = penguins)
+```
+
+
+Note this does the 3 pairs of catvars with contvars.
+To do all (9) combinations, let's set that up with an anaysis_list dataframe of all combos
+```{r}
+analysis_list <- crossing(catvars, contvars)
+analysis_list
+```
+
+Now for all possible (9) combinations
+
+```{r}
+map2(.x = syms(analysis_list$catvars), 
+     .y = syms(analysis_list$contvars), 
+     .f = plot_cats, 
+     data = penguins) 
+```
+

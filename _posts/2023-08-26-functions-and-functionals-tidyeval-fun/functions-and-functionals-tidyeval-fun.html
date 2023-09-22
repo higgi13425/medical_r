@@ -1860,7 +1860,7 @@ BUT because of the use of mutate INSIDE a function, we need to change the assign
 </div>
 <p><img src="functions-and-functionals-tidyeval-fun_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
 </div>
-<h3 id="programmatically-adjusting-titles-and-axis-labels-and-adjusting-ggsignif-on-the-fly">Programmatically adjusting Titles and Axis Labels, and adjusting ggsignif on the fly</h3>
+<h2 id="programmatically-adjusting-titles-and-axis-labels-and-adjusting-ggsignif-comparison-bars-on-the-fly">Programmatically adjusting Titles and Axis Labels, and adjusting {ggsignif} comparison bars on the fly</h2>
 <p>When you generate multiple plots, it is nice to have the title and axis labels programmatically adapt to the data used. We can do this with variables, as in the example shown below.</p>
 <p>There is also an issue with geom_signif, as it does not have a programmatic way to adjust bar height to your data. The default is that the bars will tend to be in the same place and overlap with each other. But it needs to measure the max value in your dataset in order to adjust. A way to do this programmatically in a function is below.</p>
 <p>This adaptive function will adjust p value bar height, title, and x axis label</p>
@@ -1900,7 +1900,7 @@ BUT because of the use of mutate INSIDE a function, we need to change the assign
 </div>
 <p><img src="functions-and-functionals-tidyeval-fun_files/figure-html5/unnamed-chunk-16-1.png" width="624" /></p>
 </div>
-Now make vector lists of catvars and contvars
+<p>Now make vector lists of catvars and contvars</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>catvars</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'island'</span>, <span class='st'>'species'</span>, <span class='st'>'sex'</span><span class='op'>)</span></span>
@@ -1908,9 +1908,9 @@ Now make vector lists of catvars and contvars
 <span><span class='va'>contvars</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'bill_length_mm'</span>, <span class='st'>'body_mass_g'</span>, <span class='st'>'flipper_length_mm'</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-Now plot the 3 pairs - works find with syms
+<p>Now plot the 3 pairs - works find with syms
 though it seems like contvars should be .x
-and catvars should be .y - but this version works
+and catvars should be .y - but this version works</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map2.html'>map2</a></span><span class='op'>(</span>.x <span class='op'>=</span> <span class='fu'><a href='https://rlang.r-lib.org/reference/sym.html'>syms</a></span><span class='op'>(</span><span class='va'>catvars</span><span class='op'>)</span>,</span>
@@ -1927,8 +1927,8 @@ and catvars should be .y - but this version works
 [[3]]</code></pre>
 <p><img src="functions-and-functionals-tidyeval-fun_files/figure-html5/unnamed-chunk-18-3.png" width="624" /></p>
 </div>
-Note this does the 3 pairs of catvars with contvars.
-To do all (9) combinations, let’s set that up with an anaysis_list dataframe of all combos
+<p>Note this does the 3 pairs of catvars with contvars.
+To do all (9) combinations, let’s set that up with an anaysis_list dataframe of all combos</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>analysis_list</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tidyr.tidyverse.org/reference/expand.html'>crossing</a></span><span class='op'>(</span><span class='va'>catvars</span>, <span class='va'>contvars</span><span class='op'>)</span></span>

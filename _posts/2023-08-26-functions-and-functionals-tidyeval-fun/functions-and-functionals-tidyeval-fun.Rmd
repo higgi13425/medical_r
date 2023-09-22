@@ -226,7 +226,7 @@ sorted_barplot <- function(data, var){
 sorted_barplot(penguins, species)
 ```
 
-### Programmatically adjusting Titles and Axis Labels, and adjusting ggsignif on the fly
+## Programmatically adjusting Titles and Axis Labels, and adjusting {ggsignif} comparison bars on the fly
 
 When you generate multiple plots, it is nice to have the title and axis labels programmatically adapt to the data used. We can do this with variables, as in the example shown below.
 
@@ -269,6 +269,7 @@ plot_cats(penguins,
 ```
 
 Now make vector lists of catvars and contvars
+
 ```{r}
 catvars <- c('island', 'species', 'sex')
 
@@ -278,6 +279,7 @@ contvars <- c('bill_length_mm', 'body_mass_g', 'flipper_length_mm')
 Now plot the 3 pairs - works find with syms
 though it seems like contvars should be .x
 and catvars should be .y - but this version works
+
 ```{r}
 map2(.x = syms(catvars),
      .y = syms(contvars),
@@ -288,6 +290,7 @@ map2(.x = syms(catvars),
 
 Note this does the 3 pairs of catvars with contvars.
 To do all (9) combinations, let's set that up with an anaysis_list dataframe of all combos
+
 ```{r}
 analysis_list <- crossing(catvars, contvars)
 analysis_list

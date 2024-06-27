@@ -1,0 +1,203 @@
+---
+title: "Sending Automated Emails with Cron Jobs"
+description: |
+  It is nice to be able to automate something, and have programmatic data pulls. Then wrangle the results and email them to key stakeholders. This is a quick tutorial on how to do that with R and cron jobs, especially with cronR package.
+  
+author:
+  - name: Peter Higgins
+    url: https://higgi13425.github.io/medical_r/
+date: 01-23-2024
+draft: FALSE
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(cronR)
+library(blastula)
+library(here)
+```
+
+## Getting Started with Emails and Blastula
+
+There is a super-helpful YouTube video from ggnot, which goes over how to do
+this with GitHub Actions.
+
+For some variety, I decided to do this with cron jobs. I have a server that I
+can use to automate this.
+
+I am going to use the `blastula` package to send emails. It is a great package, but it needs some setup.
+
+I set up a new project on the higginslab-server.
+
+Then I created an R script named 'auto-email with blastula.R' and saved it in the project folder.
+
+## Jumping out to outlook.com
+I needed an outgoing email address and credentials.
+I created a new email address on outlook.com. I used the email address and password to create a new file in the project folder called 'outlook_server_creds'.
+
+I did this in the R script.
+First, I loaded {blastula} and {here}
+Then I created the credentials file.
+
+
+```{r}
+library(blastula)
+library(here)
+
+# create_smtp_creds_file(file = "outlook_server_creds",
+                       # user = "higgins-server@outlook.com",
+                      # provider = "outlook")
+```
+
+This prompts me to enter the password for the email address. I did that, and it created the file in the same project folder.
+
+## Creating the email
+Now I use an Rmarkdown file to create the email. I could also use quarto to create the email. I am going to use the {here} package to make sure that the email is created in the project folder.
+
+This is pretty standard R markdown.  
+The YAML header looks like this:
+```{r, error = TRUE}
+---
+title: "blastula_email"
+output: blastula::blastula_email
+date: "2024-01-24"
+---
+```
+
+Then I use a setup chunk and load the packages I need. 
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Then the rest of the email can be anything in Rmarkdown.
+
+#### Example email starts here
+
+
+## Including Code
+This is a test.
+I can run code
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+Or plots
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+#### Example email ends here
+
+
+
+## Test Email
+I am going to test the email by sending it to myself. I am going to use the {blastula} package to do this, from the new outlook email with credentials, to my junk yahoo email.
+
+I add the following lines to the R script, auto-email with blastula.R
+
+First, I generate the email OBJECT using blastula render_email()
+
+```{r error = TRUE}
+my_email_object <- render_email("blastula_email.Rmd")
+```
+
+Then I send the email using the credentials file I created earlier,
+with smtp_send()
+
+```{r, error = TRUE}
+smtp_send(my_email_object,
+          from = "higgins-server@outlook.com",
+          to = "higgi13425@yahoo.com",
+          subject = "test email",
+          credentials = creds_file("outlook_server_creds"))
+```
+
+I ran the script, and I got the email in my yahoo email. It worked!
+That is great for a one-time, manual email.
+
+But to repeat it, you need cron
+
+## Cron Jobs
+This is the weird part, where everything is done in the terminal, and is not stored in (visible) files.
+
+Load cronR in the Console.
+```{r}
+library(cronR)
+```
+
+Then build a cron job with cronR::cron_rscript()
+and then add it to your cron list
+
+```{r, error = TRUE}  
+cmd <- cron_rscript("~/data_space/phiggins/R/cronR_scripts/auto-email with blastula.R")
+
+cron_add(cmd, at = '9:35PM', id = '0002', description = 'test email')
+```
+
+Then you can list your cron jobs with cronR::cron_ls()
+
+```{r}  
+cronR::cron_ls()
+```
+
+And remove cron jobs with cronR::cron_rm(id = id_number)
+
+```{r, error = TRUE}
+cronR::cron_rm(id = 1)
+```
+
+
+## As an Automation Alternative - GitHub Actions
+You can follow along with ggnot's YouTube video, which is a great tutorial. The link is https://www.youtube.com/watch?v=_QQGW_RUw_I 
+
+Steps:
+
+1. Create a new R repository on GitHub (should be private because of credentials file)
+2. Make sure to comment out the code that creates the credentials file. You only need to run this once.
+3. Push the files (credentials, Rmd email document, and script) to the repository.
+4. Create a new folder in your repository named '.github', then within that, create a new folder called 'workflows'. Use the Add File button/Create file to create each new folder in turn. 
+5. Create the workflow file in the .github/workflows folder. I named mine 'schedule-email.yml'
+
+The contents of the file are (no surprise) a lot of YAML
+
+```{r, error = TRUE}
+name: 'schedule_email'
+on: 
+  schedule:
+    - cron: '0 9 * * *' # 9:00 am UTC every day
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: r-lib/actions/setup-r@v2
+      with:
+        r-version: '4.0.3'
+    - uses: r-lib/actions/setup-pandoc@v2
+    - uses: r-lib/actions/setup-tinytex@v2
+    - uses: r-lib/actions/setup-r-dependencies@v2
+       with:
+        cache-version: 2
+        extra-packages:
+          any::blastula
+          any::here
+          any::cronR
+      run: Rscript auto_email_blastula.R
+      run:    
+            git config --local user.name github-actions
+            git config --local user.email "actions@github.com"
+            git add output/*
+            git commit -am "commit on $(date)"
+            git push origin main 
+        env:
+          REPO_KEY: ${{secrets.GITHUB_TOKEN}}
+          username: github-actions
+```   

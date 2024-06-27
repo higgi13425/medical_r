@@ -7,14 +7,178 @@
     <description>A blog about the use of R with medical data.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>2022-08-26</lastBuildDate>
+    <lastBuildDate>Tue, 23 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Sending Automated Emails with Cron Jobs</title>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/medical_r/posts/2024-01-23-automatic-emails-with-cron-jobs-from-a-server</link>
+      <description>
+
+
+&lt;h2 id="getting-started-with-emails-and-blastula"&gt;Getting Started with
+Emails and Blastula&lt;/h2&gt;
+&lt;p&gt;There is a super-helpful YouTube video from ggnot, which goes over
+how to do this with GitHub Actions.&lt;/p&gt;
+&lt;p&gt;For some variety, I decided to do this with cron jobs. I have a
+server that I can use to automate this.&lt;/p&gt;
+&lt;p&gt;I am going to use the &lt;code&gt;blastula&lt;/code&gt; package to send emails.
+It is a great package, but it needs some setup.&lt;/p&gt;
+&lt;p&gt;I set up a new project on the higginslab-server.&lt;/p&gt;
+&lt;p&gt;Then I created an R script named ‘auto-email with blastula.R’ and
+saved it in the project folder.&lt;/p&gt;
+&lt;h2 id="jumping-out-to-outlook.com"&gt;Jumping out to outlook.com&lt;/h2&gt;
+&lt;p&gt;I needed an outgoing email address and credentials. I created a new
+email address on outlook.com. I used the email address and password to
+create a new file in the project folder called
+‘outlook_server_creds’.&lt;/p&gt;
+&lt;p&gt;I did this in the R script. First, I loaded {blastula} and {here}
+Then I created the credentials file.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;library(blastula)
+library(here)
+
+# create_smtp_creds_file(file = &amp;quot;outlook_server_creds&amp;quot;,
+                       # user = &amp;quot;higgins-server@outlook.com&amp;quot;,
+                      # provider = &amp;quot;outlook&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This prompts me to enter the password for the email address. I did
+that, and it created the file in the same project folder.&lt;/p&gt;
+&lt;h2 id="creating-the-email"&gt;Creating the email&lt;/h2&gt;
+&lt;p&gt;Now I use an Rmarkdown file to create the email. I could also use
+quarto to create the email. I am going to use the {here} package to make
+sure that the email is created in the project folder.&lt;/p&gt;
+&lt;p&gt;This is pretty standard R markdown.&lt;br /&gt;
+The YAML header looks like this:&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;---
+title: &amp;quot;blastula_email&amp;quot;
+output: blastula::blastula_email
+date: &amp;quot;2024-01-24&amp;quot;
+---&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error: &amp;lt;text&amp;gt;:6:0: unexpected end of input
+4: date: &amp;quot;2024-01-24&amp;quot;
+5: ---
+  ^&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then I use a setup chunk and load the packages I need.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;knitr::opts_chunk$set(echo = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then the rest of the email can be anything in Rmarkdown.&lt;/p&gt;
+&lt;h4 id="example-email-starts-here"&gt;Example email starts here&lt;/h4&gt;
+&lt;h2 id="including-code"&gt;Including Code&lt;/h2&gt;
+&lt;p&gt;This is a test. I can run code&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;summary(cars)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;     speed           dist       
+ Min.   : 4.0   Min.   :  2.00  
+ 1st Qu.:12.0   1st Qu.: 26.00  
+ Median :15.0   Median : 36.00  
+ Mean   :15.4   Mean   : 42.98  
+ 3rd Qu.:19.0   3rd Qu.: 56.00  
+ Max.   :25.0   Max.   :120.00  &lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="including-plots"&gt;Including Plots&lt;/h2&gt;
+&lt;p&gt;Or plots&lt;/p&gt;
+&lt;p&gt;&lt;img src="file4b2b2919015b_files/figure-html/pressure-1.png" width="672" /&gt;
+#### Example email ends here&lt;/p&gt;
+&lt;h2 id="test-email"&gt;Test Email&lt;/h2&gt;
+&lt;p&gt;I am going to test the email by sending it to myself. I am going to
+use the {blastula} package to do this, from the new outlook email with
+credentials, to my junk yahoo email.&lt;/p&gt;
+&lt;p&gt;I add the following lines to the R script, auto-email with
+blastula.R&lt;/p&gt;
+&lt;p&gt;First, I generate the email OBJECT using blastula render_email()&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;my_email_object &amp;lt;- render_email(&amp;quot;blastula_email.Rmd&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in abs_path(input): The file &amp;#39;blastula_email.Rmd&amp;#39; does not exist.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then I send the email using the credentials file I created earlier,
+with smtp_send()&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;smtp_send(my_email_object,
+          from = &amp;quot;higgins-server@outlook.com&amp;quot;,
+          to = &amp;quot;higgi13425@yahoo.com&amp;quot;,
+          subject = &amp;quot;test email&amp;quot;,
+          credentials = creds_file(&amp;quot;outlook_server_creds&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in eval(expr, envir, enclos): object &amp;#39;my_email_object&amp;#39; not found&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I ran the script, and I got the email in my yahoo email. It worked!
+That is great for a one-time, manual email.&lt;/p&gt;
+&lt;p&gt;But to repeat it, you need cron&lt;/p&gt;
+&lt;h2 id="cron-jobs"&gt;Cron Jobs&lt;/h2&gt;
+&lt;p&gt;This is the weird part, where everything is done in the terminal, and
+is not stored in (visible) files.&lt;/p&gt;
+&lt;p&gt;Load cronR in the Console.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;library(cronR)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then build a cron job with cronR::cron_rscript() and then add it to
+your cron list&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;cmd &amp;lt;- cron_rscript(&amp;quot;~/data_space/phiggins/R/cronR_scripts/auto-email with blastula.R&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in cron_rscript(&amp;quot;~/data_space/phiggins/R/cronR_scripts/auto-email with blastula.R&amp;quot;): file.exists(rscript) is not TRUE&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;cron_add(cmd, at = &amp;#39;9:35PM&amp;#39;, id = &amp;#39;0002&amp;#39;, description = &amp;#39;test email&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in eval(expr, envir, enclos): object &amp;#39;cmd&amp;#39; not found&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then you can list your cron jobs with cronR::cron_ls()&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;cronR::cron_ls()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And remove cron jobs with cronR::cron_rm(id = id_number)&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;cronR::cron_rm(id = 1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in parse_crontab(user = user): No crontab available&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="as-an-automation-alternative---github-actions"&gt;As an Automation
+Alternative - GitHub Actions&lt;/h2&gt;
+&lt;p&gt;You can follow along with ggnot’s YouTube video, which is a great
+tutorial. The link is &lt;a
+href="https://www.youtube.com/watch?v=_QQGW_RUw_I"
+class="uri"&gt;https://www.youtube.com/watch?v=_QQGW_RUw_I&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Steps:&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;Create a new R repository on GitHub (should be private because of
+credentials file)&lt;/li&gt;
+&lt;li&gt;Make sure to comment out the code that creates the credentials file.
+You only need to run this once.&lt;/li&gt;
+&lt;li&gt;Push the files (credentials, Rmd email document, and script) to the
+repository.&lt;/li&gt;
+&lt;li&gt;Create a new folder in your repository named ‘.github’, then within
+that, create a new folder called ‘workflows’. Use the Add File
+button/Create file to create each new folder in turn.&lt;/li&gt;
+&lt;li&gt;Create the workflow file in the .github/workflows folder. I named
+mine ‘schedule-email.yml’&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The contents of the file are (no surprise) a lot of YAML&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;name: &amp;#39;schedule_email&amp;#39;
+on: 
+  schedule:
+    - cron: &amp;#39;0 9 * * *&amp;#39; # 9:00 am UTC every day
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: r-lib/actions/setup-r@v2
+      with:
+        r-version: &amp;#39;4.0.3&amp;#39;
+    - uses: r-lib/actions/setup-pandoc@v2
+    - uses: r-lib/actions/setup-tinytex@v2
+    - uses: r-lib/actions/setup-r-dependencies@v2
+       with:
+        cache-version: 2
+        extra-packages:
+          any::blastula
+          any::here
+          any::cronR
+      run: Rscript auto_email_blastula.R
+      run:    
+            git config --local user.name github-actions
+            git config --local user.email &amp;quot;actions@github.com&amp;quot;
+            git add output/*
+            git commit -am &amp;quot;commit on $(date)&amp;quot;
+            git push origin main 
+        env:
+          REPO_KEY: ${{secrets.GITHUB_TOKEN}}
+          username: github-actions&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error: &amp;lt;text&amp;gt;:22:20: unexpected symbol
+21:           any::cronR
+22:       run: Rscript auto_email_blastula.R
+                       ^&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>efe18ca752d8ebda1fbcb36f85003d15</distill:md5>
+      <guid>https://higgi13425.github.io/medical_r/posts/2024-01-23-automatic-emails-with-cron-jobs-from-a-server</guid>
+      <pubDate>Tue, 23 Jan 2024 00:00:00 +0000</pubDate>
+      <media:content url="https://higgi13425.github.io/medical_r/posts/2024-01-23-automatic-emails-with-cron-jobs-from-a-server/automatic-emails-with-cron-jobs-from-a-server_files/figure-html5/pressure-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>Functions and Functionals: TidyEval Fun</title>
       <dc:creator>Peter Higgins</dc:creator>
       <link>https://higgi13425.github.io/medical_r/posts/2023-08-26-functions-and-functionals-tidyeval-fun</link>
       <description>Two approaches to use tidyeval to work in both individyal functions and with functionals like map and map2.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2023-08-26-functions-and-functionals-tidyeval-fun</guid>
-      <pubDate>2022-08-26</pubDate>
+      <pubDate>Fri, 26 Aug 2022 00:00:00 +0000</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2023-08-26-functions-and-functionals-tidyeval-fun/tidyeval.png" medium="image" type="image/png" width="1200" height="600"/>
     </item>
     <item>
@@ -23,7 +187,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2023-08-26-multipanel-figure-with-legend</link>
       <description>A way to create the common figure in medical journals with multiple panels and a single legend for all panels at the bottom.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2023-08-26-multipanel-figure-with-legend</guid>
-      <pubDate>2022-08-26</pubDate>
+      <pubDate>Fri, 26 Aug 2022 00:00:00 +0000</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2023-08-26-multipanel-figure-with-legend/multipanel_with_legend.png" medium="image" type="image/png" width="672" height="480"/>
     </item>
     <item>
@@ -32,7 +196,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package</link>
       <description>How to use Zenodo to obtain a Digital Object Identifier (DOI) for your R project or package in a GitHub repo.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package</guid>
-      <pubDate>2022-04-28</pubDate>
+      <pubDate>Thu, 28 Apr 2022 00:00:00 +0000</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2022-04-28-obtaining-a-zenodo-doi-for-your-r-project-or-package/zenodo.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -41,7 +205,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2021-10-20-creating-standard-mileposts-in-your-bookdown-book</link>
       <description>How to create and use recurring fun icons for mileposts within a bookdown book, as inspired by the work of Desiree De Leon.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2021-10-20-creating-standard-mileposts-in-your-bookdown-book</guid>
-      <pubDate>2021-10-20</pubDate>
+      <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2021-10-20-creating-standard-mileposts-in-your-bookdown-book/milepost.png" medium="image" type="image/png" width="1284" height="502"/>
     </item>
     <item>
@@ -50,7 +214,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown</link>
       <description>Using the {webexercises} package by Lisa Debruine can help you add interactive exercises to your bookdown book, including True/False, multiple choice, short fill in the blank, and hide/unhide for hints or solutions. This can be very helpful for quick feedback to check understanding. Custom CSS is used for the styling and buttons, and Custom JavaScript for testing correctness and using CSS styles.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown</guid>
-      <pubDate>2021-07-14</pubDate>
+      <pubDate>Wed, 14 Jul 2021 00:00:00 +0000</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2021-07-14-using-webex-to-add-mini-interactive-exercises-to-bookdown/webexercises.png" medium="image" type="image/png" width="1024" height="1024"/>
     </item>
     <item>
@@ -59,7 +223,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2021-06-13-resources-for-getting-started-in-r</link>
       <description>An assortment of resources for learning R, for beginner to advanced users.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2021-06-13-resources-for-getting-started-in-r</guid>
-      <pubDate>2021-06-13</pubDate>
+      <pubDate>Sun, 13 Jun 2021 00:00:00 +0000</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2021-06-13-resources-for-getting-started-in-r/RYouWithMe.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -68,7 +232,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2021-01-13-extracting-highlighting-as-data-from-excel</link>
       <description>Sometimes well-meaning people encode variables in medical data as highlighting with colors. For example, a spreadsheet where the control patients are in the green rows, and the test patients are in the red rows. This should have been encoded as a study_arm variable with values control and test. How to fix this - the {tidyxl} package can get under the hood of an excel spreadsheet and extract this information.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2021-01-13-extracting-highlighting-as-data-from-excel</guid>
-      <pubDate>2021-01-13</pubDate>
+      <pubDate>Wed, 13 Jan 2021 00:00:00 +0000</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2021-01-13-extracting-highlighting-as-data-from-excel/titanic.png" medium="image" type="image/png" width="733" height="360"/>
     </item>
     <item>
@@ -77,7 +241,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-12-27-creating-mini-learnr-apps-and-hosting-on-a-server</link>
       <description>This post will explain how to create your own learnr apps and push them to an RStudio Server Open Source server.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-12-27-creating-mini-learnr-apps-and-hosting-on-a-server</guid>
-      <pubDate>2020-12-27</pubDate>
+      <pubDate>Sun, 27 Dec 2020 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Publishing a {bookdown} book on bookdown.org</title>
@@ -85,7 +249,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-12-12-publishing-a-bookdown-book-on-bookdownorg</link>
       <description>A short overview of creating a {bookdown} book and publishing on bookdown.org</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-12-12-publishing-a-bookdown-book-on-bookdownorg</guid>
-      <pubDate>2020-12-12</pubDate>
+      <pubDate>Sat, 12 Dec 2020 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Setting Up a RStudio Server with the Open Source Edition</title>
@@ -94,7 +258,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version</link>
       <description>This is a basic setup guide for setting up a Linux-based server with RStudio Server and Shiny Server (the free versions). This was contributed by Javan Thompson, who works in IT at the University of Michigan Medical Center, and was a great help in setting this up for me. He has graciously provided a basic walkthrough for anyone else to follow.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version</guid>
-      <pubDate>2020-12-06</pubDate>
+      <pubDate>Sun, 06 Dec 2020 00:00:00 +0000</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2020-12-06-setting-up-a-rstudio-server-with-free-software-version/rstudio_server_open_source.png" medium="image" type="image/png" width="1165" height="547"/>
     </item>
     <item>
@@ -103,7 +267,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-11-01-subgroup-plots</link>
       <description>Sometimes editors ask for _post hoc_ analysis of subgroups in clinical trials, and will refuse the manuscript without them. How you can make these in R, in a somewhat kludgy way.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-11-01-subgroup-plots</guid>
-      <pubDate>2020-11-01</pubDate>
+      <pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate>
       <media:content url="https://higgi13425.github.io/medical_r/posts/2020-11-01-subgroup-plots/subgroup-plots_files/figure-html5/plot-1.png" medium="image" type="image/png" width="1728" height="1440"/>
     </item>
     <item>
@@ -112,7 +276,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-10-20-embed-external-flipbooks</link>
       <description>After you have created micro-flipbooks in your miniflipbook project, how do you embed them in Rmarkdown and bookdown projects?</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-10-20-embed-external-flipbooks</guid>
-      <pubDate>2020-10-20</pubDate>
+      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Building a Data Package</title>
@@ -120,7 +284,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-10-18-building-a-data-package</link>
       <description>For building a package that is largely about making datasets readily available in R.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-10-18-building-a-data-package</guid>
-      <pubDate>2020-10-18</pubDate>
+      <pubDate>Sun, 18 Oct 2020 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>How to Post</title>
@@ -128,7 +292,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-10-14-how-to-post</link>
       <description>A reference for future me, on how to create posts.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-10-14-how-to-post</guid>
-      <pubDate>2020-10-14</pubDate>
+      <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>micro-flipbooks</title>
@@ -136,7 +300,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-10-14-micro-flipbooks</link>
       <description>How to make embeddable micro-flipbooks (single topic example) for embedding in bookdown HTML in e-books</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-10-14-micro-flipbooks</guid>
-      <pubDate>2020-10-14</pubDate>
+      <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Why a Medical R Blog?</title>
@@ -144,7 +308,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/2020-10-14-why-a-medical-r-blog</link>
       <description>A starting point and few Theses.</description>
       <guid>https://higgi13425.github.io/medical_r/posts/2020-10-14-why-a-medical-r-blog</guid>
-      <pubDate>2020-10-14</pubDate>
+      <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Welcome to Medical R</title>
@@ -152,7 +316,7 @@
       <link>https://higgi13425.github.io/medical_r/posts/welcome</link>
       <description>Welcome to my blog, Medical R. I will blog on topics related to using R with medical data. I hope you enjoy reading and find this useful!</description>
       <guid>https://higgi13425.github.io/medical_r/posts/welcome</guid>
-      <pubDate>2020-10-14</pubDate>
+      <pubDate>Wed, 14 Oct 2020 00:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>

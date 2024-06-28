@@ -7,7 +7,180 @@
     <description>A blog about the use of R with medical data.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 23 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 26 Jun 2024 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>automated-redcap-pull-data</title>
+      <dc:creator>Peter Higgins</dc:creator>
+      <link>https://higgi13425.github.io/medical_r/posts/2024-06-26-automated-redcap-pull-data</link>
+      <description>
+
+
+&lt;h2 id="automating-redcap-data-pulls"&gt;Automating REDCap Data Pulls&lt;/h2&gt;
+&lt;p&gt;If you want to keep track of your clinical researach project in a
+REDCap database, you may want to automate the process of pulling data
+from REDCap to a secure server. You could use standard REDCap reports,
+but it is pretty nice to be able to pull the data, write custom dat
+summaries, and share these on the web with collaborators. This post will
+walk you through how to set up automated data pulls and summaries from a
+REDCap database to a secure firewalled server. We will assume that you
+already have a working REDCap project and a secure RStudio server to
+pull the data to.&lt;/p&gt;
+&lt;h2 id="start-with-a-redcap-api-token"&gt;Start with A REDCap API
+Token&lt;/h2&gt;
+&lt;p&gt;Start by logging into your REDCap project. Go to the API section of
+the project. Look for an API button in the left sidebar and click on
+this. Note that if you do not see an API button, you may not have API
+access - ask the person who set up the database to give you API Access.
+You will need to generate a new API token. This token is like a
+password, so keep it secure. You will use this token to access the data
+in your project. Copy this token (a 40 character hash of capital letters
+and numbers).&lt;/p&gt;
+&lt;h2 id="store-the-redcap-api-token-securely"&gt;Store the REDCap API Token
+Securely&lt;/h2&gt;
+&lt;p&gt;Now go to your R Server, and enter the Console. Make sure you have
+the &lt;code&gt;usethis&lt;/code&gt; package installed. If you do not, install it
+with &lt;code&gt;install.packages("usethis")&lt;/code&gt;. Then enter the following
+command:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;usethis::edit_r_environ()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This will open up a file named &lt;code&gt;.Renviron&lt;/code&gt; in your R
+environment. Add the following line to the file:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;REDCAP_PROJECTNAME_KEY = "your_api_token_GRBLE_7786GRBLE"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Save the file and restart your R session. This will store the API
+token in your R environment, and you can access it with the following
+command:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;key &amp;lt;- Sys.getenv("REDCAP_PROJECTNAME_KEY")&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This stores the key securely, without putting it in your code. You do
+not want to share your API key in your code. This does make it possible
+to access the secret key from your code, but it is more secure than
+putting the key in your code.&lt;/p&gt;
+&lt;h2 id="starting-your-project"&gt;Starting Your Project&lt;/h2&gt;
+&lt;p&gt;Now open up a new project on the RStudio Server, with File/New
+Project. You can name the project whatever you like. I will name mine
+&lt;code&gt;automated-projectname&lt;/code&gt;. This will create a new folder in
+your RStudio Server. You can use the &lt;code&gt;here&lt;/code&gt; package to make
+sure that you are working in the correct directory.&lt;/p&gt;
+&lt;h2 id="opening-the-first-quarto-file"&gt;Opening the first Quarto
+file&lt;/h2&gt;
+&lt;p&gt;Within the project, select File/New File/Quarto File. This will open
+up a new Quarto file. You can name this file
+&lt;code&gt;automated-projectname-pull-data.qmd&lt;/code&gt;. This will be the file
+that you use to pull the data from REDCap and summarize it.&lt;/p&gt;
+&lt;h2 id="writing-the-quarto-file"&gt;Writing the Quarto File&lt;/h2&gt;
+&lt;p&gt;Start with a setup chunk. This will load the necessary libraries
+(tidyverse, REDCapTidieR, here, janitor, gt) and set up the
+environment.&lt;/p&gt;
+&lt;p&gt;Then you can start with the first chunk of R code. This will load the
+API key from the environment. Assign the key to a variable named
+&lt;code&gt;key&lt;/code&gt; with the following code:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;key &amp;lt;- Sys.getenv("REDCAP_PROJECTNAME_KEY")&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This will load the key into the variable &lt;code&gt;key&lt;/code&gt;. You can
+then use this key to access the data in your REDCap project with
+REDCapTidieR.&lt;/p&gt;
+&lt;h2 id="pulling-data-from-redcap"&gt;Pulling Data from REDCap&lt;/h2&gt;
+&lt;p&gt;In the next code chunk, you can use the &lt;code&gt;redcap_read&lt;/code&gt;
+function from REDCapTidieR to pull data from your REDCap project. You
+will need to know the URL of your REDCap project, the API token, and the
+name of the project. You can use the following code to pull the
+data:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;redcap_url &amp;lt;-&lt;/code&gt;
+&lt;code&gt;"https://redcapproduction.umms.med.umich.edu/api/"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;data &amp;lt;- read_redcap(redcap_url, key)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;data %&amp;gt;%&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bind_tibbles()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;# tibbles show up in the Environment pane&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;# pick a table like demographics from the Environment pane&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;head(demographics)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This will pull the data from your REDCap project and show the first
+few rows of the demographics table. You can use this data to summarize
+the data in the next code chunk.&lt;/p&gt;
+&lt;h2 id="summarizing-the-data"&gt;Summarizing the Data&lt;/h2&gt;
+&lt;p&gt;The next part is up to you. Summarize the data in any way you like.
+You can use the &lt;code&gt;janitor&lt;/code&gt; package to clean up the data, the
+&lt;code&gt;gt&lt;/code&gt; package to make nice tables, and the
+&lt;code&gt;tidyverse&lt;/code&gt; to summarize the data.&lt;/p&gt;
+&lt;p&gt;Count how many patients are in the study, compared to your enrollment
+goal. Check how many forms are completed, and which have missing data.
+List and count those excluded, and why. Summarize the data in any way
+you like. But do not output individual or PHI data.&lt;/p&gt;
+&lt;h2 id="setting-up-a-quarto-pub-account"&gt;Setting up a Quarto Pub
+Account&lt;/h2&gt;
+&lt;p&gt;Take a moment to set up a free account at &lt;a
+href="https://quartopub.com/"
+class="uri"&gt;https://quartopub.com/&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This will give you a free place to host your resulting HTML
+files.&lt;/p&gt;
+&lt;h2 id="rendering-the-quarto-file"&gt;Rendering the Quarto File&lt;/h2&gt;
+&lt;p&gt;Just click on the Render button to get HTML output. Check the output,
+and fine tune it. You may want to use #|&lt;code&gt;include:false&lt;/code&gt; in
+the first line of the setup chunk to hide the code. You can also use
+#|&lt;code&gt;echo:false&lt;/code&gt; at the top of the other chunks to hide the
+code so that the viewer just sees the output. Add some headings and
+explanatory text to make the output more readable.&lt;/p&gt;
+&lt;p&gt;You can see an example here:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://phiggins.quarto.pub/smart-dashboard-e99e/"&gt;Link to
+HTML Dashboard&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="publishing-with-quarto-publish"&gt;Publishing with quarto
+publish&lt;/h2&gt;
+&lt;p&gt;You can publish this qurto file from the command line by going to
+your Terminal tab in RStudio, and typing in:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;quarto publish quarto-pub your_filename.qmd&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;You will be asked to confirm your login, and it will publish your
+HTML output to quarto-pub.&lt;/p&gt;
+&lt;h2 id="automating-the-data-pull-and-the-publishing"&gt;Automating the data
+pull and the publishing&lt;/h2&gt;
+&lt;p&gt;Now you want this data pull and updated summary to happen
+automatically, once per week, every Monday morning at 4 AM.&lt;/p&gt;
+&lt;p&gt;Then you can take a look at the website every Monday morning when you
+get to work and see an updated snapshot of your study. You can share the
+link with collaaborators, and they can keep track of your progress.&lt;/p&gt;
+&lt;p&gt;To do this, you will also need to work in the Terminal, using
+&lt;code&gt;crontab&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="crontab"&gt;Crontab&lt;/h2&gt;
+&lt;p&gt;Crontab is an application in the Terminal that lets you schedule
+scripts to run at specific, repeating times (cron). It keeps a
+tabulation of all of your scheduled cron jobs to run.&lt;/p&gt;
+&lt;p&gt;Go to the Terminal&lt;/p&gt;
+&lt;p&gt;Enter&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;crontab -e&lt;/code&gt; to open crontab.&lt;/p&gt;
+&lt;p&gt;It will initially be empty, but you can add and save cron jobs.&lt;/p&gt;
+&lt;p&gt;The default editor is usually &lt;code&gt;vim&lt;/code&gt;, but if you prefer
+&lt;code&gt;nano&lt;/code&gt;, you can change the default with
+&lt;code&gt;export EDITOR=nano&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Now you have an empty space to work with.&lt;/p&gt;
+&lt;h2 id="a-cron-job"&gt;A cron job&lt;/h2&gt;
+&lt;p&gt;A typical cron job looks something like:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;30 4 * * 1 /app/apps/rhel8/R/4.3.2/bin/Rscript -e "rmarkdown::render('/home/phiggins/data_space/phiggins/R/project_name/filename.qmd')" &amp;gt;&amp;gt; 'home/phiggins/data_space/phiggins/R/project_name/filename.log' 2&amp;gt;&amp;amp;1&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;which has 4 parts:&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;30 4 * * 1&lt;/code&gt; means it should run “at 4:30 AM every
+Monday”&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;/app/apps/rhel8/R/4.3.2/bin/&lt;/code&gt; locates the R file,
+then executes an R script enclosed in quotes. This one is just
+&lt;code&gt;rmarkdown::render&lt;/code&gt;, which renders the qmd document enclosed
+in single quotes.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The double quotes enclose a very short R script, which is just
+the command to render the qmd file (which is single quoted).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The &lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt; appends the output to a log file. This
+file is named (with its full path) in the single quotes. The
+&lt;code&gt;2&amp;gt;&amp;amp;1&lt;/code&gt; redirects any error output to the same log
+file.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now, you can&lt;/p&gt;
+&lt;p&gt;Edit your time to schedule the cron job.&lt;/p&gt;
+&lt;p&gt;Check the path to your R installation, correct this if needed.&lt;/p&gt;
+&lt;p&gt;Check the path to your qmd file, correct this if needed.&lt;/p&gt;
+&lt;p&gt;Check the path to your log file, correct this if needed.&lt;/p&gt;
+&lt;p&gt;Save this crontab in nano with Ctrl-X, Y, Enter.&lt;/p&gt;
+&lt;p&gt;Now this job will run (or fail) every Monday at 4:30 AM. You probably
+want to test this out first, to make sure it works. Use a time about 2
+minutes ahead of the current time.&lt;/p&gt;
+&lt;p&gt;Once it is working, switch it back to the desired time, like
+&lt;code&gt;30 4 * * 1&lt;/code&gt;&lt;/p&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>9660b366fbf7c01311e0b84e7c2aaf77</distill:md5>
+      <guid>https://higgi13425.github.io/medical_r/posts/2024-06-26-automated-redcap-pull-data</guid>
+      <pubDate>Wed, 26 Jun 2024 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Sending Automated Emails with Cron Jobs</title>
       <dc:creator>Peter Higgins</dc:creator>
@@ -72,7 +245,7 @@ date: &amp;quot;2024-01-24&amp;quot;
  Max.   :25.0   Max.   :120.00  &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id="including-plots"&gt;Including Plots&lt;/h2&gt;
 &lt;p&gt;Or plots&lt;/p&gt;
-&lt;p&gt;&lt;img src="file4b2b2919015b_files/figure-html/pressure-1.png" width="672" /&gt;
+&lt;p&gt;&lt;img src="file5adb60b0dd41_files/figure-html/pressure-1.png" width="672" /&gt;
 #### Example email ends here&lt;/p&gt;
 &lt;h2 id="test-email"&gt;Test Email&lt;/h2&gt;
 &lt;p&gt;I am going to test the email by sending it to myself. I am going to

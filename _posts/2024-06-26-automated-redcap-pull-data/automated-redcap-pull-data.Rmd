@@ -1,0 +1,166 @@
+---
+title: "automated-redcap-pull-data"
+description: |
+  This post will walk you through how to set up automated data pulls and summaries from a REDCap database to a secure firewalled server.
+author:
+  - name: Peter Higgins
+    url: https://higgi13425.github.io/medical_r/
+date: 2024-06-26
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(REDCapTidieR)
+library(here)
+```
+
+## Automating REDCap Data Pulls
+
+If you want to keep track of your clinical researach project in a REDCap database, you may want to automate the process of pulling data from REDCap to a secure server. You could use standard REDCap reports, but it is pretty nice to be able to pull the data, write custom dat summaries, and share these on the web with collaborators. This post will walk you through how to set up automated data pulls and summaries from a REDCap database to a secure firewalled server. We will assume that you already have a working REDCap project and a secure RStudio server to pull the data to.
+
+## Start with A REDCap API Token
+
+Start by logging into your REDCap project. Go to the API section of the project. Look for an API button in the left sidebar and click on this. Note that if you do not see an API button, you may not have API access - ask the person who set up the database to give you API Access. You will need to generate a new API token. This token is like a password, so keep it secure. You will use this token to access the data in your project. Copy this token (a 40 character hash of capital letters and numbers).
+
+## Store the REDCap API Token Securely
+
+Now go to your R Server, and enter the Console. Make sure you have the `usethis` package installed. If you do not, install it with `install.packages("usethis")`. Then enter the following command:
+
+`usethis::edit_r_environ()`
+
+This will open up a file named `.Renviron` in your R environment. Add the following line to the file:
+
+`REDCAP_PROJECTNAME_KEY = "your_api_token_GRBLE_7786GRBLE"`
+
+Save the file and restart your R session. This will store the API token in your R environment, and you can access it with the following command:
+
+`key <- Sys.getenv("REDCAP_PROJECTNAME_KEY")`
+
+This stores the key securely, without putting it in your code. You do not want to share your API key in your code. This does make it possible to access the secret key from your code, but it is more secure than putting the key in your code.
+
+## Starting Your Project
+
+Now open up a new project on the RStudio Server, with File/New Project. You can name the project whatever you like. I will name mine `automated-projectname`. This will create a new folder in your RStudio Server. You can use the `here` package to make sure that you are working in the correct directory.
+
+## Opening the first Quarto file
+
+Within the project, select File/New File/Quarto File. This will open up a new Quarto file. You can name this file `automated-projectname-pull-data.qmd`. This will be the file that you use to pull the data from REDCap and summarize it.
+
+## Writing the Quarto File
+
+Start with a setup chunk. This will load the necessary libraries (tidyverse, REDCapTidieR, here, janitor, gt) and set up the environment.
+
+Then you can start with the first chunk of R code. This will load the API key from the environment. Assign the key to a variable named `key` with the following code:
+
+`key <- Sys.getenv("REDCAP_PROJECTNAME_KEY")`
+
+This will load the key into the variable `key`. You can then use this key to access the data in your REDCap project with REDCapTidieR.
+
+## Pulling Data from REDCap
+
+In the next code chunk, you can use the `redcap_read` function from REDCapTidieR to pull data from your REDCap project. You will need to know the URL of your REDCap project, the API token, and the name of the project. You can use the following code to pull the data:
+
+`redcap_url <-` `"https://redcapproduction.umms.med.umich.edu/api/"`
+
+`data <- read_redcap(redcap_url, key)`
+
+`data %>%`
+
+`bind_tibbles()`
+
+`# tibbles show up in the Environment pane`
+
+`# pick a table like demographics from the Environment pane`
+
+`head(demographics)`
+
+This will pull the data from your REDCap project and show the first few rows of the demographics table. You can use this data to summarize the data in the next code chunk.
+
+## Summarizing the Data
+
+The next part is up to you. Summarize the data in any way you like. You can use the `janitor` package to clean up the data, the `gt` package to make nice tables, and the `tidyverse` to summarize the data.
+
+Count how many patients are in the study, compared to your enrollment goal. Check how many forms are completed, and which have missing data. List and count those excluded, and why. Summarize the data in any way you like. But do not output individual or PHI data.
+
+## Setting up a Quarto Pub Account
+
+Take a moment to set up a free account at <https://quartopub.com/>.
+
+This will give you a free place to host your resulting HTML files.
+
+## Rendering the Quarto File
+
+Just click on the Render button to get HTML output. Check the output, and fine tune it. You may want to use #\|`include:false` in the first line of the setup chunk to hide the code. You can also use #\|`echo:false` at the top of the other chunks to hide the code so that the viewer just sees the output. Add some headings and explanatory text to make the output more readable.
+
+You can see an example here:
+
+[Link to HTML Dashboard](https://phiggins.quarto.pub/smart-dashboard-e99e/)
+
+## Publishing with quarto publish
+
+You can publish this qurto file from the command line by going to your Terminal tab in RStudio, and typing in:
+
+`quarto publish quarto-pub your_filename.qmd`
+
+You will be asked to confirm your login, and it will publish your HTML output to quarto-pub.
+
+## Automating the data pull and the publishing
+
+Now you want this data pull and updated summary to happen automatically, once per week, every Monday morning at 4 AM.
+
+Then you can take a look at the website every Monday morning when you get to work and see an updated snapshot of your study. You can share the link with collaaborators, and they can keep track of your progress.
+
+To do this, you will also need to work in the Terminal, using `crontab`.
+
+## Crontab
+
+Crontab is an application in the Terminal that lets you schedule scripts to run at specific, repeating times (cron). It keeps a tabulation of all of your scheduled cron jobs to run.
+
+Go to the Terminal
+
+Enter
+
+`crontab -e` to open crontab.
+
+It will initially be empty, but you can add and save cron jobs.
+
+The default editor is usually `vim`, but if you prefer `nano`, you can change the default with `export EDITOR=nano`
+
+Now you have an empty space to work with.
+
+## A cron job
+
+A typical cron job looks something like:
+
+`30 4 * * 1 /app/apps/rhel8/R/4.3.2/bin/Rscript -e "rmarkdown::render('/home/phiggins/data_space/phiggins/R/project_name/filename.qmd')" >> 'home/phiggins/data_space/phiggins/R/project_name/filename.log' 2>&1`
+
+which has 4 parts:
+
+1.  `30 4 * * 1` means it should run "at 4:30 AM every Monday"
+
+2.  `/app/apps/rhel8/R/4.3.2/bin/` locates the R file, then executes an R script enclosed in quotes. This one is just `rmarkdown::render`, which renders the qmd document enclosed in single quotes. 
+
+3. The double quotes enclose a very short R script, which is just the command to render the qmd file (which is single quoted).
+
+4. The `>>` appends the output to a log file. This file is named (with its full path) in the single quotes. The `2>&1` redirects any error output to the same log file.
+
+Now, you can
+
+Edit your time to schedule the cron job.
+
+Check the path to your R installation, correct this if needed.
+
+Check the path to your qmd file, correct this if needed.
+
+Check the path to your log file, correct this if needed.
+
+Save this crontab in nano with Ctrl-X, Y, Enter.
+
+Now this job will run (or fail) every Monday at 4:30 AM.
+You probably want to test this out first, to make sure it works. Use a time about 2 minutes ahead of the current time. 
+
+Once it is working, switch it back to the desired time, like `30 4 * * 1`

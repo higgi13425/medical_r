@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -88,7 +88,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-<title>Medical R: automated-redcap-pull-data</title>
+<title>Medical R: Pulling, Wrangling, and Sharing Summaries of REDCap Data</title>
 
 <meta property="description" itemprop="description" content="This post will walk you through how to set up automated data pulls and summaries from a REDCap database to a secure firewalled server."/>
 
@@ -100,7 +100,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta name="article:author" content="Peter Higgins"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="Medical R: automated-redcap-pull-data"/>
+<meta property="og:title" content="Medical R: Pulling, Wrangling, and Sharing Summaries of REDCap Data"/>
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="This post will walk you through how to set up automated data pulls and summaries from a REDCap database to a secure firewalled server."/>
 <meta property="og:url" content="https://higgi13425.github.io/medical_r/posts/2024-06-26-automated-redcap-pull-data/"/>
@@ -109,14 +109,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary"/>
-<meta property="twitter:title" content="Medical R: automated-redcap-pull-data"/>
+<meta property="twitter:title" content="Medical R: Pulling, Wrangling, and Sharing Summaries of REDCap Data"/>
 <meta property="twitter:description" content="This post will walk you through how to set up automated data pulls and summaries from a REDCap database to a secure firewalled server."/>
 <meta property="twitter:url" content="https://higgi13425.github.io/medical_r/posts/2024-06-26-automated-redcap-pull-data/"/>
 <meta property="twitter:site" content="@ibddoctor"/>
 <meta property="twitter:creator" content="@ibddoctor"/>
 
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
-<meta name="citation_title" content="Medical R: automated-redcap-pull-data"/>
+<meta name="citation_title" content="Medical R: Pulling, Wrangling, and Sharing Summaries of REDCap Data"/>
 <meta name="citation_fulltext_html_url" content="https://higgi13425.github.io/medical_r/posts/2024-06-26-automated-redcap-pull-data/"/>
 <meta name="citation_online_date" content="2024/06/26"/>
 <meta name="citation_publication_date" content="2024/06/26"/>
@@ -125,12 +125,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["automated-redcap-pull-data"]},{"type":"character","attributes":{},"value":["This post will walk you through how to set up automated data pulls and summaries from a REDCap database to a secure firewalled server."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Peter Higgins"]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/medical_r/"]}]}]},{"type":"character","attributes":{},"value":["2024-06-26"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/medical_r/posts/2024-06-26-automated-redcap-pull-data/"]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/medical_r/posts/2024-06-26-automated-redcap-pull-data/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Pulling, Wrangling, and Sharing Summaries of REDCap Data"]},{"type":"character","attributes":{},"value":["This post will walk you through how to set up automated data pulls and summaries from a REDCap database to a secure firewalled server."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Peter Higgins"]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/medical_r/"]}]}]},{"type":"character","attributes":{},"value":["2024-06-26"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/medical_r/posts/2024-06-26-automated-redcap-pull-data/"]},{"type":"character","attributes":{},"value":["https://higgi13425.github.io/medical_r/posts/2024-06-26-automated-redcap-pull-data/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["automated-redcap-pull-data_files/anchor-4.2.2/anchor.min.js","automated-redcap-pull-data_files/bowser-1.9.3/bowser.min.js","automated-redcap-pull-data_files/distill-2.2.21/template.v2.js","automated-redcap-pull-data_files/header-attrs-2.27/header-attrs.js","automated-redcap-pull-data_files/jquery-3.6.0/jquery-3.6.0.js","automated-redcap-pull-data_files/jquery-3.6.0/jquery-3.6.0.min.js","automated-redcap-pull-data_files/jquery-3.6.0/jquery-3.6.0.min.map","automated-redcap-pull-data_files/popper-2.6.0/popper.min.js","automated-redcap-pull-data_files/tippy-6.2.7/tippy-bundle.umd.min.js","automated-redcap-pull-data_files/tippy-6.2.7/tippy-light-border.css","automated-redcap-pull-data_files/tippy-6.2.7/tippy.css","automated-redcap-pull-data_files/tippy-6.2.7/tippy.umd.min.js","automated-redcap-pull-data_files/webcomponents-2.0.0/webcomponents.js","images/clipboard-2200478713.png"]}
+  {"type":"character","attributes":{},"value":["automated-redcap-pull-data_files/anchor-4.2.2/anchor.min.js","automated-redcap-pull-data_files/bowser-1.9.3/bowser.min.js","automated-redcap-pull-data_files/distill-2.2.21/template.v2.js","automated-redcap-pull-data_files/header-attrs-2.27/header-attrs.js","automated-redcap-pull-data_files/header-attrs-2.29/header-attrs.js","automated-redcap-pull-data_files/jquery-3.6.0/jquery-3.6.0.js","automated-redcap-pull-data_files/jquery-3.6.0/jquery-3.6.0.min.js","automated-redcap-pull-data_files/jquery-3.6.0/jquery-3.6.0.min.map","automated-redcap-pull-data_files/popper-2.6.0/popper.min.js","automated-redcap-pull-data_files/tippy-6.2.7/tippy-bundle.umd.min.js","automated-redcap-pull-data_files/tippy-6.2.7/tippy-light-border.css","automated-redcap-pull-data_files/tippy-6.2.7/tippy.css","automated-redcap-pull-data_files/tippy-6.2.7/tippy.umd.min.js","automated-redcap-pull-data_files/webcomponents-2.0.0/webcomponents.js","images/clipboard-2200478713.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -477,8 +477,8 @@ d-title {
 </style>
 
 <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="../../site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
-<link href="../../site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
 <script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
 <script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -2439,7 +2439,7 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.27/header-attrs.js"></script>
+  <script src="../../site_libs/header-attrs-2.29/header-attrs.js"></script>
   <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -2460,7 +2460,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"automated-redcap-pull-data","description":"This post will walk you through how to set up automated data pulls and summaries from a REDCap database to a secure firewalled server.","authors":[{"author":"Peter Higgins","authorURL":"https://higgi13425.github.io/medical_r/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2024-06-26T00:00:00.000-04:00","citationText":"Higgins, 2024"}
+{"title":"Pulling, Wrangling, and Sharing Summaries of REDCap Data","description":"This post will walk you through how to set up automated data pulls and summaries from a REDCap database to a secure firewalled server.","authors":[{"author":"Peter Higgins","authorURL":"https://higgi13425.github.io/medical_r/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2024-06-26T00:00:00.000-04:00","citationText":"Higgins, 2024"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2483,7 +2483,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>automated-redcap-pull-data</h1>
+<h1>Pulling, Wrangling, and Sharing Summaries of REDCap Data</h1>
 
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
@@ -2498,59 +2498,61 @@ d-appendix d-footnote-list a.footnote-backlink {
 
 <div class="d-article">
 <h2 id="automating-redcap-data-pulls">Automating REDCap Data Pulls</h2>
-<p>If you want to keep track of your clinical researach project in a REDCap database, you may want to automate the process of pulling data from REDCap to a secure server. You could use standard REDCap reports, but it is pretty nice to be able to pull the data, write custom dat summaries, and share these on the web with collaborators. This post will walk you through how to set up automated data pulls and summaries from a REDCap database to a secure firewalled server. We will assume that you already have a working REDCap project and a secure RStudio server to pull the data to.</p>
+<p>If you want to keep track of your clinical research project in a REDCap database, you may want to automate the process of pulling data from REDCap to a secure server. You could use standard REDCap reports, but it is pretty nice to be able to pull the data, write custom data summaries, and share these on the web with collaborators. This post will walk you through how to set up automated data pulls and summaries from a REDCap database to a secure firewalled server. We will assume that you already have a working REDCap project and a secure RStudio server to pull the data to.</p>
 <h2 id="start-with-a-redcap-api-token">Start with A REDCap API Token</h2>
-<p>Start by logging into your REDCap project. Go to the API section of the project. Look for an API button in the left sidebar and click on this. Note that if you do not see an API button, you may not have API access - ask the person who set up the database to give you API Access. You will need to generate a new API token. This token is like a password, so keep it secure. You will use this token to access the data in your project. Copy this token (a 40 character hash of capital letters and numbers).</p>
+<p>Start by logging into your REDCap project on your local production server. Go to the API section of the project in the sidebar. Look for an API button in the left sidebar and click on this. Note that if you do not see an API button, you may not have API access - you will need to ask the person who set up the REDCap database to give you API Access for this specific project. You will then need to generate a new API token. This will be an option once you have API access rights. Click on the <code>New API Token</code> button, and you will get a new token after the REDCap admin approves your request. This token is like a password, so keep it secure. You will use this token to access the data in your project. Copy this token (a 40 character hash of capital letters and numbers that looks something like garbled text: Rv67UIoPM89SDFgvTYHn23).</p>
 <h2 id="store-the-redcap-api-token-securely">Store the REDCap API Token Securely</h2>
-<p>Now go to your R Server, and enter the Console. Make sure you have the <code>usethis</code> package installed. If you do not, install it with <code>install.packages("usethis")</code>. Then enter the following command:</p>
+<p>(we are assuming that you have set up a firewalled server so that this PHI is protected from the outside world)
+Now go to your R Server, and enter the Console. Make sure you have the <code>usethis</code> package installed. If you do not, install it with <code>install.packages("usethis")</code>. Then enter the following command:</p>
 <p><code>usethis::edit_r_environ()</code></p>
-<p>This will open up a file named <code>.Renviron</code> in your R environment. Add the following line to the file:</p>
+<p>This will open up a file named <code>.Renviron</code> in your R environment. Add the following line to the file (put in a specific PROJECTNAME for your project):</p>
 <p><code>REDCAP_PROJECTNAME_KEY = "your_api_token_GRBLE_7786GRBLE"</code></p>
 <p>Save the file and restart your R session. This will store the API token in your R environment, and you can access it with the following command:</p>
 <p><code>key &lt;- Sys.getenv("REDCAP_PROJECTNAME_KEY")</code></p>
-<p>This stores the key securely, without putting it in your code. You do not want to share your API key in your code. This does make it possible to access the secret key from your code, but it is more secure than putting the key in your code.</p>
+<p>This stores the key securely, without putting it in your code. You do not want to share your API key in your code. This does make it possible to <strong>access</strong> the secret key from your code, but it is more secure than putting the key in your code.</p>
+<p>Test it by running the code above, and seeing if the key shows up as an Environment variable in the Environment pane in RStudio.</p>
 <h2 id="starting-your-project">Starting Your Project</h2>
 <p>Now open up a new project on the RStudio Server, with File/New Project. You can name the project whatever you like. I will name mine <code>automated-projectname</code>. This will create a new folder in your RStudio Server. You can use the <code>here</code> package to make sure that you are working in the correct directory.</p>
 <h2 id="opening-the-first-quarto-file">Opening the first Quarto file</h2>
 <p>Within the project, select File/New File/Quarto File. This will open up a new Quarto file. You can name this file <code>automated-projectname-pull-data.qmd</code>. This will be the file that you use to pull the data from REDCap and summarize it.</p>
 <h2 id="writing-the-quarto-file">Writing the Quarto File</h2>
-<p>Start with a setup chunk. This will load the necessary libraries (tidyverse, REDCapTidieR, here, janitor, gt) and set up the environment.</p>
+<p>Start with a setup chunk. Use this chunk to load the necessary libraries (tidyverse, REDCapTidieR, here, janitor, gt) and set up the environment.</p>
 <p>Then you can start with the first chunk of R code. This will load the API key from the environment. Assign the key to a variable named <code>key</code> with the following code:</p>
 <p><code>key &lt;- Sys.getenv("REDCAP_PROJECTNAME_KEY")</code></p>
 <p>This will load the key into the variable <code>key</code>. You can then use this key to access the data in your REDCap project with REDCapTidieR.</p>
 <h2 id="pulling-data-from-redcap">Pulling Data from REDCap</h2>
-<p>In the next code chunk, you can use the <code>redcap_read</code> function from REDCapTidieR to pull data from your REDCap project. You will need to know the URL of your REDCap project, the API token, and the name of the project. You can use the following code to pull the data:</p>
+<p>In the next code chunk, you can use the <code>redcap_read</code> function from REDCapTidieR to pull data from your REDCap project. You will need to know the URL of your REDCap production webpage, the API token key, and the name of the project. You can then use the following code to pull the data:</p>
 <p><code>redcap_url &lt;-</code> <code>"https://redcapproduction.umms.med.umich.edu/api/"</code></p>
 <p><code>data &lt;- read_redcap(redcap_url, key)</code></p>
 <p><code>data %&gt;%</code></p>
 <p><code>bind_tibbles()</code></p>
-<p><code># tibbles show up in the Environment pane</code></p>
+<p><code># now tibbles of your REDCap data will show up in the Environment pane</code></p>
 <p><code># pick a table like demographics from the Environment pane</code></p>
+<p><code># and check the first 6 rows</code></p>
 <p><code>head(demographics)</code></p>
 <p>This will pull the data from your REDCap project and show the first few rows of the demographics table. You can use this data to summarize the data in the next code chunk.</p>
 <h2 id="summarizing-the-data">Summarizing the Data</h2>
-<p>The next part is up to you. Summarize the data in any way you like. You can use the <code>janitor</code> package to clean up the data, the <code>gt</code> package to make nice tables, and the <code>tidyverse</code> to summarize the data.</p>
-<p>Count how many patients are in the study, compared to your enrollment goal. Check how many forms are completed, and which have missing data. List and count those excluded, and why. Summarize the data in any way you like. But do not output individual or PHI data.</p>
+<p>The next part is up to you. Summarize the data in any way you like. You can use the <code>janitor</code> package to clean up the data, the <code>gt</code> or <code>gtsummary</code>packages to make nice tables, nd <code>ggplot2</code> to plot the data.</p>
+<p>Count how many patients are in the study, compared to your enrollment goal. Check how many forms are completed, and which have missing data. List and count those excluded, and why. Summarize the data in any way you like. But do <strong>not</strong> output individual or PHI data.</p>
 <h2 id="setting-up-a-quarto-pub-account">Setting up a Quarto Pub Account</h2>
-<p>Take a moment to set up a free account at <a href="https://quartopub.com/" class="uri">https://quartopub.com/</a>.</p>
-<p>This will give you a free place to host your resulting HTML files.</p>
+<p>Take a moment to set up a free quarto pubs account at <a href="https://quartopub.com/" class="uri">https://quartopub.com/</a>.</p>
+<p>This will give you a free place to host your resulting HTML files/webpages.</p>
 <h2 id="rendering-the-quarto-file">Rendering the Quarto File</h2>
 <p>Just click on the Render button to get HTML output. Check the output, and fine tune it. You may want to use #|<code>include:false</code> in the first line of the setup chunk to hide the code. You can also use #|<code>echo:false</code> at the top of the other chunks to hide the code so that the viewer just sees the output. Add some headings and explanatory text to make the output more readable.</p>
 <p>You can see an example here:</p>
-<p><a href="https://phiggins.quarto.pub/smart-dashboard-e99e/">Link to HTML Dashboard</a></p>
+<p><a href="/">Link to HTML Dashboard</a><a href="https://phiggins.quarto.pub/sgm-study-dashboard/" class="uri">https://phiggins.quarto.pub/sgm-study-dashboard/</a>)</p>
 <h2 id="publishing-with-quarto-publish">Publishing with quarto publish</h2>
-<p>You can publish this qurto file from the command line by going to your Terminal tab in RStudio, and typing in:</p>
+<p>You can publish this quarto file from the command line by going to your Terminal tab in RStudio, and typing in:</p>
 <p><code>quarto publish quarto-pub your_filename.qmd</code></p>
 <p>You will be asked to confirm your login, and it will publish your HTML output to quarto-pub.</p>
 <h2 id="automating-the-data-pull-and-the-publishing">Automating the data pull and the publishing</h2>
 <p>Now you want this data pull and updated summary to happen automatically, once per week, every Monday morning at 4 AM.</p>
 <p>Then you can take a look at the website every Monday morning when you get to work and see an updated snapshot of your study. You can share the link with collaaborators, and they can keep track of your progress.</p>
-<p>To do this, you will also need to work in the Terminal, using <code>crontab</code>.</p>
+<p>To accomplish this scheduling, you will also need to work in the Terminal, using <code>crontab</code>.</p>
 <h2 id="crontab">Crontab</h2>
 <p>Crontab is an application in the Terminal that lets you schedule scripts to run at specific, repeating times (cron). It keeps a tabulation of all of your scheduled cron jobs to run.</p>
 <p>Go to the Terminal</p>
-<p>Enter</p>
-<p><code>crontab -e</code> to open crontab.</p>
+<p>Enter <code>crontab -e</code> to open crontab nd edit it.</p>
 <p>It will initially be empty, but you can add and save cron jobs.</p>
 <p>The default editor is usually <code>vim</code>, but if you prefer <code>nano</code>, you can change the default with <code>export EDITOR=nano</code></p>
 <p>Now you have an empty space to work with.</p>
@@ -2560,7 +2562,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>which has 4 parts:</p>
 <ol type="1">
 <li><p><code>30 4 * * 1</code> means it should run “at 4:30 AM every Monday”</p></li>
-<li><p><code>/app/apps/rhel8/R/4.3.2/bin/</code> locates the R file, then executes an R script enclosed in quotes. This one is just <code>rmarkdown::render</code>, which renders the qmd document enclosed in single quotes.</p></li>
+<li><p><code>/app/apps/rhel8/R/4.3.2/bin/Rscript -e</code> locates the R program, then executes an R script enclosed in quotes. This one is just <code>rmarkdown::render</code>, which renders the qmd document enclosed in single quotes.</p></li>
 <li><p>The double quotes enclose a very short R script, which is just the command to render the qmd file (which is single quoted).</p></li>
 <li><p>The <code>&gt;&gt;</code> appends the output to a log file. This file is named (with its full path) in the single quotes. The <code>2&gt;&amp;1</code> redirects any error output to the same log file.</p></li>
 </ol>
@@ -2569,9 +2571,9 @@ d-appendix d-footnote-list a.footnote-backlink {
 <p>Check the path to your R installation, correct this if needed.</p>
 <p>Check the path to your qmd file, correct this if needed.</p>
 <p>Check the path to your log file, correct this if needed.</p>
-<p>Save this crontab in nano with Ctrl-X, Y, Enter.</p>
+<p>Save this crontab in nano with Ctrl-X, Yes, Enter.</p>
 <p>Now this job will run (or fail) every Monday at 4:30 AM.
-You probably want to test this out first, to make sure it works. Use a time about 2 minutes ahead of the current time.</p>
+You probably want to test this out first, to make sure it works. Use a time about 2 minutes ahead of the current time for testing.</p>
 <p>Once it is working, switch it back to the desired time, like <code>30 4 * * 1</code></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
@@ -2579,10 +2581,10 @@ You probably want to test this out first, to make sure it works. Use a time abou
   <p class="social_footer">
     <span class="article-sharing">
       Share: &nbsp;
-      <a href="https://twitter.com/share?text=automated-redcap-pull-data&amp;url=https%3A%2F%2Fhiggi13425.github.io%2Fmedical_r%2Fposts%2F2024-06-26-automated-redcap-pull-data%2F" aria-label="share on twitter">
+      <a href="https://twitter.com/share?text=Pulling%2C%20Wrangling%2C%20and%20Sharing%20Summaries%20of%20REDCap%20Data&amp;url=https%3A%2F%2Fhiggi13425.github.io%2Fmedical_r%2Fposts%2F2024-06-26-automated-redcap-pull-data%2F" aria-label="share on twitter">
         <i class="fab fa-twitter" aria-hidden="true"></i>
       </a>
-      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fhiggi13425.github.io%2Fmedical_r%2Fposts%2F2024-06-26-automated-redcap-pull-data%2F&amp;title=automated-redcap-pull-data" aria-label="share on linkedin">
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fhiggi13425.github.io%2Fmedical_r%2Fposts%2F2024-06-26-automated-redcap-pull-data%2F&amp;title=Pulling%2C%20Wrangling%2C%20and%20Sharing%20Summaries%20of%20REDCap%20Data" aria-label="share on linkedin">
         <i class="fab fa-linkedin" aria-hidden="true"></i>
       </a>
     </span>
@@ -2611,11 +2613,11 @@ You probably want to test this out first, to make sure it works. Use a time abou
 <div class="appendix-bottom">
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Higgins (2024, June 26). Medical R: automated-redcap-pull-data. Retrieved from https://higgi13425.github.io/medical_r/posts/2024-06-26-automated-redcap-pull-data/</pre>
+  <pre class="citation-appendix short">Higgins (2024, June 26). Medical R: Pulling, Wrangling, and Sharing Summaries of REDCap Data. Retrieved from https://higgi13425.github.io/medical_r/posts/2024-06-26-automated-redcap-pull-data/</pre>
   <p>BibTeX citation</p>
-  <pre class="citation-appendix long">@misc{higgins2024automated-redcap-pull-data,
+  <pre class="citation-appendix long">@misc{higgins2024pulling,,
   author = {Higgins, Peter},
-  title = {Medical R: automated-redcap-pull-data},
+  title = {Medical R: Pulling, Wrangling, and Sharing Summaries of REDCap Data},
   url = {https://higgi13425.github.io/medical_r/posts/2024-06-26-automated-redcap-pull-data/},
   year = {2024}
 }</pre>

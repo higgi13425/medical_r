@@ -1,5 +1,5 @@
 ---
-title: "automated-redcap-pull-data"
+title: "Pulling, Wrangling, and Sharing Summaries of REDCap Data"
 description: |
   This post will walk you through how to set up automated data pulls and summaries from a REDCap database to a secure firewalled server.
 author:
@@ -20,19 +20,19 @@ library(here)
 
 ## Automating REDCap Data Pulls
 
-If you want to keep track of your clinical researach project in a REDCap database, you may want to automate the process of pulling data from REDCap to a secure server. You could use standard REDCap reports, but it is pretty nice to be able to pull the data, write custom dat summaries, and share these on the web with collaborators. This post will walk you through how to set up automated data pulls and summaries from a REDCap database to a secure firewalled server. We will assume that you already have a working REDCap project and a secure RStudio server to pull the data to.
+If you want to keep track of your clinical research project in a REDCap database, you may want to automate the process of pulling data from REDCap to a secure server. You could use standard REDCap reports, but it is pretty nice to be able to pull the data, write custom data summaries, and share these on the web with collaborators. This post will walk you through how to set up automated data pulls and summaries from a REDCap database to a secure firewalled server. We will assume that you already have a working REDCap project and a secure RStudio server to pull the data to.
 
 ## Start with A REDCap API Token
 
-Start by logging into your REDCap project. Go to the API section of the project. Look for an API button in the left sidebar and click on this. Note that if you do not see an API button, you may not have API access - ask the person who set up the database to give you API Access. You will need to generate a new API token. This token is like a password, so keep it secure. You will use this token to access the data in your project. Copy this token (a 40 character hash of capital letters and numbers).
+Start by logging into your REDCap project on your local production server. Go to the API section of the project in the sidebar. Look for an API button in the left sidebar and click on this. Note that if you do not see an API button, you may not have API access - you will need to ask the person who set up the REDCap database to give you API Access for this specific project. You will then need to generate a new API token. This will be an option once you have API access rights. Click on the `New API Token` button, and you will get a new token after the REDCap admin approves your request. This token is like a password, so keep it secure. You will use this token to access the data in your project. Copy this token (a 40 character hash of capital letters and numbers that looks something like garbled text: Rv67UIoPM89SDFgvTYHn23).
 
 ## Store the REDCap API Token Securely
-
+(we are assuming that you have set up a firewalled server so that this PHI is protected from the outside world)
 Now go to your R Server, and enter the Console. Make sure you have the `usethis` package installed. If you do not, install it with `install.packages("usethis")`. Then enter the following command:
 
 `usethis::edit_r_environ()`
 
-This will open up a file named `.Renviron` in your R environment. Add the following line to the file:
+This will open up a file named `.Renviron` in your R environment. Add the following line to the file (put in a specific PROJECTNAME for your project):
 
 `REDCAP_PROJECTNAME_KEY = "your_api_token_GRBLE_7786GRBLE"`
 
@@ -40,7 +40,9 @@ Save the file and restart your R session. This will store the API token in your 
 
 `key <- Sys.getenv("REDCAP_PROJECTNAME_KEY")`
 
-This stores the key securely, without putting it in your code. You do not want to share your API key in your code. This does make it possible to access the secret key from your code, but it is more secure than putting the key in your code.
+This stores the key securely, without putting it in your code. You do not want to share your API key in your code. This does make it possible to **access** the secret key from your code, but it is more secure than putting the key in your code.
+
+Test it by running the code above, and seeing if the key shows up as an Environment variable in the Environment pane in RStudio.
 
 ## Starting Your Project
 
@@ -52,7 +54,7 @@ Within the project, select File/New File/Quarto File. This will open up a new Qu
 
 ## Writing the Quarto File
 
-Start with a setup chunk. This will load the necessary libraries (tidyverse, REDCapTidieR, here, janitor, gt) and set up the environment.
+Start with a setup chunk. Use this chunk to load the necessary libraries (tidyverse, REDCapTidieR, here, janitor, gt) and set up the environment.
 
 Then you can start with the first chunk of R code. This will load the API key from the environment. Assign the key to a variable named `key` with the following code:
 
@@ -62,7 +64,7 @@ This will load the key into the variable `key`. You can then use this key to acc
 
 ## Pulling Data from REDCap
 
-In the next code chunk, you can use the `redcap_read` function from REDCapTidieR to pull data from your REDCap project. You will need to know the URL of your REDCap project, the API token, and the name of the project. You can use the following code to pull the data:
+In the next code chunk, you can use the `redcap_read` function from REDCapTidieR to pull data from your REDCap project. You will need to know the URL of your REDCap production webpage, the API token key, and the name of the project. You can then use the following code to pull the data:
 
 `redcap_url <-` `"https://redcapproduction.umms.med.umich.edu/api/"`
 
@@ -72,9 +74,11 @@ In the next code chunk, you can use the `redcap_read` function from REDCapTidieR
 
 `bind_tibbles()`
 
-`# tibbles show up in the Environment pane`
+`# now tibbles of your REDCap data will show up in the Environment pane`
 
 `# pick a table like demographics from the Environment pane`
+
+`# and check the first 6 rows`
 
 `head(demographics)`
 
@@ -82,15 +86,15 @@ This will pull the data from your REDCap project and show the first few rows of 
 
 ## Summarizing the Data
 
-The next part is up to you. Summarize the data in any way you like. You can use the `janitor` package to clean up the data, the `gt` package to make nice tables, and the `tidyverse` to summarize the data.
+The next part is up to you. Summarize the data in any way you like. You can use the `janitor` package to clean up the data, the `gt` or `gtsummary`packages to make nice tables, nd `ggplot2` to plot the data.
 
-Count how many patients are in the study, compared to your enrollment goal. Check how many forms are completed, and which have missing data. List and count those excluded, and why. Summarize the data in any way you like. But do not output individual or PHI data.
+Count how many patients are in the study, compared to your enrollment goal. Check how many forms are completed, and which have missing data. List and count those excluded, and why. Summarize the data in any way you like. But do **not** output individual or PHI data.
 
 ## Setting up a Quarto Pub Account
 
-Take a moment to set up a free account at <https://quartopub.com/>.
+Take a moment to set up a free quarto pubs account at <https://quartopub.com/>.
 
-This will give you a free place to host your resulting HTML files.
+This will give you a free place to host your resulting HTML files/webpages.
 
 ## Rendering the Quarto File
 
@@ -98,11 +102,11 @@ Just click on the Render button to get HTML output. Check the output, and fine t
 
 You can see an example here:
 
-[Link to HTML Dashboard](https://phiggins.quarto.pub/smart-dashboard-e99e/)
+[Link to HTML Dashboard](/)https://phiggins.quarto.pub/sgm-study-dashboard/)
 
 ## Publishing with quarto publish
 
-You can publish this qurto file from the command line by going to your Terminal tab in RStudio, and typing in:
+You can publish this quarto file from the command line by going to your Terminal tab in RStudio, and typing in:
 
 `quarto publish quarto-pub your_filename.qmd`
 
@@ -114,7 +118,7 @@ Now you want this data pull and updated summary to happen automatically, once pe
 
 Then you can take a look at the website every Monday morning when you get to work and see an updated snapshot of your study. You can share the link with collaaborators, and they can keep track of your progress.
 
-To do this, you will also need to work in the Terminal, using `crontab`.
+To accomplish this scheduling, you will also need to work in the Terminal, using `crontab`.
 
 ## Crontab
 
@@ -122,9 +126,7 @@ Crontab is an application in the Terminal that lets you schedule scripts to run 
 
 Go to the Terminal
 
-Enter
-
-`crontab -e` to open crontab.
+Enter `crontab -e` to open crontab nd edit it.
 
 It will initially be empty, but you can add and save cron jobs.
 
@@ -142,7 +144,7 @@ which has 4 parts:
 
 1.  `30 4 * * 1` means it should run "at 4:30 AM every Monday"
 
-2.  `/app/apps/rhel8/R/4.3.2/bin/` locates the R file, then executes an R script enclosed in quotes. This one is just `rmarkdown::render`, which renders the qmd document enclosed in single quotes. 
+2.  `/app/apps/rhel8/R/4.3.2/bin/Rscript -e` locates the R program, then executes an R script enclosed in quotes. This one is just `rmarkdown::render`, which renders the qmd document enclosed in single quotes. 
 
 3. The double quotes enclose a very short R script, which is just the command to render the qmd file (which is single quoted).
 
@@ -158,9 +160,9 @@ Check the path to your qmd file, correct this if needed.
 
 Check the path to your log file, correct this if needed.
 
-Save this crontab in nano with Ctrl-X, Y, Enter.
+Save this crontab in nano with Ctrl-X, Yes, Enter.
 
 Now this job will run (or fail) every Monday at 4:30 AM.
-You probably want to test this out first, to make sure it works. Use a time about 2 minutes ahead of the current time. 
+You probably want to test this out first, to make sure it works. Use a time about 2 minutes ahead of the current time for testing. 
 
 Once it is working, switch it back to the desired time, like `30 4 * * 1`
